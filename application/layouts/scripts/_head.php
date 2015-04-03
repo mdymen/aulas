@@ -748,6 +748,7 @@ die('.');*/
                 <!-- /Page Header -->
                 <!-- Page Body -->
                 <div class="page-body">
+                   
                     <?php  echo $this->layout()->content; ?>
                 </div>
                 <!-- /Page Body -->
