@@ -1,0 +1,10 @@
+<?php
+
+include APPLICATION_PATH.'/forms/Curso/Adicionar.php';
+include APPLICATION_PATH.'/decorators/Form.php';
+
+
+$decform = new Decorators_Form();
+$form = new Forms_Curso_Adicionar(array('titulo' => 'Novo curso'));
+$form->addDecorator($decform);
+echo $form;

@@ -1,0 +1,49 @@
+<?php 
+
+include APPLICATION_PATH.'/forms/Curso/Editar.php';
+include APPLICATION_PATH.'/decorators/Form.php';
+
+
+?>
+
+    <div class="row">
+    
+<?php
+    
+
+
+$curso = $this->curso;
+$curso = $curso[0];
+
+$slides = $this->slides;
+
+$decform = new Decorators_Form();
+$form = new Forms_Curso_Editar(array('titulo' => 'Editar: ' . $curso['ST_NOME_CR']));
+$form->populate($curso);
+$form->addDecorator($decform);
+echo $form;
+
+include APPLICATION_PATH.'/tables/simpletable.php';
+include APPLICATION_PATH.'/tables/slides.php';
+
+$table = new Tables_Slides($slides);
+$table->render();
+
+?>
+<!--
+
+<div class="col-lg-12">
+    <div class="widget">
+        <div class="widget-header bordered-bottom bordered-blue">
+            <span class="widget-caption"><?php echo $slides[0]['ST_DESCR_SLI']; ?></span>
+        </div>
+        <div class="widget-body">
+            
+                 <?php print_r($slides[0]['ST_SLIDE_SLI']); ?>
+            
+        </div>
+
+    </div>
+</div>
+        
+</div>-->

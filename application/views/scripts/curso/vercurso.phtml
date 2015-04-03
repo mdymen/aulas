@@ -1,0 +1,317 @@
+<?php
+
+include APPLICATION_PATH.'/Elementoshtml/Alerts.php';
+include APPLICATION_PATH.'/Forms/Anotacoes.php';
+include APPLICATION_PATH.'/Forms/Pergunta.php';
+include APPLICATION_PATH.'/Decorators/Form.php';
+
+$slide = $this->slide;
+$anotacoes = $this->anotacoes;
+$perguntas = $this->perguntas;
+if (!empty($anotacoes)) {
+    $anotacoes = $anotacoes[0];
+}
+
+$temPerguntas = false;
+if (!empty($perguntas)) {
+    $temPerguntas = true;
+}
+
+if (count($slide)> 0) {
+    $slide = $slide[0];
+?>
+
+<input type="hidden" id="curso" value="<?php echo $slide['ID_CURSO_CR']; ?>" />
+<input type="hidden" id="slide" value="<?php echo $slide['NM_SLIDE_SLI']; ?>" />
+
+<!--
+<div class="col-lg-12 col-sm-6 col-xs-12">
+    <div class="well with-header" style="">
+        <div class="header bordered-blue">Slides</div>
+        <div class="container"><span id="1htmlslide">
+            
+                <div id="slidemini" class="col-lg-1 col-sm-4 col-xs-6">
+                
+                    <a href="javascript:void(0)">  <div class="databox-bottom no-padding text-align-center" style="border: 1px solid">
+                                            <span class="databox-number lightcarbon no-margin">11</span>
+                                            <span class="databox-text lightcarbon no-margin">NEW TICKETS</span>
+
+                                        </div></a>
+                    </div>
+            </span></div> 
+    </div>
+</div>
+-->
+<div class="col-lg-7 col-sm-6 col-xs-12">
+    <div class="well with-header" style="height: 500px">
+        <div class="header bordered-pink">
+            
+            <span style="float: left">
+            
+                <a id="ant" href="javascript:void(0);" title="Anterior">
+                    <i class="fa-hover fa fa-angle-double-left"></i>
+                </a>
+
+            </span>    
+
+            <span style="float: right">
+
+                <a id="sig" href="javascript:void(0);" title="Seguinte">
+                    <i class=" fa-hover fa fa-angle-double-right"></i>
+                </a>
+
+            </span>
+        
+            <center>
+                
+               <?php echo '<span style="font-size: 15px"><b>'.$slide['ST_NOME_CR'].'</b></span><br><span id="tituloslide">'.$slide['ST_TITULO_SLI'].'</span><br>Slide N: <span id="numeroslide">'.$slide['NM_SLIDE_SLI'].'</span>'; ?>
+        
+            </center>
+        </div>
+        <div class="col-lg-12 container" style="padding-top:25px"><span id="htmlslide"><?php echo $slide['ST_SLIDE_SLI']; ?></span></div> 
+    </div>
+</div>
+
+
+<?php
+
+    $decform = new Decorators_Form();
+    $formAanotacoes = new Forms_Anotacoes(array('titulo' => 'Anotacoes', 'class' => 'col-lg-5 col-sm-6 col-xs-10'));
+    $formAanotacoes->populate($anotacoes);
+    $formAanotacoes->addDecorator($decform);
+
+    echo $formAanotacoes;
+?>
+<?php
+
+} else {
+    $msg = new Elementoshtml_Alerts();
+    echo $msg->warning("Nao existe nenhuma slide cadastrada para o curso.");
+}
+
+?>
+
+
+<div class="row">
+                                <div class="col-lg-12">
+                                    <div class="widget">
+                                        <div class="widget-header bordered-bottom bordered-themesecondary">
+                                            <i class="widget-icon fa fa-tags themesecondary"></i>
+                                            <span class="widget-caption themesecondary">Preguntas</span>
+                                        </div><!--Widget Header-->
+                                        
+                                    <div class="panel-group accordion" id="accordions" style="margin: 0px 0px 0px 0px !important">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordions" href="#collapseOnes" aria-expanded="false">
+                                                        <i class="fa-fw fa fa-check"></i> Nova pergunta...
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOnes" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                                <div class="panel-body border-red">
+                                                    <?php
+                                                    
+                                                        $formPerguntar = new Forms_Pergunta();
+                                                        echo $formPerguntar;
+                                                    
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+
+                                        <div class="widget-body  no-padding">
+                                            <div class="tickets-container">
+                                                <ul class="tickets-list">
+                                                  
+                                                        
+                                                            <?php
+                                                          
+                                                            if ($temPerguntas) {
+                                                            
+                                                                $collapsed = 0;
+                                                                foreach ($perguntas as $pergunta) {                                                                    
+                                                                    $respondida = !($pergunta['DT_UTIMOMOV_PER'] == '0000-00-00 00:00:00');
+                                                                    $resultado = "Aguardando resposta";
+                                                                    if ($respondida) {
+                                                                        $resultado = "RESPONDIDA";
+                                                                    }
+                                                                ?>
+                                                    
+                                                      <li class="ticket-item">
+                                                        
+                                                        <div class="row">
+                                                    
+                                                    <div class="ticket-user col-lg-6 col-sm-12">
+                                                          <!--          <img src="assets/img/avatars/adam-jansen.jpg" class="user-avatar">-->
+                                                                    <span class="user-name"><div class="widget-buttons buttons-bordered">
+                                                <a href="javascript:void(0)" id="btnExcluirPergunta" valor="<?php echo $pergunta['ID_PERGUNTA_PER']; ?>" class="btn btn-darkorange btn-xs btnExcluir"><i class="fa fa-times "></i></a>
+                                            </div><?php echo $pergunta['ST_PERGUNTA_PER']; ?></span>
+                                                                  <?php if ($respondida) {
+                                                                      
+                                                                  }?>
+                                                                </div>
+                                                                <div class="ticket-time  col-lg-4 col-sm-6 col-xs-12">
+                                                                    <div class="divider hidden-md hidden-sm hidden-xs"></div>
+                                                                    <?php
+                                                                        if ($respondida) {                                                                
+                                                                            ?>
+                                                                                <i class="fa fa-clock-o"></i>
+                                                                                <span class="time"><?php echo $pergunta['DT_UTIMOMOV_PER']; ?></span>                                                                        
+                                                                            <?php
+                                                                        
+                                                                        } else {
+                                                                            ?>
+                                                                                <span class="time"><?php echo 'Sem resposta'; ?></span>
+                                                                                    <?php
+                                                                        }
+                                                                        ?>
+
+
+
+                                                                </div>
+                                                                <div class="ticket-type  col-lg-2 col-sm-6 col-xs-12">
+                                                                    <span class="divider hidden-xs"></span>
+                                                                    <span class="type"><?php echo $resultado; ?></span>
+                                                                </div>
+
+                                                                <?php 
+                                                                    if ($respondida) {
+                                                                    ?>
+                                                                        <div class="ticket-state bg-palegreen">
+                                                                            <i class="fa fa-check"></i>
+                                                                        </div> <?php
+                                                                    } else {
+                                                                        ?>
+                                                                            <div class="ticket-state bg-yellow">
+                                                                                <i class="fa fa-info"></i>
+                                                                            </div> <?php                                                                    
+                                                                    }
+                                                                  ?>   <?php
+                    ?></div>
+                                                       
+                                                    </li>
+                                                        
+                                                                                            <div class="panel-group accordion" id="accordions" style="margin: 0px 0px 0px 0px !important">
+
+                                       
+                                    </div> <?php
+                                    
+                                    
+                                    
+                                    if ($respondida) {
+                                        ?>
+                                    
+                                            <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title">
+                                                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="<?php echo '#collapsed'.$collapsed; ?>" aria-expanded="false">
+                                                                    Resposta
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="<?php echo 'collapsed'.$collapsed; ?>" class="panel-collapse collapse" aria-expanded="false">
+                                                            <div class="panel-body border-palegreen">
+                                                                <?php echo $pergunta['ST_RESPOSTA_PER']; ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>  
+                                                   <?php 
+                                                   
+                                    }
+                                    $collapsed++;
+                                                    
+                                                    
+                                                                }         
+                                                            } else {
+                                                                $elemento = new Elementoshtml_Alerts();
+                                                                echo $elemento->warning("Nao tem perguntas.");
+                                                            }
+                                                            ?>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+<script type="text/javascript">
+    
+    $(function() {
+        $('.btnExcluir').bind('click', function() {
+            var pergunta = $(this).attr('valor'); 
+            
+            $.post("excluirpergunta", {ID_PERGUNTA_PER: pergunta}, function(dados) {
+               // console.log(dados);
+                window.location.reload();
+            });
+        });
+        
+        $('#Perguntar').bind('click', function() {
+            
+            var pergunta = $('#ST_PERGUNTA_PER').val();
+            var curso = $('#curso').val();
+                        
+            $.post("adicionarpergunta", {ST_PERGUNTA_PER: pergunta, ID_CURSO_CR: curso}, function(dados) {
+                window.location.reload();
+               // console.log(dados);
+            });
+        });
+        
+        $('#Gravar').bind('click',function() {
+            var curso = $('#curso').val();
+            var anotacoes = $('#ST_TEXTO_ANO').val();
+            var usuario = 1;//$('#ID_USUARIO_USU').val();
+            
+            $.post("gravaranotacoes", {ID_CURSO_CR : curso, ID_USUARIO_USU: usuario, ST_TEXTO_ANO: anotacoes}, function(data) {
+                $('#tituloForm').html('Anotacoes <span style="width: 6px">&nbsp;&nbsp;&nbsp; utima modificao: '+ data +' </span>');
+            });
+        });
+        
+    //    $('#slidemini').bind()
+        
+        $('#sig').bind('click', function() {     
+            var curso = $('#curso').val();
+            var slide = parseInt($('#slide').val())+1;
+            
+            $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
+                if (data.length == 1) {
+                    $('#htmlslide').html(data[0].ST_SLIDE_SLI);
+                    $('#numeroslide').html(data[0].NM_SLIDE_SLI);
+                    $('#tituloslide').html(data[0].ST_TITULO_SLI);
+                    $('#slide').val(slide);
+                } else {
+                    $('#htmlslide').html("<h1>FIM</h1>");
+              //      $('#slide').val(slide+1);
+                }
+                
+            });
+        });
+        
+        $('#ant').bind('click', function() {     
+            var curso = $('#curso').val();
+            var slide = parseInt($('#slide').val())-1;
+            
+            $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
+                if (data.length == 1) {
+                    $('#htmlslide').html(data[0].ST_SLIDE_SLI);   
+                    $('#numeroslide').html(data[0].NM_SLIDE_SLI);
+                    $('#tituloslide').html(data[0].ST_TITULO_SLI);
+                    $('#slide').val(slide);
+                } else {
+                    $('#htmlslide').html("<h1>INICIO</h1>");
+           //         $('#slide').val(slide-1);
+                }
+                
+            });
+        });        
+    });
+    
+    
+    
+</script>    
+
