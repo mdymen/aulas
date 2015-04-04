@@ -1,0 +1,122 @@
+<?php
+
+ $curso = $this->curso;
+ $curso = $curso[0];
+
+?>
+
+
+<div class="row">
+        <div class="col-lg-6 col-sm-6 col-xs-12">
+            <div class="widget">
+                <div class="widget-header bordered-bottom bordered-blue">
+                    <span class="widget-caption">Informacao de Curso</span>
+
+                    <div class="widget-buttons">
+                        <a href="#" data-toggle="maximize">
+                            <i class="fa fa-expand"></i>
+                        </a>
+                        <a href="#" data-toggle="collapse">
+                            <i class="fa fa-minus"></i>
+                        </a>
+                        <a href="#" data-toggle="dispose">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="widget-body no-padding" style="height: auto;">
+                    <div class="widget-main ">
+                        <div class="panel-group accordion" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading ">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false">
+                                            Descricao
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                    <div class="panel-body border-red">
+                                        <?php echo $curso['ST_DESCR_CR']; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false">
+                                            Objetivo
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                    <div class="panel-body border-palegreen">
+                                        <?php echo $curso['ST_OBJETIVO_CR']; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true">
+                                            Conteudo
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse in" aria-expanded="true">
+                                    <div class="panel-body border-magenta">
+                                        
+                                        <?php 
+                                        
+                                            $conteudo = explode(";", $curso['ST_CONTEUDO_CR']);
+                                            foreach ($conteudo as $c) {
+                                                echo $c;
+                                                echo "<br>";
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="col-lg-4 col-sm-6 col-xs-12">
+<div class="popoverexample">
+    <div class="popover bottom" style="margin-top: 0px !important; margin-bottom: 0px !important">
+        <div class="arrow"></div>
+        <h4 class="popover-title bordered-palegreen"><b>Precio</b></h4>
+        <div class="popover-content">
+            <div class="price palegreen" style="font-size: 36px; padding-top: 20px; padding-bottom: 20px"><p style="text-align: center"><?php echo 'R$ '.$curso['VL_CUSTO_CR']; ?></p></div>
+        </div>
+            <a href="javascript:void(0);" class="btn btn-labeled btn-palegreen" style="width: 260px">
+                                        <i class="btn-label glyphicon glyphicon-ok" ></i>COMPRAR
+                                    </a>
+    </div>
+</div>
+</div>
+    <div class="col-lg-4 col-sm-6 col-xs-12"  style="margin-top: 0px !important" >
+                                                <div class="popoverexample">
+                                                    <div class="popover right" style="margin-top: 0px !important">
+                                                        <div class="arrow"></div>
+                                                        <h4 class="popover-title bordered-blueberry"><b>Caracteristicas</b></h4>
+                                                        <div class="popover-content">
+                                                            <p><?php 
+                                                            
+                                                            $caract = explode(";", $curso['ST_CARACT_CR']);
+                                                            foreach ($caract as $c) {
+                                                                echo $c;
+                                                                echo "<br>";
+                                                            }
+                                                            
+                                                            ?></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+</div>
+

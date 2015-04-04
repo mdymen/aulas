@@ -423,25 +423,35 @@ die('.');*/
                 <!-- /Page Sidebar Header -->
                 <!-- Sidebar Menu -->
                 <ul class="nav sidebar-menu">
+                    <!--Databoxes-->
                     <li>
-                        <a href="<?php echo $this->baseUrl().'/index/index'; ?>">
-                            <i class="menu-icon glyphicon glyphicon-book"></i>
-                            <span class="menu-text"> Home </span>
-                        </a>
-                    </li> 
-                    <li>
-                        <a href="<?php echo $this->baseUrl().'/curso/cursos'; ?>">
-                            <i class="menu-icon glyphicon glyphicon-book"></i>
-                            <span class="menu-text"> Cursos </span>
-                        </a>
-                    </li>                    
-                    <!--Dashboard-->
-                    <li>
-                        <a href="<?php echo $this->baseUrl().'/usuario/index'; ?>">
-                            <i class="menu-icon glyphicon glyphicon-home"></i>
-                            <span class="menu-text"> Minha conta </span>
+                        <a href="<?php echo $this->baseUrl() . "/curso"; ?>">
+                            <i class="menu-icon glyphicon glyphicon-tasks"></i>
+                            <span class="menu-text">Cursos </span>
                         </a>
                     </li>
+                    <!--Widgets-->
+                    <li>
+                        <a href="<?php echo $this->baseUrl(). "/curso/adicionar"; ?>">
+                            <i class="menu-icon fa fa-th"></i>
+                            <span class="menu-text">Adicionar curso </span>
+                        </a>
+                    </li>
+                    <!--UI Elements-->
+                    <li>
+                        <a href="<?php echo $this->baseUrl(). "/slide/adicionar"; ?>">
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text">Adicionar slide </span>
+                        </a>    
+                    </li>
+                     <li>
+                        <a href="<?php echo $this->baseUrl(). "/pergunta/index"; ?>">
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text">Perguntas </span>
+                        </a>    
+                    </li>                 
+                    <!--Right to Left-->
+                   
                 </ul>
                 <!-- /Sidebar Menu -->
             </div>
