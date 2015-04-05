@@ -56,4 +56,15 @@ class  Models_Usuarios extends Zend_Db_Table {
         
         return $perguntas;
     }
+    
+    function getCursosSlidesDoUsuario($params) {
+//        $db = $this->_db;
+//        
+//        $table = $this->_name;
+//        
+//        $select = $db->select
+//            ->joinLeft('usuario_curso','usuarios.ID_ID_USU = usuario_curso.ID_ID_USU')
+//            ->where('usuarios.ID_ID_USU = '.$params['ID_ID_USU'])
+//            ->group('Usuarios.ID_ID_USU');
+    }
 }

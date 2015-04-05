@@ -49,4 +49,6 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
         
         return $cursos;         
     }
+    
+
 }
