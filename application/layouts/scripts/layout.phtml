@@ -2,14 +2,24 @@
 <?php
 
     $storage = new Zend_Auth_Storage_Session();
-   // $storage->write('asda');
     $data = $storage->read();
- 
-    if ($data) {
+
+//    print_r($this->baseUrl());
+//    die('.');
+    
+    if (!empty($data)) {
         echo $this->render('_head.php');
-        echo $this->render('_footer.php');        
+        echo $this->render('_footer.php');       
+        
     } else {
-        echo $this->render('login.phtml');
+         $uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
+         $url  =   explode("/", $uri);
+
+        if (empty($url[3]) && empty($url[4])) {
+                 echo $this->render('login.phtml');
+        } else {
+                 echo $this->render('register.phtml');
+        }
     }
     
     
