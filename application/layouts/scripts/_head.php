@@ -324,12 +324,18 @@ die('.');*/
                                 </a>
                             </li>
                             <li>
+                                
+                                <?php
+                                    $storage = new Zend_Auth_Storage_Session();
+                                    $data = get_object_vars($storage->read());
+                                ?>
+                                
                                 <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                     <div class="avatar" title="View your public profile">
                                         <img src="assets/img/avatars/adam-jansen.jpg">
                                     </div>
                                     <section>
-                                        <h2><span class="profile"><span>David Stevenson</span></span></h2>
+                                        <h2><span class="profile"><span><?php echo $data['ST_USUARIO_USU']; ?></span></span></h2>
                                     </section>
                                 </a>
                                 <!--Login Area Dropdown-->
