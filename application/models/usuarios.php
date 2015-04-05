@@ -58,13 +58,22 @@ class  Models_Usuarios extends Zend_Db_Table {
     }
     
     function getCursosSlidesDoUsuario($params) {
-//        $db = $this->_db;
-//        
-//        $table = $this->_name;
-//        
-//        $select = $db->select
-//            ->joinLeft('usuario_curso','usuarios.ID_ID_USU = usuario_curso.ID_ID_USU')
-//            ->where('usuarios.ID_ID_USU = '.$params['ID_ID_USU'])
-//            ->group('Usuarios.ID_ID_USU');
+        $db = $this->_db;
+        
+        $table = $this->_name;
+        
+        $select = $db->select()->from($table, array('cantidades' => 'count(slides.ID_SLIDE_SLI)', 'slides.ID_CURSO_CR'))
+            ->joinLeft('usuario_curso','usuarios.ID_ID_USU = usuario_curso.ID_USU_UC')
+                ->joinLeft('slides', 'usuario_curso.ID_CUR_UC = slides.ID_CURSO_CR')
+                ->joinLeft('cursos', 'slides.ID_CURSO_CR = ID_ID_CR')
+            ->where('usuarios.ID_ID_USU = '.$params['ID_ID_USU'])
+            ->group('slides.ID_CURSO_CR');
+        
+        $query = $select->query();
+        
+        $cantidade = $query->fetchAll();
+        
+        return $cantidade;        
+        
     }
 }

@@ -768,16 +768,16 @@ foreach($cursos as $curso) {
                                                                             <div class="databox-row row-12">
                                                                                 <div class="databox-row row-6 no-padding">
                                                                                     <div class="databox-cell cell-4 no-padding text-align-center bordered-right bordered-platinum">
-                                                                                        <span class="databox-text sonic-silver  no-margin">Posts</span>
-                                                                                        <span class="databox-number lightcarbon no-margin">510</span>
+                                                                                        <span class="databox-text sonic-silver  no-margin">Slides</span>
+                                                                                        <span class="databox-number lightcarbon no-margin"><?php echo $curso['cantidades'] ?></span>
                                                                                     </div>
                                                                                     <div class="databox-cell cell-4 no-padding text-align-center bordered-right bordered-platinum">
-                                                                                        <span class="databox-text sonic-silver no-margin">Followers</span>
-                                                                                        <span class="databox-number lightcarbon no-margin">908</span>
+                                                                                        <span class="databox-text sonic-silver no-margin">Leidas</span>
+                                                                                        <span class="databox-number lightcarbon no-margin"><?php echo $curso['NM_UTIMAVIU_UC']; ?></span>
                                                                                     </div>
                                                                                     <div class="databox-cell cell-4 no-padding text-align-center">
-                                                                                        <span class="databox-text sonic-silver no-margin">Following</span>
-                                                                                        <span class="databox-number lightcarbon no-margin">286</span>
+                                                                                        <span class="databox-text sonic-silver no-margin">Vao</span>
+                                                                                        <span class="databox-number lightcarbon no-margin"><?php ($curso['NM_UTIMAVIU_UC']*100)/$curso['cantidades'].'%'; ?></span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="databox-row row-6 padding-10">

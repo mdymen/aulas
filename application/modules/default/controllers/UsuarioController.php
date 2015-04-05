@@ -23,14 +23,17 @@ class UsuarioController extends Zend_Controller_Action {
     
     function indexAction() {
         $usuario = new Models_Usuarios();
-        $cursos = $usuario->getCursos($this->data);
-        
-        $this->view->cursos = $cursos;
+//        $cursos = $usuario->getCursos($this->data);
+//        
+//        $this->view->cursos = $cursos;
         
         $perguntas = $usuario->getPerguntas($this->data);
         
         $this->view->perguntas = $perguntas;
-       
+        
+        $cursos = $usuario->getCursosSlidesDoUsuario($this->data);
+        
+        $this->view->cursos = $cursos;
     }
     
     function cursosAction() {

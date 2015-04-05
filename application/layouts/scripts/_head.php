@@ -332,7 +332,7 @@ die('.');*/
                                 
                                 <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                     <div class="avatar" title="View your public profile">
-                                        <img src="assets/img/avatars/adam-jansen.jpg">
+                                        <img src="<?php echo $this->baseUrl().'/../public/img/perfil.jpg'; ?>">
                                     </div>
                                     <section>
                                         <h2><span class="profile"><span><?php echo $data['ST_USUARIO_USU']; ?></span></span></h2>
@@ -340,12 +340,12 @@ die('.');*/
                                 </a>
                                 <!--Login Area Dropdown-->
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                    <li class="username"><a>David Stevenson</a></li>
-                                    <li class="email"><a>David.Stevenson@live.com</a></li>
+                                    <li class="username"><a><?php echo $data['ST_USUARIO_USU']; ?></a></li>
+                                    <li class="email"><a><?php echo $data['ST_EMAIL_USU']; ?></a></li>
                                     <!--Avatar Area-->
                                     <li>
                                         <div class="avatar-area">
-                                            <img src="assets/img/avatars/adam-jansen.jpg" class="avatar">
+                                            <img src="<?php echo $this->baseUrl().'/../public/img/perfil.jpg'; ?>" class="avatar">
                                             <span class="caption">Change Photo</span>
                                         </div>
                                     </li>
