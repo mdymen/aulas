@@ -52,10 +52,10 @@
 <!--                <div class="or">OR</div>-->
             </div>
             <div class="loginbox-textbox">
-                <input type="text" class="form-control" name="ST_USUARIO_USU" placeholder="Email">
+                <input type="text" class="form-control" name="ST_USUARIO_USU" placeholder="Usuario">
             </div>
             <div class="loginbox-textbox">
-                <input type="text" class="form-control" name="ST_SENHA_USU" placeholder="Senha">
+                <input type="password" class="form-control" name="ST_SENHA_USU" placeholder="Senha">
             </div>
             <div class="loginbox-forgot">
                 <a href="">Esqueceu a senha?</a>
@@ -116,25 +116,27 @@
                 <div class="registerbox-title">Register</div>
 
                 <div class="registerbox-caption ">Please fill in your information</div>
+                <form method="post" action="/aulas/public/auth/signup">
                 <div class="registerbox-textbox">
-                    <input type="text" class="form-control" placeholder="Username">
+                    <input type="text" class="form-control" name="ST_USUARIO_USU" placeholder="Username">
                 </div>
                 <div class="registerbox-textbox">
-                    <input type="password" class="form-control" placeholder="Enter Password">
+                    <input type="password" class="form-control" name="ST_SENHA_USU" placeholder="Enter Password">
                 </div>
                 <div class="registerbox-textbox">
-                    <input type="password" class="form-control" placeholder="Confirm Password">
+                    <input type="password" class="form-control" name="Confirmacao" placeholder="Confirm Password">
                 </div>
 
                 <div class="registerbox-textbox">
-                    <input type="text" class="form-control" placeholder="E-mail">
+                    <input type="text" class="form-control" name="ST_EMAIL_USU" placeholder="E-mail">
                 </div>
 
 
 
                 <div class="registerbox-submit"><a href="javascript:void(0)" id="lnkLogin">Login</a>
-                    <input type="button" class="btn btn-primary pull-right" value="SUBMIT">
+                    <input type="submit" class="btn btn-primary pull-right" value="SUBMIT">
                 </div>
+                    </form>
             </div>
             <div class="logobox">
             </div>

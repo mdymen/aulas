@@ -10,10 +10,11 @@ class  Models_Usuarios extends Zend_Db_Table {
         
         $info = array
         (
-            'ID_USUARIO_USU' =>   $params['ID_USUARIO_USU'],
+            'ST_USUARIO_USU' =>   $params['ST_USUARIO_USU'],
             'ST_SENHA_USU'   =>   $params['ST_SENHA_USU'],
-            'FL_ADMIN_USU'   =>   $params['FL_ADMIN_USU'],
+            'ST_EMAIL_USU' => $params['ST_EMAIL_USU']
         );
+        
         $db->insert($this->_name, $info);  
     }
 }

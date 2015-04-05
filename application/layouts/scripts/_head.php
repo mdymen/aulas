@@ -367,8 +367,8 @@ die('.');*/
                                     </li>
                                     <!--/Theme Selector Area-->
                                     <li class="dropdown-footer">
-                                        <a href="login.html">
-                                            Sign out
+                                        <a href="<?php echo $this->baseUrl().'/auth/logout'; ?>">
+                                            Cerrar sessao
                                         </a>
                                     </li>
                                 </ul>

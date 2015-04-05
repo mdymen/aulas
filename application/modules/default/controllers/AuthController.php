@@ -17,13 +17,18 @@ class AuthController extends Zend_Controller_Action {
     function indexAction() {}
     
     function signupAction() {
-
+        $params = $this->_request->getParams();
+        
+        $usuario = new Models_Usuarios();
+        $usuario->save($params);
+        
+        $this->redirect();
     }
     
     function logoutAction() {
         $storage = new Zend_Auth_Storage_Session();
         $storage->clear();
-        $this->_redirect('index/index');
+        $this->_redirect();
     }
     
     function loginAction() {
@@ -41,16 +46,11 @@ class AuthController extends Zend_Controller_Action {
 
             $result = $auth->authenticate($authAdapter);
 
-            if ($result->isValid()) {
-                
+            if ($result->isValid()) {         
                 $storage = new Zend_Auth_Storage_Session();
                 $storage->write($authAdapter->getResultRowObject());
-                print_r('logo1234');
-            } else {
-                print_r('error1234');
-            }
-            die('.');
+            } 
         }
-      
+        $this->_redirect('index/index');
     }
 }

@@ -3,9 +3,6 @@
 
     $storage = new Zend_Auth_Storage_Session();
     $data = $storage->read();
-
-//    print_r($this->baseUrl());
-//    die('.');
     
     if (!empty($data)) {
         echo $this->render('_head.php');
