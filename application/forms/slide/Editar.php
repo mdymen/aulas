@@ -9,9 +9,9 @@ class Forms_Slide_Editar extends Zend_Form{
     
  function init() {
         
-        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/bobby/public';
+        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/aulas/public';
         
-        $this->setAction($root."/slide/editslide")->setMethod("post");
+        $this->setAction($root."/admin/slide/editslide")->setMethod("post");
 
         $id = new Zend_Form_Element_Hidden('ID_SLIDE_SLI');        
         

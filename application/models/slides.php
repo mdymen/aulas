@@ -29,7 +29,7 @@ class Models_Slides extends Zend_Db_Table_Abstract {
             'ST_DESCR_SLI' => $params['ST_DESCR_SLI'],
             'ST_TITULO_SLI' => $params['ST_TITULO_SLI']
         );
-
+        
         $db->update($this->_name, $info, 'ID_SLIDE_SLI = '.$params['ID_SLIDE_SLI']);
     }
     

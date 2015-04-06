@@ -425,27 +425,27 @@ die('.');*/
                 <ul class="nav sidebar-menu">
                     <!--Databoxes-->
                     <li>
-                        <a href="<?php echo $this->baseUrl() . "/curso"; ?>">
+                        <a href="<?php echo $this->baseUrl() . "/admin/curso"; ?>">
                             <i class="menu-icon glyphicon glyphicon-tasks"></i>
                             <span class="menu-text">Cursos </span>
                         </a>
                     </li>
                     <!--Widgets-->
                     <li>
-                        <a href="<?php echo $this->baseUrl(). "/curso/adicionar"; ?>">
+                        <a href="<?php echo $this->baseUrl(). "/admin/curso/adicionar"; ?>">
                             <i class="menu-icon fa fa-th"></i>
                             <span class="menu-text">Adicionar curso </span>
                         </a>
                     </li>
                     <!--UI Elements-->
                     <li>
-                        <a href="<?php echo $this->baseUrl(). "/slide/adicionar"; ?>">
+                        <a href="<?php echo $this->baseUrl(). "/admin/slide/adicionar"; ?>">
                             <i class="menu-icon fa fa-desktop"></i>
                             <span class="menu-text">Adicionar slide </span>
                         </a>    
                     </li>
                      <li>
-                        <a href="<?php echo $this->baseUrl(). "/pergunta/index"; ?>">
+                        <a href="<?php echo $this->baseUrl(). "/admin/pergunta/index"; ?>">
                             <i class="menu-icon fa fa-desktop"></i>
                             <span class="menu-text">Perguntas </span>
                         </a>    

@@ -35,7 +35,7 @@ class Tables_Cursos extends Tables_Simpletable {
                 foreach ($dado as $d) {
                     if ($i == 0) { $id = $d; }  
                    //significa que la linha seguinte é o nome do curso
-                   if ($i == 2) { $linha[$i] = '<a href="'.$fc->getBaseUrl().'/curso/curso?curso='.$id.'"'.'>'.$d.'</a>'; }
+                   if ($i == 2) { $linha[$i] = '<a href="'.$fc->getBaseUrl().'/admin/curso/curso?curso='.$id.'"'.'>'.$d.'</a>'; }
                    else { $linha[$i] = $d; }
                    
                    if ($i == 4) {break;}

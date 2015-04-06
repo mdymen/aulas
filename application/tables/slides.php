@@ -10,7 +10,7 @@ class Tables_Slides extends Tables_Simpletable {
         $i = 0;
         $id = 0;
         foreach ($dados as $dado) {
-            $linha[1] = '<a href="'.$fc->getBaseUrl().'/slide/slide?slide='.$dado['ID_SLIDE_SLI'].'"'.'>'.$dado['ID_SLIDE_SLI'].'</a>';
+            $linha[1] = '<a href="'.$fc->getBaseUrl().'/admin/slide/slide?slide='.$dado['ID_SLIDE_SLI'].'"'.'>'.$dado['ID_SLIDE_SLI'].'</a>';
             $linha[2] = $dado['NM_SLIDE_SLI'];
             $linha[3] = $dado['ST_DESCR_SLI'];
            

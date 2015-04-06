@@ -4,9 +4,15 @@
     
 <?php
     require_once 'breadcrumb.php';
+    $storage = new Zend_Auth_Storage_Session();
+    $data = (get_object_vars($storage->read()));
     
-/*print_r('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
-die('.');*/
+    $data['ID_USUARIO_USU'] = $data['ID_ID_USU'];
+    
+    $perguntas = new Models_Perguntas();
+    $respostas = $perguntas->perguntasUsuario($data);
+    
+    $count = count($respostas);
 ?>
 
     <meta name="description" content="data tables">
@@ -177,12 +183,12 @@ die('.');*/
                                 </ul>
                                 <!--/Notification Dropdown-->
                             </li>
-                            <li>
+<!--                            <li>
                                 <a class="dropdown-toggle" data-toggle="dropdown" title="Mails" href="#">
                                     <i class="icon fa fa-envelope"></i>
                                     <span class="badge">3</span>
                                 </a>
-                                <!--Messages Dropdown-->
+                                Messages Dropdown
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-messages">
                                     <li>
                                         <a href="#">
@@ -242,21 +248,39 @@ die('.');*/
                                         </a>
                                     </li>
                                 </ul>
-                                <!--/Messages Dropdown-->
-                            </li>
+                                /Messages Dropdown
+                            </li>-->
 
                             <li>
-                                <a class="dropdown-toggle" data-toggle="dropdown" title="Tasks" href="#">
+                                <a class="dropdown-toggle" data-toggle="dropdown" title="Novas respostas" href="#">
                                     <i class="icon fa fa-tasks"></i>
-                                    <span class="badge">4</span>
+                                    <span class="badge"><?php echo $count; ?></span>
                                 </a>
                                 <!--Tasks Dropdown-->
                                 <ul class="pull-right dropdown-menu dropdown-tasks dropdown-arrow ">
                                     <li class="dropdown-header bordered-darkorange">
                                         <i class="fa fa-tasks"></i>
-                                        4 Tasks In Progress
+                                        <?php 
+                                        $resp = "Resposta";
+                                        $nova = "nova";
+                                        if ($count != 1) {
+                                            $resp .= "s";
+                                            $nova .= "s";
+                                        }
+                                        echo $count.' '.$resp.' '.$nova;
+                                                
+                                                ?>
                                     </li>
-
+                                    <?php
+                                        foreach ($respostas as $resposta) {
+                                            echo '<li> <div class="clearfix">
+                                                <span class="pull-left"><a href="'.$this->baseUrl().'/curso/vercurso?curso='.$resposta['ID_ID_CR'].'&slide=1">'.$resposta['ST_NOME_CR'].'</a></span>
+                                                <span class="pull-right">'.$resposta['DT_UTIMOMOV_PER'].'</span>
+                                            </div> </li>';
+                                        }
+                                    
+                                    ?>
+<!--
                                     <li>
                                         <a href="#">
                                             <div class="clearfix">
@@ -307,22 +331,22 @@ die('.');*/
                                                 <div style="width:10%" class="progress-bar progress-bar-warning"></div>
                                             </div>
                                         </a>
-                                    </li>
+                                    </li>-->
 
-                                    <li class="dropdown-footer">
+<!--                                    <li class="dropdown-footer">
                                         <a href="#">
                                             See All Tasks
                                         </a>
                                         <button class="btn btn-xs btn-default shiny darkorange icon-only pull-right"><i class="fa fa-check"></i></button>
-                                    </li>
+                                    </li>-->
                                 </ul>
                                 <!--/Tasks Dropdown-->
                             </li>
-                            <li>
+<!--                            <li>
                                 <a class="wave in" id="chat-link" title="Chat" href="#">
                                     <i class="icon glyphicon glyphicon-comment"></i>
                                 </a>
-                            </li>
+                            </li>-->
                             <li>
                                 
                                 <?php

@@ -3,12 +3,12 @@
 //include APPLICATION_PATH.'/models/slides.php';
 //include APPLICATION_PATH.'/models/cursos.php';
 
-class SlideController extends Zend_Controller_Action
+class Admin_SlideController extends Zend_Controller_Action
 {
 
     public function init()
     {
-        /* Initialize action controller here */
+        $this->_helper->layout->setLayout('admin');
     }
 
     public function indexAction()
@@ -39,12 +39,10 @@ class SlideController extends Zend_Controller_Action
     public function editslideAction() {
         $params = $this->_request->getParams();
 
-        print_r($params);
-        die('.');
-
-//        $slide = new Models_Slides();
-//        $slide->update($params);
-//        
+        $slide = new Models_Slides();
+        $slide->update($params);
+        
+        $this->redirect('/curso/curso?curso='.$params['ID_CURSO_CR']);
         
     }
     
