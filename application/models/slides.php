@@ -13,7 +13,8 @@ class Models_Slides extends Zend_Db_Table_Abstract {
             'NM_SLIDE_SLI'  =>   $params['NM_SLIDE_SLI'],
             'ST_SLIDE_SLI'  =>   $params['ST_SLIDE_SLI'],
             'ST_DESCR_SLI' => $params['ST_DESCR_SLI'],
-            'ST_TITULO_SLI' => $params['ST_TITULO_SLI']
+            'ST_TITULO_SLI' => $params['ST_TITULO_SLI'],
+            'ST_RESPOSTAS_SLI' => $params['ST_RESPOSTAS_SLI']
         );
         $db->insert($this->_name, $info);   
     }
@@ -27,7 +28,8 @@ class Models_Slides extends Zend_Db_Table_Abstract {
             'NM_SLIDE_SLI'  =>   $params['NM_SLIDE_SLI'],
             'ST_SLIDE_SLI'  =>   $params['ST_SLIDE_SLI'],
             'ST_DESCR_SLI' => $params['ST_DESCR_SLI'],
-            'ST_TITULO_SLI' => $params['ST_TITULO_SLI']
+            'ST_TITULO_SLI' => $params['ST_TITULO_SLI'],
+            'ST_RESPOSTAS_SLI' => $params['ST_RESPOSTAS_SLI']
         );
         
         $db->update($this->_name, $info, 'ID_SLIDE_SLI = '.$params['ID_SLIDE_SLI']);

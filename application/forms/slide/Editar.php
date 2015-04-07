@@ -37,6 +37,9 @@ class Forms_Slide_Editar extends Zend_Form{
         
         $slidehtml = new Zend_Form_Element_Textarea('ST_SLIDE_SLI', array('placeholder' => 'HTML'));
         $slidehtml->addDecorator(new Decorators_Textarea());
+
+        $respostas = new Zend_Form_Element_Textarea('ST_RESPOSTAS_SLI', array('placeholder' => 'Json de respostas', 'rows' => 3));
+        $respostas->addDecorator(new Decorators_Textarea());
         
         $decButton = new Decorators_Button();
         $register = new Zend_Form_Element_Submit('Gravar', array('class' => 'btn btn-blue', 'value' => 'Gravar'));
@@ -46,7 +49,7 @@ class Forms_Slide_Editar extends Zend_Form{
         $preview = new Zend_Form_Element_Button('Preview', array('class' => 'btn btn-blue', 'value' => 'Preview', 'type' => 'button'));
         $preview->addDecorator($decPreview);        
         
-        $this->addElements(array($id, $curso, $slide,$titulo, $desc, $slidehtml, $register, $preview));
+        $this->addElements(array($id, $curso, $slide,$titulo, $desc, $slidehtml, $respostas, $register, $preview));
     } 
     
 }

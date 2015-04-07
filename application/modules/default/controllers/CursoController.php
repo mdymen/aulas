@@ -142,5 +142,21 @@ class CursoController extends Zend_Controller_Action
         $this->view->curso = $result;
     }
     
+    public function respostasAction() {
+        $params = $this->_request->getParams();
+        
+        $slides = new Models_Slides();
+        $slide = $slides->specificSlide($params['curso'], $params['slide']);  
+
+         $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json($slide);
+        
+    }
+    
 }
 

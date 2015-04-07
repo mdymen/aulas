@@ -242,6 +242,23 @@ if (count($slide)> 0) {
 <script type="text/javascript">
     
     $(function() {
+        $('#btnCorregir').bind('click', function() {
+            var curso = $('#curso').val();
+            var slide = $('#slide').val();
+            
+            $.post("respostas", {slide: slide, curso: curso}, function(dados) {
+                var resp = dados[0].ST_RESPOSTAS_SLI;
+                var valores = JSON.parse(resp);
+                $.each(valores, function(key, value) {
+                    var selector = '#'+key;
+                    console.log(selector);
+                    console.log($(selector).val());
+                    console.log(value);
+                });
+         //       console.log(valores.nombre);
+            });
+        }),
+        
         $('.btnExcluir').bind('click', function() {
             var pergunta = $(this).attr('valor'); 
             

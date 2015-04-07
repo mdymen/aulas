@@ -10,7 +10,7 @@ class Forms_Slide_Adicionar extends Zend_Form{
     
  function init() {
         
-        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/bobby/public';
+        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/aulas/public/admin';
         
         $this->setAction($root."/slide/addslide")->setMethod("post");
 
@@ -37,6 +37,9 @@ class Forms_Slide_Adicionar extends Zend_Form{
         $slidehtml = new Zend_Form_Element_Textarea('ST_SLIDE_SLI', array('placeholder' => 'HTML'));
         $slidehtml->addDecorator(new Decorators_Textarea());
         
+        $respostas = new Zend_Form_Element_Textarea('ST_RESPOSTAS_SLI', array('placeholder' => 'Json de respostas', 'rows' => 3));
+        $respostas->addDecorator(new Decorators_Textarea());
+        
         $decButton = new Decorators_Button();
         $register = new Zend_Form_Element_Submit('Adicionar', array('class' => 'btn btn-blue', 'value' => 'Adicionar'));
         $register->addDecorator($decButton);
@@ -45,7 +48,7 @@ class Forms_Slide_Adicionar extends Zend_Form{
         $preview = new Zend_Form_Element_Button('Preview', array('class' => 'btn btn-blue', 'value' => 'Preview', 'type' => 'button'));
         $preview->addDecorator($decPreview);        
         
-        $this->addElements(array($curso, $slide,$titulo, $desc, $slidehtml, $register, $preview));
+        $this->addElements(array($curso, $slide,$titulo, $desc, $slidehtml, $respostas, $register, $preview));
     } 
     
 }
