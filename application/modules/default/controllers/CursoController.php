@@ -158,5 +158,26 @@ class CursoController extends Zend_Controller_Action
         
     }
     
+    public function enviarrespostasAction() {
+        $params = $this->_request->getParams();
+        
+        $storage = new Zend_Auth_Storage_Session();
+        $data = $storage->read();
+        $dados = get_object_vars($data);
+        
+        $params['ID_USUARIO_USC'] = $dados['ID_ID_USU'];
+        
+        $slide = new Models_Slides();
+        $slide->saveRespostas($params);
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json($params);
+    }   
+    
 }
 

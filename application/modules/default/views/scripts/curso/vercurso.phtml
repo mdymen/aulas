@@ -245,18 +245,29 @@ if (count($slide)> 0) {
         $('#btnCorregir').bind('click', function() {
             var curso = $('#curso').val();
             var slide = $('#slide').val();
+     
+            var arr = {};
             
             $.post("respostas", {slide: slide, curso: curso}, function(dados) {
                 var resp = dados[0].ST_RESPOSTAS_SLI;
                 var valores = JSON.parse(resp);
+                
                 $.each(valores, function(key, value) {
                     var selector = '#'+key;
                     console.log(selector);
                     console.log($(selector).val());
                     console.log(value);
+                    arr[key] = $(selector).val();
                 });
+                console.log(JSON.stringify(arr));
          //       console.log(valores.nombre);
+                var jsonarr = JSON.stringify(arr);
+                console.log(jsonarr);
+                $.post("enviarrespostas", {ST_RESPOSTAS_USC: jsonarr, ID_SLIDE_USC: slide, ID_CURSO_USC: curso }, function(response) {
+                    console.log(response);
+                });
             });
+            
         }),
         
         $('.btnExcluir').bind('click', function() {

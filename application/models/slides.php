@@ -34,6 +34,21 @@ class Models_Slides extends Zend_Db_Table_Abstract {
         
         $db->update($this->_name, $info, 'ID_SLIDE_SLI = '.$params['ID_SLIDE_SLI']);
     }
+
+    function saveRespostas($params) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $info = array(
+            'ST_RESPOSTAS_USC' => $params['ST_RESPOSTAS_USC'],
+            'ID_USUARIO_USC' => $params['ID_USUARIO_USC'],
+            'ID_SLIDE_USC' => $params['ID_SLIDE_USC'],
+            'ID_CURSO_USC' => $params['ID_CURSO_USC']
+        );
+        
+        $db->insert('usuarios_slides_cursos', $info);
+
+    }
+    
     
     function slide($id) {
         $db = Zend_Db_Table::getDefaultAdapter();
