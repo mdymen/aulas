@@ -11,10 +11,20 @@
  *
  * @author Martin Dymenstein
  */
+include APPLICATION_PATH.'/Forms/Exercicios/Perguntas.php';
 class IndexController extends Zend_Controller_Action {
 
     public function indexAction() {
     }
     
     public function registerAction() {}
+    
+    public function testAction() {
+        
+        $x[0]['pergunta'] = 'PERGUNTA??';
+        $x[0]['nome'] = 'pergunta1';
+        
+        $form = new Forms_Exercicios_Perguntas($x);
+        $this->view->form = $form;
+    }
 }

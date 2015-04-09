@@ -154,8 +154,25 @@ class CursoController extends Zend_Controller_Action
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(TRUE);
         
-        $this->_helper->json($slide);
+        $result['verdadeiras'] = $slide;
+        $result['respostas'] = $this->_obterrespostas($params);
         
+        $this->_helper->json($result);
+        
+    }
+    
+    private function _obterrespostas($params) {
+        
+        $storage = new Zend_Auth_Storage_Session();
+        $data = $storage->read();
+        $dados = get_object_vars($data);
+        
+        $params['usuario'] = $dados['ID_ID_USU'];
+     
+        $slide = new Models_Slides();
+        $result = $slide->obterRespostas($params);
+        
+        return $result;
     }
     
     public function enviarrespostasAction() {

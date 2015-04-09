@@ -242,6 +242,35 @@ if (count($slide)> 0) {
 <script type="text/javascript">
     
     $(function() {
+        $('#btnRespostas').bind('click', function() {
+            var curso = $('#curso').val();
+            var slide = $('#slide').val();
+            $.post('respostas', {slide: slide, curso: curso}, function(dados) {
+                var respostas = dados.respostas[0].ST_RESPOSTAS_USC;
+                var verdadeiras = dados.verdadeiras[0].ST_RESPOSTAS_SLI;
+                var valores_verdadeiras = JSON.parse(verdadeiras);
+                var valores_respostas = JSON.parse(respostas);
+                $.each(valores_verdadeiras, function(key, value) {
+                    $.each(valores_respostas, function(key2, value2) {
+                        if (key == key2) {
+                            var selector = '';
+                            var selector_out = '';
+                            if (value == value2) {
+                                selector = '#'+key+'_check'; 
+                                selector_out = '#'+key+'_times';
+                            } else {
+                                selector = '#'+key+'_times';
+                                selector_out = '#'+key+'_check';
+                            }
+                            $(selector).attr('style','');
+                            $(selector_out).attr('style','display:none');
+                            $('#'+key).val(value2);
+                        }
+                    });
+                });          
+            });
+        }),
+        
         $('#btnCorregir').bind('click', function() {
             var curso = $('#curso').val();
             var slide = $('#slide').val();

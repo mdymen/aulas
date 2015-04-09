@@ -49,6 +49,23 @@ class Models_Slides extends Zend_Db_Table_Abstract {
 
     }
     
+    function obterRespostas($params) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $table = 'usuarios_slides_cursos';
+        
+        $select = $db->select($table)->from($table)
+                ->where('ID_SLIDE_USC = ?', $params['slide'])
+                ->where('ID_CURSO_USC = ?', $params['curso'])
+                ->where('ID_USUARIO_USC = ?', $params['usuario']);
+        
+        $query = $select->query();
+        
+        $resposta = $query->fetchAll();
+        
+        return $resposta;
+    }
+    
     
     function slide($id) {
         $db = Zend_Db_Table::getDefaultAdapter();
