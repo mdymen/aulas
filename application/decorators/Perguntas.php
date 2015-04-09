@@ -17,16 +17,25 @@ class Decorators_Perguntas extends Zend_Form_Decorator_Abstract {
         
         
         
-        $_format = '<div class="form-group">
-                                <label for="inputEmail3" class="col-sm-3 control-label no-padding-right">%s</label>
-                                    <div class="col-sm-3">
-                                        <span class="input-icon icon-right">                           
-                                            <input type="text" class="form-control" name="%s" id="%s" placeholder="%s">
-                                            <i class="fa fa-times" id="%s_times" style="display:none"></i>
-                                            <i class="fa fa-check" id="%s_check" style="display:none"></i>
-                                          </span>
-                                    </div>
-                            </div>';
+        $_format ='
+            <div class="form-group col-sm-5">
+              
+            <label for="exampleInputEmail1">%s</label>
+            <span class="input-icon icon-right"> 
+                <input type="email" class="form-control" name="%s" id="%s" placeholder="%s">
+                <i class="fa fa-times" id="%s_times" style="display:none"></i>
+                <i class="fa fa-check" id="%s_check" style="display:none"></i>                                                   
+            </span></div>';          
+//<div class="form-group">
+//                                <label for="inputEmail3" class="col-sm-3 control-label no-padding-right">%s</label>
+//                                    <div class="col-sm-3">
+//                                        <span class="input-icon icon-right">                           
+//                                            <input type="text" class="form-control" name="%s" id="%s" placeholder="%s">
+//                                            <i class="fa fa-times" id="%s_times" style="display:none"></i>
+//                                            <i class="fa fa-check" id="%s_check" style="display:none"></i>
+//                                          </span>
+//                                    </div>
+//                            </div>';
         
         
         $element = $this->getElement();

@@ -455,7 +455,7 @@
                 <ul class="nav sidebar-menu">
                     <li>
                         <a href="<?php echo $this->baseUrl().'/index/index'; ?>">
-                            <i class="menu-icon glyphicon glyphicon-book"></i>
+                            <i class="menu-icon glyphicon glyphicon-home"></i>
                             <span class="menu-text"> Home </span>
                         </a>
                     </li> 
@@ -468,10 +468,16 @@
                     <!--Dashboard-->
                     <li>
                         <a href="<?php echo $this->baseUrl().'/usuario/index'; ?>">
-                            <i class="menu-icon glyphicon glyphicon-home"></i>
+                            <i class="menu-icon glyphicon glyphicon-user"></i>
                             <span class="menu-text"> Minha conta </span>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?php echo $this->baseUrl().'/usuario/index'; ?>">
+                            <i class="menu-icon glyphicon glyphicon-pencil"></i>
+                            <span class="menu-text"> Credito </span>
+                        </a>
+                    </li>                    
                 </ul>
                 <!-- /Sidebar Menu -->
             </div>
