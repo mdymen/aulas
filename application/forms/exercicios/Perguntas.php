@@ -34,19 +34,19 @@ class Forms_Exercicios_Perguntas extends Zend_Form {
             $p = new Zend_Form_Element_Text($pergunta['nome'], array('pergunta'=>$pergunta['pergunta'],'placeholder' => 'Resposta'));            
             $p->addDecorator($dec);
             
+            $this->addElement($p);
+
+        }
             $btnDec = new Decorators_Button();
             $btn = new Zend_Form_Element_Button('btnCorregir', array('value'=>'Corregir', 'class' => 'btn btn-success', 'type' => 'button'));
             $btn->addDecorator($btnDec);
             
             $btnDec1 = new Decorators_Button();
             $btn1 = new Zend_Form_Element_Button('btnRespostas', array('value'=>'Respostas', 'class' => 'btn', 'type' => 'button'));
-            $btn1->addDecorator($btnDec1);            
-         //   $btn = new Zend_Button
-            
-            $this->addElement($p);
-            $this->addElement($btn);
-            $this->addElement($btn1); 
-        }
+            $btn1->addDecorator($btnDec1);  
         
+        
+            $this->addElement($btn);
+            $this->addElement($btn1);         
     }
 }

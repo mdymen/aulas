@@ -24,6 +24,9 @@ class IndexController extends Zend_Controller_Action {
         $x[0]['pergunta'] = 'PERGUNTA??';
         $x[0]['nome'] = 'pergunta1';
         
+        $x[1]['pergunta'] = 'y ahora que pergunta?';
+        $x[1]['nome'] = 'pergunta2';
+        
         $form = new Forms_Exercicios_Perguntas($x);
         $this->view->form = $form;
     }
