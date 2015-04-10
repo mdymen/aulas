@@ -24,6 +24,21 @@ class  Models_Usuarios extends Zend_Db_Table {
         $db->insert($this->_name, $info);  
     }
     
+    function update($params) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $info = array(
+            'ST_SENHA_USU' => $params['ST_SENHA_USU'],
+            'ST_EMAIL_USU' => $params['ST_EMAIL_USU']
+        );
+        
+        $db->update($this->_name, $info,'ID_ID_USU = '.$params['ID_ID_USU']);
+        
+        $usuario = $db->select($this->_name)->from($this->_name)->where('ID_ID_USU = ?',$params['ID_ID_USU']);
+        $result = $usuario->query();
+        return $result->fetchAll();
+    }
+    
     function getCursos($params) {
                
         $db = Zend_Db_Table::getDefaultAdapter();

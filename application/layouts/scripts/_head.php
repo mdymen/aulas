@@ -374,10 +374,10 @@
                                         </div>
                                     </li>
                                     <!--Avatar Area-->
-                                    <li class="edit">
+<!--                                    <li class="edit">
                                         <a href="profile.html" class="pull-left">Profile</a>
                                         <a href="#" class="pull-right">Setting</a>
-                                    </li>
+                                    </li>-->
                                     <!--Theme Selector Area-->
                                     <li class="theme-area">
                                         <ul class="colorpicker" id="skin-changer">

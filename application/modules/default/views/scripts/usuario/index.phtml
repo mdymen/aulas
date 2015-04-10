@@ -72,6 +72,28 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="profile-body">
+                                    <div class="col-lg-12">
+                                        <div class="tabbable">
+                                            <ul class="nav nav-tabs tabs-flat  nav-justified" id="myTab11">
+                                                <li class="">
+                                                    
+                                                    <a data-toggle="tab" href="#timeline" aria-expanded="false" id="lnkDados">
+                                                        Dados pessoais
+                                                    </a>
+                                                </li>
+                                                <li class="tab-red active">
+                                                    <a data-toggle="tab" href="#overview" aria-expanded="true" id="lnkCursos">
+                                                        Cursos
+                                                    </a>
+                                                </li>
+                                                
+                                                
+                                            </ul>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
                      <!--           <div class="profile-body">
                                     <div class="col-lg-12">
                                         <div class="tabbable">
@@ -748,7 +770,8 @@
                         </div>
                     </div>
 <br>
-<?php 
+<div id="divCursos">
+    <?php 
 
 foreach($cursos as $curso) {
 
@@ -787,3 +810,29 @@ foreach($cursos as $curso) {
                                                                         </div>
                                                                     </div>
 <?php }  ?>                                                          </div>
+</div>
+<div id="divDados" style="display:none">
+    <?php 
+        include_once 'Decorators/Form.php';
+        include_once 'Forms/Users.php';
+        $formDec = new Decorators_Form();
+        $form = new Forms_Users(array('titulo' => 'Modificar dados'));
+        $form->populate($data);
+        $form->addDecorator($formDec);
+        echo $form;
+    ?>
+    
+</div>
+<script type="text/javascript">
+    $(function(){
+       $('#lnkCursos').bind('click', function(){
+           $('#divCursos').show();
+           $('#divDados').hide();          
+       });
+       $('#lnkDados').bind('click', function(){
+           $('#divCursos').hide();
+           $('#divDados').show();
+       });
+    });
+
+</script>

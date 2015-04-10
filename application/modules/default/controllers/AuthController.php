@@ -35,7 +35,7 @@ class AuthController extends Zend_Controller_Action {
                
         $params = $this->_request->getParams();
         $users = new Models_Usuarios();
-
+        
         if (!empty($params['ST_USUARIO_USU']) && !empty($params['ST_SENHA_USU'])) {
             $auth = Zend_Auth::getInstance();
             $authAdapter = new Zend_Auth_Adapter_DbTable($users->getAdapter(),'Usuarios');

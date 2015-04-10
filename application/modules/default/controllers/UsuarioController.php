@@ -23,9 +23,6 @@ class UsuarioController extends Zend_Controller_Action {
     
     function indexAction() {
         $usuario = new Models_Usuarios();
-//        $cursos = $usuario->getCursos($this->data);
-//        
-//        $this->view->cursos = $cursos;
         
         $perguntas = $usuario->getPerguntas($this->data);
         
@@ -34,6 +31,24 @@ class UsuarioController extends Zend_Controller_Action {
         $cursos = $usuario->getCursosSlidesDoUsuario($this->data);
         
         $this->view->cursos = $cursos;
+        
+        $this->view->usuario = $this->data;
+        
+    }
+    
+    function atualizarAction() {
+        $params = $this->_request->getParams();
+        
+        $this->data['ST_EMAIL_USU'] = $params['ST_EMAIL_USU'];
+        
+        $usuario = new Models_Usuarios();
+        $result = $usuario->update($params);
+
+    //    $result = (object)$result;
+    
+        // $this->storage->write($result);  
+        
+        $this->redirect('usuario/index');
     }
     
     function cursosAction() {

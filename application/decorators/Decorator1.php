@@ -13,10 +13,11 @@
  */
 class Decorators_Decorator1 extends Zend_Form_Decorator_Abstract {
     
-    protected $_format = '<input id="%s" name="%s"  class="form-control" placeholder="%s" type="%s" value="%s"/>';
- 
+    
     public function render($content)
     {
+        
+        
         $element = $this->getElement();
         $name    = htmlentities($element->getFullyQualifiedName());
         $id      = htmlentities($element->getId());
@@ -24,12 +25,17 @@ class Decorators_Decorator1 extends Zend_Form_Decorator_Abstract {
         $col     = htmlentities($element->getAttrib('col'));
         $type    = htmlentities($element->getAttrib('type'));
         $icono  = htmlentities($element->getAttrib('icono'));
+        $disabled = $element->getAttrib('disabled');
         $value   = htmlentities($element->getValue());
         $style = htmlentities($element->getAttrib('style'));
         
+        if ($disabled == 'disabled') { $disabled = 'disabled="disabled"';}
+        $_format = '<input id="%s" name="%s"  class="form-control" '.$disabled.' placeholder="%s" type="%s" value="%s"/>';
+ 
+        
         $placeholder = htmlentities($element->getAttrib("placeholder"));
         
-        $markup  = sprintf($this->_format,$id, $name, $placeholder, $type, $value);
+        $markup  = sprintf($_format,$id, $name, $placeholder, $type, $value);
 
         if ($icono != '') {
             $markup = '<span class="input-icon icon-right">'.$markup.'<i class="'.$icono.'"></i></span>';
