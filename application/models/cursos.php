@@ -64,5 +64,15 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
         
         return $cursos;           
     }
+    
+    function cantCursos() {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $select = $db->select($this->_name)->from($this->_name, array('cursos' => 'COUNT(*)'));
+        $resultado = $select->query();
+        
+        return $resultado->fetchAll();
+        
+    }
 
 }

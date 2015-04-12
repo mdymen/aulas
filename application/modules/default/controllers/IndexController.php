@@ -15,25 +15,22 @@ include APPLICATION_PATH.'/Forms/Exercicios/Perguntas.php';
 class IndexController extends Zend_Controller_Action {
 
     public function indexAction() {
+        
+        $storage = new Zend_Auth_Storage_Session();
+        $data = get_object_vars($storage->read());
+        
         $cursos = new Models_Cursos();
         $result = $cursos->countSlides();
+        
+        $usuario = new Models_Usuarios();
+        $cursos = new Models_Cursos();
+        
         $this->view->cursos = $result;
+        $this->view->perguntas = $usuario->dashboard($data);
+        $this->view->cantCursos = $cursos->cantCursos();
         
     }
     
     public function registerAction() {}
-    
-    public function testAction() {
-        
-        $x[0]['pergunta'] = 'PERGUNTA??';
-        $x[0]['nome'] = 'pergunta1';
-        
-        $x[1]['pergunta'] = 'y ahora que pergunta?';
-        $x[1]['nome'] = 'pergunta2';
-        
-        $form = new Forms_Exercicios_Perguntas($x);
-        $this->view->form = $form;
-    }
-    
     
 }

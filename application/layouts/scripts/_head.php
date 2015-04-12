@@ -469,24 +469,31 @@
                         </a>
                     </li> 
                     <li>
+                        <a href="<?php echo $this->baseUrl().'/usuario/index'; ?>">
+                            <i class="menu-icon glyphicon glyphicon-user"></i>
+                            <span class="menu-text"> Minha conta </span>
+                        </a>
+                    </li>                    
+                    <li>
                         <a href="<?php echo $this->baseUrl().'/curso/cursos'; ?>">
                             <i class="menu-icon glyphicon glyphicon-book"></i>
                             <span class="menu-text"> Cursos </span>
                         </a>
                     </li>                    
                     <!--Dashboard-->
-                    <li>
-                        <a href="<?php echo $this->baseUrl().'/usuario/index'; ?>">
-                            <i class="menu-icon glyphicon glyphicon-user"></i>
-                            <span class="menu-text"> Minha conta </span>
-                        </a>
-                    </li>
+
                     <li>
                         <a href="<?php echo $this->baseUrl().'/usuario/index'; ?>">
                             <i class="menu-icon glyphicon glyphicon-pencil"></i>
                             <span class="menu-text"> Credito </span>
                         </a>
-                    </li>                    
+                    </li>
+                    <li>
+                        <a href="<?php echo $this->baseUrl().'/perguntas/index'; ?>">
+                            <i class="menu-icon glyphicon glyphicon-question-sign"></i>
+                            <span class="menu-text"> Perguntas </span>
+                        </a>
+                    </li>                      
                 </ul>
                 <!-- /Sidebar Menu -->
             </div>

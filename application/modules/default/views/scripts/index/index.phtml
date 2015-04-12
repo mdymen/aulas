@@ -1,5 +1,10 @@
 <?php
    $cursos = $this->cursos;
+   $perguntas = $this->perguntas;
+   $pergunta = $perguntas[0];
+   
+  $cantCursos = $this->cantCursos;
+  $cantCursos = $cantCursos[0];
 ?>
 
 <!--<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -78,18 +83,61 @@
 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                     <div class="databox radius-bordered databox-shadowed databox-graded" style="height:100px !important">
                                         <div class="databox-left bg-orange" style="weight:100px !important; height:100px !important;">
-                                            
+                                            <div class="databox-icon">
+                                                <i class="fa fa-book"></i>
+                                            </div>
                                         </div>
                                         <div class="databox-right">
-                                            <span class="databox-number orange">14</span>
-                                            <div class="databox-text darkgray">NEW TASKS</div>
+                                            <span class="databox-number orange"><?php echo $cantCursos['cursos']; ?></span>
+                                            <div class="databox-text darkgray"><a href="<?php echo $this->baseUrl().'/curso/cursos'; ?>">CURSOS</a></div>
                                             <div class="databox-stat orange radius-bordered">
                                                 <i class="stat-icon icon-lg fa fa-tasks"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+   
+     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="databox radius-bordered databox-shadowed databox-graded" style="height:100px !important">
+                                        <div class="databox-left bg-yellow" style="weight:100px !important; height:100px !important;">
+                                            <div class="databox-icon">
+                                                <i class="fa fa-user"></i>
+                                            </div> 
+                                        </div>
+                                        <div class="databox-right">
+                                            <span class="databox-number yellow"></span>
+                                            <div class="databox-text darkgray"><a href="<?php echo $this->baseUrl().'/usuario/index'; ?>">MINHA CONTA</a></div>
+                                            <div class="databox-stat yellow radius-bordered">
+                                                <i class="stat-icon icon-lg fa fa-tasks"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="databox radius-bordered databox-shadowed databox-graded" style="height:100px !important">
+                                        <div class="databox-left bg-azure" style="weight:100px !important; height:100px !important;">
+                                            <div class="databox-icon">
+                                                <i class="fa fa-question"></i>
+                                            </div>
+                                        </div>
+                                        <div class="databox-right">
+                                            <span class="databox-number azure"><?php echo $pergunta['perguntas']; ?></span>
+                                            <div class="databox-text darkgray">MINHAS PERGUNTAS</div>
+                                            <div class="databox-stat azure radius-bordered">
+                                                <i class="stat-icon icon-lg fa fa-tasks"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+   
+
 </div>
+
+
+
+
 <script type="text/javascript">
     $(function() {
        $('#lnk').bind('mouseover', function(){

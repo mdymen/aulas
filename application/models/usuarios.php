@@ -11,6 +11,18 @@ class  Models_Usuarios extends Zend_Db_Table {
         $this->_db = Zend_Db_Table::getDefaultAdapter();
     }
     
+    function dashboard($params) {
+        
+        $select = $this->_db->select()->from($this->_name, array('perguntas' => 'COUNT(perguntas_cursos.ID_PERGUNTA_PER)','perguntas_cursos.ID_USUARIO_USU'))
+                ->join('perguntas_cursos','perguntas_cursos.ID_USUARIO_USU = usuarios.ID_ID_USU','')
+                ->where('usuarios.ID_ID_USU = ?',$params['ID_ID_USU'])
+                ->group('perguntas_cursos.ID_USUARIO_USU');
+        
+        $perguntas = $select->query();
+        
+        return $perguntas->fetchAll();
+    }
+    
     function save($params) {
         $db = Zend_Db_Table::getDefaultAdapter();
         
