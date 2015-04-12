@@ -26,22 +26,14 @@ class Tables_Cursos extends Tables_Simpletable {
     public function dados($dados) {
         $fc = Zend_controller_front::getInstance();
 
-        $linha = array();
         $linhas = array();
-        $i = 0;
-        $id = 0;
         if (!empty($dados)) {
-            foreach ($dados as $dado) {
-                foreach ($dado as $d) {
-                    if ($i == 0) { $id = $d; }  
-                   //significa que la linha seguinte é o nome do curso
-                   if ($i == 2) { $linha[$i] = '<a href="'.$fc->getBaseUrl().'/admin/curso/curso?curso='.$id.'"'.'>'.$d.'</a>'; }
-                   else { $linha[$i] = $d; }
-                   
-                   if ($i == 4) {break;}
-                   $i++;
-                }
-                $i = 0;
+            foreach ($dados as $dado) {   
+                $linha = array();
+                $linha[0] = $dado['ID_ID_CR'];
+                $linha[1] = $dado['ST_IDENT_CR'];
+                $linha[2] = '<a href="'.$fc->getBaseUrl().'/admin/curso/curso?curso='.$dado['ID_ID_CR'].'"'.'>'.$dado['ST_NOME_CR'].'</a>'; 
+                $linha[3] = $dado['VL_CUSTO_CR'];
                 array_push($linhas, $linha);
             }            
         }
@@ -50,7 +42,7 @@ class Tables_Cursos extends Tables_Simpletable {
     }
 
     public function headers() {
-        $this->_headers = array('Id','Nome','Descripçao', 'Custo');
+        $this->_headers = array('Id','Ident','Nome', 'Custo');
     }
 
     public function titulo() {

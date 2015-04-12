@@ -1,0 +1,68 @@
+<?php
+   $cursos = $this->cursos;
+?>
+
+<!--<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="databox bg-white radius-bordered">
+                                        <div class="databox-left no-padding">
+                                            <img src="assets/img/avatars/John-Smith.jpg" style="width:65px; height:65px;">
+                                        </div>
+                                        <div class="databox-right padding-top-20">
+                                            <div class="databox-stat palegreen">
+                                                <i class="stat-icon icon-xlg fa fa-phone"></i>
+                                            </div>
+                                            <div class="databox-text darkgray">JOHN SMITH</div>
+                                            <div class="databox-text darkgray">TOP RESELLER</div>
+                                        </div>
+                                    </div>
+                                </div>-->
+
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="orders-container">
+                                <div class="orders-header">
+                                    <h6>Cursos de exercìcios</h6>
+                                </div>
+                                <ul class="orders-list">
+                                    <?php
+                                     foreach ($cursos as $curso) {
+                                         ?>
+                                         
+                                     <li class="order-item">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 item-left">
+                                                <div class="item-booker"><a href="<?php echo $this->baseUrl().'/curso/ficha?curso='.$curso['ID_ID_CR']; ?>"><?php echo $curso['ST_NOME_CR']; ?></a></div>
+                                                <div class="item-time">
+                                                    <i class="fa fa-calendar"></i>
+                                                    <span><?php echo '&nbsp;&nbsp;  '.$curso['Quantidade']." slides"; ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 item-right">
+                                                <div class="item-price">
+                                                    <span class="currency">R$</span>
+                                                    <span class="price"><?php echo $curso['VL_CUSTO_CR']; ?></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a class="item-more" href="">
+                                            <i></i>
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    
+                                   <?php  }
+                                    
+                                    ?>
+                                    
+                                    
+                                   
+                                
+                                </ul>
+<!--                                <div class="orders-footer">
+                                    <a class="show-all" href=""><i class="fa fa-angle-down"></i> Show All</a>
+                                    <div class="help">
+                                        <a href=""><i class="fa fa-question"></i></a>
+                                    </div>
+                                </div>-->
+                            </div>
+                        </div>

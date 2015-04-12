@@ -45,6 +45,7 @@ class Models_Slides extends Zend_Db_Table_Abstract {
             'ID_CURSO_USC' => $params['ID_CURSO_USC']
         );
         
+        $db->delete('usuarios_slides_cursos', 'ID_USUARIO_USC = '.$params['ID_USUARIO_USC'].' AND ID_SLIDE_USC = '.$params['ID_SLIDE_USC'].' AND ID_CURSO_USC = '.$params['ID_CURSO_USC']);
         $db->insert('usuarios_slides_cursos', $info);
 
     }

@@ -50,5 +50,19 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
         return $cursos;         
     }
     
+    function countSlides() {
+        $db = Zend_Db_Table::getDefaultAdapter();
+
+        $table = $this->_name;
+
+        $select = $db->select($table)->from($this->_name)
+                ->join('Slides', 'Cursos.ID_ID_CR = Slides.ID_CURSO_CR',array('Quantidade'=> 'count(*)'));
+  
+        $query = $select->query();
+                
+        $cursos = $query->fetchAll();
+        
+        return $cursos;           
+    }
 
 }

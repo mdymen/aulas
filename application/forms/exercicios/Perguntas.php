@@ -12,7 +12,7 @@
  * @author Martin Dymenstein
  */
 include APPLICATION_PATH.'/decorators/perguntas.php';
-include APPLICATION_PATH.'/decorators/button.php';
+//include APPLICATION_PATH.'/decorators/button.php';
 class Forms_Exercicios_Perguntas extends Zend_Form {
     
     protected $_dados = array();
@@ -29,9 +29,8 @@ class Forms_Exercicios_Perguntas extends Zend_Form {
     public function init() {
         
         foreach ($this->_dados as $pergunta) {
-            
             $dec = new Decorators_Perguntas();
-            $p = new Zend_Form_Element_Text($pergunta['nome'], array('pergunta'=>$pergunta['pergunta'],'placeholder' => 'Resposta'));            
+            $p = new Zend_Form_Element_Text($pergunta['nome'], array('pergunta'=>$pergunta['pergunta'],'placeholder' => 'Resposta','col' => 'col-sm-10'));            
             $p->addDecorator($dec);
             
             $this->addElement($p);

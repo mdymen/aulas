@@ -1,0 +1,47 @@
+
+<?php
+
+$perguntas = $this->perguntas;
+
+$decForm = new Decorators_Exercicios();
+$form = new Forms_Exercicios_Perguntas($perguntas);
+$form->addDecorator(($decForm));
+
+
+        $json = '{';
+        $jsonfin = '}';
+        $i = 1;
+        foreach($perguntas as $pergunta) {
+            $coma = '';
+            if (!empty($perguntas[$i])) {
+                $coma = ',';
+            } 
+            $json .= '"pergunta'.$i.'":'.'"'.$pergunta['resposta'].'"'.$coma;
+            $i++;
+        }
+        $json .= $jsonfin;
+?>
+
+<div id="form" class="row"><?php echo $form; ?></div>
+<div id="respostas" style="display: none;"><?php echo $json;?></div>  
+
+<div class="row" style="padding-top:15px">
+<?php
+$decform = new Decorators_Form();
+$form = new Forms_Slide_Adicionar(array('titulo' => 'Adicionar slide'));
+$form->addDecorator($decform);
+//$form->populate();
+echo $form;
+?>
+</div>
+    
+<script type="text/javascript">
+
+    $(function(){
+        $('#ST_SLIDE_SLI').val($('#form').html());
+        $('#ST_RESPOSTAS_SLI').val($('#respostas').html());
+        
+    });
+
+
+</script>

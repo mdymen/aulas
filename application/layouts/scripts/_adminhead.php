@@ -96,10 +96,24 @@ die('.');*/
                     <div class="navbar-account">
                         <ul class="account-area">
                             <li>
+                                <a title="Usuario" href="<?php echo $this->baseUrl().'/'; ?>">
+                                    <i class="icon fa fa-user-md"></i>
+                                </a>
+                            </li>                            
+                            <li>
+                                <a title="Cerrar Sessao" href="<?php echo $this->baseUrl().'/auth/logout'; ?>">
+                                    <i class="icon fa fa-times"></i>
+                                </a>
+                            </li>                            
+                        </ul>
+                        </div>
+<!--                    <div class="navbar-account">
+                        <ul class="account-area">
+                            <li>
                                 <a class=" dropdown-toggle" data-toggle="dropdown" title="Help" href="#">
                                     <i class="icon fa fa-warning"></i>
                                 </a>
-                                <!--Notification Dropdown-->
+                                Notification Dropdown
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-notifications">
                                     <li>
                                         <a href="#">
@@ -175,14 +189,14 @@ die('.');*/
                                         </span>
                                     </li>
                                 </ul>
-                                <!--/Notification Dropdown-->
+                                /Notification Dropdown
                             </li>
                             <li>
                                 <a class="dropdown-toggle" data-toggle="dropdown" title="Mails" href="#">
                                     <i class="icon fa fa-envelope"></i>
                                     <span class="badge">3</span>
                                 </a>
-                                <!--Messages Dropdown-->
+                                Messages Dropdown
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-messages">
                                     <li>
                                         <a href="#">
@@ -242,7 +256,7 @@ die('.');*/
                                         </a>
                                     </li>
                                 </ul>
-                                <!--/Messages Dropdown-->
+                                /Messages Dropdown
                             </li>
 
                             <li>
@@ -250,7 +264,7 @@ die('.');*/
                                     <i class="icon fa fa-tasks"></i>
                                     <span class="badge">4</span>
                                 </a>
-                                <!--Tasks Dropdown-->
+                                Tasks Dropdown
                                 <ul class="pull-right dropdown-menu dropdown-tasks dropdown-arrow ">
                                     <li class="dropdown-header bordered-darkorange">
                                         <i class="fa fa-tasks"></i>
@@ -316,7 +330,7 @@ die('.');*/
                                         <button class="btn btn-xs btn-default shiny darkorange icon-only pull-right"><i class="fa fa-check"></i></button>
                                     </li>
                                 </ul>
-                                <!--/Tasks Dropdown-->
+                                /Tasks Dropdown
                             </li>
                             <li>
                                 <a class="wave in" id="chat-link" title="Chat" href="#">
@@ -332,23 +346,23 @@ die('.');*/
                                         <h2><span class="profile"><span>David Stevenson</span></span></h2>
                                     </section>
                                 </a>
-                                <!--Login Area Dropdown-->
+                                Login Area Dropdown
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
                                     <li class="username"><a>David Stevenson</a></li>
                                     <li class="email"><a>David.Stevenson@live.com</a></li>
-                                    <!--Avatar Area-->
+                                    Avatar Area
                                     <li>
                                         <div class="avatar-area">
                                             <img src="assets/img/avatars/adam-jansen.jpg" class="avatar">
                                             <span class="caption">Change Photo</span>
                                         </div>
                                     </li>
-                                    <!--Avatar Area-->
+                                    Avatar Area
                                     <li class="edit">
                                         <a href="profile.html" class="pull-left">Profile</a>
                                         <a href="#" class="pull-right">Setting</a>
                                     </li>
-                                    <!--Theme Selector Area-->
+                                    Theme Selector Area
                                     <li class="theme-area">
                                         <ul class="colorpicker" id="skin-changer">
                                             <li><a class="colorpick-btn" href="#" style="background-color:#5DB2FF;" rel="assets/css/skins/blue.min.css"></a></li>
@@ -365,19 +379,19 @@ die('.');*/
                                             <li><a class="colorpick-btn" href="#" style="background-color:#001940;" rel="assets/css/skins/deepblue.min.css"></a></li>
                                         </ul>
                                     </li>
-                                    <!--/Theme Selector Area-->
+                                    /Theme Selector Area
                                     <li class="dropdown-footer">
                                         <a href="login.html">
                                             Sign out
                                         </a>
                                     </li>
                                 </ul>
-                                <!--/Login Area Dropdown-->
+                                /Login Area Dropdown
                             </li>
-                            <!-- /Account Area -->
-                            <!--Note: notice that setting div must start right after account area list.
-                            no space must be between these elements-->
-                            <!-- Settings -->
+                             /Account Area 
+                            Note: notice that setting div must start right after account area list.
+                            no space must be between these elements
+                             Settings 
                         </ul><div class="setting">
                             <a id="btn-setting" title="Setting" href="#">
                                 <i class="icon glyphicon glyphicon-cog"></i>
@@ -400,8 +414,8 @@ die('.');*/
                                 <span class="text">Fixed Header</span>
                             </label>
                         </div>
-                        <!-- Settings -->
-                    </div>
+                         Settings 
+                    </div>-->
                 </div>
                 <!-- /Account Area and Settings -->
             </div>
@@ -446,7 +460,7 @@ die('.');*/
                     </li>
                      <li>
                         <a href="<?php echo $this->baseUrl(). "/admin/pergunta/index"; ?>">
-                            <i class="menu-icon fa fa-desktop"></i>
+                            <i class="menu-icon fa fa-question"></i>
                             <span class="menu-text">Perguntas </span>
                         </a>    
                     </li>                 

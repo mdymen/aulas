@@ -18,11 +18,17 @@ class Decorators_Perguntas extends Zend_Form_Decorator_Abstract {
         
         
         $_format ='
-            <div class="form-group col-sm-5">
-              
-            <label for="exampleInputEmail1">%s</label>
+            <div class="form-group col-sm-12">
+              <div class="row">
+                    <div class="col-sm-9">
+                        <label for="exampleInputEmail1">%s </label>
+                    </div>
+                    <div class="col-sm-3"> 
+                        <span id="respCorreta_%s" class="text-align-right green"><span>
+                    </div>
+                </div>
             <span class="input-icon icon-right"> 
-                <input type="email" class="form-control" name="%s" id="%s" placeholder="%s">
+                <input type="text" class="form-control" name="%s" id="%s" placeholder="%s">
                 <i class="fa fa-times" id="%s_times" style="display:none"></i>
                 <i class="fa fa-check" id="%s_check" style="display:none"></i>                                                   
             </span></div>';          
@@ -42,7 +48,7 @@ class Decorators_Perguntas extends Zend_Form_Decorator_Abstract {
         $name = $element->getName();
         $pergunta = $element->getAttrib('pergunta');
         $placeholder = $element->getAttrib("placeholder");
-        $markup  = sprintf($_format,$pergunta, $name, $name, $placeholder,$name,$name);
+        $markup  = sprintf($_format,$pergunta, $name, $name, $name, $placeholder,$name,$name);
         return $markup;
     }
 }

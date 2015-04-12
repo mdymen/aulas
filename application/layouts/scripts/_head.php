@@ -101,7 +101,16 @@
                 <div class="navbar-header pull-right">
                     <div class="navbar-account">
                         <ul class="account-area">
-                            <li>
+                            <?php
+                                if ($data['FL_ADMIN_USU']) {  ?>
+                                    <li>
+                                        <a title="Admin" href="<?php echo $this->baseUrl().'/admin'; ?>">
+                                            <i class="icon fa fa-user-md"></i>
+                                        </a>
+                                    </li>
+                            <?php    }
+                                    ?>
+                            <li>                               
                                 <a class=" dropdown-toggle" data-toggle="dropdown" title="Help" href="#">
                                     <i class="icon fa fa-warning"></i>
                                 </a>
