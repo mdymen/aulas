@@ -1,16 +1,14 @@
+<?php
+
+    $perguntas = $this->perguntas;
+?>
+
 <div class="row">
-                        <div class="col-lg-12 col-sm-12 col-xs-12">
-                            <div class="widget flat radius-bordered">
-                                <div class="widget-header bordered-bottom bordered-themeprimary">
-                                    <i class="widget-icon fa fa-text-width"></i>
-                                    <span class="widget-caption">Headings and Paragraphs</span>
+                        <div class="col-xs-12 col-md-12">
+                            <div class="widget">
+                                <div class="widget-header  with-footer">
+                                    <span class="widget-caption">Responsive Flip Scroll Tables</span>
                                     <div class="widget-buttons">
-                                        <a href="#" data-action="refresh">
-                                            <i class="fa fa-undo"></i>
-                                        </a>
-                                        <a href="#" data-toggle="config">
-                                            <i class="fa fa-cog"></i>
-                                        </a>
                                         <a href="#" data-toggle="maximize">
                                             <i class="fa fa-expand"></i>
                                         </a>
@@ -20,68 +18,163 @@
                                         <a href="#" data-toggle="dispose">
                                             <i class="fa fa-times"></i>
                                         </a>
-                                    </div><!--Widget Buttons-->
-                                </div><!--Widget Header-->
-                                <div class="widget-body no-padding" style="display: block; height: auto;">
-                                    <div class="widget-main">
-                                        <table class="table">
-                                            <thead>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="alert alert-info fade in alert-radius-bordered alert-shadowed">
+                                        <button class="close" data-dismiss="alert">
+                                            ×
+                                        </button>
+                                        <i class="fa-fw fa fa-info"></i>
+
+                                        <strong>Flip Scroll Table:</strong> Flips between horizontal and vertical scrolls according to page width
+                                    </div>
+                                    <div class="flip-scroll">
+                                        <table class="table table-bordered table-striped table-condensed flip-content">
+                                            <thead class="flip-content bordered-palegreen">
                                                 <tr>
-                                                    <th width="30%">Type</th>
-                                                    <th>Example</th>
+                                                    <th>
+                                                        Code
+                                                    </th>
+                                                    <th>
+                                                        Company
+                                                    </th>
+                                                    <th class="numeric">
+                                                        Price
+                                                    </th>
+                                                    <th class="numeric">
+                                                        Change
+                                                    </th>
+                                                    <th class="numeric">
+                                                        Change %
+                                                    </th>
+                                                    <th class="numeric">
+                                                        Open
+                                                    </th>
+                                                    <th class="numeric">
+                                                        High
+                                                    </th>
+                                                    <th class="numeric">
+                                                        Low
+                                                    </th>
+                                                    <th class="numeric">
+                                                        Volume
+                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <?php
+                                                    foreach ($perguntas as $pergunta) {
+                                                     
+                                                        echo '<tr>
+                                                    <td>
+                                                        <a href="javascript:void(0)" id="ver" data-respostaid="'.$pergunta['ID_PERGUNTA_PER'].'">
+                                                            <i class="fa fa-arrow-circle-o-right"></i>
+                                                        </a> 
+                                                        <input type="hidden" id="resposta_'.$pergunta['ID_PERGUNTA_PER'].'" data-valor="'.$pergunta['ST_RESPOSTA_PER'].'" />
+                                                    </td>
+                                                    <td>
+                                                        '.$pergunta['ST_PERGUNTA_PER'].'
+                                                    </td>
+                                                    <td class="numeric">
+                                                        $1.38
+                                                    </td>
+                                                    <td class="numeric">
+                                                        -0.01
+                                                    </td>
+                                                    <td class="numeric">
+                                                        -0.36%
+                                                    </td>
+                                                    <td class="numeric">
+                                                        $1.39
+                                                    </td>
+                                                    <td class="numeric">
+                                                        $1.39
+                                                    </td>
+                                                    <td class="numeric">
+                                                        $1.38
+                                                    </td>
+                                                    <td class="numeric">
+                                                        9,395
+                                                    </td>
+                                                </tr>';
+                                                
+                                                    }
+                                                ?>
+                                                
                                                 <tr>
                                                     <td>
-                                                        Headings
+                                                        AAC
                                                     </td>
                                                     <td>
-                                                        <h6>Heading 6 <small>Secondary text</small></h6>
-                                                        <h5>Heading 5 <small>Secondary text</small></h5>
-                                                        <h4>Heading 4 <small>Secondary text</small></h4>
-                                                        <h3>Heading 3 <small>Secondary text</small></h3>
-                                                        <h2>Heading 2 <small>Secondary text</small></h2>
-                                                        <h1>Heading 1 <small>Secondary text</small></h1>
+                                                        AUSTRALIAN AGRICULTURAL COMPANY LIMITED.
+                                                    </td>
+                                                    <td class="numeric">
+                                                        $1.38
+                                                    </td>
+                                                    <td class="numeric">
+                                                        -0.01
+                                                    </td>
+                                                    <td class="numeric">
+                                                        -0.36%
+                                                    </td>
+                                                    <td class="numeric">
+                                                        $1.39
+                                                    </td>
+                                                    <td class="numeric">
+                                                        $1.39
+                                                    </td>
+                                                    <td class="numeric">
+                                                        $1.38
+                                                    </td>
+                                                    <td class="numeric">
+                                                        9,395
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Paragraphs</td>
-                                                    <td>
-                                                        <p>Of on affixed civilly moments promise explain fertile in. Assurance advantage belonging happiness departure so of. Now improving and one sincerity intention allowance commanded not. Oh an am frankness be necessary earnestly advantage estimable extensive. Five he wife gone ye. Mrs suffering sportsmen earnestly any. In am do giving to afford parish settle easily garret.</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Text Classes</td>
-                                                    <td>
-                                                        <p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
-                                                        <p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                                        <p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-                                                        <p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-                                                        <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
-                                                        <p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Text alignment</td>
-                                                    <td>
-                                                        <p class="text-left">Left aligned text.</p>
-                                                        <p class="text-center">Center aligned text.</p>
-                                                        <p class="text-right">Right aligned text.</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Horizontal Rule</td>
-                                                    <td>
-                                                        <hr>
-                                                        Horizontal rule markup as <code>&lt;hr /&gt;</code> will create the above line.
-                                                    </td>
-                                                </tr>
-
                                             </tbody>
                                         </table>
-                                    </div><!--Widget Main Container-->
-                                </div><!--Widget Body-->
-                            </div><!--Widget-->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+</div>
+                    
+              <?php
+                include_once APPLICATION_PATH.'/forms/anotacoes.php';
+                $form = new Forms_Anotacoes();
+              
+              ?>
+
+
+<div id="formA" style="display: none">
+    <div class="widget-body" style="width:600px; height: 500px">
+        <div id="resposta_div"></div>      
+    </div>
+</div>
+
+<?php echo $this->headScript()?> 
+<script type="text/javascript">
+   
+   $(function() {
+       $('#ver').bind('click', function() {
+//           console.log($(this).val());
+//           console.log($(this));
+           var respostaid = $(this).data('respostaid');
+           var resposta = $('#resposta_'+respostaid).data('valor');
+           $('#resposta_div').html(resposta);
+            $('#formA').dialog({
+                    modal: true,
+                        position: [400,80],
+//                    buttons: {
+//                        "Aceitar": function() {
+//                            $(this).dialog("close");
+//                        },
+      //  },
+//        close: function() {
+//        }
+
+            }); 
+       });
+   });
+   
+</script>                   

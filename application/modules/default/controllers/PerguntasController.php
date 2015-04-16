@@ -13,5 +13,18 @@
  */
 class PerguntasController extends Zend_Controller_Action {
     
-    public function indexAction(){}
+    public function init() {
+         //$this->_helper->layout->disableLayout();
+    }
+    
+    public function indexAction(){
+        $storage = new Zend_Auth_Storage_Session();
+        $data = get_object_vars($storage->read());
+    
+        $data['ID_USUARIO_USU'] = $data['ID_ID_USU'];
+        
+        $perguntas = new Models_Perguntas();
+        $result = $perguntas->perguntasUsuario($data);
+        $this->view->perguntas = $result;
+    }
 }
