@@ -17,17 +17,19 @@ class IndexController extends Zend_Controller_Action {
     public function indexAction() {
         
         $storage = new Zend_Auth_Storage_Session();
-        $data = get_object_vars($storage->read());
+        $data = $storage->read();
         
-        $cursos = new Models_Cursos();
-        $result = $cursos->countSlides();
-        
-        $usuario = new Models_Usuarios();
-        
-        $this->view->cursos = $result;
-        $this->view->perguntas = $usuario->dashboard($data);
-        $this->view->cantCursos = $cursos->cantCursos();
-        
+        if (!empty($data)){        
+            $data = get_object_vars($data);
+            $cursos = new Models_Cursos();
+            $result = $cursos->countSlides();
+
+            $usuario = new Models_Usuarios();
+
+            $this->view->cursos = $result;
+            $this->view->perguntas = $usuario->dashboard($data);
+            $this->view->cantCursos = $cursos->cantCursos();
+        }
     }
     
     public function registerAction() {}
