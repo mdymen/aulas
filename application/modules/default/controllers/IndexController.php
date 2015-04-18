@@ -23,7 +23,6 @@ class IndexController extends Zend_Controller_Action {
         $result = $cursos->countSlides();
         
         $usuario = new Models_Usuarios();
-        $cursos = new Models_Cursos();
         
         $this->view->cursos = $result;
         $this->view->perguntas = $usuario->dashboard($data);

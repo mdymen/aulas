@@ -10,7 +10,7 @@
     $data['ID_USUARIO_USU'] = $data['ID_ID_USU'];
     
     $perguntas = new Models_Perguntas();
-    $respostas = $perguntas->perguntasUsuario($data);
+    $respostas = $perguntas->perguntasUsuarioNaoLidas($data);
     
     $count = count($respostas);
 ?>
@@ -273,7 +273,7 @@
                                     <?php
                                         foreach ($respostas as $resposta) {
                                             echo '<li> <div class="clearfix">
-                                                <span class="pull-left"><a href="'.$this->baseUrl().'/curso/vercurso?curso='.$resposta['ID_ID_CR'].'&slide=1">'.$resposta['ST_NOME_CR'].'</a></span>
+                                                <span class="pull-left"><a href="'.$this->baseUrl().'/perguntas/index">'.$resposta['ST_NOME_CR'].'</a></span>
                                                 <span class="pull-right">'.$resposta['DT_UTIMOMOV_PER'].'</span>
                                             </div> </li>';
                                         }

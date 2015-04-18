@@ -27,4 +27,30 @@ class PerguntasController extends Zend_Controller_Action {
         $result = $perguntas->perguntasUsuario($data);
         $this->view->perguntas = $result;
     }
+    
+    public function excluirperguntaAction() {
+        $params = $this->_request->getParams();
+        
+        $pergunta = new Models_Perguntas();
+        $pergunta->excluir($params);
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json('');
+    }
+    
+    public function lidaAction() {
+        $params = $this->_request->getParams();
+        
+        $pergunta = new Models_Perguntas();
+        $pergunta->lida($params);
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);        
+        
+    }
 }

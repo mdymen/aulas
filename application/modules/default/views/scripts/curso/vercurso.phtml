@@ -142,8 +142,9 @@ if (count($slide)> 0) {
                                                             if ($temPerguntas) {
                                                             
                                                                 $collapsed = 0;
-                                                                foreach ($perguntas as $pergunta) {                                                                    
-                                                                    $respondida = !($pergunta['DT_UTIMOMOV_PER'] == '0000-00-00 00:00:00');
+                                                                foreach ($perguntas as $pergunta) {     
+                                                                    if (!$pergunta['FL_EXCLUIDA_PER']) {
+                                                                    $respondida = !(empty($pergunta['ST_RESPOSTA_PER']));
                                                                     $resultado = "Aguardando resposta";
                                                                     if ($respondida) {
                                                                         $resultado = "RESPONDIDA";
@@ -157,7 +158,7 @@ if (count($slide)> 0) {
                                                     <div class="ticket-user col-lg-6 col-sm-12">
                                                           <!--          <img src="assets/img/avatars/adam-jansen.jpg" class="user-avatar">-->
                                                                     <span class="user-name"><div class="widget-buttons buttons-bordered">
-                                                <a href="javascript:void(0)" id="btnExcluirPergunta" valor="<?php echo $pergunta['ID_PERGUNTA_PER']; ?>" class="btn btn-darkorange btn-xs btnExcluir"><i class="fa fa-times "></i></a>
+                                                <a href="javascript:void(0)" id="btnExcluirPergunta" valor="<?php echo $pergunta['ID_PERGUNTA_PER']; ?>" class="btnExcluir"><i class="fa fa-times "></i></a>
                                             </div><?php echo $pergunta['ST_PERGUNTA_PER']; ?></span>
                                                                   <?php if ($respondida) {
                                                                       
@@ -235,7 +236,7 @@ if (count($slide)> 0) {
                                                     
                                                     
                                                                 }         
-                                                            } else {
+                                                            } }else {
                                                                 $elemento = new Elementoshtml_Alerts();
                                                                 echo $elemento->warning("Nao tem perguntas.");
                                                             }
@@ -332,11 +333,13 @@ if (count($slide)> 0) {
         
         $('.btnExcluir').bind('click', function() {
             var pergunta = $(this).attr('valor'); 
-            
-            $.post("excluirpergunta", {ID_PERGUNTA_PER: pergunta}, function(dados) {
-               // console.log(dados);
-                window.location.reload();
-            });
+            var excluir_pergunta = confirm('Deseja excluir a pergunta?');
+            if (excluir_pergunta) {
+                $.post("../perguntas/excluirpergunta", {ID_PERGUNTA_PER: pergunta}, function(dados) {
+                     // console.log(dados);
+                   window.location.reload();
+                });
+            }
         });
         
         $('#Perguntar').bind('click', function() {

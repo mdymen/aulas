@@ -1,7 +1,11 @@
 <?php
 
     $perguntas = $this->perguntas;
+    
+    if (count($perguntas) > 0) {
 ?>
+
+
 
 <div class="row">
                         <div class="col-xs-12 col-md-12">
@@ -115,7 +119,14 @@
     </div>
         </div>
     </div>
-<?php echo $this->headScript()?> 
+<?php echo $this->headScript();
+        
+    } else {
+        include APPLICATION_PATH.'/Elementoshtml/Alerts.php';
+        echo Elementoshtml_Alerts::warning("Nao tem perguntas respondidas.");
+        
+    }
+?> 
 <script type="text/javascript">
    
 //   $(function() {
@@ -144,8 +155,10 @@
        
        
        $('#ver').bind('click', function() {
+           
            var respostaid = $(this).data('respostaid');
            var resposta = $('#resposta_'+respostaid).data('valor');
+           $.post('lida',{ID_PERGUNTA_PER:respostaid});
           $('#ST_RESPOSTA_PER-label').html(resposta);
            $('#formA').css('display',''); 
             $('#formA').dialog({
