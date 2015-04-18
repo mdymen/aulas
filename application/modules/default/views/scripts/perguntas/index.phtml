@@ -7,8 +7,8 @@
                         <div class="col-xs-12 col-md-12">
                             <div class="widget">
                                 <div class="widget-header  with-footer">
-                                    <span class="widget-caption">Responsive Flip Scroll Tables</span>
-                                    <div class="widget-buttons">
+                                    <span class="widget-caption">Perguntas dos cursos</span>
+<!--                                    <div class="widget-buttons">
                                         <a href="#" data-toggle="maximize">
                                             <i class="fa fa-expand"></i>
                                         </a>
@@ -18,48 +18,31 @@
                                         <a href="#" data-toggle="dispose">
                                             <i class="fa fa-times"></i>
                                         </a>
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <div class="widget-body">
-                                    <div class="alert alert-info fade in alert-radius-bordered alert-shadowed">
+<!--                                    <div class="alert alert-info fade in alert-radius-bordered alert-shadowed">
                                         <button class="close" data-dismiss="alert">
                                             ×
                                         </button>
                                         <i class="fa-fw fa fa-info"></i>
 
                                         <strong>Flip Scroll Table:</strong> Flips between horizontal and vertical scrolls according to page width
-                                    </div>
+                                    </div>-->
                                     <div class="flip-scroll">
                                         <table class="table table-bordered table-striped table-condensed flip-content">
                                             <thead class="flip-content bordered-palegreen">
                                                 <tr>
+                                                    <th style="width: 5%">
+                                                        
+                                                    </th>
+                                                    <th style="width: 15%">
+                                                        Curso
+                                                    </th>                                                    
                                                     <th>
-                                                        Code
+                                                        Pergunta
                                                     </th>
-                                                    <th>
-                                                        Company
-                                                    </th>
-                                                    <th class="numeric">
-                                                        Price
-                                                    </th>
-                                                    <th class="numeric">
-                                                        Change
-                                                    </th>
-                                                    <th class="numeric">
-                                                        Change %
-                                                    </th>
-                                                    <th class="numeric">
-                                                        Open
-                                                    </th>
-                                                    <th class="numeric">
-                                                        High
-                                                    </th>
-                                                    <th class="numeric">
-                                                        Low
-                                                    </th>
-                                                    <th class="numeric">
-                                                        Volume
-                                                    </th>
+                                               
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -68,69 +51,26 @@
                                                      
                                                         echo '<tr>
                                                     <td>
+                                                    <a href="javascript:void(0)" id="vder" data-respostaid="'.$pergunta['ID_PERGUNTA_PER'].'">
+                                                            <i class="fa fa-times"></i>
+                                                        </a> 
                                                         <a href="javascript:void(0)" id="ver" data-respostaid="'.$pergunta['ID_PERGUNTA_PER'].'">
                                                             <i class="fa fa-arrow-circle-o-right"></i>
                                                         </a> 
                                                         <input type="hidden" id="resposta_'.$pergunta['ID_PERGUNTA_PER'].'" data-valor="'.$pergunta['ST_RESPOSTA_PER'].'" />
                                                     </td>
                                                     <td>
+                                                        '.$pergunta['ST_NOME_CR'].'
+                                                    </td>
+                                                    <td>
                                                         '.$pergunta['ST_PERGUNTA_PER'].'
                                                     </td>
-                                                    <td class="numeric">
-                                                        $1.38
-                                                    </td>
-                                                    <td class="numeric">
-                                                        -0.01
-                                                    </td>
-                                                    <td class="numeric">
-                                                        -0.36%
-                                                    </td>
-                                                    <td class="numeric">
-                                                        $1.39
-                                                    </td>
-                                                    <td class="numeric">
-                                                        $1.39
-                                                    </td>
-                                                    <td class="numeric">
-                                                        $1.38
-                                                    </td>
-                                                    <td class="numeric">
-                                                        9,395
-                                                    </td>
+                                                
                                                 </tr>';
                                                 
                                                     }
                                                 ?>
                                                 
-                                                <tr>
-                                                    <td>
-                                                        AAC
-                                                    </td>
-                                                    <td>
-                                                        AUSTRALIAN AGRICULTURAL COMPANY LIMITED.
-                                                    </td>
-                                                    <td class="numeric">
-                                                        $1.38
-                                                    </td>
-                                                    <td class="numeric">
-                                                        -0.01
-                                                    </td>
-                                                    <td class="numeric">
-                                                        -0.36%
-                                                    </td>
-                                                    <td class="numeric">
-                                                        $1.39
-                                                    </td>
-                                                    <td class="numeric">
-                                                        $1.39
-                                                    </td>
-                                                    <td class="numeric">
-                                                        $1.38
-                                                    </td>
-                                                    <td class="numeric">
-                                                        9,395
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -140,40 +80,80 @@
 </div>
                     
               <?php
-                include_once APPLICATION_PATH.'/forms/anotacoes.php';
-                $form = new Forms_Anotacoes();
+//                include_once APPLICATION_PATH.'/forms/anotacoes.php';
+//                $form = new Forms_Anotacoes();
               
               ?>
 
 
 <div id="formA" style="display: none">
-    <div class="widget-body" style="width:600px; height: 500px">
-        <div id="resposta_div"></div>      
+    <div class="">
+    <div class="col-lg-6 col-sm-6 col-xs-12" style="width:600px">
+            <div class="widget" style="width:600px">
+                
+                <div class="widget-header bordered-bottom bordered-blue">
+                    <div class="widget-buttons">
+                                     
+                                        <a href="#" data-toggle="collapse" style="">
+<!--                                            <i class="fa fa-minus"></i>-->
+                                        </a>
+                        <a href="#" class="cssClose" data-toggle="dispose">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                    <span class="widget-caption" id="tituloForm">Resposta</span>
+                </div>
+                <div class="widget-body" style="width:600px !important; height:400px">
+                    <div><form action="method=post" style=""><dt id="ID_PERGUNTA_PER-label">&nbsp;</dt>
+    <dd id="ID_PERGUNTA_PER-element">
+    <input type="hidden" name="ID_PERGUNTA_PER" value="" id="ID_PERGUNTA_PER"></dd><dt id="ST_RESPOSTA_PER-label">&nbsp;</dt>
+    <dd id="ST_RESPOSTA_PER-element">
+    </dd><dt id="Responder-label">&nbsp;</dt><dd id="Responder-element">        
+        </div>      
     </div>
-</div>
-
+    </div>
+    </div>
+        </div>
+    </div>
 <?php echo $this->headScript()?> 
 <script type="text/javascript">
    
+//   $(function() {
+//    $( "#dialog" ).dialog({
+//        	closeOnEscape: false, 
+//	open: function(event, ui) { 
+//		// Set opacity 
+//		$(this).parent().css('opacity', 0.6); 
+//		// Hide close button 
+//		$(this).parent().children().children(".ui-dialog-titlebar-close").hide(); 
+//		// Handle opacity 
+//		$(this).parent().hover( function () { 
+//			$(this).css('opacity', 0.9); 
+//		}, function (event) { 
+//			$(this).css('opacity', 0.6); 
+//		}); 
+//	} 
+//        
+//    });
+//  });
+   
    $(function() {
+       $('.cssClose').bind('click', function() {
+          $('#formA').css('display','none'); 
+       });
+       
+       
        $('#ver').bind('click', function() {
-//           console.log($(this).val());
-//           console.log($(this));
            var respostaid = $(this).data('respostaid');
            var resposta = $('#resposta_'+respostaid).data('valor');
-           $('#resposta_div').html(resposta);
+          $('#ST_RESPOSTA_PER-label').html(resposta);
+           $('#formA').css('display',''); 
             $('#formA').dialog({
-                    modal: true,
-                        position: [400,80],
-//                    buttons: {
-//                        "Aceitar": function() {
-//                            $(this).dialog("close");
-//                        },
-      //  },
-//        close: function() {
-//        }
-
-            }); 
+               position: [400,80],
+               
+            });
+            
+             $(".ui-dialog-titlebar-close").css('display','none');
        });
    });
    
