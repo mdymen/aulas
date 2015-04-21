@@ -100,11 +100,11 @@
                                     </li>
                             <?php    }
                                     ?>
-                            <li>                               
+<!--                            <li>                               
                                 <a class=" dropdown-toggle" data-toggle="dropdown" title="Help" href="#">
                                     <i class="icon fa fa-warning"></i>
                                 </a>
-                                <!--Notification Dropdown-->
+                                Notification Dropdown
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-notifications">
                                     <li>
                                         <a href="#">
@@ -180,8 +180,8 @@
                                         </span>
                                     </li>
                                 </ul>
-                                <!--/Notification Dropdown-->
-                            </li>
+                                /Notification Dropdown
+                            </li>-->
 <!--                            <li>
                                 <a class="dropdown-toggle" data-toggle="dropdown" title="Mails" href="#">
                                     <i class="icon fa fa-envelope"></i>
@@ -363,22 +363,22 @@
                                 </a>
                                 <!--Login Area Dropdown-->
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                    <li class="username"><a><?php echo $data['ST_USUARIO_USU']; ?></a></li>
-                                    <li class="email"><a><?php echo $data['ST_EMAIL_USU']; ?></a></li>
+<!--                                    <li class="username"><a><?php echo $data['ST_USUARIO_USU']; ?></a></li>
+                                    <li class="email"><a><?php echo $data['ST_EMAIL_USU']; ?></a></li>-->
                                     <!--Avatar Area-->
-                                    <li>
+<!--                                    <li>
                                         <div class="avatar-area">
                                             <img src="<?php echo $this->baseUrl().'/../public/img/perfil.jpg'; ?>" class="avatar">
                                             <span class="caption">Change Photo</span>
                                         </div>
-                                    </li>
+                                    </li>-->
                                     <!--Avatar Area-->
 <!--                                    <li class="edit">
                                         <a href="profile.html" class="pull-left">Profile</a>
                                         <a href="#" class="pull-right">Setting</a>
                                     </li>-->
                                     <!--Theme Selector Area-->
-                                    <li class="theme-area">
+<!--                                    <li class="theme-area">
                                         <ul class="colorpicker" id="skin-changer">
                                             <li><a class="colorpick-btn" href="#" style="background-color:#5DB2FF;" rel="assets/css/skins/blue.min.css"></a></li>
                                             <li><a class="colorpick-btn" href="#" style="background-color:#2dc3e8;" rel="assets/css/skins/azure.min.css"></a></li>
@@ -393,13 +393,13 @@
                                             <li><a class="colorpick-btn" href="#" style="background-color:#474544;" rel="assets/css/skins/black.min.css"></a></li>
                                             <li><a class="colorpick-btn" href="#" style="background-color:#001940;" rel="assets/css/skins/deepblue.min.css"></a></li>
                                         </ul>
-                                    </li>
+                                    </li>-->
                                     <!--/Theme Selector Area-->
-                                    <li class="dropdown-footer">
+<!--                                    <li class="dropdown-footer">
                                         <a href="<?php echo $this->baseUrl().'/auth/logout'; ?>">
                                             Cerrar sessao
                                         </a>
-                                    </li>
+                                    </li>-->
                                 </ul>
                                 <!--/Login Area Dropdown-->
                             </li>
@@ -479,7 +479,7 @@
 
                     <li>
                         <a href="<?php echo $this->baseUrl().'/usuario/index'; ?>">
-                            <i class="menu-icon glyphicon glyphicon-pencil"></i>
+                            <i class="menu-icon glyphicon fa fa-dollar"></i>
                             <span class="menu-text"> Credito </span>
                         </a>
                     </li>

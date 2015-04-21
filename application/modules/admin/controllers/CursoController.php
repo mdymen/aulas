@@ -46,7 +46,6 @@ class Admin_CursoController extends Zend_Controller_Action
     }
     
     public function addcursoAction() {
-        
         require_once APPLICATION_PATH.'/forms/curso/adicionar.php';
        
         $params = $this->_request->getParams();
@@ -55,8 +54,6 @@ class Admin_CursoController extends Zend_Controller_Action
 
         if ($this->_request->isPost()) {
             $formData = $this->_request->getPost();
-            print_r($formData);
-            die('.');
             
             if ($form->isValid($formData)) {
                 
