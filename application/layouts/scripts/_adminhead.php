@@ -102,7 +102,7 @@ die('.');*/
                             </li>                            
                             <li>
                                 <a title="Cerrar Sessao" href="<?php echo $this->baseUrl().'/auth/logout'; ?>">
-                                    <i class="icon fa fa-times"></i>
+                                    <i class="icon fa fa-power-off"></i>
                                 </a>
                             </li>                            
                         </ul>

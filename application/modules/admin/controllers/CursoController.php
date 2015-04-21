@@ -55,6 +55,9 @@ class Admin_CursoController extends Zend_Controller_Action
 
         if ($this->_request->isPost()) {
             $formData = $this->_request->getPost();
+            print_r($formData);
+            die('.');
+            
             if ($form->isValid($formData)) {
                 
                 // success - do something with the uploaded file
@@ -67,7 +70,7 @@ class Admin_CursoController extends Zend_Controller_Action
 
         $course->save($uploadedData);
         
-        $this->redirect('curso/index');
+        $this->redirect('admin/curso/index');
              
     }
     

@@ -5,7 +5,7 @@ include APPLICATION_PATH.'/decorators/textarea.php';
 class Forms_Curso_Adicionar extends Zend_Form{
  function init() {
         
-        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/bobby/public';
+        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/aulas/public/admin';
         
         $this->setAction($root."/curso/addcurso")->setMethod("post");
 

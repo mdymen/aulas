@@ -2,7 +2,7 @@
 
 include APPLICATION_PATH.'/models/usuarios.php';
 include APPLICATION_PATH.'/models/login.php';
-class IndexController extends Zend_Controller_Action
+class indexController extends Zend_Controller_Action
 {
 
     public function init()
@@ -12,7 +12,8 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        print_r('HOLA');
+        die('.');
     }
     
     public function loginAction() {}

@@ -44,31 +44,6 @@ class CursoController extends Zend_Controller_Action
         
     }
     
-    public function addcursoAction() {
-        
-        require_once APPLICATION_PATH.'/forms/curso/adicionar.php';
-       
-        $params = $this->_request->getParams();
-        
-        $form = new Forms_Curso_Adicionar();
-
-        if ($this->_request->isPost()) {
-            $formData = $this->_request->getPost();
-            if ($form->isValid($formData)) {
-                
-                // success - do something with the uploaded file
-                $uploadedData = $form->getValues();
-                 
-            }
-        }
-        
-        $course = new Models_Cursos();
-
-        $course->save($uploadedData);
-        
-        $this->redirect('curso/index');
-             
-    }
     
     public function comprarAction() {
        

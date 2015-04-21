@@ -407,6 +407,11 @@
                             <!--Note: notice that setting div must start right after account area list.
                             no space must be between these elements-->
                             <!-- Settings -->
+                              <li>
+                                        <a title="Cerrar sessao" href="<?php echo $this->baseUrl().'/auth/logout'; ?>">
+                                            <i class="icon fa fa-power-off"></i>
+                                        </a>
+                                    </li>
                         </ul><div class="setting">
                             <a id="btn-setting" title="Setting" href="#">
                                 <i class="icon glyphicon glyphicon-cog"></i>
