@@ -46,8 +46,11 @@
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 item-right">
                                                 <div class="item-price">
-                                                    <span class="currency">R$</span>
-                                                    <span class="price"><?php echo $curso['VL_CUSTO_CR']; ?></span>
+                                                    <?php 
+                                                        $currency = $curso['VL_CUSTO_CR'] > 0 ? 'R$' : ''; 
+                                                    ?>
+                                                    <span class="currency"><?php echo $currency; ?></span>
+                                                    <span class="price"><?php if ($curso['VL_CUSTO_CR'] > 0) { echo $curso['VL_CUSTO_CR'];} else { echo '<span style="color: green"><b>GRATIS</b></span>'; }?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -145,7 +148,7 @@
     $(function() {
        $('.lnk').bind('mouseover', function(){
            var indice = $(this).data('indice');
-           var loc = -19;
+           var loc = -22;
            var mais = (indice-1)*70;
 
            $('#popover84932').css('top', ((loc)+mais)+'px');         
