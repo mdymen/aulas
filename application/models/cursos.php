@@ -56,7 +56,8 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
         $table = $this->_name;
 
         $select = $db->select($table)->from($this->_name)
-                ->join('Slides', 'Cursos.ID_ID_CR = Slides.ID_CURSO_CR',array('Quantidade'=> 'count(*)'));
+                ->join('Slides', 'Cursos.ID_ID_CR = Slides.ID_CURSO_CR',array('Quantidade'=> 'count(*)'))
+                ->group('Cursos.ID_ID_CR');
   
         $query = $select->query();
                 

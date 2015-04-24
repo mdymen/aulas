@@ -29,11 +29,14 @@
                                 </div>
                                 <ul class="orders-list">
                                     <?php
+                                    $indice = 0;
                                      foreach ($cursos as $curso) {
+                                         $indice++;
                                          ?>
-                                         
+                                    
                                      <li class="order-item">
                                         <div class="row">
+                                            
                                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 item-left">
                                                 <div class="item-booker"><a href="<?php echo $this->baseUrl().'/curso/ficha?curso='.$curso['ID_ID_CR']; ?>"><?php echo $curso['ST_NOME_CR']; ?></a></div>
                                                 <div class="item-time">
@@ -48,16 +51,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                         <a class="item-more" id="lnk" href="javascript:void(0);" class="btn btn-default" data-container="body" data-titleclass="bordered-purple" data-class="dark" data-toggle="popover-hover" data-placement="left" data-title="Hover" data-content="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.." data-original-title="" title="">
+                                         <a class="item-more lnk" id="lnk" href="javascript:void(0);" class="btn btn-default" data-container="body" data-titleclass="bordered-purple" data-class="dark" data-toggle="popover-hover" data-placement="left" data-title="Hover" data-content="<?php echo $curso['ST_DESCR_CR']; ?>" data-indice="<?php echo $indice; ?>" data-original-title="" title="">
                                                      <i></i>
                                                 </a>
 
                                     </li>
                                     
-                                    <div class="popover fade right in" id="popover84932" style="width: 276px; top: 25px; left: 250px; display: none;">
+                                    <div class="popover fade right in" id="popover84932" style="width: 276px; top: 0px; left: 250px; height:200px; display: none;">
                                         <div class="arrow" style="top: 50%;"></div>
                                             <h3 class="popover-title bordered-blueberry">Descricao</h3>
-                                        <div class="popover-content"><?php echo $curso['ST_DESCR_CR']; ?></div>
+                                        <div class="popover-content" id="popover"></div>
                                     </div>
                                     
                                     
@@ -140,11 +143,17 @@
 
 <script type="text/javascript">
     $(function() {
-       $('#lnk').bind('mouseover', function(){
+       $('.lnk').bind('mouseover', function(){
+           var indice = $(this).data('indice');
+           var loc = -19;
+           var mais = (indice-1)*70;
+
+           $('#popover84932').css('top', ((loc)+mais)+'px');         
+           $('#popover').html($(this).data('content'));
            $('#popover84932').show();
        });
   
-       $('#lnk').bind('mouseout', function(){
+       $('.lnk').bind('mouseout', function(){
            $('#popover84932').hide();
        });  
     }); 
