@@ -125,4 +125,14 @@ class Models_Slides extends Zend_Db_Table_Abstract {
         
         return $slide;
     }
+    
+    function updateUtimaLida($params) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $info = array(
+            'NM_UTIMAVIU_UC' => $params['NM_UTIMAVIU_UC']
+        );
+        
+        $db->update('usuario_curso',$info,'ID_USU_UC = '.$params['ID_USU_UC'].' AND ID_CUR_UC = '.$params['ID_CUR_UC']);
+    }
 }

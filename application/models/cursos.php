@@ -75,5 +75,28 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
         return $resultado->fetchAll();
         
     }
+    
+    //retorna o slide atual
+    function estaMatriculado($params) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+
+        $select = $db->select()->from('usuario_curso')
+                ->where('ID_USU_UC = ?', $params['ID_USU_UC'])
+                ->where('ID_CUR_UC = ?', $params['ID_CUR_UC']);
+        $result = $select->query();
+        $res = $result->fetchAll();
+        
+        if (count($res) == 0) {
+            $db->insert('usuario_curso', $params);
+            return 1;
+        } else {
+            $select = $db->select()->from('usuario_curso')
+                    ->where('ID_USU_UC = ?', $params['ID_USU_UC'])
+                    ->where('ID_CUR_UC = ?', $params['ID_CUR_UC' ]);
+            $result = $select->query();
+            $res = $result->fetchAll();
+            return $res[0]['NM_UTIMAVIU_UC'];
+        }
+    }
 
 }

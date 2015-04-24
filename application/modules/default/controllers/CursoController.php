@@ -57,7 +57,14 @@ class CursoController extends Zend_Controller_Action
         $params = $this->_request->getParams();
             
         $slides = new Models_Slides();
+        
+        $storage = new Zend_Auth_Storage_Session();
+        $data = get_object_vars($storage->read()); 
+        
         $slide = $slides->specificSlide($params['curso'], $params['slide']);
+        
+        $slides->updateUtimaLida(array('ID_USU_UC' => $data['ID_ID_USU'],'ID_CUR_UC' => $params['curso'],'NM_UTIMAVIU_UC' => $params['slide']));
+       
         
          $this->getResponse()
          ->setHeader('Content-Type', 'application/json');
@@ -97,9 +104,13 @@ class CursoController extends Zend_Controller_Action
         $data = get_object_vars($storage->read());  
 
         $params = $this->_request->getParams();
-     
+        
+        $cursos = new Models_Cursos();
+        $usuario_curso = (array('ID_USU_UC' => $data['ID_ID_USU'] ,'ID_CUR_UC' => $params['curso'], 'NM_UTIMAVIU_UC' => 1));
+        $numslide = $cursos->estaMatriculado($usuario_curso);
+
         $slides = new Models_Slides();
-        $slide = $slides->specificSlide($params['curso'], $params['slide']);
+        $slide = $slides->specificSlide($params['curso'], $numslide);
         
         $an = new Models_Anotacoes();
         $anotacoes = $an->anotacoes($params['curso'],1);
