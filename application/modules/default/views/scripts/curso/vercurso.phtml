@@ -122,7 +122,9 @@ if (count($slide)> 0) {
                                                 <div class="panel-body border-red">
                                                     <?php
                                                     
+                                                        $parametros = array('ID_CURSO_CR' => $this->idcurso, 'ID_USUARIO_USU' => $this->idusuario);
                                                         $formPerguntar = new Forms_Pergunta();
+                                                        $formPerguntar->populate($parametros);
                                                         echo $formPerguntar;
                                                     
                                                     ?>
@@ -142,7 +144,8 @@ if (count($slide)> 0) {
                                                             if ($temPerguntas) {
                                                             
                                                                 $collapsed = 0;
-                                                                foreach ($perguntas as $pergunta) {     
+                                                                foreach ($perguntas as $pergunta) { 
+                                                                    
                                                                     if (!$pergunta['FL_EXCLUIDA_PER']) {
                                                                     $respondida = !(empty($pergunta['ST_RESPOSTA_PER']));
                                                                     $resultado = "Aguardando resposta";
@@ -166,19 +169,10 @@ if (count($slide)> 0) {
                                                                 </div>
                                                                 <div class="ticket-time  col-lg-4 col-sm-6 col-xs-12">
                                                                     <div class="divider hidden-md hidden-sm hidden-xs"></div>
-                                                                    <?php
-                                                                        if ($respondida) {                                                                
-                                                                            ?>
+                                                                   
                                                                                 <i class="fa fa-clock-o"></i>
                                                                                 <span class="time"><?php echo $pergunta['DT_UTIMOMOV_PER']; ?></span>                                                                        
-                                                                            <?php
-                                                                        
-                                                                        } else {
-                                                                            ?>
-                                                                                <span class="time"><?php echo 'Sem resposta'; ?></span>
-                                                                                    <?php
-                                                                        }
-                                                                        ?>
+                                                                     
 
 
 
@@ -342,16 +336,16 @@ if (count($slide)> 0) {
             }
         });
         
-        $('#Perguntar').bind('click', function() {
-            
-            var pergunta = $('#ST_PERGUNTA_PER').val();
-            var curso = $('#curso').val();
-                        
-            $.post("adicionarpergunta", {ST_PERGUNTA_PER: pergunta, ID_CURSO_CR: curso}, function(dados) {
-                window.location.reload();
-               // console.log(dados);
-            });
-        });
+//        $('#Perguntar').bind('click', function() {
+//            
+//            var pergunta = $('#ST_PERGUNTA_PER').val();
+//            var curso = $('#curso').val();
+//                        
+//            $.post("adicionarpergunta", {ST_PERGUNTA_PER: pergunta, ID_CURSO_CR: curso}, function(dados) {
+//                window.location.reload();
+//               // console.log(dados);
+//            });
+//        });
         
         $('#Gravar').bind('click',function() {
             var curso = $('#curso').val();

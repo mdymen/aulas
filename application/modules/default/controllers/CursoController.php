@@ -44,6 +44,7 @@ class CursoController extends Zend_Controller_Action
         
     }
     
+
     
     public function comprarAction() {
        
@@ -92,6 +93,9 @@ class CursoController extends Zend_Controller_Action
     }
     
     public function vercursoAction() {
+        $storage = new Zend_Auth_Storage_Session();
+        $data = get_object_vars($storage->read());  
+
         $params = $this->_request->getParams();
      
         $slides = new Models_Slides();
@@ -106,6 +110,9 @@ class CursoController extends Zend_Controller_Action
         $this->view->slide = $slide; 
         $this->view->anotacoes = $anotacoes;
         $this->view->perguntas = $perguntas;
+        $this->view->idcurso = $this->_request->getParam('curso');
+        $this->view->idslide = $this->_request->getParam('slide');
+        $this->view->idusuario = $data['ID_ID_USU'];
     }
     
     public function fichaAction() {
