@@ -12,27 +12,8 @@
                             <div class="widget">
                                 <div class="widget-header  with-footer">
                                     <span class="widget-caption">Perguntas dos cursos</span>
-<!--                                    <div class="widget-buttons">
-                                        <a href="#" data-toggle="maximize">
-                                            <i class="fa fa-expand"></i>
-                                        </a>
-                                        <a href="#" data-toggle="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </a>
-                                        <a href="#" data-toggle="dispose">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </div>-->
                                 </div>
                                 <div class="widget-body">
-<!--                                    <div class="alert alert-info fade in alert-radius-bordered alert-shadowed">
-                                        <button class="close" data-dismiss="alert">
-                                            ×
-                                        </button>
-                                        <i class="fa-fw fa fa-info"></i>
-
-                                        <strong>Flip Scroll Table:</strong> Flips between horizontal and vertical scrolls according to page width
-                                    </div>-->
                                     <div class="flip-scroll">
                                         <table class="table table-bordered table-striped table-condensed flip-content">
                                             <thead class="flip-content bordered-palegreen">
@@ -55,16 +36,16 @@
                                                      
                                                         echo '<tr>
                                                     <td>
-                                                    <a href="javascript:void(0)" id="vder" data-respostaid="'.$pergunta['ID_PERGUNTA_PER'].'">
-                                                            <i class="fa fa-times"></i>
+                                                    <a href="javascript:void(0)" class="excluir" data-respostaid="'.$pergunta['ID_PERGUNTA_PER'].'">
+                                                            <i class="fa fa-times red"></i>
                                                         </a> 
-                                                        <a href="javascript:void(0)" id="ver" data-respostaid="'.$pergunta['ID_PERGUNTA_PER'].'">
+                                                        <a href="javascript:void(0)" class="ver" id="ver" data-respostaid="'.$pergunta['ID_PERGUNTA_PER'].'">
                                                             <i class="fa fa-arrow-circle-o-right"></i>
                                                         </a> 
                                                         <input type="hidden" id="resposta_'.$pergunta['ID_PERGUNTA_PER'].'" data-valor="'.$pergunta['ST_RESPOSTA_PER'].'" />
                                                     </td>
                                                     <td>
-                                                        '.$pergunta['ST_NOME_CR'].'
+                                                        <a href="'.$this->baseUrl().'/curso/vercurso?slide=1&curso='.$pergunta['ID_CURSO_CR'].'">'.$pergunta['ST_NOME_CR'].'</a>
                                                     </td>
                                                     <td>
                                                         '.$pergunta['ST_PERGUNTA_PER'].'
@@ -82,13 +63,6 @@
                             </div>
                         </div>
 </div>
-                    
-              <?php
-//                include_once APPLICATION_PATH.'/forms/anotacoes.php';
-//                $form = new Forms_Anotacoes();
-              
-              ?>
-
 
 <div id="formA" style="display: none">
     <div class="">
@@ -128,33 +102,26 @@
     }
 ?> 
 <script type="text/javascript">
-   
-//   $(function() {
-//    $( "#dialog" ).dialog({
-//        	closeOnEscape: false, 
-//	open: function(event, ui) { 
-//		// Set opacity 
-//		$(this).parent().css('opacity', 0.6); 
-//		// Hide close button 
-//		$(this).parent().children().children(".ui-dialog-titlebar-close").hide(); 
-//		// Handle opacity 
-//		$(this).parent().hover( function () { 
-//			$(this).css('opacity', 0.9); 
-//		}, function (event) { 
-//			$(this).css('opacity', 0.6); 
-//		}); 
-//	} 
-//        
-//    });
-//  });
-   
+
    $(function() {
+        $('.excluir').bind('click', function() {
+            var pergunta = $(this).data('respostaid'); 
+            var excluir_pergunta = confirm('Deseja excluir a pergunta?');
+            if (excluir_pergunta) {
+                $.post("../perguntas/excluirpergunta", {ID_PERGUNTA_PER: pergunta}, function(dados) {
+                     // console.log(dados);
+                   window.location.reload();
+                });
+            }
+        });
+       
+       
        $('.cssClose').bind('click', function() {
           $('#formA').css('display','none'); 
        });
        
        
-       $('#ver').bind('click', function() {
+       $('.ver').bind('click', function() {
            
            var respostaid = $(this).data('respostaid');
            var resposta = $('#resposta_'+respostaid).data('valor');

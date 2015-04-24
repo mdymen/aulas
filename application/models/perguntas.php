@@ -89,7 +89,6 @@ class Models_Perguntas extends Zend_Db_Table_Abstract {
         $db = Zend_Db_Table::getDefaultAdapter();
         $select = $db->select()->from($this->_name)
                 ->joinLeft('CURSOS', 'CURSOS.ID_ID_CR = PERGUNTAS_CURSOS.ID_CURSO_CR ')
-                ->where('ST_RESPOSTA_PER <> ""')
                 ->where('ID_USUARIO_USU = ?', $params['ID_USUARIO_USU'])
                 ->where('FL_EXCLUIDA_PER = 0');
         

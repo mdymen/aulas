@@ -478,7 +478,7 @@
                     <!--Dashboard-->
 
                     <li>
-                        <a href="<?php echo $this->baseUrl().'/usuario/index'; ?>">
+                        <a href="">
                             <i class="menu-icon glyphicon fa fa-dollar"></i>
                             <span class="menu-text"> Credito </span>
                         </a>
