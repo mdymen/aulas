@@ -9,7 +9,7 @@ class Forms_Slide_Editar extends Zend_Form{
     
  function init() {
         
-        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/aulas/public';
+        $root = 'http' . '://' . $_SERVER['HTTP_HOST'] . '/aulas/public';
         
         $this->setAction($root."/admin/slide/editslide")->setMethod("post");
 

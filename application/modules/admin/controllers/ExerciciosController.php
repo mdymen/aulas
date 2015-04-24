@@ -9,7 +9,7 @@ class Admin_ExerciciosController extends Zend_Controller_Action {
     public function init() {}
     
     public function indexAction() {
-        $this->view->perguntas = $this->verbotobe4();
+        $this->view->perguntas = $this->pronouns1();
     }
 
     /*
@@ -114,6 +114,24 @@ He read the letters, ele leu as cartas.
         return $p;        
     }     
     
+    /*1. Os Pronomes Pessoais do Caso Reto desempenham papel de sujeito (subject) da oração:
+
+Rachel and I go to the park every day. (Eu e Raquel vamos ao parque todos os dias.)
+
+She is Brazilian. (Ela é Brasileira.)
+
+ 
+
+2. Os Pronomes Pessoais do Caso Oblíquo desempenham as seguintes funções:
+
+a) Objeto direto ou indireto:
+
+Alfred loves her. (Alfredo a ama.)
+
+b) Objeto de preposição:
+
+We talked to him last night. (Nós falamos com ele ontem à noite.) */
+    
    public function pronouns1(){
         $p[0]['pergunta'] = "(My family and I) __ live in Ohio.";
         $p[0]['nome'] = 'pergunta1';
@@ -132,7 +150,13 @@ He read the letters, ele leu as cartas.
         $p[3]['resposta'] = 'she';     
         return $p;        
     }        
-    
+    /*1. É indispensável que se saiba claramente a diferença entre sujeito e objeto.
+
+We saw him at the bookstore. (Nós o vimos na livraria.)
+(s.)        (o.)
+
+He saw us at the bookstore. (Ele nos viu na livraria.)
+(s.)      (o.)*/
     /*
      * Gramática de Inglês: Pronomes sujeito e objeto
      * Escolha o pronome correto para completar as frases.
@@ -157,6 +181,14 @@ He read the letters, ele leu as cartas.
         return $p;        
     }       
 
+    /*2. You é Pronome Reto (sujeito/subject pronoun) e também Pronome Oblíquo (objeto/object pronoun).
+
+You are a beautiful woman. (Você é uma mulher bonita.)
+(s.)
+
+He gave some flowers to you. (Ele deu flores a você.)
+                                      (o.)*/
+    
     public function sujeito2(){
         $p[0]['pergunta'] = "Where was John yesterday? I didn't see __ all day. (him, you, he)";
         $p[0]['nome'] = 'pergunta1';
@@ -176,6 +208,49 @@ He read the letters, ele leu as cartas.
         return $p;        
     }
     
+    /*3. Em Inglês não há omissão do sujeito como pode ocorrer em Português, salvo em raríssimas exceções e em linguagem muito informal. No caso de sujeito inexistente, oculto ou indeterminado, devemos empregar it, we ou they.
+
+It is easy to play basketball. (É fácil jogar basquete.)
+
+We speak Italian in Italy. (Falamos Italiano na Itália.)*/
+    
+    public function pronomes1(){
+        $p[0]['pergunta'] = "Take these books and put _____ in the table. (it, them, there, is";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'them';
+        
+        $p[1]['pergunta'] = "Mr. John's secretary was ill last week, so he had to type the letters _____. (yourself, himself, itself, herself) ";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'himself';
+        
+        $p[2]['pergunta'] = " I've already done my homework. Have you done _____?. (yours, your, it, theirs) ";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'yours';
+        
+        $p[3]['pergunta'] = "Pronome Demonstrativo correto: Who is ____ woman over there? (this, that, those, these";
+        $p[3]['nome'] = 'pergunta4';
+        $p[3]['resposta'] = 'that';     
+        return $p;        
+    }       
+    
+    public function pronomes2(){
+        $p[0]['pergunta'] = "Qual pronome pode ser usado no lugar de 'me' na sentença a seguir? 'He thought me was talking about the last game.' (you, I, we)";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'I';
+        
+        $p[1]['pergunta'] = "Na frase: 'He was waiting for us.', o pronome 'us' se refere a: (you, they, we)";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'we';
+        
+        $p[2]['pergunta'] = "Como se diz 'Ela se cortou' em inglês? She cut __ (himself, herself, her)";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'herself';
+        
+        $p[3]['pergunta'] = " Como se diz 'O carro dele é branco' em inglês? __ is white (Her, His, He)";
+        $p[3]['nome'] = 'pergunta4';
+        $p[3]['resposta'] = 'His';     
+        return $p;        
+    }       
     /*
      * Gramática de Inglês: demonstrativos 
      * Preencha os espaços com a opção correta: this, these, that ou those.
@@ -216,7 +291,26 @@ He read the letters, ele leu as cartas.
         $p[3]['nome'] = 'pergunta4';
         $p[3]['resposta'] = 'these';     
         return $p;        
-    }     
+    }    
+    
+    
+    /*b) Pronomes Oblíquos
+
+As formas me, you (thee), him, her, it, us, you (ye), them são usadas:
+
+    1) Como objeto direto:
+I saw her yesterday, eu a vi ontem.
+She saw us, ela nos viu.
+I didn?t see them, não os (as) vi.
+
+    2) Como objeto indireto preposicionado:
+We looked at him, olhamos para ele.
+He waits for us, ele nos espera.
+
+    3)Como objeto indireto sem preposição;
+We gave them a few books, demos-lhes alguns livros.
+I told him all that happened, contei-lhe tudo que aconteceu.*/
+    
     /*
      * FIM CURSO 1
      */    

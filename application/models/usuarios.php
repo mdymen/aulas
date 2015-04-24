@@ -89,17 +89,17 @@ class  Models_Usuarios extends Zend_Db_Table {
         
         $table = $this->_name;
         
-        $select = $db->select()->from($table, array('cantidades' => 'count(slides.ID_SLIDE_SLI)', 'slides.ID_CURSO_CR'))
-            ->joinLeft('usuario_curso','usuarios.ID_ID_USU = usuario_curso.ID_USU_UC')
-                ->joinLeft('slides', 'usuario_curso.ID_CUR_UC = slides.ID_CURSO_CR')
-                ->joinLeft('cursos', 'slides.ID_CURSO_CR = ID_ID_CR')
+        $select = $db->select()->from($table, array('cantidades' => 'count(*)', 'slides.ID_CURSO_CR', 'cursos.ST_IMAGEM_CR','cursos.ST_NOME_CR','cursos.ST_DESCR_CR'))
+            ->joinInner('usuario_curso','usuarios.ID_ID_USU = usuario_curso.ID_USU_UC', array())
+                ->joinInner('slides', 'usuario_curso.ID_CUR_UC = slides.ID_CURSO_CR', array())
+                ->joinInner('cursos', 'slides.ID_CURSO_CR = ID_ID_CR', array())
             ->where('usuarios.ID_ID_USU = '.$params['ID_ID_USU'])
-            ->group('slides.ID_CURSO_CR');
+            ->group('cursos.ID_ID_CR');
         
         $query = $select->query();
         
         $cantidade = $query->fetchAll();
-        
+  
         return $cantidade;        
         
     }

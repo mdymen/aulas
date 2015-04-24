@@ -33,7 +33,7 @@ class Admin_SlideController extends Zend_Controller_Action
         $slide = new Models_Slides();
         $slide->save($params);
         
-        $this->redirect('admin/cursos/index'); 
+        $this->redirect('curso/index'); 
     }
     
     public function editslideAction() {

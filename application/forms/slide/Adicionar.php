@@ -10,7 +10,7 @@ class Forms_Slide_Adicionar extends Zend_Form{
     
  function init() {
         
-        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/aulas/public/admin';
+        $root = 'http' . '://' . $_SERVER['HTTP_HOST'] . '/aulas/public/admin';
         
         $this->setAction($root."/slide/addslide")->setMethod("post");
 
