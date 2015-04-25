@@ -38,7 +38,9 @@ class Models_Perguntas extends Zend_Db_Table_Abstract {
 
         $table = $this->_name;
 
-        $select = $db->select($table)->from($table);
+        $select = $db->select($table)->from($table)
+                ->join('usuarios', 'usuarios.ID_ID_USU = perguntas_cursos.ID_USUARIO_USU')
+                ->join('cursos','cursos.ID_ID_CR = perguntas_cursos.ID_CURSO_CR');
   
         $query = $select->query();
                 

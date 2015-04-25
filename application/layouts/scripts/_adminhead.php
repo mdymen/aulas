@@ -459,7 +459,7 @@ die('.');*/
                         </a>    
                     </li>
                      <li>
-                        <a href="<?php echo $this->baseUrl(). "/admin/pergunta/index"; ?>">
+                        <a href="<?php echo $this->baseUrl(). "/admin/perguntas/index"; ?>">
                             <i class="menu-icon fa fa-question"></i>
                             <span class="menu-text">Perguntas </span>
                         </a>    

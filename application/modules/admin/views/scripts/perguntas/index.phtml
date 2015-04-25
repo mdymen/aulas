@@ -1,0 +1,94 @@
+<?php
+    $perguntas = $this->perguntas;
+?>
+
+<div class="row">
+<div class="col-xs-12 col-lg-10">
+                            <div class="widget">
+                                <div class="widget-header  with-footer">
+                                    <span class="widget-caption">Perguntas dos cursos</span>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="flip-scroll">
+                                        <table class="table table-bordered table-striped table-condensed flip-content">
+                                            <thead class="flip-content bordered-palegreen">
+                                                <tr>
+                                                    <th style="width: 10%">
+                                                        
+                                                    </th>
+                                                    <th style="width: 20%">
+                                                        Curso
+                                                    </th>               
+                                                    <th style="width: 20%">
+                                                        Usuario
+                                                    </th>                                                    
+                                                    <th>
+                                                        Pergunta
+                                                    </th>
+                                               
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                foreach ($perguntas as $pergunta) {
+                                                   
+                                                    $resposta = !empty($pergunta['ST_RESPOSTA_PER']) ? $pergunta['ST_RESPOSTA_PER'] : '';
+                                                    $check = '';
+                                                    if (!empty($resposta)) {
+                                                        $check = '<i class="fa fa-check green"></i>';
+                                                    }
+                                                    echo '<tr>
+                                                    <td>
+                                                    
+                                                        <a href="javascript:void(0)" class="excluir" data-respostaid="1">
+                                                                <i class="fa fa-times red"></i>
+                                                        </a> 
+                                                        <a href="javascript:void(0)" class="ver" id="ver" data-perguntaid="'.$pergunta['ID_PERGUNTA_PER'].'" data-pergunta="'.$pergunta['ST_PERGUNTA_PER'].'" data-resposta="'.$resposta.'">
+                                                            <i class="fa fa-arrow-circle-o-right"></i>
+                                                        </a> 
+                                                        '.$check.'
+
+                                                    </td>
+                                                    <td>
+                                                        '.$pergunta['ST_USUARIO_USU'].'
+                                                    </td>
+                                                    <td>
+                                                        <a href="/aulas/public/curso/vercurso?slide=1&curso='.$pergunta['ID_CURSO_CR'].'">'.$pergunta['ST_NOME_CR'].'</a>
+                                                    </td>
+                                                    <td>
+                                                        '.$pergunta['ST_PERGUNTA_PER'].'
+                                                    </td>
+                                                </tr> ';
+                                                }
+                                                        ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        <?php
+            include_once APPLICATION_PATH.'/decorators/form.php';
+            include_once APPLICATION_PATH.'/forms/resposta.php';
+            $decForm = new Decorators_Form();
+            $formResposta = new Forms_Resposta(array('titulo' => 'Resposta'));
+            $formResposta->addDecorator($decForm);
+            echo $formResposta;
+        ?>
+    
+</div>
+
+<script type="text/javascript">
+    $(function() {
+       $('.ver').bind('click', function() {
+          var id_pergunta = $(this).data('perguntaid');
+          var resposta = $(this).data('resposta');
+          var pergunta = $(this).data('pergunta');
+          
+          $('#ST_RESPOSTA_PER').html(resposta);
+          $('#Pergunta-label').html(pergunta);
+          $('#ID_PERGUNTA_PER').val(id_pergunta);
+       });
+    });
+
+</script>
