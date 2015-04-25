@@ -8,6 +8,7 @@ include APPLICATION_PATH.'/Decorators/Form.php';
 $slide = $this->slide;
 $anotacoes = $this->anotacoes;
 $perguntas = $this->perguntas;
+$respostas = $this->respostas;
 if (!empty($anotacoes)) {
     $anotacoes = $anotacoes[0];
 }
@@ -23,6 +24,8 @@ if (count($slide)> 0) {
 
 <input type="hidden" id="curso" value="<?php echo $slide['ID_CURSO_CR']; ?>" />
 <input type="hidden" id="slide" value="<?php echo $slide['NM_SLIDE_SLI']; ?>" />
+<input type="hidden" id="respostas" value='<?php echo $respostas; ?>' />
+<input type="hidden" id="verdadeiras" value='<?php echo $slide['ST_RESPOSTAS_SLI']; ?>' />
 
 <div class="col-lg-7 col-sm-6 col-xs-12">
     <div class="well with-header" style="height: 510px">
@@ -239,9 +242,6 @@ if (count($slide)> 0) {
                 var valores_respostas = JSON.parse(respostas);
                 var perguntas = 0;
                 var corretas = 0;
-//                $.each(valores_verdadeiras, function(key_, value_) { 
-//                    $('#respCorreta_'+key_).html('');
-//                }
                 
                 $.each(valores_verdadeiras, function(key, value) { 
                     perguntas = perguntas + 1;
@@ -266,7 +266,6 @@ if (count($slide)> 0) {
                                                             
                         }
                     });
-                    console.log(perguntas);
                 });   
                 $('#vlCorretas').html(parseInt($('#vlCorretas').html())+corretas);
                 $('#vlExercicios').html(parseInt($('#vlExercicios').html())+perguntas);
@@ -280,23 +279,15 @@ if (count($slide)> 0) {
             var arr = {};
             
             $.post("respostas", {slide: slide, curso: curso}, function(dados) {
-                console.log(dados.verdadeiras[0].ST_RESPOSTAS_SLI);
                 var resp = dados.verdadeiras[0].ST_RESPOSTAS_SLI;
                 var valores = JSON.parse(resp);
                 
                 $.each(valores, function(key, value) {
                     var selector = '#'+key;
-                    console.log(selector);
-                    console.log($(selector).val());
-                    console.log(value);
                     arr[key] = $(selector).val();
                 });
-                console.log(JSON.stringify(arr));
-         //       console.log(valores.nombre);
                 var jsonarr = JSON.stringify(arr);
-                console.log(jsonarr);
                 $.post("enviarrespostas", {ST_RESPOSTAS_USC: jsonarr, ID_SLIDE_USC: slide, ID_CURSO_USC: curso }, function(response) {
-                    console.log(response);
                     $('#btnRespostas').trigger('click');
                 });
             });
@@ -304,15 +295,55 @@ if (count($slide)> 0) {
         });
     }
     
+    function verificarRespostas() {
+        var respostas = $('#respostas').val();
+        
+        if (respostas !== '') {
+            var verdadeiras = $('#verdadeiras').val();
+            var valores_verdadeiras = JSON.parse(verdadeiras);
+            var valores_respostas = JSON.parse(respostas);
+            var perguntas = 0;
+            var corretas = 0;
+
+            $.each(valores_verdadeiras, function(key, value) { 
+                perguntas = perguntas + 1;
+                $.each(valores_respostas, function(key2, value2) {
+
+                    if (key == key2) {
+                        var selector = '';
+                        var selector_out = '';
+                        if (value == value2) {
+                            selector = '#'+key+'_check'; 
+                            selector_out = '#'+key+'_times';
+                            corretas = corretas + 1;
+                            $('#respCorreta_'+key).html('');
+                        } else {
+                            selector = '#'+key+'_times';
+                            selector_out = '#'+key+'_check';
+                            $('#respCorreta_'+key).html(value);
+                        }
+                        $(selector).attr('style','');
+                        $(selector_out).attr('style','display:none');
+                        $('#'+key).val(value2);
+
+                    }
+                });
+            });   
+            $('#vlCorretas').html(parseInt($('#vlCorretas').html())+corretas);
+            $('#vlExercicios').html(parseInt($('#vlExercicios').html())+perguntas);    
+        }
+    };
     
     $(function() {
+      
+        verificarRespostas();
+        exercicios();
         
         $('.btnExcluir').bind('click', function() {
             var pergunta = $(this).attr('valor'); 
             var excluir_pergunta = confirm('Deseja excluir a pergunta?');
             if (excluir_pergunta) {
                 $.post("../perguntas/excluirpergunta", {ID_PERGUNTA_PER: pergunta}, function(dados) {
-                     // console.log(dados);
                    window.location.reload();
                 });
             }
@@ -321,29 +352,30 @@ if (count($slide)> 0) {
         $('#Gravar').bind('click',function() {
             var curso = $('#curso').val();
             var anotacoes = $('#ST_TEXTO_ANO').val();
-            var usuario = 1;//$('#ID_USUARIO_USU').val();
+            var usuario = 1;
             
             $.post("gravaranotacoes", {ID_CURSO_CR : curso, ID_USUARIO_USU: usuario, ST_TEXTO_ANO: anotacoes}, function(data) {
                 $('#tituloForm').html('Anotacoes <span style="width: 6px">&nbsp;&nbsp;&nbsp; utima modificao: '+ data +' </span>');
             });
         });
         
-    //    $('#slidemini').bind()
-        
         $('#sig').bind('click', function() {     
             var curso = $('#curso').val();
             var slide = parseInt($('#slide').val())+1;
             
             $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
+                    var resposta = data.ST_RESPOSTAS_USC;
+                    if (resposta !== '') {
+                        resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
+                    }
                     $('#htmlslide').html(data[0].ST_SLIDE_SLI);
                     $('#numeroslide').html(data[0].NM_SLIDE_SLI);
                     $('#tituloslide').html(data[0].ST_TITULO_SLI);
+                    $('#verdadeiras').html(data[0].ST_RESPOSTAS_SLI);
+                    $('#respostas').val(resposta);
                     $('#slide').val(slide);
-                    
+                    verificarRespostas();
                     exercicios();
-                    
-                    console.log(data);
-                 
             });
         });
         
@@ -352,17 +384,18 @@ if (count($slide)> 0) {
             var slide = parseInt($('#slide').val())-1;
             
             $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
-//                if (data.length == 1) {
+                    var resposta = data.ST_RESPOSTAS_USC;
+                    if (resposta !== '') {
+                        resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
+                    }
                     $('#htmlslide').html(data[0].ST_SLIDE_SLI);   
                     $('#numeroslide').html(data[0].NM_SLIDE_SLI);
                     $('#tituloslide').html(data[0].ST_TITULO_SLI);
                     $('#slide').val(slide);
+                    $('#verdadeiras').html(data[0].ST_RESPOSTAS_SLI);
+                    $('#respostas').val(resposta);
+                    verificarRespostas();
                     exercicios();
-//                } else {
-//                    $('#htmlslide').html("<h1>INICIO</h1>");
-//           //         $('#slide').val(slide-1);
-//                }
-                
             });
         });        
     });

@@ -65,13 +65,15 @@ class CursoController extends Zend_Controller_Action
         
         $slides->updateUtimaLida(array('ID_USU_UC' => $data['ID_ID_USU'],'ID_CUR_UC' => $params['curso'],'NM_UTIMAVIU_UC' => $params['slide']));
        
+        $respostas = $this->_obterrespostas(array('curso' => $params['curso'],'slide' => $params['slide']));
+        $respostas = !empty($respostas) ? $respostas : '';
         
          $this->getResponse()
          ->setHeader('Content-Type', 'application/json');
         
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(TRUE);
-        
+        $slide['ST_RESPOSTAS_USC'] = $respostas;
         $this->_helper->json($slide);    
     }
     
@@ -99,6 +101,10 @@ class CursoController extends Zend_Controller_Action
         $this->_helper->json($nuevafecha);
     }
     
+    private function _tieneExercicios($slide) {
+        return !empty($slide['ST_RESPOSTAS_SLI']) ? true : false; 
+    }
+    
     public function vercursoAction() {
         $storage = new Zend_Auth_Storage_Session();
         $data = get_object_vars($storage->read());  
@@ -111,7 +117,13 @@ class CursoController extends Zend_Controller_Action
 
         $slides = new Models_Slides();
         $slide = $slides->specificSlide($params['curso'], $numslide);
-        
+
+        $this->view->respostas = '';
+        if ($this->_tieneExercicios($slide[0])) {
+            $respostas = $this->_obterrespostas(array('curso' => $params['curso'],'slide' => $numslide));
+            $this->view->respostas = $respostas[0]['ST_RESPOSTAS_USC'];
+        }
+         
         $an = new Models_Anotacoes();
         $anotacoes = $an->anotacoes($params['curso'],1);
         
@@ -154,6 +166,8 @@ class CursoController extends Zend_Controller_Action
         
     }
     
+//        $params['slide'];
+//        $params['curso'];
     private function _obterrespostas($params) {
         
         $storage = new Zend_Auth_Storage_Session();
