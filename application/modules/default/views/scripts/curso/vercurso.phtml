@@ -146,7 +146,7 @@ if (count($slide)> 0) {
                                                     <div class="ticket-user col-lg-6 col-sm-12">
                                                           <!--          <img src="assets/img/avatars/adam-jansen.jpg" class="user-avatar">-->
                                                                     <span class="user-name"><div class="widget-buttons buttons-bordered">
-                                                <a href="javascript:void(0)" id="btnExcluirPergunta" valor="<?php echo $pergunta['ID_PERGUNTA_PER']; ?>" class="btnExcluir"><i class="fa fa-times "></i></a>
+                                                <a href="javascript:void(0)" id="btnExcluirPergunta" valor="<?php echo $pergunta['ID_PERGUNTA_PER']; ?>" class="btnExcluir"><i class="fa fa-times red"></i></a>
                                             </div><?php echo $pergunta['ST_PERGUNTA_PER']; ?></span>
                                                                   <?php if ($respondida) {
                                                                       
@@ -331,6 +331,8 @@ if (count($slide)> 0) {
             });   
             $('#vlCorretas').html(parseInt($('#vlCorretas').html())+corretas);
             $('#vlExercicios').html(parseInt($('#vlExercicios').html())+perguntas);    
+            $('#btnCorregir').css("display","none");
+            $('#btnRespostas').css("display","none");            
         }
     };
     
