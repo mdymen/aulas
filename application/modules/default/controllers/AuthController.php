@@ -20,6 +20,7 @@ class AuthController extends Zend_Controller_Action {
         $params = $this->_request->getParams();
         
         $usuario = new Models_Usuarios();
+        $params['ST_CONFIRMADO_USU'] = md5($params['ST_SENHA_USU']);
         $usuario->save($params);
         
         $users = new Models_Usuarios();
@@ -41,6 +42,15 @@ class AuthController extends Zend_Controller_Action {
         $this->redirect();
     }
     
+    private function _mail($params) {
+        $mail = Bobby_Mail::getInstance();
+        $mail->addTo($params['ST_EMAIL_USU']);
+        $mail->setSubject('Bem vindo Bobby Aulas');
+        $mail->setBodyHtml('<a href="http://www.bobbyaulas.com/aulas/public/auth/confirmaremail&conf="'.$params['ST_CONFIRMAR'].'" target="_BLANK">confirma email</a>');
+        $mail->setFrom('msn@dymenstein.com', 'Martin Dymenstein');
+        $mail->send();
+    }
+    
     function logoutAction() {
         $storage = new Zend_Auth_Storage_Session();
         $storage->clear();
@@ -51,7 +61,6 @@ class AuthController extends Zend_Controller_Action {
                
         $params = $this->_request->getParams();
         $users = new Models_Usuarios();
-        
         if (!empty($params['ST_USUARIO_USU']) && !empty($params['ST_SENHA_USU'])) {
             $auth = Zend_Auth::getInstance();
             $authAdapter = new Zend_Auth_Adapter_DbTable($users->getAdapter(),'Usuarios');
@@ -68,5 +77,20 @@ class AuthController extends Zend_Controller_Action {
             } 
         }
         $this->_redirect('index/index');
+    }
+    
+    function confirmaremailAction() {
+        $params = $this->_request->getParams();
+        
+        $usuario = new Models_Usuarios();
+        $result = $usuario->confirmar($params);
+        
+        if (is_array($result)) {
+            $this->setParam('ST_USUARIO_USU', $result['ST_USUARIO_USU']);
+            $this->setParam('ST_SENHA_USU', $result['ST_SENHA_USU']);
+            $this->loginAction();
+        } else {
+            die('ERROR');
+        }
     }
 }

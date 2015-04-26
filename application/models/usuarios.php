@@ -30,7 +30,8 @@ class  Models_Usuarios extends Zend_Db_Table {
         (
             'ST_USUARIO_USU' =>   $params['ST_USUARIO_USU'],
             'ST_SENHA_USU'   =>   $params['ST_SENHA_USU'],
-            'ST_EMAIL_USU' => $params['ST_EMAIL_USU']
+            'ST_EMAIL_USU' => $params['ST_EMAIL_USU'],
+            'ST_CONFIRMADO_USU' => $params['ST_CONFIRMADO_USU']
         );
         
         $db->insert($this->_name, $info);  
@@ -102,5 +103,20 @@ class  Models_Usuarios extends Zend_Db_Table {
   
         return $cantidade;        
         
+    }
+    
+    function confirmar($params) {
+        $db = $this->_db;
+        
+        $select = $db->select()->from($this->_name)
+                ->where('ST_CONFIRMADO_USU = ?', $params['conf']);
+        $query = $select->query();
+        $result = $query->fetch();
+        
+        if (is_array($result)) {
+            $db->update($this->_name, array('ST_CONFIRMADO_USU' => ''), 'ST_USUARIO_USU = "'.$result['ST_USUARIO_USU'].'"');           
+            return $result;
+        }
+        return false;
     }
 }

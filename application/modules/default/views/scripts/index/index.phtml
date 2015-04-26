@@ -1,7 +1,11 @@
 <?php
    $cursos = $this->cursos;
    $perguntas = $this->perguntas;
-   $pergunta = $perguntas[0];
+   if (!empty($perguntas)) {
+    $pergunta = $perguntas[0];
+   } else {
+    $pergunta = 0;   
+   }
    
   $cantCursos = $this->cantCursos;
   $cantCursos = $cantCursos[0];

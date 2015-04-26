@@ -8,7 +8,7 @@
     $data = (get_object_vars($storage->read()));
     
     $data['ID_USUARIO_USU'] = $data['ID_ID_USU'];
-    
+
     $perguntas = new Models_Perguntas();
     $respostas = $perguntas->perguntasUsuarioNaoLidas($data);
     
@@ -90,7 +90,9 @@
                 <!-- Account Area and Settings --->
                 <div class="navbar-header pull-right">
                     <div class="navbar-account">
+                        
                         <ul class="account-area">
+                            <li><?php if ($data['ST_CONFIRMADO_USU'] != '') { include_once APPLICATION_PATH.'/Elementoshtml/alerts.php'; echo Elementoshtml_Alerts::warning('Vocë precisa confirmar seu e-mail.');} ?></li>
                             <?php
                                 if ($data['FL_ADMIN_USU']) {  ?>
                                     <li>
