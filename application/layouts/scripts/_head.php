@@ -478,7 +478,7 @@
                     <!--Dashboard-->
 
                     <li>
-                        <a href="">
+                        <a href="<?php echo $this->url(array('controller'=>'credito','action'=>'index'))?>">
                             <i class="menu-icon glyphicon fa fa-dollar"></i>
                             <span class="menu-text"> Credito </span>
                         </a>

@@ -1,0 +1,16 @@
+
+<?php 
+
+$storage = new Zend_Auth_Storage_Session();
+$data = (get_object_vars($storage->read()));
+$usuario = $data['ST_USUARIO_USU'];
+
+?>
+<div class="widget">
+    <div class="widget-header bordered-bottom bg-blue">
+        <span class="widget-caption"><span class="databox-title">Ola <?php echo strtoupper($usuario); ?></span>  </span>
+    </div>
+    <div class="widget-body bg-blue"> Lorem ipsum dolor sit amet, <br />
+        consectetur adipisicing elit, sed do eiusmod tempor incididunt <br />
+        ut labore et dolore magna aliqua.</div>
+</div>
