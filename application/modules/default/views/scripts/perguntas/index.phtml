@@ -18,7 +18,7 @@
                                         <table class="table table-bordered table-striped table-condensed flip-content">
                                             <thead class="flip-content bordered-palegreen">
                                                 <tr>
-                                                    <th style="width: 5%">
+                                                    <th style="width: 7%">
                                                         
                                                     </th>
                                                     <th style="width: 15%">
@@ -32,16 +32,20 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                    foreach ($perguntas as $pergunta) {
-                                                     
+                                                    foreach ($perguntas as $pergunta) { 
+                                                        $check = '';
+                                                        if (!empty($pergunta['ST_RESPOSTA_PER'])) {
+                                                            $check = '<i class="fa fa-check green"></i>';
+                                                        }
                                                         echo '<tr>
                                                     <td>
-                                                    <a href="javascript:void(0)" class="excluir" data-respostaid="'.$pergunta['ID_PERGUNTA_PER'].'">
+                                                        <a href="javascript:void(0)" class="excluir" data-respostaid="'.$pergunta['ID_PERGUNTA_PER'].'">
                                                             <i class="fa fa-times red"></i>
                                                         </a> 
                                                         <a href="javascript:void(0)" class="ver" id="ver" data-respostaid="'.$pergunta['ID_PERGUNTA_PER'].'">
                                                             <i class="fa fa-arrow-circle-o-right"></i>
                                                         </a> 
+                                                        '.$check.'
                                                         <input type="hidden" id="resposta_'.$pergunta['ID_PERGUNTA_PER'].'" data-valor="'.$pergunta['ST_RESPOSTA_PER'].'" />
                                                     </td>
                                                     <td>

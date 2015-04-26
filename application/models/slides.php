@@ -110,6 +110,24 @@ class Models_Slides extends Zend_Db_Table_Abstract {
         return $slides;        
     }
     
+    function slide_com_respostas($idCurso, $numSlide, $usuario) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $table = $this->_name;
+        
+        $select = $db->select($table)->from($table)
+            ->joinLeft('Cursos', 'Slides.ID_CURSO_CR = Cursos.ID_ID_CR') 
+            ->joinLeft('usuarios_slides_cursos','slides.ID_CURSO_CR = usuarios_slides_cursos.ID_CURSO_USC AND slides.ID_SLIDE_SLI = usuarios_slides_cursos.ID_SLIDE_USC',array('ST_RESPOSTAS_USC'))
+            ->where('NM_SLIDE_SLI = '.$numSlide.' AND ID_CURSO_CR = '.$idCurso )
+                ->where('ID_USUARIO_USC = ?',$usuario);
+        
+        $query = $select->query();
+        
+        $slide = $query->fetchAll();
+        
+        return $slide;        
+    }
+    
     function specificSlide($idCurso, $numSlide) {
         $db = Zend_Db_Table::getDefaultAdapter();
         
