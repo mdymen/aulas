@@ -38,17 +38,32 @@ class AuthController extends Zend_Controller_Action {
                 $storage->write($authAdapter->getResultRowObject());
             } 
         
-        
+        $this->_mail($params);       
         $this->redirect();
     }
     
     private function _mail($params) {
         $mail = Bobby_Mail::getInstance();
-        $mail->addTo($params['ST_EMAIL_USU']);
+        $mail->addTo('<'.$params['ST_EMAIL_USU'].'>');
         $mail->setSubject('Bem vindo Bobby Aulas');
-        $mail->setBodyHtml('<a href="http://www.bobbyaulas.com/aulas/public/auth/confirmaremail&conf="'.$params['ST_CONFIRMAR'].'" target="_BLANK">confirma email</a>');
-        $mail->setFrom('msn@dymenstein.com', 'Martin Dymenstein');
-        $mail->send();
+        $root = 'http'. '://' . $_SERVER['HTTP_HOST'] . '/aulas/public/auth/confirmaremail?conf='.$params['ST_CONFIRMADO_USU'];
+        $string = '<a href="'.$root.'" target="_BLANK">confirma email</a>';
+        $mail->setBodyHtml($string);
+        $mail->setFrom('bobbyaulas@gmail.com', 'Bobby Aulas');
+        return $mail->send();
+    }
+    
+    public function reenviarmailAction() {
+        $params = $this->_request->getParams();
+        
+        $info = array(
+            'ST_EMAIL_USU' => $params['email'],
+            'ST_CONFIRMADO_USU' => $params['conf']
+        );
+        
+        $this->_mail($info);
+        
+        $this->_redirect('index/index');
     }
     
     function logoutAction() {

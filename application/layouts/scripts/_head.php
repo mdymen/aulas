@@ -92,7 +92,13 @@
                     <div class="navbar-account">
                         
                         <ul class="account-area">
-                            <li><?php if ($data['ST_CONFIRMADO_USU'] != '') { include_once APPLICATION_PATH.'/Elementoshtml/alerts.php'; echo Elementoshtml_Alerts::warning('Vocë precisa confirmar seu e-mail.');} ?></li>
+                            <li><?php 
+                                if ($data['ST_CONFIRMADO_USU'] != '') { 
+                                    include_once APPLICATION_PATH.'/Elementoshtml/alerts.php'; 
+                                    $root = 'http'. '://' . $_SERVER['HTTP_HOST'] . '/aulas/public/auth/reenviarmail?conf='.$data['ST_CONFIRMADO_USU'].'&email='.$data['ST_EMAIL_USU'];
+                                    echo Elementoshtml_Alerts::warning('Vocë precisa confirmar seu e-mail. <a href="'.$root.'">Re-enviar email</a>');                          
+                                } 
+                                ?></li>
                             <?php
                                 if ($data['FL_ADMIN_USU']) {  ?>
                                     <li>
