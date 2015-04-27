@@ -5,6 +5,8 @@ include APPLICATION_PATH.'/Forms/Anotacoes.php';
 include APPLICATION_PATH.'/Forms/Pergunta.php';
 include APPLICATION_PATH.'/Decorators/Form.php';
 
+$quantidade = $this->quantidade_slides;
+
 $slide = $this->slide;
 $anotacoes = $this->anotacoes;
 $perguntas = $this->perguntas;
@@ -22,6 +24,7 @@ if (count($slide)> 0) {
     $slide = $slide[0];
 ?>
 
+<input type="hidden" id="quantidade" value="<?php echo $quantidade; ?>" />
 <input type="hidden" id="curso" value="<?php echo $slide['ID_CURSO_CR']; ?>" />
 <input type="hidden" id="slide" value="<?php echo $slide['NM_SLIDE_SLI']; ?>" />
 <input type="hidden" id="respostas" value='<?php echo $respostas; ?>' />
@@ -38,7 +41,22 @@ if (count($slide)> 0) {
                 </a>
 
             </span>    
-
+            
+            <?php
+                echo '<center>';
+                for ($i = 1; $i <= $quantidade; $i++) {
+                    
+                    $color = '';
+                    if ($i == $slide['NM_SLIDE_SLI']) {
+                         $color = 'primary';
+                    } else {
+                         $color = 'default';
+                    }
+                    echo '<a href="javascript:void(0)" class="quadslide" data-slide='.$i.'><span id="quad_'.$i.'" class="badge badge-'.$color.' badge-square" style="margin-right: 7px; margin-right: 7px;">'.$i.'</span></a>';
+                }
+                echo '</center>';
+            ?>
+            
             <span style="float: right">
 
                 <a id="sig" href="javascript:void(0);" title="Seguinte">
@@ -49,7 +67,7 @@ if (count($slide)> 0) {
         
             <center>
                 
-               <?php echo '<span style="font-size: 15px"><b>'.$slide['ST_NOME_CR'].'</b></span><br><span id="tituloslide">'.$slide['ST_TITULO_SLI'].'</span><br>Slide N: <span id="numeroslide">'.$slide['NM_SLIDE_SLI'].'</span>'; ?>
+               <?php echo '<span style="font-size: 15px"><b>'.$slide['ST_NOME_CR'].'</b></span><br><span id="tituloslide">'.$slide['ST_TITULO_SLI'].'</span>'; ?>
         
             </center>
         </div>
@@ -230,6 +248,14 @@ if (count($slide)> 0) {
 
 <script type="text/javascript">
     
+    function quadrados(actual) {
+        var default_ = 'badge badge-default badge-square';
+        var primary = 'badge badge-primary badge-square';
+        
+        $('.badge').removeClass().addClass(default_);      
+        $('#quad_'+actual).removeClass('badge-default').addClass('badge-primary');
+    }
+    
     function exercicios() {
        
         $('#btnRespostas').bind('click', function() {
@@ -341,6 +367,12 @@ if (count($slide)> 0) {
         verificarRespostas();
         exercicios();
         
+        $('.quadslide').bind('click', function() {
+            var slide = $(this).data('slide');
+            $('#slide').val(slide - 1);
+            $('#sig').trigger('click');
+        });
+        
         $('.btnExcluir').bind('click', function() {
             var pergunta = $(this).attr('valor'); 
             var excluir_pergunta = confirm('Deseja excluir a pergunta?');
@@ -370,6 +402,9 @@ if (count($slide)> 0) {
                     if (resposta !== '') {
                         resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
                     }
+                    
+                    quadrados(slide);
+                    
                     $('#htmlslide').html(data[0].ST_SLIDE_SLI);
                     $('#numeroslide').html(data[0].NM_SLIDE_SLI);
                     $('#tituloslide').html(data[0].ST_TITULO_SLI);

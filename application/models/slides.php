@@ -153,4 +153,13 @@ class Models_Slides extends Zend_Db_Table_Abstract {
         
         $db->update('usuario_curso',$info,'ID_USU_UC = '.$params['ID_USU_UC'].' AND ID_CUR_UC = '.$params['ID_CUR_UC']);
     }
+    
+    function getTotalSlides($curso) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $select = $db->select($this->_name)->from($this->_name, array('quantidade' => 'count(*)'))
+                ->where('ID_CURSO_CR = ?', $curso);
+        
+        return $select->query()->fetch();
+    }
 }

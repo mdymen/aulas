@@ -9,9 +9,107 @@ class Admin_ExerciciosController extends Zend_Controller_Action {
     public function init() {}
     
     public function indexAction() {
-        $this->view->perguntas = $this->pronouns1();
+        $this->view->perguntas = $this->subjectpronoun6();
     }
 
+    public function subjectpronoun6() {
+        $p[0]['pergunta'] = "Can ( I/ me) borrow this book from you?";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'I';
+        
+        $p[1]['pergunta'] = "? Sure, can you give (I/ me) back the other one first?";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'me';
+        
+        $p[2]['pergunta'] = "Angela only thinks about (she/ her/ herself).";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'herself';
+        
+        return $p;           
+    }
+    
+    public function subjectpronoun5() {
+  
+        $p[0]['pergunta'] = "We scored as many goals as (they/them) scored.";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'they';
+        
+        $p[1]['pergunta'] = "Can you sing as well as (they/them) sing?";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'they';
+        
+        $p[2]['pergunta'] = "None are so blind as (they/them) that will not see.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'they';
+        
+        return $p;          
+    }
+    
+    public function subjectpronoun4() {
+        $p[0]['pergunta'] = "You should consult the book. Q: the book = (   )?";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'it';
+        
+        $p[1]['pergunta'] = "(I/ me) believe Mark and Cindy are the Best employees of the year.";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'I';
+        
+        $p[2]['pergunta'] = "Q: Mark and Cindy = (   )?.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'they';
+        
+        return $p;       
+    }
+    
+    public function subjectpronoun3() {
+        $p[0]['pergunta'] = "(I/ Me) can help her with the new computer.";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'I';
+        
+        $p[1]['pergunta'] = "(He/ him) is travelling with that group of gentlemen.";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'He';
+        
+        $p[2]['pergunta'] = "Question: that group of gentlemen = (them/ they)?.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'them';
+        
+        return $p;
+       
+    }
+    
+    public function subjectpronoun2() {
+        $p[0]['pergunta'] = "Elephants are big animals. __ live in Africa and Asia.";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'They';
+        
+        $p[1]['pergunta'] = "I and my brother love football. __ watch football matches on Tv every Sunday.";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'We';
+        
+        $p[2]['pergunta'] = "Kaká and Robinho live in Europe. __ are football players.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'They';
+        
+        return $p;
+    }
+    
+    public function subjectpronoun1() {
+        $p[0]['pergunta'] = "Tom Cruise is American. Tom Cruise is married. Tom Cruise is American. __ is married.";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'He';
+        
+        $p[1]['pergunta'] = "New York is a big city. __ is in the United States.";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'It';
+        
+        return $p;
+    }
+    
+    
+    
+    
+    
     /*
      * CURSO 1
      * 

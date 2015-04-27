@@ -130,12 +130,15 @@ class CursoController extends Zend_Controller_Action
         $pergunta = new Models_Perguntas();
         $perguntas = $pergunta->perguntas($params['curso'],1);
 
+        $quantidade_slides = $slides->getTotalSlides($params['curso']);
+        
         $this->view->slide = $slide; 
         $this->view->anotacoes = $anotacoes;
         $this->view->perguntas = $perguntas;
         $this->view->idcurso = $this->_request->getParam('curso');
         $this->view->idslide = $this->_request->getParam('slide');
         $this->view->idusuario = $data['ID_ID_USU'];
+        $this->view->quantidade_slides = $quantidade_slides['quantidade'];
     }
     
     public function fichaAction() {
