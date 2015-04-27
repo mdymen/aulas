@@ -5,9 +5,11 @@ include APPLICATION_PATH.'/Forms/Anotacoes.php';
 include APPLICATION_PATH.'/Forms/Pergunta.php';
 include APPLICATION_PATH.'/Decorators/Form.php';
 
-$quantidade = $this->quantidade_slides;
-
 $slide = $this->slide;
+$quantidade = $this->quantidade_slides;
+$quadrados_quantidade = $quantidade;
+
+
 $anotacoes = $this->anotacoes;
 $perguntas = $this->perguntas;
 $respostas = $this->respostas;
@@ -22,6 +24,34 @@ if (!empty($perguntas)) {
 
 if (count($slide)> 0) {
     $slide = $slide[0];
+
+    $actual = $slide['NM_SLIDE_SLI'];
+    $i = 1;
+
+    if ($quadrados_quantidade > 14) {
+        $quadrados_quantidade = 14;
+    }
+
+
+    switch ($actual) {
+        case $actual < 8:
+            break;
+        case $actual >= 8;
+            $aux = $actual + 8;
+            if ($aux < $quantidade) {
+                $i = $actual - 7;
+                $quadrados_quantidade = $actual + 8;
+            } else {
+                $quadrados_quantidade = $quantidade;
+                $i = $quantidade - 14;
+            }
+            break;
+    }
+
+//print_r($actual);
+//print_r($i);
+//print_r($quadrados_quantidade);
+//die('.');    
 ?>
 
 <input type="hidden" id="quantidade" value="<?php echo $quantidade; ?>" />
@@ -42,20 +72,7 @@ if (count($slide)> 0) {
 
             </span>    
             
-            <?php
-                echo '<center>';
-                for ($i = 1; $i <= $quantidade; $i++) {
-                    
-                    $color = '';
-                    if ($i == $slide['NM_SLIDE_SLI']) {
-                         $color = 'primary';
-                    } else {
-                         $color = 'default';
-                    }
-                    echo '<a href="javascript:void(0)" class="quadslide" data-slide='.$i.'><span id="quad_'.$i.'" class="badge badge-'.$color.' badge-square" style="margin-right: 7px; margin-right: 7px;">'.$i.'</span></a>';
-                }
-                echo '</center>';
-            ?>
+           
             
             <span style="float: right">
 
@@ -70,6 +87,21 @@ if (count($slide)> 0) {
                <?php echo '<span style="font-size: 15px"><b>'.$slide['ST_NOME_CR'].'</b></span><br><span id="tituloslide">'.$slide['ST_TITULO_SLI'].'</span>'; ?>
         
             </center>
+            
+             <?php
+                echo '<center>';
+                for ($i; $i <= $quadrados_quantidade; $i++) {
+                    
+                    $color = '';
+                    if ($i == $slide['NM_SLIDE_SLI']) {
+                         $color = 'primary';
+                    } else {
+                         $color = 'default';
+                    }
+                    echo '<a href="javascript:void(0)" class="quadslide" data-slide='.$i.'><span id="quad_'.$i.'" class="badge badge-'.$color.' badge-square" style="margin-right: 7px; margin-right: 7px;">'.$i.'</span></a>';
+                }
+                echo '</center>';
+            ?>
         </div>
         <div class="col-lg-12 container" style="padding-top:25px"><span id="htmlslide"><?php echo $slide['ST_SLIDE_SLI']; ?></span></div> 
     </div>
@@ -425,6 +457,8 @@ if (count($slide)> 0) {
                     if (resposta !== '') {
                         resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
                     }
+                    quadrados(slide);
+                    
                     $('#htmlslide').html(data[0].ST_SLIDE_SLI);   
                     $('#numeroslide').html(data[0].NM_SLIDE_SLI);
                     $('#tituloslide').html(data[0].ST_TITULO_SLI);
