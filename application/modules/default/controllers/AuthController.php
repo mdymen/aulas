@@ -94,6 +94,44 @@ class AuthController extends Zend_Controller_Action {
         $this->_redirect('index/index');
     }
     
+    function mailesqueceusenhaAction() {
+        $params = $this->_request->getParams();
+        
+        $usuario = new Models_Usuarios();
+        $email = $usuario->getUserByEmail($params['ST_EMAIL_USU']);
+        
+        if (!empty($email)) {
+            $md5 = md5($params['ST_EMAIL_USU']);
+            $mail = Bobby_Mail::getInstance();
+            $mail->addTo('<'.$params['ST_EMAIL_USU'].'>');
+            $mail->setSubject('Bem vindo Bobby Aulas');
+            $root = 'http'. '://' . $_SERVER['HTTP_HOST'] . '/aulas/public/?esqueceu='.$md5;
+            $string = '<a href="'.$root.'" target="_BLANK">mudar senha</a>';
+            $mail->setBodyHtml($string);
+            $mail->setFrom('bobbyaulas@gmail.com', 'Bobby Aulas');
+            $mail->send();    
+            
+            $usuario->mudarSenhaMd5($md5, $params['ST_EMAIL_USU']);
+        }
+        
+        $this->redirect('?senha=x');
+        
+    }
+    
+    function trocarsenhaAction() {
+        $params = $this->_request->getParams();
+         
+        $usuarios = new Models_Usuarios();
+        $usuario = $usuarios->trocarSenhaEsquecida($params);
+        
+        if ($usuario) {
+            $this->setParam('ST_USUARIO_USU', $usuario['ST_USUARIO_USU']);
+            $this->setParam('ST_SENHA_USU', $usuario['ST_SENHA_USU']);
+            $this->loginAction();
+        }
+        
+    }
+    
     function confirmaremailAction() {
         $params = $this->_request->getParams();
         

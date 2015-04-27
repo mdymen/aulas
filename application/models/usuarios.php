@@ -119,4 +119,33 @@ class  Models_Usuarios extends Zend_Db_Table {
         }
         return false;
     }
+    
+    function trocarSenhaEsquecida($params) {
+        $db = $this->_db;
+
+        $select = $db->select()->from($this->_name)->where('ST_SENHA_USU = "'.$params['esqueceu'].'"');
+        $usuario = $select->query()->fetch();
+
+        $result = $db->update($this->_name, array('ST_SENHA_USU' => $params['nova']), 'ST_SENHA_USU = "'.$params['esqueceu'].'"');
+        
+        if ($result) {
+            return array('ST_USUARIO_USU' => $usuario['ST_USUARIO_USU'], 'ST_SENHA_USU' => $params['nova']);
+        }
+        
+        return false;
+    }
+    
+    function getUserByEmail($email) {
+        $db = $this->_db;
+        
+        $query = $db->select()->from($this->_name)->where('ST_EMAIL_USU = ?',$email);
+        
+        return $query->query()->fetch();
+    }
+    
+    function mudarSenhaMd5($md5, $email) {
+        $db = $this->_db;
+        
+        $db->update($this->_name,array('ST_SENHA_USU' => $md5), 'ST_EMAIL_USU = "'.$email.'"');
+    }
 }
