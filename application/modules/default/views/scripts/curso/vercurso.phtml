@@ -55,6 +55,8 @@ if (count($slide)> 0) {
 ?>
 
 <input type="hidden" id="quantidade" value="<?php echo $quantidade; ?>" />
+<input type="hidden" id="quadrados_quantidade" value="<?php echo $quadrados_quantidade; ?>" />
+<input type="hidden" id="indice" value="<?php echo $i; ?>" />
 <input type="hidden" id="curso" value="<?php echo $slide['ID_CURSO_CR']; ?>" />
 <input type="hidden" id="slide" value="<?php echo $slide['NM_SLIDE_SLI']; ?>" />
 <input type="hidden" id="respostas" value='<?php echo $respostas; ?>' />
@@ -89,7 +91,7 @@ if (count($slide)> 0) {
             </center>
             
              <?php
-                echo '<center>';
+                echo '<div id="divQuadrantes"><center>';
                 for ($i; $i <= $quadrados_quantidade; $i++) {
                     
                     $color = '';
@@ -100,7 +102,7 @@ if (count($slide)> 0) {
                     }
                     echo '<a href="javascript:void(0)" class="quadslide" data-slide='.$i.'><span id="quad_'.$i.'" class="badge badge-'.$color.' badge-square" style="margin-right: 7px; margin-right: 7px;">'.$i.'</span></a>';
                 }
-                echo '</center>';
+                echo '</center></div>';
             ?>
         </div>
         <div class="col-lg-12 container" style="padding-top:25px"><span id="htmlslide"><?php echo $slide['ST_SLIDE_SLI']; ?></span></div> 
@@ -394,16 +396,56 @@ if (count($slide)> 0) {
         }
     };
     
+    function recalcular_quadrados(actual) {
+        $('#divQuadrantes').html('');
+        var quantidade = $('#quantidade').val();
+        var quadrados_quantidade = quantidade;
+        var i = 1;
+
+        switch (actual) {
+            case actual < 8:
+                break;
+            case actual >= 8:
+                var aux = actual + 8;
+                if (aux < quantidade) {
+                    var i = actual - 7;
+                    quadrados_quantidade = actual + 8;
+                } else {
+                    quadrados_quantidade = quantidade;
+                    i = quantidade - 14;
+                }
+                break;
+         }
+
+        var html = '<center>';
+        var classe = '';
+        for (i; i <= quadrados_quantidade; i++) {
+            classe = 'default';
+            if (i == actual) {
+                classe = 'primary';
+            }
+            html += '<a href="javascript:void(0)" class="quadslide" data-slide="'+i+'"><span id="quad_'+i+'" class="badge badge-'+classe+' badge-square" style="margin-right: 7px; margin-right: 7px;">'+i+'</span></a>';
+        }
+        html += '</center>';
+        $('#divQuadrantes').html(html);
+        
+        quadslideEvent();
+    }
+    
+    function quadslideEvent() {
+        $('.quadslide').bind('click', function() {
+            var slide = $(this).data('slide');
+            $('#slide').val(slide - 1);
+            $('#sig').trigger('click');
+        });    
+    }
+    
     $(function() {
       
         verificarRespostas();
         exercicios();
         
-        $('.quadslide').bind('click', function() {
-            var slide = $(this).data('slide');
-            $('#slide').val(slide - 1);
-            $('#sig').trigger('click');
-        });
+        quadslideEvent();
         
         $('.btnExcluir').bind('click', function() {
             var pergunta = $(this).attr('valor'); 
@@ -445,6 +487,7 @@ if (count($slide)> 0) {
                     $('#slide').val(slide);
                     verificarRespostas();
                     exercicios();
+                    recalcular_quadrados(slide);
             });
         });
         
@@ -467,6 +510,7 @@ if (count($slide)> 0) {
                     $('#respostas').val(resposta);
                     verificarRespostas();
                     exercicios();
+                    recalcular_quadrados(slide);
             });
         });        
     });
