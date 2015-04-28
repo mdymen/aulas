@@ -402,20 +402,20 @@ if (count($slide)> 0) {
         var quadrados_quantidade = quantidade;
         var i = 1;
 
-        switch (actual) {
-            case actual < 8:
-                break;
-            case actual >= 8:
-                var aux = actual + 8;
-                if (aux < quantidade) {
-                    var i = actual - 7;
-                    quadrados_quantidade = actual + 8;
-                } else {
-                    quadrados_quantidade = quantidade;
-                    i = quantidade - 14;
-                }
-                break;
-         }
+        if (quadrados_quantidade > 14) {
+            quadrados_quantidade = 14;
+        }
+
+        if (actual >= 8) {
+            var aux = actual + 8;
+            if (aux < quantidade) {
+                i = actual - 7;
+                quadrados_quantidade = actual + 8;
+            } else {
+                quadrados_quantidade = quantidade;
+                i = quantidade - 14;
+            }
+        }
 
         var html = '<center>';
         var classe = '';
