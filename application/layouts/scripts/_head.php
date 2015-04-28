@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- Head --><head>
-    <meta charset="ISO-8859-1">
+    <meta charset="utf-8">
     <title>Bobby aulas - Cursos online</title>
     
 <?php
@@ -18,7 +18,7 @@
     <meta name="description" content="data tables">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
     
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/dataTables.bootstrap.css'))?>    
