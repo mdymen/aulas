@@ -7,7 +7,7 @@ include APPLICATION_PATH.'/decorators/button.php';
 class Forms_Curso_Editar extends Zend_Form{
  function init() {
         
-        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/bobby/public';
+        $root = ('http') . '://' . $_SERVER['HTTP_HOST'] . '/aulas/public';
         
         $this->setAction($root."/curso/addcurso")->setMethod("post");
 
