@@ -27,6 +27,10 @@ class Forms_Curso_Editar extends Zend_Form{
         $custo = new Zend_Form_Element_Text('VL_CUSTO_CR', array('placeholder' => 'Custo', 'icono' => 'fa fa-dollar', 'col' => 'col-sm-4')); 
         $custo->addDecorator($decorator2);
         
+        $decorator7 = new Decorators_Textarea(); 
+        $minides = new Zend_Form_Element_Textarea('ST_MINIDESCR_CR', array('placeholder' => 'Mini descricao', 'rows' => 5));
+        $minides->addDecorator($decorator7);    
+        
         $decorator3 = new Decorators_Textarea(); 
         $des = new Zend_Form_Element_Textarea('ST_DESCR_CR', array('placeholder' => 'Descripcion', 'rows' => 5));
         $des->addDecorator($decorator3);    
@@ -54,7 +58,7 @@ class Forms_Curso_Editar extends Zend_Form{
         $excluir = new Zend_Form_Element_Button('Excluir', array('type' => 'submit', 'class' => 'btn btn-red', 'value'=> 'Excluir'));
         $excluir->addDecorator($buttondec1);
         
-        $this->addElements(array($idhidden, $id, $custo, $nome,  $des, $objetivo, $conteudo, $caract, $file, $register, $excluir));
+        $this->addElements(array($idhidden, $id, $custo, $nome,  $minides, $des, $objetivo, $conteudo, $caract, $file, $register, $excluir));
         
     }
 }
