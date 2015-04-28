@@ -7,11 +7,13 @@ include APPLICATION_PATH.'/decorators/button.php';
 class Forms_Curso_Editar extends Zend_Form{
  function init() {
         
-        $root = ('http') . '://' . $_SERVER['HTTP_HOST'] . '/aulas/public';
+        $root = ('http') . '://' . $_SERVER['HTTP_HOST'] . '/aulas/public/admin';
         
-        $this->setAction($root."/curso/addcurso")->setMethod("post");
+        $this->setAction($root."/curso/editar")->setMethod("post");
 
         $this->setAttrib('enctype', 'multipart/form-data');
+        
+        $idhidden = new Zend_Form_Element_Hidden('ID_ID_CR');
         
         $decorator = new Decorators_Decorator1();
         $id = new Zend_Form_Element_Text('ST_IDENT_CR', array('placeholder' => 'Identificador do curso', 'icono' => 'fa fa-key', 'col' => 'col-sm-6'));
@@ -52,7 +54,7 @@ class Forms_Curso_Editar extends Zend_Form{
         $excluir = new Zend_Form_Element_Button('Excluir', array('type' => 'submit', 'class' => 'btn btn-red', 'value'=> 'Excluir'));
         $excluir->addDecorator($buttondec1);
         
-        $this->addElements(array($id, $custo, $nome,  $des, $objetivo, $conteudo, $caract, $file, $register, $excluir));
+        $this->addElements(array($idhidden, $id, $custo, $nome,  $des, $objetivo, $conteudo, $caract, $file, $register, $excluir));
         
     }
 }
