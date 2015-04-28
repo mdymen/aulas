@@ -19,6 +19,11 @@ class Forms_Curso_Adicionar extends Zend_Form{
         $nome = new Zend_Form_Element_Text('ST_NOME_CR"', array('placeholder' => 'Nome do curso'));
         $nome->addDecorator($decorator1);
         
+        
+        $decorator8 = new Decorators_Decorator1();        
+        $subtitulo = new Zend_Form_Element_Text('ST_SUBTITULO_CR"', array('placeholder' => 'subtitulo'));
+        $subtitulo->addDecorator($decorator8);
+        
         $decorator2 = new Decorators_Decorator1();  
         $custo = new Zend_Form_Element_Text('VL_CUSTO_CR', array('placeholder' => 'Custo', 'icono' => 'fa fa-dollar', 'col' => 'col-sm-4')); 
         $custo->addDecorator($decorator2);
@@ -48,7 +53,7 @@ class Forms_Curso_Adicionar extends Zend_Form{
         
         $register = new Zend_Form_Element_Button('Adicionar', array('type' => 'submit', 'class' => 'btn btn-blue'));
         
-        $this->addElements(array($id, $custo, $nome, $minides, $des, $objetivo, $conteudo, $caract, $file, $register));
+        $this->addElements(array($id, $custo, $nome, $subtitulo, $minides, $des, $objetivo, $conteudo, $caract, $file, $register));
         
     }  //put your code here
 }

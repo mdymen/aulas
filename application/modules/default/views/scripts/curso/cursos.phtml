@@ -15,7 +15,7 @@ if (is_array($cursos)) {
                   <img data-src="holder.js/100%x200" alt="100%x200" src="<?php echo $this->baseUrl().'/../application/uploads/'.$curso['ST_IMAGEM_CR']; ?>" data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
                   <div class="caption" style="background-color: #F0F0F0 ">
                   <h3 style="margin-top: 0px"><?php echo $curso['ST_NOME_CR']; ?></h3>
-                  <p><?php echo $curso['ST_DESCR_CR']; ?></p>
+                  <p><?php echo $curso['ST_SUBTITULO_CR']; ?></p>
                   <?php
                   if ($curso['VL_CUSTO_CR'] > 0) {
                       echo '<span class="price palegreen" style="font-size:15px"><b>R$ '.$curso['VL_CUSTO_CR'].'</b></span>';
@@ -23,7 +23,7 @@ if (is_array($cursos)) {
                       echo '<span style="color: green"><b>GRATIS</b></span>';
                   }
                   ?>
-                  <p><br><span><a href="<?php echo $this->baseUrl('curso/vercurso?curso='.$curso['ID_ID_CR'].'&slide=1')?>" class="btn btn-primary" role="button">Conferir</a> <a href="<?php echo $this->baseUrl('curso/ficha?curso='.$curso['ID_ID_CR'])?>" class="btn btn-success" role="button">Comprar</a></span></p>
+                  <p><br><span><a class="btn btn-primary" style="margin-right:5px" href="<?php echo $this->baseUrl('curso/ficha?curso='.$curso['ID_ID_CR'])?>"><i class="fa fa-info"></i> Ficha</a><a href="<?php echo $this->baseUrl('curso/vercurso?curso='.$curso['ID_ID_CR'].'&slide=1')?>" class="btn btn-success" role="button"><i class="fa fa-pencil"></i>Conferir</a></span></p>
                 </div>
               </div>
             </div>

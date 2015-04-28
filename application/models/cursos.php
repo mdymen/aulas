@@ -16,7 +16,8 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
             'ST_OBJETIVO_CR' => $params['ST_OBJETIVO_CR'],
             'ST_CARACT_CR' => $params['ST_CARACT_CR'],
             'ST_IMAGEM_CR' => $params['ST_IMAGEM_CR'],
-            'ST_MINIDESCR_CR' => $params['ST_MINIDESCR_CR']
+            'ST_MINIDESCR_CR' => $params['ST_MINIDESCR_CR'],
+            'ST_SUBTITULO_CR' => $params['ST_SUBTITULO_CR']
             );
         $db->insert($this->_name, $info);       
     }
@@ -109,7 +110,8 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
             'ST_CONTEUDO_CR' => $params['ST_CONTEUDO_CR'],
             'ST_OBJETIVO_CR' => $params['ST_OBJETIVO_CR'],
             'ST_CARACT_CR' => $params['ST_CARACT_CR'],
-            'ST_MINIDESCR_CR' => $params['ST_MINIDESCR_CR']
+            'ST_MINIDESCR_CR' => $params['ST_MINIDESCR_CR'],
+            'ST_SUBTITULO_CR' => $params['ST_SUBTITULO_CR']
         );
         
         $db->update($this->_name, $info, 'ID_ID_CR = '.$params['ID_ID_CR']);
