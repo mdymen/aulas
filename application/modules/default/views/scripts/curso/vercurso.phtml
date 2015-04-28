@@ -68,10 +68,14 @@ if (count($slide)> 0) {
             
             <span style="float: left">
             
-                <a id="ant" href="javascript:void(0);" title="Anterior">
+                <a id="inicio" href="javascript:void(0);" title="Inicio">
                     <i class="fa-hover fa fa-angle-double-left"></i>
                 </a>
 
+                <a id="ant" href="javascript:void(0);" title="Anterior">
+                    <i class="fa-hover fa fa-angle-left"></i>
+                </a>
+                
             </span>    
             
            
@@ -79,6 +83,11 @@ if (count($slide)> 0) {
             <span style="float: right">
 
                 <a id="sig" href="javascript:void(0);" title="Seguinte">
+                    <i class=" fa-hover fa fa-angle-right"></i>
+                </a>
+                
+                
+                <a id="fim" href="javascript:void(0);" title="Fim">
                     <i class=" fa-hover fa fa-angle-double-right"></i>
                 </a>
 
@@ -467,6 +476,31 @@ if (count($slide)> 0) {
             });
         });
         
+        $('#fim').bind('click', function() {     
+            var curso = $('#curso').val();
+            var slide = parseInt($('#quantidade').val());
+            
+            $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
+                    var resposta = data.ST_RESPOSTAS_USC;
+                    if (resposta !== '') {
+                        resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
+                    }
+                    
+                    quadrados(slide);
+                    
+                    $('#htmlslide').html(data[0].ST_SLIDE_SLI);
+                    $('#numeroslide').html(data[0].NM_SLIDE_SLI);
+                    $('#tituloslide').html(data[0].ST_TITULO_SLI);
+                    $('#verdadeiras').html(data[0].ST_RESPOSTAS_SLI);
+                    $('#respostas').val(resposta);
+                    $('#slide').val(slide);
+                    verificarRespostas();
+                    exercicios();
+                    recalcular_quadrados(slide);
+            });
+        });
+        
+        
         $('#sig').bind('click', function() {     
             var curso = $('#curso').val();
             var slide = parseInt($('#slide').val())+1;
@@ -512,7 +546,29 @@ if (count($slide)> 0) {
                     exercicios();
                     recalcular_quadrados(slide);
             });
-        });        
+        });   
+        $('#inicio').bind('click', function() {     
+            var curso = $('#curso').val();
+            var slide = 1;
+            
+            $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
+                    var resposta = data.ST_RESPOSTAS_USC;
+                    if (resposta !== '') {
+                        resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
+                    }
+                    quadrados(slide);
+                    
+                    $('#htmlslide').html(data[0].ST_SLIDE_SLI);   
+                    $('#numeroslide').html(data[0].NM_SLIDE_SLI);
+                    $('#tituloslide').html(data[0].ST_TITULO_SLI);
+                    $('#slide').val(slide);
+                    $('#verdadeiras').html(data[0].ST_RESPOSTAS_SLI);
+                    $('#respostas').val(resposta);
+                    verificarRespostas();
+                    exercicios();
+                    recalcular_quadrados(slide);
+            });
+        });   
     });
     
     

@@ -121,7 +121,10 @@ class CursoController extends Zend_Controller_Action
         $this->view->respostas = '';
         if ($this->_tieneExercicios($slide[0])) {
             $respostas = $this->_obterrespostas(array('curso' => $params['curso'],'slide' => $numslide));
-            $this->view->respostas = $respostas[0]['ST_RESPOSTAS_USC'];
+            $this->view->respostas = 0;
+            if (!empty($respostas)) {
+                $this->view->respostas = $respostas[0]['ST_RESPOSTAS_USC'];
+            }
         }
          
         $an = new Models_Anotacoes();
