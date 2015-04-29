@@ -126,7 +126,7 @@ foreach($cursos as $curso) {
                                                                             </div>
                                                                             <div class="col-lg-8 col-sm-8 col-xs-8 text-align-left padding-10">
                                                                                 <span class="databox-header carbon no-margin"><?php echo $curso['ST_NOME_CR']; ?></span>
-                                                                                <span class="databox-text lightcarbon no-margin"><?php echo $curso['ST_DESCR_CR']; ?></span>
+                                                                                <span class="databox-text lightcarbon no-margin"></span>
                                                                             </div>
                                                                         </div>
                                                                         <div class="databox-bottom bg-white no-padding">
@@ -146,7 +146,7 @@ foreach($cursos as $curso) {
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="databox-row row-6 padding-10">
-                                                                                    <a href="<?php echo $this->baseUrl().'/curso/vercurso?curso='.$curso['ID_CURSO_CR']; ?>&slide=1" class="btn btn-palegreen btn-sm pull-right">ACESSAR</a>
+                                                                                     <br><span><a class="btn btn-primary" style="margin-right:5px" href="<?php echo $this->baseUrl('curso/ficha?curso='.$curso['ID_CURSO_CR'])?>"><i class="fa fa-info"></i> Ficha</a><a href="<?php echo $this->baseUrl('curso/vercurso?curso='.$curso['ID_CURSO_CR'].'&slide=1')?>" class="btn btn-success" role="button"><i class="fa fa-pencil"></i>Conferir</a></span>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
