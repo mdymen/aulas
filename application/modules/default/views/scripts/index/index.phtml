@@ -10,7 +10,7 @@
   $cantCursos = $this->cantCursos;
   $cantCursos = $cantCursos[0];
 ?>
-
+<!--<a href="javascript:void(0);" class="btn btn-default  btn-circle btn-lg"><i class="glyphicon glyphicon-pencil"></i></a>-->
 <!--<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <div class="databox bg-white radius-bordered">
                                         <div class="databox-left no-padding">
@@ -44,7 +44,9 @@
                                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 item-left">
                                                 <div class="item-booker"><a href="<?php echo $this->baseUrl().'/curso/ficha?curso='.$curso['ID_ID_CR']; ?>"><?php echo $curso['ST_NOME_CR']; ?></a></div>
                                                 <div class="item-time">
-                                                    <i class="fa fa-calendar"></i>
+                                                    <a title="Info" class="" style="margin-right:5px" href="<?php echo $this->baseUrl().'/curso/ficha?curso='.$curso['ID_ID_CR']; ?>">&nbsp;<i class="fa fa-info"></i></a>
+                                                    <a title="Fazer" class="" style="margin-right:5px" href="<?php echo $this->baseUrl().'/curso/vercurso?curso='.$curso['ID_ID_CR']; ?>"><i class="fa fa-pencil"></i></a>
+<!--                                                    <i class="fa fa-calendar"></i>-->
                                                     <span><?php echo '&nbsp;&nbsp;  '.$curso['Quantidade']." slides"; ?></span>
                                                 </div>
                                             </div>

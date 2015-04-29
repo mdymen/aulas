@@ -9,7 +9,40 @@ class Admin_ExerciciosController extends Zend_Controller_Action {
     public function init() {}
     
     public function indexAction() {
-        $this->view->perguntas = $this->subjectpronoun6();
+        $this->view->perguntas = $this->reflexivepronoun2();
+    }
+    
+    public function reflexivepronoun2() {
+        $p[0]['pergunta'] = "She was waiting for her husband by __.";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'herself';
+        
+        $p[1]['pergunta'] = "Did you go to the park by __?";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'yourself';
+        
+        $p[2]['pergunta'] = "Sometimes Richard prefers to be by __.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'himselft';
+        
+        return $p;    
+    }
+    
+    
+    public function reflexivepronoun1() {
+        $p[0]['pergunta'] = "The girl cut __ with a knife.";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'herself';
+        
+        $p[1]['pergunta'] = "He hurt __ last week.";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'himself';
+        
+        $p[2]['pergunta'] = "Angela only thinks about __.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'herself';
+        
+        return $p;    
     }
 
     public function subjectpronoun6() {
