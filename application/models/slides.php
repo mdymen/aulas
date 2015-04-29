@@ -64,6 +64,8 @@ class Models_Slides extends Zend_Db_Table_Abstract {
         
         $resposta = $query->fetchAll();
         
+        $db->closeConnection();
+        
         return $resposta;
     }
     
@@ -140,6 +142,8 @@ class Models_Slides extends Zend_Db_Table_Abstract {
         $query = $select->query();
         
         $slide = $query->fetchAll();
+        
+        $db->closeConnection();
         
         return $slide;
     }
