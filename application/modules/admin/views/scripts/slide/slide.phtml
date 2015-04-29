@@ -8,6 +8,7 @@ $slide = $slide[0];
 
 $decform = new Decorators_Form();
 $form = new Forms_Slide_Editar(array('titulo' => 'Editar Slide'));
+$slide['ST_SLIDE_SLI'] = html_entity_decode($slide['ST_SLIDE_SLI']);
 $form->addDecorator($decform);
 $form->populate($slide);
 echo $form;
@@ -15,5 +16,56 @@ echo $form;
 ?>
 
 <div class="col-lg-6 col-sm-6 col-xs-12">
-    <div class="well with-header"><?php echo $slide['ST_SLIDE_SLI']; ?></div>
+    <div class="widget">
+        <div class="widget-header bordered-bottom bordered-lightred">
+            <span class="widget-caption"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Slide
+
+                <a href="javascript:void(0)" id="texto">
+                    <i title="Texto" class="fa fa-file-text-o"></i>
+                </a>
+
+                <a href="javascript:void(0)" id="htmltags">
+                    <i title="HTML Tags" class="fa fa-chain-broken"></i>
+                </a>
+            </span>
+        </div>
+        <div class="widget-body">
+              <div class="well with-header" style="padding-top: 0px !important" id="slide_view"><?php echo $slide['ST_SLIDE_SLI']; ?></div>
+              <div style="display:none" id="st_slide_sli"><?php echo $slide['ST_SLIDE_SLI']; ?></div>      
+        </div>
     </div>
+</div>
+
+<div class="col-lg-6 col-sm-6 col-xs-12">
+    <div class="widget">
+        <div class="widget-header bordered-bottom bordered-lightred">
+            <span class="widget-caption"><i class="fa fa-eye"></i>&nbsp;&nbsp;Preview
+            </span>
+        </div>
+        <div class="widget-body">
+              <div class="well with-header" style="padding-top: 0px !important" id="slide_preview"></div>     
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+       var slide = $('#st_slide_sli');
+       var view = $('#slide_view');
+       
+       var x = $('<div/>').text(slide.html()).html();
+       
+       console.log(x);
+       $('#htmltags').bind('click', function(){
+           view.html($('<div/>').text(slide.html()).html());
+       });
+       
+       $('#texto').bind('click', function(){
+           view.html(slide.html());
+       });
+       
+       $('#Preview').bind('click', function() {
+          $('#slide_preview').html($('#ST_SLIDE_SLI').val());
+       })
+    });
+</script>

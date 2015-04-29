@@ -9,7 +9,23 @@ class Admin_ExerciciosController extends Zend_Controller_Action {
     public function init() {}
     
     public function indexAction() {
-        $this->view->perguntas = $this->reflexivepronoun2();
+        $this->view->perguntas = $this->possesives2();
+    }
+    
+    public function possesives2() {
+        $p[0]['pergunta'] = "Can you lend me a pencil? I forgot __ (yours, hers, mine).";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'mine';
+        
+        $p[1]['pergunta'] = "That is my problem, not __ (yours, mine).";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'yours';
+        
+        $p[2]['pergunta'] = "This belongs to Sally. It's __ (yours, mine, hers).";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'hers';
+        
+        return $p;
     }
     
     public function reflexivepronoun2() {
@@ -538,6 +554,18 @@ I told him all that happened, contei-lhe tudo que aconteceu.*/
         return $p;
     }
 
+    public function possesives1() {
+        $p[0]['pergunta'] = "Whose notebook is this? - It's ...(her, their, his)";
+        $p[0]['nome'] = 'pergunta4';
+        $p[0]['resposta'] = 'his';
+
+        $p[1]['pergunta'] = "- Is this your pen? - No, it's ...(yours, their, my)";
+        $p[1]['nome'] = 'pergunta5';
+        $p[1]['resposta'] = 'yours';       
+        
+        return $p;
+    }
+    
     public function possesives() {
         $p[0]['pergunta'] = "This book is not Paul's, it's ... (my, hers, mine)";
         $p[0]['nome'] = 'pergunta1';
@@ -551,13 +579,6 @@ I told him all that happened, contei-lhe tudo que aconteceu.*/
         $p[2]['nome'] = 'pergunta3';
         $p[2]['resposta'] = 'yours';
         
-        $p[3]['pergunta'] = "Whose notebook is this? - It's ...(her, their, his)";
-        $p[3]['nome'] = 'pergunta4';
-        $p[3]['resposta'] = 'his';
-
-        $p[4]['pergunta'] = "- Is this your pen? - No, it's ...(yours, their, my)";
-        $p[4]['nome'] = 'pergunta5';
-        $p[4]['resposta'] = 'yours';
         return $p;
     }    
 }
