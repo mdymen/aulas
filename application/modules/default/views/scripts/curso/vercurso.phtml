@@ -502,50 +502,57 @@ if (count($slide)> 0) {
         
         
         $('#sig').bind('click', function() {     
+            
             var curso = $('#curso').val();
             var slide = parseInt($('#slide').val())+1;
             
-            $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
-                    var resposta = data.ST_RESPOSTAS_USC;
-                    if (resposta !== '') {
-                        resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
-                    }
-                    
-                    quadrados(slide);
-                    
-                    $('#htmlslide').html(data[0].ST_SLIDE_SLI);
-                    $('#numeroslide').html(data[0].NM_SLIDE_SLI);
-                    $('#tituloslide').html(data[0].ST_TITULO_SLI);
-                    $('#verdadeiras').html(data[0].ST_RESPOSTAS_SLI);
-                    $('#respostas').val(resposta);
-                    $('#slide').val(slide);
-                    verificarRespostas();
-                    exercicios();
-                    recalcular_quadrados(slide);
-            });
+            if (slide <= $('#quadrados_quantidade').val()) {
+            
+                $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
+                        var resposta = data.ST_RESPOSTAS_USC;
+                        if (resposta !== '') {
+                            resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
+                        }
+
+                        quadrados(slide);
+
+                        $('#htmlslide').html(data[0].ST_SLIDE_SLI);
+                        $('#numeroslide').html(data[0].NM_SLIDE_SLI);
+                        $('#tituloslide').html(data[0].ST_TITULO_SLI);
+                        $('#verdadeiras').html(data[0].ST_RESPOSTAS_SLI);
+                        $('#respostas').val(resposta);
+                        $('#slide').val(slide);
+                        verificarRespostas();
+                        exercicios();
+                        recalcular_quadrados(slide);
+                });
+            }
         });
         
         $('#ant').bind('click', function() {     
             var curso = $('#curso').val();
             var slide = parseInt($('#slide').val())-1;
             
-            $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
-                    var resposta = data.ST_RESPOSTAS_USC;
-                    if (resposta !== '') {
-                        resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
-                    }
-                    quadrados(slide);
-                    
-                    $('#htmlslide').html(data[0].ST_SLIDE_SLI);   
-                    $('#numeroslide').html(data[0].NM_SLIDE_SLI);
-                    $('#tituloslide').html(data[0].ST_TITULO_SLI);
-                    $('#slide').val(slide);
-                    $('#verdadeiras').html(data[0].ST_RESPOSTAS_SLI);
-                    $('#respostas').val(resposta);
-                    verificarRespostas();
-                    exercicios();
-                    recalcular_quadrados(slide);
-            });
+            if (slide > 0) {
+            
+                $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
+                        var resposta = data.ST_RESPOSTAS_USC;
+                        if (resposta !== '') {
+                            resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
+                        }
+                        quadrados(slide);
+
+                        $('#htmlslide').html(data[0].ST_SLIDE_SLI);   
+                        $('#numeroslide').html(data[0].NM_SLIDE_SLI);
+                        $('#tituloslide').html(data[0].ST_TITULO_SLI);
+                        $('#slide').val(slide);
+                        $('#verdadeiras').html(data[0].ST_RESPOSTAS_SLI);
+                        $('#respostas').val(resposta);
+                        verificarRespostas();
+                        exercicios();
+                        recalcular_quadrados(slide);
+                });
+            }
         });   
         $('#inicio').bind('click', function() {     
             var curso = $('#curso').val();
