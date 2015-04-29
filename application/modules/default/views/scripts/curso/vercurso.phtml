@@ -571,7 +571,20 @@ if (count($slide)> 0) {
         });   
     });
     
-    
+    $(document).keydown(function(e) {
+        switch(e.which) {
+            case 37:
+                $('#ant').trigger('click');// left
+            break;
+
+            case 39: // right
+                $('#sig').trigger('click')
+            break;
+
+            default: return; // exit this handler for other keys
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+});
     
 </script>    
 
