@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- Head --><head>
     <meta charset="utf-8">
     <title>Bobby aulas - Cursos online</title>
-    
+     <link rel="shortcut icon" href="<?php echo $this->baseUrl().'/../public/img/icone.png'; ?>" type="image/x-icon">
 <?php
     require_once 'breadcrumb.php';
     

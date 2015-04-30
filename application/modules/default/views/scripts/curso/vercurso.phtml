@@ -61,7 +61,7 @@ if (count($slide)> 0) {
 <input type="hidden" id="respostas" value='<?php echo $respostas; ?>' />
 <input type="hidden" id="verdadeiras" value='<?php echo $slide['ST_RESPOSTAS_SLI']; ?>' />
 
-<div class="col-lg-7 col-sm-6 col-xs-12">
+<div class="col-md-7 col-sm-6 col-xs-18">
     <div class="well with-header" style="height: 510px">
         <div class="header bordered-pink">
             
@@ -121,7 +121,7 @@ if (count($slide)> 0) {
 <?php
 
     $decform = new Decorators_Form();
-    $formAanotacoes = new Forms_Anotacoes(array('titulo' => 'Anotacoes', 'class' => 'col-lg-5 col-sm-6 col-xs-10', 'icone' => 'fa fa-pencil-square-o'));
+    $formAanotacoes = new Forms_Anotacoes(array('titulo' => 'Anotacoes', 'class' => 'col-md-5 col-sm-6 col-xs-18', 'icone' => 'fa fa-pencil-square-o'));
     $formAanotacoes->populate($anotacoes);
     $formAanotacoes->addDecorator($decform);
 

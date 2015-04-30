@@ -2,6 +2,8 @@
     <meta charset="utf-8">
     <title>Bobby aulas - Cursos online</title>
     
+    
+        
 <?php
     require_once 'breadcrumb.php';
     $storage = new Zend_Auth_Storage_Session();
@@ -19,8 +21,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
-    
+<!--    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">-->
+    <link rel="shortcut icon" href="<?php echo $this->baseUrl().'/../public/img/icone.png'; ?>" type="image/x-icon">
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/dataTables.bootstrap.css'))?>    
         <a href="_head.php"></a>
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/jquery-2.0.3.min.js')) ?>

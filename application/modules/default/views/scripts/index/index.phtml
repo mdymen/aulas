@@ -100,7 +100,7 @@
                                             </div>
                                         </div>
                                         <div class="databox-right">
-                                            <span class="databox-number orange"><?php echo $cantCursos['cursos']; ?></span>
+                                            <span class="databox-number orange">&nbsp;<?php echo $cantCursos['cursos']; ?></span>
                                             <div class="databox-text darkgray"><a href="<?php echo $this->baseUrl().'/curso/cursos'; ?>">CURSOS</a></div>
                                             <div class="databox-stat orange radius-bordered">
                                                 <i class="stat-icon icon-lg fa fa-tasks"></i>
@@ -117,7 +117,7 @@
                                             </div> 
                                         </div>
                                         <div class="databox-right">
-                                            <span class="databox-number yellow"></span>
+                                            <span class="databox-number yellow">&nbsp;</span>
                                             <div class="databox-text darkgray"><a href="<?php echo $this->baseUrl().'/usuario/index'; ?>">MINHA CONTA</a></div>
                                             <div class="databox-stat yellow radius-bordered">
                                                 <i class="stat-icon icon-lg fa fa-tasks"></i>
@@ -134,7 +134,7 @@
                                             </div>
                                         </div>
                                         <div class="databox-right">
-                                            <span class="databox-number azure"><?php echo $pergunta['perguntas']; ?></span>
+                                            <span class="databox-number azure"><?php echo $pergunta['perguntas'] ? $pergunta['perguntas'] : 0; ?></span>
                                             <div class="databox-text darkgray"><a href="<?php echo $this->baseUrl().'/perguntas/index' ?>">MINHAS PERGUNTAS</a></div>
                                             <div class="databox-stat azure radius-bordered">
                                                 <i class="stat-icon icon-lg fa fa-tasks"></i>
