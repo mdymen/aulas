@@ -109,7 +109,7 @@ if (count($slide)> 0) {
                     } else {
                          $color = 'default';
                     }
-                    echo '<a href="javascript:void(0)" class="quadslide" data-slide='.$i.'><span id="quad_'.$i.'" class="badge badge-'.$color.' badge-square" style="margin-right: 7px; margin-right: 7px;">'.$i.'</span></a>';
+                    echo '<a href="javascript:void(0)" class="quadslide" data-slide='.$i.'><span id="quad_'.$i.'" class="quadclass badge badge-'.$color.' badge-square" style="margin-right: 7px; margin-right: 7px;">'.$i.'</span></a>';
                 }
                 echo '</center></div>';
             ?>
@@ -292,10 +292,10 @@ if (count($slide)> 0) {
 <script type="text/javascript">
     
     function quadrados(actual) {
-        var default_ = 'badge badge-default badge-square';
-        var primary = 'badge badge-primary badge-square';
+        var default_ = 'quadclass badge badge-default badge-square';
+        var primary = 'quadclass badge badge-primary badge-square';
         
-        $('.badge').removeClass().addClass(default_);      
+        $('.quadclass').removeClass().addClass(default_);      
         $('#quad_'+actual).removeClass('badge-default').addClass('badge-primary');
     }
     
