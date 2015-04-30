@@ -369,9 +369,10 @@ if (count($slide)> 0) {
     function verificarRespostas() {
         var respostas = $('#respostas').val();
         
-        if (respostas !== '0') {
+        if (respostas !== '') {
             var verdadeiras = $('#verdadeiras').val();
             var valores_verdadeiras = JSON.parse(verdadeiras);
+            
             var valores_respostas = JSON.parse(respostas);
             var perguntas = 0;
             var corretas = 0;
@@ -400,10 +401,10 @@ if (count($slide)> 0) {
                     }
                 });
             });   
-            $('#vlCorretas').html(parseInt($('#vlCorretas').html())+corretas);
-            $('#vlExercicios').html(parseInt($('#vlExercicios').html())+perguntas);    
-            $('#btnCorregir').css("display","none");
-            $('#btnRespostas').css("display","none");            
+//            $('#vlCorretas').html(parseInt($('#vlCorretas').html())+corretas);
+//            $('#vlExercicios').html(parseInt($('#vlExercicios').html())+perguntas);    
+//            $('#btnCorregir').css("display","none");
+//            $('#btnRespostas').css("display","none");            
         }
     };
     
@@ -521,7 +522,7 @@ if (count($slide)> 0) {
                         $('#htmlslide').html(data[0].ST_SLIDE_SLI);
                         $('#numeroslide').html(data[0].NM_SLIDE_SLI);
                         $('#tituloslide').html(data[0].ST_TITULO_SLI);
-                        $('#verdadeiras').html(data[0].ST_RESPOSTAS_SLI);
+                        $('#verdadeiras').val(data[0].ST_RESPOSTAS_SLI);
                         $('#respostas').val(resposta);
                         $('#slide').val(slide);
                         verificarRespostas();
@@ -548,7 +549,7 @@ if (count($slide)> 0) {
                         $('#numeroslide').html(data[0].NM_SLIDE_SLI);
                         $('#tituloslide').html(data[0].ST_TITULO_SLI);
                         $('#slide').val(slide);
-                        $('#verdadeiras').html(data[0].ST_RESPOSTAS_SLI);
+                        $('#verdadeiras').val(data[0].ST_RESPOSTAS_SLI);
                         $('#respostas').val(resposta);
                         verificarRespostas();
                         exercicios();
