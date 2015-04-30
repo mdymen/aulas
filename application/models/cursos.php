@@ -118,4 +118,23 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
         
     }
 
+    function usuario_curso($curso, $usuario) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $select = $db->select()->from('usuario_curso')
+                ->where('ID_USU_UC = ?',$usuario)
+                ->where('ID_CUR_UC = ?', $curso);
+        
+        $query = $select->query();
+        
+        $db->closeConnection();
+        
+        return $query->fetch();
+    }
+    
+    function usuario_cursos_update($params) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+ 
+        $db->update('usuario_curso', $params, 'ID_USU_UC = '.$params['ID_USU_UC'].' AND ID_CUR_UC = '.$params['ID_CUR_UC']);
+    }
 }

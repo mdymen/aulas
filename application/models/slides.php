@@ -84,6 +84,16 @@ class Models_Slides extends Zend_Db_Table_Abstract {
         return $curso;
     }
     
+    function slideByNumber($numSlide, $idCurso) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $select = $db->select()->from($this->_name)
+                ->where('NM_SLIDE_SLI = ?', $numSlide)
+                ->where('ID_CURSO_CR = ?', $idCurso);
+        
+        return $select->query()->fetch();
+    }
+    
     function slides() {
         $db = Zend_Db_Table::getDefaultAdapter();
 
