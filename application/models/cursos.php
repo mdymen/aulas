@@ -94,8 +94,8 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
                     ->where('ID_USU_UC = ?', $params['ID_USU_UC'])
                     ->where('ID_CUR_UC = ?', $params['ID_CUR_UC' ]);
             $result = $select->query();
-            $res = $result->fetchAll();
-            return $res[0]['NM_UTIMAVIU_UC'];
+            $res = $result->fetch();
+            return $res;
         }
     }
     

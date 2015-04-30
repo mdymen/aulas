@@ -14,6 +14,7 @@ $anotacoes = $this->anotacoes;
 $perguntas = $this->perguntas;
 $respostas = $this->respostas;
 
+$usuario_curso = $this->usuario_curso;
 
 if (!empty($anotacoes)) {
     $anotacoes = $anotacoes[0];
@@ -50,10 +51,6 @@ if (count($slide)> 0) {
             break;
     }
 
-//print_r($actual);
-//print_r($i);
-//print_r($quadrados_quantidade);
-//die('.');    
 ?>
 
 <input type="hidden" id="quantidade" value="<?php echo $quantidade; ?>" />
@@ -132,11 +129,39 @@ if (count($slide)> 0) {
     
 ?>
 
-<div class="col-lg-5 col-sm-6 col-xs-10">
+<div class="col-lg-5 col-md-3 col-sm-6 col-xs-10">
+                                    <div class="databox bg-white radius-bordered">
+                                        <div class="databox-left bg-themeprimary">
+                                            <div class="databox-piechart">
+                                                <div id="users-pie" data-toggle="easypiechart" class="easyPieChart" data-barcolor="#fff" data-linecap="butt" data-percent="80" data-animate="500" data-linewidth="3" data-size="47" data-trackcolor="rgba(255,255,255,0.1)" style="width: 47px; height: 47px; line-height: 47px;"><span class="white font-90"><h2><div id="vlPorcentagemExercicios">
+                                                <?php
+        
+                                                    if ($usuario_curso['NM_TOTALEXERC_UC'] == 0 ||  $usuario_curso['NM_ACERTOS_UC'] == 0) {
+                                                        echo '0';
+                                                    } else {
+                                                        echo intval(($usuario_curso['NM_ACERTOS_UC']*100)/$usuario_curso['NM_TOTALEXERC_UC']);
+                                                    }
+                                                
+                                                
+                                                    ?>%</div></h2></span><canvas width="47" height="47"></canvas></div>
+                                            </div>
+                                        </div>
+                                        <div class="databox-right">
+                                            <span class="databox-number themeprimary"><span id="vlCorretas"><?php echo $usuario_curso['NM_ACERTOS_UC']; ?></span>/<span id="vlExercicios"><?php echo $usuario_curso['NM_TOTALEXERC_UC']; ?></span></span>
+                                            <div class="databox-text darkgray">EXERCICIOS</div>
+                                            <div class="databox-state bg-themeprimary">
+                                                <i class="fa fa-pencil"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+<!--<div class="col-lg-5 col-sm-6 col-xs-10">
     <div class="widget-body">
-        Correicoes <span id="vlCorretas">0</span>/<span id="vlExercicios">0</span>
+        Correicoes 
     </div>
-</div>
+</div>-->
 
 
 <?php
@@ -293,9 +318,16 @@ if (count($slide)> 0) {
 
 <script type="text/javascript">
     
+    function porcentagem(valor1, valor2) {
+        if (valor1 == 0 || valor2 == 0) {
+            return 0;
+        } else {
+            return parseInt((valor1*100)/valor2);
+        }
+    }
+    
     function quadrados(actual) {
         var default_ = 'quadclass badge badge-default badge-square';
-        var primary = 'quadclass badge badge-primary badge-square';
         
         $('.quadclass').removeClass().addClass(default_);      
         $('#quad_'+actual).removeClass('badge-default').addClass('badge-primary');
@@ -338,8 +370,12 @@ if (count($slide)> 0) {
                         }
                     });
                 });   
-                $('#vlCorretas').html(parseInt($('#vlCorretas').html())+corretas);
-                $('#vlExercicios').html(parseInt($('#vlExercicios').html())+perguntas);
+                var c = parseInt($('#vlCorretas').html()) + corretas;
+                var p = parseInt($('#vlExercicios').html())+perguntas;
+                $('#vlCorretas').html(c);
+                $('#vlExercicios').html(p);
+                $('#vlPorcentagemExercicios').html(porcentagem(c,p)+'%');
+                
             });
         });
         
@@ -403,8 +439,8 @@ if (count($slide)> 0) {
             });   
 //            $('#vlCorretas').html(parseInt($('#vlCorretas').html())+corretas);
 //            $('#vlExercicios').html(parseInt($('#vlExercicios').html())+perguntas);    
-//            $('#btnCorregir').css("display","none");
-//            $('#btnRespostas').css("display","none");            
+            $('#btnCorregir').css("display","none");
+            $('#btnRespostas').css("display","none");            
         }
     };
     

@@ -113,14 +113,14 @@ class CursoController extends Zend_Controller_Action
         
         $cursos = new Models_Cursos();
         $usuario_curso = (array('ID_USU_UC' => $data['ID_ID_USU'] ,'ID_CUR_UC' => $params['curso'], 'NM_UTIMAVIU_UC' => 1));
-        $numslide = $cursos->estaMatriculado($usuario_curso);
+        $usuario_curso_retorno = $cursos->estaMatriculado($usuario_curso);
 
         $slides = new Models_Slides();
-        $slide = $slides->specificSlide($params['curso'], $numslide);
+        $slide = $slides->specificSlide($params['curso'], $usuario_curso_retorno['NM_UTIMAVIU_UC']);
 
         $this->view->respostas = '';
         if ($this->_tieneExercicios($slide[0])) {
-            $respostas = $this->_obterrespostas(array('curso' => $params['curso'],'slide' => $numslide));
+            $respostas = $this->_obterrespostas(array('curso' => $params['curso'],'slide' => $usuario_curso_retorno['NM_UTIMAVIU_UC']));
             $this->view->respostas = '';
             if (!empty($respostas)) {
                 $this->view->respostas = $respostas[0]['ST_RESPOSTAS_USC'];
@@ -142,6 +142,7 @@ class CursoController extends Zend_Controller_Action
         $this->view->idslide = $this->_request->getParam('slide');
         $this->view->idusuario = $data['ID_ID_USU'];
         $this->view->quantidade_slides = $quantidade_slides['quantidade'];
+        $this->view->usuario_curso = $usuario_curso_retorno;
     }
     
     public function fichaAction() {
