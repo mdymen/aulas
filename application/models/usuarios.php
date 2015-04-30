@@ -75,7 +75,7 @@ class  Models_Usuarios extends Zend_Db_Table {
         $table = $this->_name;
         
         $select = $db->select($table)->from($table)
-                ->joinLeft('perguntas_cursos', 'perguntas_cursos.ID_USUARIO_USU = usuarios.ID_ID_USU')
+                ->joinInner('perguntas_cursos', 'perguntas_cursos.ID_USUARIO_USU = usuarios.ID_ID_USU')
             ->where('Usuarios.ID_ID_USU = '.$params['ID_ID_USU']);
         
         $query = $select->query();
