@@ -30,7 +30,8 @@ class  Models_Usuarios extends Zend_Db_Table {
         (
             'ST_USUARIO_USU' =>   $params['ST_USUARIO_USU'],
             'ST_SENHA_USU'   =>   $params['ST_SENHA_USU'],
-            'ST_EMAIL_USU' => $params['ST_EMAIL_USU']
+            'ST_EMAIL_USU' => $params['ST_EMAIL_USU'],
+            'ST_CONFIRMADO_USU' => $params['ST_CONFIRMADO_USU']
         );
         
         $db->insert($this->_name, $info);  
@@ -74,7 +75,7 @@ class  Models_Usuarios extends Zend_Db_Table {
         $table = $this->_name;
         
         $select = $db->select($table)->from($table)
-                ->joinLeft('perguntas_cursos', 'perguntas_cursos.ID_USUARIO_USU = usuarios.ID_ID_USU')
+                ->joinInner('perguntas_cursos', 'perguntas_cursos.ID_USUARIO_USU = usuarios.ID_ID_USU')
             ->where('Usuarios.ID_ID_USU = '.$params['ID_ID_USU']);
         
         $query = $select->query();
@@ -102,5 +103,49 @@ class  Models_Usuarios extends Zend_Db_Table {
   
         return $cantidade;        
         
+    }
+    
+    function confirmar($params) {
+        $db = $this->_db;
+        
+        $select = $db->select()->from($this->_name)
+                ->where('ST_CONFIRMADO_USU = ?', $params['conf']);
+        $query = $select->query();
+        $result = $query->fetch();
+        
+        if (is_array($result)) {
+            $db->update($this->_name, array('ST_CONFIRMADO_USU' => ''), 'ST_USUARIO_USU = "'.$result['ST_USUARIO_USU'].'"');           
+            return $result;
+        }
+        return false;
+    }
+    
+    function trocarSenhaEsquecida($params) {
+        $db = $this->_db;
+
+        $select = $db->select()->from($this->_name)->where('ST_SENHA_USU = "'.$params['esqueceu'].'"');
+        $usuario = $select->query()->fetch();
+
+        $result = $db->update($this->_name, array('ST_SENHA_USU' => $params['nova']), 'ST_SENHA_USU = "'.$params['esqueceu'].'"');
+        
+        if ($result) {
+            return array('ST_USUARIO_USU' => $usuario['ST_USUARIO_USU'], 'ST_SENHA_USU' => $params['nova']);
+        }
+        
+        return false;
+    }
+    
+    function getUserByEmail($email) {
+        $db = $this->_db;
+        
+        $query = $db->select()->from($this->_name)->where('ST_EMAIL_USU = ?',$email);
+        
+        return $query->query()->fetch();
+    }
+    
+    function mudarSenhaMd5($md5, $email) {
+        $db = $this->_db;
+        
+        $db->update($this->_name,array('ST_SENHA_USU' => $md5), 'ST_EMAIL_USU = "'.$email.'"');
     }
 }

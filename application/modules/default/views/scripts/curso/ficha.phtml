@@ -12,17 +12,6 @@
                 <div class="widget-header bordered-bottom bordered-blue">
                     <span class="widget-caption">Informacao de Curso</span>
 
-                    <div class="widget-buttons">
-                        <a href="#" data-toggle="maximize">
-                            <i class="fa fa-expand"></i>
-                        </a>
-                        <a href="#" data-toggle="collapse">
-                            <i class="fa fa-minus"></i>
-                        </a>
-                        <a href="#" data-toggle="dispose">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
                 </div>
 
                 <div class="widget-body no-padding" style="height: auto;">
@@ -90,11 +79,20 @@
         <div class="arrow"></div>
         <h4 class="popover-title bordered-palegreen"><b>Precio</b></h4>
         <div class="popover-content">
-            <div class="price palegreen" style="font-size: 36px; padding-top: 20px; padding-bottom: 20px"><p style="text-align: center"><?php echo 'R$ '.$curso['VL_CUSTO_CR']; ?></p></div>
+            <div class="price palegreen" style="font-size: 36px; padding-top: 20px; padding-bottom: 20px"><p style="text-align: center"><?php $valor = $curso['VL_CUSTO_CR'] ? 'R$'.$curso['VL_CUSTO_CR']: 'GRATIS'; echo $valor; ?></p></div>
         </div>
-            <a href="javascript:void(0);" class="btn btn-labeled btn-palegreen" style="width: 260px">
-                                        <i class="btn-label glyphicon glyphicon-ok" ></i>COMPRAR
-                                    </a>
+        <?php
+            if (!$curso['VL_CUSTO_CR']) {
+                echo '<a href="'.$this->baseUrl().'/curso/vercurso?curso='.$curso['ID_ID_CR'].'" class="btn btn-labeled btn-palegreen" style="width: 260px">
+                            <i class="btn-label glyphicon glyphicon-pencil" ></i>CONFERIR
+                        </a>';
+            } else {
+                echo '<a href="javascript:void(0);" class="btn btn-labeled btn-palegreen" style="width: 260px">
+                            <i class="btn-label glyphicon glyphicon-ok" ></i>COMPRAR
+                        </a>';
+            }
+                    
+                    ?>
     </div>
 </div>
 </div>

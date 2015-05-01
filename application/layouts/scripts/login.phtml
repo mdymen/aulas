@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
     <!--Basic Styles-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -29,6 +28,48 @@
 <!--Head Ends-->
 <!--Body-->
 <body >
+
+    
+    
+    <div id="esqueceu" style="display:none">
+  <div class="login-container animated fadeInDown">
+        <div class="loginbox bg-white">
+            <div class="loginbox-title">ESQUECEU A SENHA?</div>
+           <!-- <div class="loginbox-social">
+                <div class="social-title ">Connect with Your Social Accounts</div>
+                <div class="social-buttons">
+                    <a href="" class="button-facebook">
+                        <i class="social-icon fa fa-facebook"></i>
+                    </a>
+                    <a href="" class="button-twitter">
+                        <i class="social-icon fa fa-twitter"></i>
+                    </a>
+                    <a href="" class="button-google">
+                        <i class="social-icon fa fa-google-plus"></i>
+                    </a>
+                </div>
+            </div>-->
+           <form action="/aulas/public/auth/mailesqueceusenha" method="post">
+            <div class="loginbox-or">
+                <div class="or-line"></div>
+<!--                <div class="or">OR</div>-->
+            </div>
+            <div class="loginbox-textbox">
+                <input type="text" class="form-control" name="ST_EMAIL_USU" placeholder="Escreva seu e-mail...">
+            </div>
+            <div class="loginbox-forgot">
+                <a href="javascript:void(0)" id="lnkVoltarLogin">Login</a>
+            </div>
+            <div class="loginbox-submit">
+                <input type="submit" class="btn btn-primary btn-block" name="btnEsqueceu" value="Enviar e-mail">
+            </div>
+            </form>
+        </div>
+        <div class="logobox">
+        </div>
+    </div>        
+    </div>
+    
     <div id="login">
     <div class="login-container animated fadeInDown">
         <div class="loginbox bg-white">
@@ -52,6 +93,16 @@
                 <div class="or-line"></div>
 <!--                <div class="or">OR</div>-->
             </div>
+               <?php 
+
+                    $request = new Zend_Controller_Request_Http();
+                    $params = $request->getParams();
+                    if (!empty($params['senha'])) {
+                        include_once APPLICATION_PATH.'/elementoshtml/alerts.php';
+                        Elementoshtml_Alerts::info('E-mail foi enviado...');
+                    }
+
+               ?>
             <div class="loginbox-textbox">
                 <input type="text" class="form-control" name="ST_USUARIO_USU" placeholder="Usuario">
             </div>
@@ -59,7 +110,7 @@
                 <input type="password" class="form-control" name="ST_SENHA_USU" placeholder="Senha">
             </div>
             <div class="loginbox-forgot">
-                <a href="">Esqueceu a senha?</a>
+                <a href="javascript:void(0)" id="lnkEsqueceu">Esqueceu a senha?</a>
             </div>
             <div class="loginbox-submit">
                 <input type="submit" class="btn btn-primary btn-block" name="btnLogin" value="Logar">
@@ -83,15 +134,29 @@
 
     <script type="text/javascript">
     
-            $(function() {
+        $(function() {
            $('#lnkRegister').bind('click',function(){
                 document.getElementById('register').style.display = 'inline';
-                  document.getElementById('login').style.display = 'none';             
+                document.getElementById('login').style.display = 'none';             
            })
            $('#lnkLogin').bind('click', function() {
                 document.getElementById('login').style.display = 'inline';
                 document.getElementById('register').style.display = 'none';                
            })
+           $('#lnkEsqueceu').bind('click',function(){
+               document.getElementById('login').style.display = 'none'; 
+               document.getElementById('esqueceu').style.display = 'inline'; 
+           });
+           
+           $('#lnkVoltarLogin').bind('click', function(){
+                document.getElementById('login').style.display = 'inline';
+                document.getElementById('esqueceu').style.display = 'none';                 
+           });
+           $('#btnLogin').bind('click', function() {
+              $.post('',{},function(){
+                  
+              }); 
+           });
         });
         
     </script>
@@ -131,8 +196,6 @@
                 <div class="registerbox-textbox">
                     <input type="text" class="form-control" name="ST_EMAIL_USU" placeholder="E-mail">
                 </div>
-
-
 
                 <div class="registerbox-submit"><a href="javascript:void(0)" id="lnkLogin">Login</a>
                     <input type="submit" class="btn btn-primary pull-right" value="SUBMIT">

@@ -22,6 +22,7 @@ class Decorators_Form extends Zend_Form_Decorator_Abstract {
         $method = htmlentities($this->getElement()->getAttrib("method"));
         $enctype = htmlentities($this->getElement()->getAttrib("enctype"));
         $classes = $this->getElement()->getAttrib("class");
+        $icone = $this->getElement()->getAttrib('icone');
         
         $enctyestring= '';
         
@@ -33,10 +34,16 @@ class Decorators_Form extends Zend_Form_Decorator_Abstract {
             $classes = "col-lg-6 col-sm-6 col-xs-12"; 
         }
         
+        $icone_class = '';
+        if ($icone != '') {
+            $icone_class = '<i class="'.$icone.'"></i>';
+        }
+        
+        
         $v = '<div class="'.$classes.'">
             <div class="widget">
                 <div class="widget-header bordered-bottom bordered-blue">
-                    <span class="widget-caption" id="tituloForm">'.$titulo.'</span>
+                    <span class="widget-caption" id="tituloForm">'.$icone_class.' '.$titulo.'</span>
                 </div>
                 <div class="widget-body">
                     <div>';

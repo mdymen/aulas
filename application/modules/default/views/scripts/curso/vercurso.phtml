@@ -6,9 +6,16 @@ include APPLICATION_PATH.'/Forms/Pergunta.php';
 include APPLICATION_PATH.'/Decorators/Form.php';
 
 $slide = $this->slide;
+$quantidade = $this->quantidade_slides;
+$quadrados_quantidade = $quantidade;
+
+
 $anotacoes = $this->anotacoes;
 $perguntas = $this->perguntas;
 $respostas = $this->respostas;
+
+$usuario_curso = $this->usuario_curso;
+
 if (!empty($anotacoes)) {
     $anotacoes = $anotacoes[0];
 }
@@ -20,28 +27,66 @@ if (!empty($perguntas)) {
 
 if (count($slide)> 0) {
     $slide = $slide[0];
+
+    $actual = $slide['NM_SLIDE_SLI'];
+    $i = 1;
+
+    if ($quadrados_quantidade > 14) {
+        $quadrados_quantidade = 14;
+    }
+
+
+    switch ($actual) {
+        case $actual < 8:
+            break;
+        case $actual >= 8;
+            $aux = $actual + 8;
+            if ($aux < $quantidade) {
+                $i = $actual - 7;
+                $quadrados_quantidade = $actual + 8;
+            } else {
+                $quadrados_quantidade = $quantidade;
+                $i = $quantidade - 14;
+            }
+            break;
+    }
+
 ?>
 
+<input type="hidden" id="quantidade" value="<?php echo $quantidade; ?>" />
+<input type="hidden" id="quadrados_quantidade" value="<?php echo $quadrados_quantidade; ?>" />
+<input type="hidden" id="indice" value="<?php echo $i; ?>" />
 <input type="hidden" id="curso" value="<?php echo $slide['ID_CURSO_CR']; ?>" />
 <input type="hidden" id="slide" value="<?php echo $slide['NM_SLIDE_SLI']; ?>" />
 <input type="hidden" id="respostas" value='<?php echo $respostas; ?>' />
 <input type="hidden" id="verdadeiras" value='<?php echo $slide['ST_RESPOSTAS_SLI']; ?>' />
 
-<div class="col-lg-7 col-sm-6 col-xs-12">
+<div class="col-md-7 col-sm-6 col-xs-18">
     <div class="well with-header" style="height: 510px">
         <div class="header bordered-pink">
             
             <span style="float: left">
             
-                <a id="ant" href="javascript:void(0);" title="Anterior">
+                <a id="inicio" href="javascript:void(0);" title="Inicio">
                     <i class="fa-hover fa fa-angle-double-left"></i>
                 </a>
 
+                <a id="ant" href="javascript:void(0);" title="Anterior">
+                    <i class="fa-hover fa fa-angle-left"></i>
+                </a>
+                
             </span>    
-
+            
+           
+            
             <span style="float: right">
 
                 <a id="sig" href="javascript:void(0);" title="Seguinte">
+                    <i class=" fa-hover fa fa-angle-right"></i>
+                </a>
+                
+                
+                <a id="fim" href="javascript:void(0);" title="Fim">
                     <i class=" fa-hover fa fa-angle-double-right"></i>
                 </a>
 
@@ -49,9 +94,24 @@ if (count($slide)> 0) {
         
             <center>
                 
-               <?php echo '<span style="font-size: 15px"><b>'.$slide['ST_NOME_CR'].'</b></span><br><span id="tituloslide">'.$slide['ST_TITULO_SLI'].'</span><br>Slide N: <span id="numeroslide">'.$slide['NM_SLIDE_SLI'].'</span>'; ?>
+               <?php echo '<span style="font-size: 15px"><b>'.$slide['ST_NOME_CR'].'</b></span><br><span id="tituloslide">'.$slide['ST_TITULO_SLI'].'</span>'; ?>
         
             </center>
+            
+             <?php
+                echo '<div id="divQuadrantes"><center>';
+                for ($i; $i <= $quadrados_quantidade; $i++) {
+                    
+                    $color = '';
+                    if ($i == $slide['NM_SLIDE_SLI']) {
+                         $color = 'primary';
+                    } else {
+                         $color = 'default';
+                    }
+                    echo '<a href="javascript:void(0)" class="quadslide" data-slide='.$i.'><span id="quad_'.$i.'" class="quadclass badge badge-'.$color.' badge-square" style="margin-right: 7px; margin-right: 7px;">'.$i.'</span></a>';
+                }
+                echo '</center></div>';
+            ?>
         </div>
         <div class="col-lg-12 container" style="padding-top:25px"><span id="htmlslide"><?php echo $slide['ST_SLIDE_SLI']; ?></span></div> 
     </div>
@@ -61,7 +121,7 @@ if (count($slide)> 0) {
 <?php
 
     $decform = new Decorators_Form();
-    $formAanotacoes = new Forms_Anotacoes(array('titulo' => 'Anotacoes', 'class' => 'col-lg-5 col-sm-6 col-xs-10'));
+    $formAanotacoes = new Forms_Anotacoes(array('titulo' => 'Anotacoes', 'class' => 'col-md-5 col-sm-6 col-xs-18', 'icone' => 'fa fa-pencil-square-o'));
     $formAanotacoes->populate($anotacoes);
     $formAanotacoes->addDecorator($decform);
 
@@ -69,11 +129,39 @@ if (count($slide)> 0) {
     
 ?>
 
-<div class="col-lg-5 col-sm-6 col-xs-10">
+<div class="col-lg-5 col-md-3 col-sm-6 col-xs-10">
+                                    <div class="databox bg-white radius-bordered">
+                                        <div class="databox-left bg-themeprimary">
+                                            <div class="databox-piechart">
+                                                <div id="users-pie" data-toggle="easypiechart" class="easyPieChart" data-barcolor="#fff" data-linecap="butt" data-percent="80" data-animate="500" data-linewidth="3" data-size="47" data-trackcolor="rgba(255,255,255,0.1)" style="width: 47px; height: 47px; line-height: 47px;"><span class="white font-90"><h2><div id="vlPorcentagemExercicios">
+                                                <?php
+        
+                                                    if ($usuario_curso['NM_TOTALEXERC_UC'] == 0 ||  $usuario_curso['NM_ACERTOS_UC'] == 0) {
+                                                        echo '0';
+                                                    } else {
+                                                        echo intval(($usuario_curso['NM_ACERTOS_UC']*100)/$usuario_curso['NM_TOTALEXERC_UC']);
+                                                    }
+                                                
+                                                
+                                                    ?>%</div></h2></span><canvas width="47" height="47"></canvas></div>
+                                            </div>
+                                        </div>
+                                        <div class="databox-right">
+                                            <span class="databox-number themeprimary"><span id="vlCorretas"><?php echo $usuario_curso['NM_ACERTOS_UC']; ?></span>/<span id="vlExercicios"><?php echo $usuario_curso['NM_TOTALEXERC_UC']; ?></span></span>
+                                            <div class="databox-text darkgray">EXERCICIOS</div>
+                                            <div class="databox-state bg-themeprimary">
+                                                <i class="fa fa-pencil"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+<!--<div class="col-lg-5 col-sm-6 col-xs-10">
     <div class="widget-body">
-        Correicoes <span id="vlCorretas">0</span>/<span id="vlExercicios">0</span>
+        Correicoes 
     </div>
-</div>
+</div>-->
 
 
 <?php
@@ -230,6 +318,21 @@ if (count($slide)> 0) {
 
 <script type="text/javascript">
     
+    function porcentagem(valor1, valor2) {
+        if (valor1 == 0 || valor2 == 0) {
+            return 0;
+        } else {
+            return parseInt((valor1*100)/valor2);
+        }
+    }
+    
+    function quadrados(actual) {
+        var default_ = 'quadclass badge badge-default badge-square';
+        
+        $('.quadclass').removeClass().addClass(default_);      
+        $('#quad_'+actual).removeClass('badge-default').addClass('badge-primary');
+    }
+    
     function exercicios() {
        
         $('#btnRespostas').bind('click', function() {
@@ -267,8 +370,12 @@ if (count($slide)> 0) {
                         }
                     });
                 });   
-                $('#vlCorretas').html(parseInt($('#vlCorretas').html())+corretas);
-                $('#vlExercicios').html(parseInt($('#vlExercicios').html())+perguntas);
+                var c = parseInt($('#vlCorretas').html()) + corretas;
+                var p = parseInt($('#vlExercicios').html())+perguntas;
+                $('#vlCorretas').html(c);
+                $('#vlExercicios').html(p);
+                $('#vlPorcentagemExercicios').html(porcentagem(c,p)+'%');
+                
             });
         });
         
@@ -301,6 +408,7 @@ if (count($slide)> 0) {
         if (respostas !== '') {
             var verdadeiras = $('#verdadeiras').val();
             var valores_verdadeiras = JSON.parse(verdadeiras);
+            
             var valores_respostas = JSON.parse(respostas);
             var perguntas = 0;
             var corretas = 0;
@@ -329,17 +437,63 @@ if (count($slide)> 0) {
                     }
                 });
             });   
-            $('#vlCorretas').html(parseInt($('#vlCorretas').html())+corretas);
-            $('#vlExercicios').html(parseInt($('#vlExercicios').html())+perguntas);    
+//            $('#vlCorretas').html(parseInt($('#vlCorretas').html())+corretas);
+//            $('#vlExercicios').html(parseInt($('#vlExercicios').html())+perguntas);    
             $('#btnCorregir').css("display","none");
             $('#btnRespostas').css("display","none");            
         }
     };
     
+    function recalcular_quadrados(actual) {
+        $('#divQuadrantes').html('');
+        var quantidade = $('#quantidade').val();
+        var quadrados_quantidade = quantidade;
+        var i = 1;
+
+        if (quadrados_quantidade > 14) {
+            quadrados_quantidade = 14;
+        }
+
+        if (actual >= 8) {
+            var aux = actual + 8;
+            if (aux < quantidade) {
+                i = actual - 7;
+                quadrados_quantidade = actual + 8;
+            } else {
+                quadrados_quantidade = quantidade;
+                i = quantidade - 14;
+            }
+        }
+
+        var html = '<center>';
+        var classe = '';
+        for (i; i <= quadrados_quantidade; i++) {
+            classe = 'default';
+            if (i == actual) {
+                classe = 'primary';
+            }
+            html += '<a href="javascript:void(0)" class="quadslide" data-slide="'+i+'"><span id="quad_'+i+'" class="badge badge-'+classe+' badge-square" style="margin-right: 7px; margin-right: 7px;">'+i+'</span></a>';
+        }
+        html += '</center>';
+        $('#divQuadrantes').html(html);
+        
+        quadslideEvent();
+    }
+    
+    function quadslideEvent() {
+        $('.quadslide').bind('click', function() {
+            var slide = $(this).data('slide');
+            $('#slide').val(slide - 1);
+            $('#sig').trigger('click');
+        });    
+    }
+    
     $(function() {
       
         verificarRespostas();
         exercicios();
+        
+        quadslideEvent();
         
         $('.btnExcluir').bind('click', function() {
             var pergunta = $(this).attr('valor'); 
@@ -361,15 +515,18 @@ if (count($slide)> 0) {
             });
         });
         
-        $('#sig').bind('click', function() {     
+        $('#fim').bind('click', function() {     
             var curso = $('#curso').val();
-            var slide = parseInt($('#slide').val())+1;
+            var slide = parseInt($('#quantidade').val());
             
             $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
                     var resposta = data.ST_RESPOSTAS_USC;
                     if (resposta !== '') {
                         resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
                     }
+                    
+                    quadrados(slide);
+                    
                     $('#htmlslide').html(data[0].ST_SLIDE_SLI);
                     $('#numeroslide').html(data[0].NM_SLIDE_SLI);
                     $('#tituloslide').html(data[0].ST_TITULO_SLI);
@@ -378,18 +535,75 @@ if (count($slide)> 0) {
                     $('#slide').val(slide);
                     verificarRespostas();
                     exercicios();
+                    recalcular_quadrados(slide);
             });
+        });
+        
+        
+        $('#sig').bind('click', function() {     
+            
+            var curso = $('#curso').val();
+            var slide = parseInt($('#slide').val())+1;
+            
+            if (slide <= $('#quadrados_quantidade').val()) {
+            
+                $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
+                        var resposta = data.ST_RESPOSTAS_USC;
+                        if (resposta !== '') {
+                            resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
+                        }
+
+                        quadrados(slide);
+
+                        $('#htmlslide').html(data[0].ST_SLIDE_SLI);
+                        $('#numeroslide').html(data[0].NM_SLIDE_SLI);
+                        $('#tituloslide').html(data[0].ST_TITULO_SLI);
+                        $('#verdadeiras').val(data[0].ST_RESPOSTAS_SLI);
+                        $('#respostas').val(resposta);
+                        $('#slide').val(slide);
+                        verificarRespostas();
+                        exercicios();
+                        recalcular_quadrados(slide);
+                });
+            }
         });
         
         $('#ant').bind('click', function() {     
             var curso = $('#curso').val();
             var slide = parseInt($('#slide').val())-1;
             
+            if (slide > 0) {
+            
+                $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
+                        var resposta = data.ST_RESPOSTAS_USC;
+                        if (resposta !== '') {
+                            resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
+                        }
+                        quadrados(slide);
+
+                        $('#htmlslide').html(data[0].ST_SLIDE_SLI);   
+                        $('#numeroslide').html(data[0].NM_SLIDE_SLI);
+                        $('#tituloslide').html(data[0].ST_TITULO_SLI);
+                        $('#slide').val(slide);
+                        $('#verdadeiras').val(data[0].ST_RESPOSTAS_SLI);
+                        $('#respostas').val(resposta);
+                        verificarRespostas();
+                        exercicios();
+                        recalcular_quadrados(slide);
+                });
+            }
+        });   
+        $('#inicio').bind('click', function() {     
+            var curso = $('#curso').val();
+            var slide = 1;
+            
             $.post("vercursojson", {curso : curso, slide: slide}, function(data) {
                     var resposta = data.ST_RESPOSTAS_USC;
                     if (resposta !== '') {
                         resposta = data.ST_RESPOSTAS_USC[0].ST_RESPOSTAS_USC;
                     }
+                    quadrados(slide);
+                    
                     $('#htmlslide').html(data[0].ST_SLIDE_SLI);   
                     $('#numeroslide').html(data[0].NM_SLIDE_SLI);
                     $('#tituloslide').html(data[0].ST_TITULO_SLI);
@@ -398,11 +612,25 @@ if (count($slide)> 0) {
                     $('#respostas').val(resposta);
                     verificarRespostas();
                     exercicios();
+                    recalcular_quadrados(slide);
             });
-        });        
+        });   
     });
     
-    
+    $(document).keydown(function(e) {
+        switch(e.which) {
+            case 37:
+                $('#ant').trigger('click');// left
+            break;
+
+            case 39: // right
+                $('#sig').trigger('click')
+            break;
+
+            default: return; // exit this handler for other keys
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+});
     
 </script>    
 

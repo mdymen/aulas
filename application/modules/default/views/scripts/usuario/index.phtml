@@ -106,9 +106,9 @@
     if ($cantidad > 0) {
 $i = 0;
 foreach($cursos as $curso) {
-     if ($i == 2) {
+     if ($i == 3) {
          $i = 0;
-         echo '</div>';
+         echo '</div><br>';
      }
     
     $curso['NM_UTIMAVIU_UC'] = !empty($curso['NM_UTIMAVIU_UC']) ? $curso['NM_UTIMAVIU_UC'] : 0;
@@ -126,7 +126,7 @@ foreach($cursos as $curso) {
                                                                             </div>
                                                                             <div class="col-lg-8 col-sm-8 col-xs-8 text-align-left padding-10">
                                                                                 <span class="databox-header carbon no-margin"><?php echo $curso['ST_NOME_CR']; ?></span>
-                                                                                <span class="databox-text lightcarbon no-margin"><?php echo $curso['ST_DESCR_CR']; ?></span>
+                                                                                <span class="databox-text lightcarbon no-margin"></span>
                                                                             </div>
                                                                         </div>
                                                                         <div class="databox-bottom bg-white no-padding">
@@ -142,16 +142,16 @@ foreach($cursos as $curso) {
                                                                                     </div>
                                                                                     <div class="databox-cell cell-4 no-padding text-align-center">
                                                                                         <span class="databox-text sonic-silver no-margin">Porcentagem</span>
-                                                                                        <span class="databox-number lightcarbon no-margin"><?php echo $porcentagem.'%'; ?></span>
+                                                                                        <span class="databox-number lightcarbon no-margin"><?php echo intval($porcentagem).'%'; ?></span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="databox-row row-6 padding-10">
-                                                                                    <a href="<?php echo $this->baseUrl().'/curso/vercurso?curso='.$curso['ID_CURSO_CR']; ?>&slide=1" class="btn btn-palegreen btn-sm pull-right">ACESSAR</a>
+                                                                                     <br><span><a class="btn btn-primary" style="margin-right:5px" href="<?php echo $this->baseUrl('curso/ficha?curso='.$curso['ID_CURSO_CR'])?>"><i class="fa fa-info"></i> Ficha</a><a href="<?php echo $this->baseUrl('curso/vercurso?curso='.$curso['ID_CURSO_CR'].'&slide=1')?>" class="btn btn-success" role="button"><i class="fa fa-pencil"></i>Conferir</a></span>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div></div>
-<?php $i++; }  if ($i == 1 || $i == 2) { echo '</div>';} 
+<?php $i++; }  if ($i == 1 || $i == 2 || $i == 3) { echo '</div>';} 
 
     } else {
         include_once APPLICATION_PATH.'/elementoshtml/alerts.php';

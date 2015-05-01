@@ -113,15 +113,18 @@ class CursoController extends Zend_Controller_Action
         
         $cursos = new Models_Cursos();
         $usuario_curso = (array('ID_USU_UC' => $data['ID_ID_USU'] ,'ID_CUR_UC' => $params['curso'], 'NM_UTIMAVIU_UC' => 1));
-        $numslide = $cursos->estaMatriculado($usuario_curso);
+        $usuario_curso_retorno = $cursos->estaMatriculado($usuario_curso);
 
         $slides = new Models_Slides();
-        $slide = $slides->specificSlide($params['curso'], $numslide);
+        $slide = $slides->specificSlide($params['curso'], $usuario_curso_retorno['NM_UTIMAVIU_UC']);
 
         $this->view->respostas = '';
         if ($this->_tieneExercicios($slide[0])) {
-            $respostas = $this->_obterrespostas(array('curso' => $params['curso'],'slide' => $numslide));
-            $this->view->respostas = $respostas[0]['ST_RESPOSTAS_USC'];
+            $respostas = $this->_obterrespostas(array('curso' => $params['curso'],'slide' => $usuario_curso_retorno['NM_UTIMAVIU_UC']));
+            $this->view->respostas = '';
+            if (!empty($respostas)) {
+                $this->view->respostas = $respostas[0]['ST_RESPOSTAS_USC'];
+            }
         }
          
         $an = new Models_Anotacoes();
@@ -130,12 +133,16 @@ class CursoController extends Zend_Controller_Action
         $pergunta = new Models_Perguntas();
         $perguntas = $pergunta->perguntas($params['curso'],1);
 
+        $quantidade_slides = $slides->getTotalSlides($params['curso']);
+        
         $this->view->slide = $slide; 
         $this->view->anotacoes = $anotacoes;
         $this->view->perguntas = $perguntas;
         $this->view->idcurso = $this->_request->getParam('curso');
         $this->view->idslide = $this->_request->getParam('slide');
         $this->view->idusuario = $data['ID_ID_USU'];
+        $this->view->quantidade_slides = $quantidade_slides['quantidade'];
+        $this->view->usuario_curso = $usuario_curso_retorno;
     }
     
     public function fichaAction() {
@@ -182,6 +189,69 @@ class CursoController extends Zend_Controller_Action
         return $result;
     }
     
+    private function _calcularNuevosResultados($params) {
+        $storage = new Zend_Auth_Storage_Session();
+        $data = $storage->read();
+        $dados = get_object_vars($data);        
+        
+        $slides = new Models_Slides();
+        $slide = $slides->slideByNumber($params['ID_SLIDE_USC'], $params['ID_CURSO_USC']);
+        
+        $respostas_corretas = $slide['ST_RESPOSTAS_SLI'];
+        
+        $respostas_corretas_object = json_decode($respostas_corretas,true);
+        $respostas_object = json_decode($params['ST_RESPOSTAS_USC'], true);
+        
+        $corretas = 0;
+        $totales = 0;
+        foreach ($respostas_object as $pergunta => $resposta) {
+            if ($respostas_corretas_object[$pergunta] == $resposta) {
+                $corretas++;
+            }
+            $totales++;
+        }
+        
+        $cursos = new Models_Cursos();
+        $curso = $cursos->usuario_curso($params['ID_CURSO_USC'], $dados['ID_ID_USU']);
+        
+        $curso['NM_ACERTOS_UC'] = $curso['NM_ACERTOS_UC'] + $corretas;
+        $curso['NM_TOTALEXERC_UC'] = $curso['NM_TOTALEXERC_UC'] + $totales;
+        
+        $cursos->usuario_cursos_update($curso);
+        
+        return $curso;
+    }
+    
+    public function tAction() {
+        
+        $array = array('ST_RESPOSTAS_USC' =>'{"pergunta1":"mine","pergunta2":"his","pergunta3":"yours","pergunta4":"his","pergunta5":"yours"}',
+            'ID_SLIDE_USC' => 1,
+            'ID_CURSO_USC' => 1
+            );
+        
+                $array['ID_USUARIO_USC'] = 1;
+        
+        $slide = new Models_Slides();
+        $slide->saveRespostas($array);
+        
+        
+        $this->_calcularNuevosResultados($array);
+//        $json = '{"Nome":"Martin", "Sobenome" : "Dymenstein"}';
+//        
+//        $array = json_decode($json,true);
+//        
+//        foreach ($array as $pergunta => $resposta) {
+//            print_r($pergunta." ".$resposta."<br>");
+//        }
+//        die('.');
+        
+    }
+    
+    /*
+     * ST_RESPOSTAS_USC: json com as respostas, 
+     * ID_SLIDE_USC: id_slide, 
+     * ID_CURSO_USC: id_curso 
+     */
     public function enviarrespostasAction() {
         $params = $this->_request->getParams();
         
@@ -193,6 +263,8 @@ class CursoController extends Zend_Controller_Action
         
         $slide = new Models_Slides();
         $slide->saveRespostas($params);
+        
+        $this->_calcularNuevosResultados($params);
         
         $this->getResponse()
          ->setHeader('Content-Type', 'application/json');

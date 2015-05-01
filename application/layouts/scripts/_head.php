@@ -1,26 +1,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- Head --><head>
-    <meta charset="utf-8">
+    <meta charset=" iso-8859-1">
     <title>Bobby aulas - Cursos online</title>
     
+    
+        
 <?php
     require_once 'breadcrumb.php';
     $storage = new Zend_Auth_Storage_Session();
     $data = (get_object_vars($storage->read()));
     
     $data['ID_USUARIO_USU'] = $data['ID_ID_USU'];
-    
+
     $perguntas = new Models_Perguntas();
     $respostas = $perguntas->perguntasUsuarioNaoLidas($data);
     
     $count = count($respostas);
 ?>
-
     <meta name="description" content="data tables">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
-    
+<!--    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">-->
+    <link rel="shortcut icon" href="<?php echo $this->baseUrl().'/../public/img/icone.png'; ?>" type="image/x-icon">
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/dataTables.bootstrap.css'))?>    
         <a href="_head.php"></a>
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/jquery-2.0.3.min.js')) ?>
@@ -90,7 +91,15 @@
                 <!-- Account Area and Settings --->
                 <div class="navbar-header pull-right">
                     <div class="navbar-account">
+                        
                         <ul class="account-area">
+                            <li><?php 
+                                if ($data['ST_CONFIRMADO_USU'] != '') { 
+                                    include_once APPLICATION_PATH.'/Elementoshtml/alerts.php'; 
+                                    $root = 'http'. '://' . $_SERVER['HTTP_HOST'] . '/aulas/public/auth/reenviarmail?conf='.$data['ST_CONFIRMADO_USU'].'&email='.$data['ST_EMAIL_USU'];
+                                    echo Elementoshtml_Alerts::warning('Vocë precisa confirmar seu e-mail. <a href="'.$root.'">Re-enviar email</a>');                          
+                                } 
+                                ?></li>
                             <?php
                                 if ($data['FL_ADMIN_USU']) {  ?>
                                     <li>
@@ -501,7 +510,7 @@
                         <i class="searchicon fa fa-search"></i>
                         <div class="searchhelper">Search Your Contacts and Chat History</div>
                     </div>
-                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 581px;"><ul class="contacts-list" style="overflow: hidden; width: auto; height: 581px;">
+<!--                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 581px;"><ul class="contacts-list" style="overflow: hidden; width: auto; height: 581px;">
                         <li class="contact">
                             <div class="contact-avatar">
                                 <img src="assets/img/avatars/divyia.jpg">
@@ -637,9 +646,9 @@
                                 </div>
                             </div>
                         </li>
-                    </ul><div class="slimScrollBar" style="width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; left: 1px; background: rgb(45, 195, 232);"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; left: 1px; background: rgb(51, 51, 51);"></div></div>
+                    </ul><div class="slimScrollBar" style="width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; left: 1px; background: rgb(45, 195, 232);"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; left: 1px; background: rgb(51, 51, 51);"></div></div>-->
                 </div>
-                <div class="chatbar-messages" style="display: none;">
+<!--                <div class="chatbar-messages" style="display: none;">
                     <div class="messages-contact">
                         <div class="contact-avatar">
                             <img src="assets/img/avatars/divyia.jpg">
@@ -726,7 +735,7 @@
                             <i class="fa fa-camera themeprimary"></i>
                         </span>
                     </div>
-                </div>
+                </div>-->
             </div>
             <!-- /Chat Bar -->
             <!-- Page Content -->

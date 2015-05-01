@@ -7,7 +7,7 @@
 
        $mail->addTo('msn@dymenstein.com');
        $mail->setSubject('Testing 2');
-       $mail->setBodyText('prueba framework bobby!!!');
+       $mail->setBodyHtml('prueba framework bobby!!!');
        $mail->setFrom('msn@dymenstein.com', 'Martin Dymenstein');
 
        print_r($mail->send());
@@ -51,6 +51,12 @@ class Bobby_Mail {
     
     public function setBodyText($body) {
         $this->_send_mail->setBodyText($body);
+        return $this;
+    }
+    
+    
+    public function setBodyHtml($body) {
+        $this->_send_mail->setBodyHtml($body);
         return $this;
     }
     

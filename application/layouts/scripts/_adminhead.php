@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- Head --><head>
     <meta charset="utf-8">
     <title>Bobby aulas - Cursos online</title>
-    
+     <link rel="shortcut icon" href="<?php echo $this->baseUrl().'/../public/img/icone.png'; ?>" type="image/x-icon">
 <?php
     require_once 'breadcrumb.php';
     
@@ -471,7 +471,7 @@ die('.');*/
             </div>
             <!-- /Page Sidebar -->
             <!-- Chat Bar -->
-            <div id="chatbar" class="page-chatbar">
+<!--            <div id="chatbar" class="page-chatbar">
                 <div class="chatbar-contacts">
                     <div class="contacts-search">
                         <input type="text" class="searchinput" placeholder="Search Contacts">
@@ -704,7 +704,7 @@ die('.');*/
                         </span>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!-- /Chat Bar -->
             <!-- Page Content -->
             <div class="page-content">

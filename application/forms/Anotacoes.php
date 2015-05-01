@@ -9,7 +9,7 @@ class Forms_Anotacoes extends Zend_Form {
     function init() {
         
         $dec = new Decorators_Textarea();
-        $anotacoes = new Zend_Form_Element_Textarea("ST_TEXTO_ANO", array('placeholder' => 'Escreve as anotacoes do curso...'));
+        $anotacoes = new Zend_Form_Element_Textarea("ST_TEXTO_ANO", array('placeholder' => 'Escreve as anotacoes do curso...', 'rows' => 13));
         $anotacoes->addDecorator($dec);
         
         $idusu = new Zend_Form_Element_Hidden('ID_USUARIO_USU');

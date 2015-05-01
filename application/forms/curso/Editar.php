@@ -7,11 +7,13 @@ include APPLICATION_PATH.'/decorators/button.php';
 class Forms_Curso_Editar extends Zend_Form{
  function init() {
         
-        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/bobby/public';
+        $root = ('http') . '://' . $_SERVER['HTTP_HOST'] . '/aulas/public/admin';
         
-        $this->setAction($root."/curso/addcurso")->setMethod("post");
+        $this->setAction($root."/curso/editar")->setMethod("post");
 
         $this->setAttrib('enctype', 'multipart/form-data');
+        
+        $idhidden = new Zend_Form_Element_Hidden('ID_ID_CR');
         
         $decorator = new Decorators_Decorator1();
         $id = new Zend_Form_Element_Text('ST_IDENT_CR', array('placeholder' => 'Identificador do curso', 'icono' => 'fa fa-key', 'col' => 'col-sm-6'));
@@ -21,9 +23,17 @@ class Forms_Curso_Editar extends Zend_Form{
         $nome = new Zend_Form_Element_Text('ST_NOME_CR"', array('placeholder' => 'Nome do curso'));
         $nome->addDecorator($decorator1);
         
+        $decorator8 = new Decorators_Decorator1();        
+        $subtitulo = new Zend_Form_Element_Text('ST_SUBTITULO_CR"', array('placeholder' => 'subtitulo'));
+        $subtitulo->addDecorator($decorator8);
+        
         $decorator2 = new Decorators_Decorator1();  
         $custo = new Zend_Form_Element_Text('VL_CUSTO_CR', array('placeholder' => 'Custo', 'icono' => 'fa fa-dollar', 'col' => 'col-sm-4')); 
         $custo->addDecorator($decorator2);
+        
+        $decorator7 = new Decorators_Textarea(); 
+        $minides = new Zend_Form_Element_Textarea('ST_MINIDESCR_CR', array('placeholder' => 'Mini descricao', 'rows' => 5));
+        $minides->addDecorator($decorator7);    
         
         $decorator3 = new Decorators_Textarea(); 
         $des = new Zend_Form_Element_Textarea('ST_DESCR_CR', array('placeholder' => 'Descripcion', 'rows' => 5));
@@ -52,7 +62,7 @@ class Forms_Curso_Editar extends Zend_Form{
         $excluir = new Zend_Form_Element_Button('Excluir', array('type' => 'submit', 'class' => 'btn btn-red', 'value'=> 'Excluir'));
         $excluir->addDecorator($buttondec1);
         
-        $this->addElements(array($id, $custo, $nome,  $des, $objetivo, $conteudo, $caract, $file, $register, $excluir));
+        $this->addElements(array($idhidden, $id, $custo, $nome, $subtitulo, $minides, $des, $objetivo, $conteudo, $caract, $file, $register, $excluir));
         
     }
 }

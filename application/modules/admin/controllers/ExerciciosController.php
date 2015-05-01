@@ -9,9 +9,334 @@ class Admin_ExerciciosController extends Zend_Controller_Action {
     public function init() {}
     
     public function indexAction() {
-        $this->view->perguntas = $this->pronouns1();
+        $this->view->perguntas = $this->vertobe10();
     }
 
+    public function vertobe10() {
+ 
+        $p[0]['pergunta'] = "__ Mary a good student? Mary não foi uma boa estudante?";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'Wasn?t';
+        
+        $p[1]['pergunta'] = "My dog __ a bad friend. Meu cão não foi um mau amigo.";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'wasn?t';
+        
+        $p[2]['pergunta'] = "My dogs __ good friends. Meus cães foram bons amigos.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'were';
+        
+        return $p;        
+        
+    }    
+    
+    public function vertobe9() {
+            
+        $p[0]['pergunta'] = "Where were you yesterday? Onde vocês estavam ontem?";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'were';
+        
+        $p[1]['pergunta'] = " We __ here yesterday. Nós não estávamos aqui ontem.";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'weren?t';
+        
+        $p[2]['pergunta'] = "I __ a good student. Eu fui um bom estudante.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'was';
+        
+        return $p;        
+        
+    }
+    
+    public function vertobe8() {
+        $p[0]['pergunta'] = " The boy __ here yesterday. O menino estava aqui ontem.";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'was';
+        
+        $p[1]['pergunta'] = "You __ here yesterday. Você estava aqui ontem.";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'were';
+        
+        $p[2]['pergunta'] = "__ you here yesterday?. Vocês estavam aqui ontem?";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'Were';
+        
+        return $p;        
+        
+    }
+    
+    public function verbtobe7() {
+        $p[0]['pergunta'] = "We are not (We __) ? Nós não somos/estamos";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'aren?t';
+        
+        $p[1]['pergunta'] = "You are not (You __) ? Vocês não são/estão";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'aren?t';
+        
+        $p[2]['pergunta'] = "They are not (They __) ? Eles não são/estão";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'aren?t';
+        
+        return $p;
+    }
+    
+    
+     public function verbtobe6() {
+        $p[0]['pergunta'] = "She __ __ ? Ela não é/está";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'is not';
+        
+        $p[1]['pergunta'] = "It __ __ ? Isto não é/está";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'is not';
+        
+
+        
+        return $p;
+    }      
+    
+     public function verbtobe5() {
+        $p[0]['pergunta'] = "I am __ ? Eu não sou/estou";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'not';
+        
+        $p[1]['pergunta'] = "You __ __ ? Você não é/está";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'are not';
+        
+        $p[2]['pergunta'] = "He __ not ? Ele não é/está";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'is';
+        
+        return $p;
+    }    
+    
+    /*
+
+
+
+
+
+*/
+    
+    
+     public function verbtobe3() {
+        $p[0]['pergunta'] = "You __ a student. (Você é um aluno).";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'are';
+        
+        $p[1]['pergunta'] = "He __ my neighbor. (Ele é meu vizinho).";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'is';
+        
+        $p[2]['pergunta'] = "She __ at the supermarket. (Ela está no supermercado).";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'is';
+        
+        return $p;
+    }
+
+     public function verbtobe4() {
+        $p[0]['pergunta'] = "The dog __ outside. (O cão está lá fora).";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'is';
+        
+        $p[1]['pergunta'] = "We __ friends. (Nós somos amigas).";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'are';
+        
+        $p[2]['pergunta'] = "You __ my enemies. (Vocês são meus inimigos).";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'are';
+
+        $p[3]['pergunta'] = "They __ upstairs. (Eles estão lá em cima).";
+        $p[3]['nome'] = 'pergunta4';
+        $p[3]['resposta'] = 'are';
+        
+        return $p;
+    }    
+    
+    public function verbtobe2() {
+        $p[0]['pergunta'] = "It __ raining this morning. (Hoje de manhã estava chovendo.)";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'was';
+        
+        $p[1]['pergunta'] = "It __ sunny today. (Hoje o dia está ensolarado.)";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'is';
+        
+        $p[2]['pergunta'] = "I __ twenty years old. (Tenho vinte anos.)";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'am';
+        
+        return $p;
+    }
+    
+    
+    public function verbtobe1() {
+        $p[0]['pergunta'] = "I __ Italian. (Eu sou Italiano.)";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'am';
+        
+        $p[1]['pergunta'] = "I __ from Spain. (Eu sou da Espanha.)";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'am';
+        
+        $p[2]['pergunta'] = "It __ a computer. (Isto é um computador.)";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'is';
+        
+        return $p;
+    }
+    
+    public function possesives2() {
+        $p[0]['pergunta'] = "Can you lend me a pencil? I forgot __ (yours, hers, mine).";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'mine';
+        
+        $p[1]['pergunta'] = "That is my problem, not __ (yours, mine).";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'yours';
+        
+        $p[2]['pergunta'] = "This belongs to Sally. It's __ (yours, mine, hers).";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'hers';
+        
+        return $p;
+    }
+    
+    public function reflexivepronoun2() {
+        $p[0]['pergunta'] = "She was waiting for her husband by __.";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'herself';
+        
+        $p[1]['pergunta'] = "Did you go to the park by __?";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'yourself';
+        
+        $p[2]['pergunta'] = "Sometimes Richard prefers to be by __.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'himselft';
+        
+        return $p;    
+    }
+    
+    
+    public function reflexivepronoun1() {
+        $p[0]['pergunta'] = "The girl cut __ with a knife.";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'herself';
+        
+        $p[1]['pergunta'] = "He hurt __ last week.";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'himself';
+        
+        $p[2]['pergunta'] = "Angela only thinks about __.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'herself';
+        
+        return $p;    
+    }
+
+    public function subjectpronoun6() {
+        $p[0]['pergunta'] = "Can ( I/ me) borrow this book from you?";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'I';
+        
+        $p[1]['pergunta'] = "? Sure, can you give (I/ me) back the other one first?";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'me';
+        
+        $p[2]['pergunta'] = "Angela only thinks about (she/ her/ herself).";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'herself';
+        
+        return $p;           
+    }
+    
+    public function subjectpronoun5() {
+  
+        $p[0]['pergunta'] = "We scored as many goals as (they/them) scored.";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'they';
+        
+        $p[1]['pergunta'] = "Can you sing as well as (they/them) sing?";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'they';
+        
+        $p[2]['pergunta'] = "None are so blind as (they/them) that will not see.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'they';
+        
+        return $p;          
+    }
+    
+    public function subjectpronoun4() {
+        $p[0]['pergunta'] = "You should consult the book. Q: the book = (   )?";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'it';
+        
+        $p[1]['pergunta'] = "(I/ me) believe Mark and Cindy are the Best employees of the year.";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'I';
+        
+        $p[2]['pergunta'] = "Q: Mark and Cindy = (   )?.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'they';
+        
+        return $p;       
+    }
+    
+    public function subjectpronoun3() {
+        $p[0]['pergunta'] = "(I/ Me) can help her with the new computer.";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'I';
+        
+        $p[1]['pergunta'] = "(He/ him) is travelling with that group of gentlemen.";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'He';
+        
+        $p[2]['pergunta'] = "Question: that group of gentlemen = (them/ they)?.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'them';
+        
+        return $p;
+       
+    }
+    
+    public function subjectpronoun2() {
+        $p[0]['pergunta'] = "Elephants are big animals. __ live in Africa and Asia.";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'They';
+        
+        $p[1]['pergunta'] = "I and my brother love football. __ watch football matches on Tv every Sunday.";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'We';
+        
+        $p[2]['pergunta'] = "Kaká and Robinho live in Europe. __ are football players.";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'They';
+        
+        return $p;
+    }
+    
+    public function subjectpronoun1() {
+        $p[0]['pergunta'] = "Tom Cruise is American. Tom Cruise is married. Tom Cruise is American. __ is married.";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'He';
+        
+        $p[1]['pergunta'] = "New York is a big city. __ is in the United States.";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'It';
+        
+        return $p;
+    }
+    
+    
+    
+    
+    
     /*
      * CURSO 1
      * 
@@ -407,6 +732,18 @@ I told him all that happened, contei-lhe tudo que aconteceu.*/
         return $p;
     }
 
+    public function possesives1() {
+        $p[0]['pergunta'] = "Whose notebook is this? - It's ...(her, their, his)";
+        $p[0]['nome'] = 'pergunta4';
+        $p[0]['resposta'] = 'his';
+
+        $p[1]['pergunta'] = "- Is this your pen? - No, it's ...(yours, their, my)";
+        $p[1]['nome'] = 'pergunta5';
+        $p[1]['resposta'] = 'yours';       
+        
+        return $p;
+    }
+    
     public function possesives() {
         $p[0]['pergunta'] = "This book is not Paul's, it's ... (my, hers, mine)";
         $p[0]['nome'] = 'pergunta1';
@@ -420,13 +757,6 @@ I told him all that happened, contei-lhe tudo que aconteceu.*/
         $p[2]['nome'] = 'pergunta3';
         $p[2]['resposta'] = 'yours';
         
-        $p[3]['pergunta'] = "Whose notebook is this? - It's ...(her, their, his)";
-        $p[3]['nome'] = 'pergunta4';
-        $p[3]['resposta'] = 'his';
-
-        $p[4]['pergunta'] = "- Is this your pen? - No, it's ...(yours, their, my)";
-        $p[4]['nome'] = 'pergunta5';
-        $p[4]['resposta'] = 'yours';
         return $p;
     }    
 }

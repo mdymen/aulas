@@ -1,23 +1,27 @@
 
+ <link rel="shortcut icon" href="<?php echo $this->baseUrl().'/../public/img/icone.png'; ?>" type="image/x-icon">
 <?php
 
-    $storage = new Zend_Auth_Storage_Session();
-    $data = $storage->read();
-    
-    if (!empty($data)) {
-        echo $this->render('_head.php');
-        echo $this->render('_footer.php');       
-        
-    } else {
-         $uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
-         $url  =   explode("/", $uri);
+    //Para mudar a senha
+    $request = new Zend_Controller_Request_Http();
+    $params =  $request->getParams();
 
-        if (empty($url[3]) && empty($url[4])) {
-                 echo $this->render('login.phtml');
+    if (!empty($params['esqueceu'])) {
+        echo $this->render('esqueceusenha.phtml');
+    }
+    else {
+        $storage = new Zend_Auth_Storage_Session();
+        $data = $storage->read();
+
+        if (!empty($data)) {
+            echo $this->render('_head.php');
+            echo $this->render('_footer.php');       
+
+        } else {
+             $uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
+             $url  =   explode("/", $uri);
+            if (empty($url[4])) {
+                     echo $this->render('login.phtml');
+            }
         }
     }
-    
-    
-   
-
-

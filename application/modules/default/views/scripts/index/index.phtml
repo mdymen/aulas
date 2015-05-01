@@ -1,12 +1,16 @@
 <?php
    $cursos = $this->cursos;
    $perguntas = $this->perguntas;
-   $pergunta = $perguntas[0];
+   if (!empty($perguntas)) {
+    $pergunta = $perguntas[0];
+   } else {
+    $pergunta = 0;   
+   }
    
   $cantCursos = $this->cantCursos;
   $cantCursos = $cantCursos[0];
 ?>
-
+<!--<a href="javascript:void(0);" class="btn btn-default  btn-circle btn-lg"><i class="glyphicon glyphicon-pencil"></i></a>-->
 <!--<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <div class="databox bg-white radius-bordered">
                                         <div class="databox-left no-padding">
@@ -40,7 +44,9 @@
                                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 item-left">
                                                 <div class="item-booker"><a href="<?php echo $this->baseUrl().'/curso/ficha?curso='.$curso['ID_ID_CR']; ?>"><?php echo $curso['ST_NOME_CR']; ?></a></div>
                                                 <div class="item-time">
-                                                    <i class="fa fa-calendar"></i>
+                                                    <a title="Info" class="" style="margin-right:5px" href="<?php echo $this->baseUrl().'/curso/ficha?curso='.$curso['ID_ID_CR']; ?>">&nbsp;<i class="fa fa-info"></i></a>
+                                                    <a title="Fazer" class="" style="margin-right:5px" href="<?php echo $this->baseUrl().'/curso/vercurso?curso='.$curso['ID_ID_CR']; ?>"><i class="fa fa-pencil"></i></a>
+<!--                                                    <i class="fa fa-calendar"></i>-->
                                                     <span><?php echo '&nbsp;&nbsp;  '.$curso['Quantidade']." slides"; ?></span>
                                                 </div>
                                             </div>
@@ -54,7 +60,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                         <a class="item-more lnk" id="lnk" href="javascript:void(0);" class="btn btn-default" data-container="body" data-titleclass="bordered-purple" data-class="dark" data-toggle="popover-hover" data-placement="left" data-title="Hover" data-content="<?php echo $curso['ST_DESCR_CR']; ?>" data-indice="<?php echo $indice; ?>" data-original-title="" title="">
+                                         <a class="item-more lnk" id="lnk" href="javascript:void(0);" class="btn btn-default" data-container="body" data-titleclass="bordered-purple" data-class="dark" data-toggle="popover-hover" data-placement="left" data-title="Hover" data-content="<?php echo $curso['ST_MINIDESCR_CR']; ?>" data-indice="<?php echo $indice; ?>" data-original-title="" title="">
                                                      <i></i>
                                                 </a>
 
@@ -94,7 +100,7 @@
                                             </div>
                                         </div>
                                         <div class="databox-right">
-                                            <span class="databox-number orange"><?php echo $cantCursos['cursos']; ?></span>
+                                            <span class="databox-number orange">&nbsp;<?php echo $cantCursos['cursos']; ?></span>
                                             <div class="databox-text darkgray"><a href="<?php echo $this->baseUrl().'/curso/cursos'; ?>">CURSOS</a></div>
                                             <div class="databox-stat orange radius-bordered">
                                                 <i class="stat-icon icon-lg fa fa-tasks"></i>
@@ -111,7 +117,7 @@
                                             </div> 
                                         </div>
                                         <div class="databox-right">
-                                            <span class="databox-number yellow"></span>
+                                            <span class="databox-number yellow">&nbsp;</span>
                                             <div class="databox-text darkgray"><a href="<?php echo $this->baseUrl().'/usuario/index'; ?>">MINHA CONTA</a></div>
                                             <div class="databox-stat yellow radius-bordered">
                                                 <i class="stat-icon icon-lg fa fa-tasks"></i>
@@ -128,7 +134,7 @@
                                             </div>
                                         </div>
                                         <div class="databox-right">
-                                            <span class="databox-number azure"><?php echo $pergunta['perguntas']; ?></span>
+                                            <span class="databox-number azure"><?php echo $pergunta['perguntas'] ? $pergunta['perguntas'] : 0; ?></span>
                                             <div class="databox-text darkgray"><a href="<?php echo $this->baseUrl().'/perguntas/index' ?>">MINHAS PERGUNTAS</a></div>
                                             <div class="databox-stat azure radius-bordered">
                                                 <i class="stat-icon icon-lg fa fa-tasks"></i>

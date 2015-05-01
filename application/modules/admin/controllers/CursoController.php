@@ -76,7 +76,15 @@ class Admin_CursoController extends Zend_Controller_Action
         
     }
     
-    public function editarAction() {}
+    public function editarAction() {
+        $params = $this->_request->getParams();
+        
+        $cursos = new Models_Cursos();
+        $cursos->update($params);
+        
+        $this->redirect('/admin/curso');
+    
+    }
     
     public function vercursojsonAction() {
         $params = $this->_request->getParams();

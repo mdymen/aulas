@@ -64,6 +64,8 @@ class Models_Slides extends Zend_Db_Table_Abstract {
         
         $resposta = $query->fetchAll();
         
+        $db->closeConnection();
+        
         return $resposta;
     }
     
@@ -80,6 +82,16 @@ class Models_Slides extends Zend_Db_Table_Abstract {
         $curso = $query->fetchAll();
         
         return $curso;
+    }
+    
+    function slideByNumber($numSlide, $idCurso) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $select = $db->select()->from($this->_name)
+                ->where('NM_SLIDE_SLI = ?', $numSlide)
+                ->where('ID_CURSO_CR = ?', $idCurso);
+        
+        return $select->query()->fetch();
     }
     
     function slides() {
@@ -141,6 +153,8 @@ class Models_Slides extends Zend_Db_Table_Abstract {
         
         $slide = $query->fetchAll();
         
+        $db->closeConnection();
+        
         return $slide;
     }
     
@@ -152,5 +166,14 @@ class Models_Slides extends Zend_Db_Table_Abstract {
         );
         
         $db->update('usuario_curso',$info,'ID_USU_UC = '.$params['ID_USU_UC'].' AND ID_CUR_UC = '.$params['ID_CUR_UC']);
+    }
+    
+    function getTotalSlides($curso) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $select = $db->select($this->_name)->from($this->_name, array('quantidade' => 'count(*)'))
+                ->where('ID_CURSO_CR = ?', $curso);
+        
+        return $select->query()->fetch();
     }
 }
