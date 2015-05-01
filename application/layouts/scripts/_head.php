@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- Head --><head>
-    <meta charset="utf-8">
+    <meta charset=" iso-8859-1">
     <title>Bobby aulas - Cursos online</title>
     
     
@@ -16,7 +16,6 @@
     
     $count = count($respostas);
 ?>
-
     <meta name="description" content="data tables">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
