@@ -23,7 +23,10 @@ class UsuarioController extends Zend_Controller_Action {
     
     function indexAction() {
         $usuario = new Models_Usuarios();
+        $credito = new Application_Model_Creditos();
         
+        $creditos = $credito->retornarCreditos($this->data['ID_ID_USU']);
+
         $perguntas = $usuario->getPerguntas($this->data);
         
         $this->view->perguntas = $perguntas;
@@ -31,6 +34,8 @@ class UsuarioController extends Zend_Controller_Action {
         $cursos = $usuario->getCursosSlidesDoUsuario($this->data);
         
         $this->view->cursos = $cursos;
+        
+        $this->view->creditos = $creditos;
         
         $this->view->usuario = $this->data;
         
