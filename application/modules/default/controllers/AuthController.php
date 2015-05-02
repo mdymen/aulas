@@ -142,7 +142,7 @@ class AuthController extends Zend_Controller_Action {
             $mail->addTo('<'.$params['ST_EMAIL_USU'].'>');
             $mail->setSubject('Bem vindo Bobby Aulas');
             $root = 'http'. '://' . $_SERVER['HTTP_HOST'] . '/aulas/public/?esqueceu='.$md5;
-            $string = '<a href="'.$root.'" target="_BLANK">mudar senha</a>';
+            $string = 'Clique no link abaixo para alteração de sua senha.<br><br><a href="'.$root.'" target="_BLANK">MUDAR SENHA</a>';
             $mail->setBodyHtml($string);
             $mail->setFrom('bobbyaulas@gmail.com', 'Bobby Aulas');
             $mail->send();    
