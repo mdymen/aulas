@@ -16,6 +16,42 @@ class AuthController extends Zend_Controller_Action {
     
     function indexAction() {}
     
+    function checkusuarioAction() {
+        $params = $this->_request->getParams();
+        
+        $usuarios = new Models_Usuarios();
+        $usuario = $usuarios->getUserByUser($params['usuario']);
+        $exists = true;
+        if (empty($usuario)) {
+            $exists = false;
+        }
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        $this->_helper->json($exists); 
+    }
+
+   function checkemailAction() {
+        $params = $this->_request->getParams();
+        
+        $usuarios = new Models_Usuarios();
+        $email = $usuarios->getUserByEmail($params['email']);
+        $exists = true;
+        if (empty($email)) {
+            $exists = false;
+        }
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        $this->_helper->json($exists); 
+    }
+    
     function signupAction() {
         $params = $this->_request->getParams();
         
