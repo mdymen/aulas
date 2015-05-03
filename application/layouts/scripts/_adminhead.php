@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- Head --><head>
-    <meta charset="utf-8">
+    <meta charset="iso-8859-1">
     <title>Bobby aulas - Cursos online</title>
      <link rel="shortcut icon" href="<?php echo $this->baseUrl().'/../public/img/icone.png'; ?>" type="image/x-icon">
 <?php
@@ -14,10 +14,11 @@ die('.');*/
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
-    
+        
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/dataTables.bootstrap.css'))?>    
         <a href="_head.php"></a>
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/jquery-2.0.3.min.js')) ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/skins.min.js')) ?>
         
         <!--Page Related Scripts--> 
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/toastr/toastr.js')) ?>
@@ -27,6 +28,9 @@ die('.');*/
         
     <!--Beyond Scripts-->
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/beyond.min.js')) ?>     
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/dashBoard.js')) ?>  
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/dashboard/alteraPendente.js')) ?>  
+    
         
     <!--Basic Styles-->
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/bootstrap.min.css'))?>
@@ -35,7 +39,9 @@ die('.');*/
     <link id="bootstrap-rtl-link" href="" rel="stylesheet">
         
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/font-awesome.css'))?>           
-    <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/weather-icons.min.css'))?>           
+    <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/weather-icons.min.css'))?> 
+    <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/toggleButton.css'))?> 
+        
     
     <!--<link href="assets/css/font-awesome.min.css" rel="stylesheet"> -->
 
@@ -51,6 +57,10 @@ die('.');*/
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/demo.min.css'))?> 
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/typicons.min.css'))?> 
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/animate.min.css'))?> 
+    <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/skins/blue.min.css'))?>
+    
+    
+
     <!--<link href="assets/css/demo.min.css" rel="stylesheet">
     <link href="assets/css/typicons.min.css" rel="stylesheet">
     <link href="assets/css/animate.min.css" rel="stylesheet">-->
@@ -439,6 +449,27 @@ die('.');*/
                 <ul class="nav sidebar-menu">
                     <!--Databoxes-->
                     <li>
+                        <a href="#" class="menu-dropdown">
+                            <i class="menu-icon fa fa-lock"></i>
+                            <span class="menu-text"> Painel administrativo </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a href="<?php echo $this->baseUrl() . "/admin/dashboard"; ?>">
+                                    <span class="menu-text">Usuarios</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $this->baseUrl() . "/admin/dashboard/creditopendente"; ?>">
+                                    <span class="menu-text">Creditos pendentes</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="<?php echo $this->baseUrl() . "/admin/curso"; ?>">
                             <i class="menu-icon glyphicon glyphicon-tasks"></i>
                             <span class="menu-text">Cursos </span>
@@ -754,7 +785,19 @@ die('.');*/
         <!-- Main Container -->
 
     </div>
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/jquery-2.0.3.min.js')) ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/bootstrap.min.js')) ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/charts/sparkline/jquery.sparkline.js')) ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/charts/sparkline/sparkline-init.js')) ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/charts/easypiechart/jquery.easypiechart.js')) ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/charts/flot/jquery.flot.js')) ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/charts/flot/jquery.flot.resize.js')) ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/charts/flot/jquery.flot.pie.js')) ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/charts/flot/jquery.flot.tooltip.js')) ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/charts/flot/jquery.flot.orderBars.js')) ?>
+    <?php echo $this->headScript()?> 
 
+  
     <!--Basic Scripts-->
 
     <!--Google Analytics::Demo Only-->

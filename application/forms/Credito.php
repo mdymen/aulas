@@ -23,9 +23,11 @@ class Forms_Credito extends Zend_Form{
             $this->setAction("Credito/comprar")->setMethod("post");
             $this->setAttrib('titulo','Adicionar créditos');
             $this->setAttrib('onSubmit', 'submitUsandoAjax();');
-            $this->setAttrib('id', 'credito');
+            $this->setAttrib('id', 'FormCredito');
+            
             
                     $decCpt = new Decorators_Decorator1();
+                               
             
         $agencia = new Zend_Form_Element_Text('NOSSO_AGENCIA',
                     array(
@@ -52,10 +54,11 @@ class Forms_Credito extends Zend_Form{
                     )); 
        $valor->addDecorator($decCpt);
         
-        $btnSubmit = new Zend_Form_Element_Submit('CREDITAR',
+        $btnSubmit = new Zend_Form_Element_Button('CREDITAR',
                    array(
                           'label'=>'Comprar',
-                          'class'=>'btn btn-blue'
+                          'class'=>'btn btn-blue',
+                          'onClick'=>'submeterUsandoAjax(this);'
                    ));
         
                     $this->addElements(

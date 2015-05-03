@@ -5,7 +5,7 @@ include APPLICATION_PATH.'/Forms/Credito.php';
 $storage = new Zend_Auth_Storage_Session();
 $data = (get_object_vars($storage->read()));
 $usuario = $data['ST_USUARIO_USU'];
-
+$id = (int)$data['ID_ID_USU'];
 ?>
 
 <!-- Adicionar credito-->
@@ -15,6 +15,9 @@ $usuario = $data['ST_USUARIO_USU'];
 
                     <?php
                        $form = new Forms_Credito();
+                       $form->addElement('hidden',
+                               'ID',
+                                array('value'=>$id));
                     echo $form;
                     
                     ?>

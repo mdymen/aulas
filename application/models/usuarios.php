@@ -148,4 +148,22 @@ class  Models_Usuarios extends Zend_Db_Table {
         
         $db->update($this->_name,array('ST_SENHA_USU' => $md5), 'ST_EMAIL_USU = "'.$email.'"');
     }
+    
+    public function getAll($id = ''){
+        
+        $db = $this->_db;
+        $where = 1;
+        if($id){
+            $where = $db->quoteInto('ID_ID_USU = (?)', $id);
+        }
+        
+        
+      $dados = $db->select()
+                ->from(array('usu'=>$this->_name))   
+                ->joinLeft(array('cred'=>'creditos'), 'cred.ID_USUARIO = usu.ID_ID_USU')
+                ->where($where)
+                ->query()
+                ->fetchAll();   
+        return $dados; 
+    }
 }

@@ -1,0 +1,98 @@
+<?php
+
+$usuarios = $this->usuarios;
+
+?>
+ <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="widget">
+                                <div class="widget-header bordered-bottom bordered-yellow">
+                                    <span class="widget-caption">Usuários</span>
+                                    <div class="widget-buttons">
+                                        <a href="#" data-toggle="maximize">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="#" data-toggle="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="#" data-toggle="dispose">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="table-toolbar">
+                                        <a id="editabledatatable_new" href="javascript:void(0);" class="btn btn-default">
+                                            Adicionar novo usuario
+                                        </a>
+                                        <div class="btn-group pull-right">
+                                            <a class="btn btn-default" href="javascript:void(0);">Tools</a>
+                                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"><i class="fa fa-angle-down"></i></a>
+                                            <ul class="dropdown-menu dropdown-default">
+                                                <li>
+                                                    <a href="javascript:void(0);">Action</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0);">Another action</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0);">Something else here</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a href="javascript:void(0);">Separated link</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <table class="table table-bordered table-hover table-striped dataTable" id="editabledatatable">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>
+                                                    ID
+                                                </th>
+                                                <th>
+                                                    Usuário
+                                                </th>
+                                                <th>
+                                                    Privilégio
+                                                </th>
+                                                <th>
+                                                    E-mail
+                                                </th>
+                                                 <th>
+                                                    Crédito
+                                                </th>
+                                                <th>
+                                                    Confirmado
+                                                </th>
+                                                 <th>
+                                                    Pendente
+                                                </th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            
+                                            <?php 
+                                            foreach ($usuarios as $usuario):
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $usuario['ID_ID_USU']?></td>
+                                                <td><?php echo $usuario['ST_USUARIO_USU']?></td>
+                                                <td><?php echo $usuario['FL_ADMIN_USU'] == 1 ? 'Admin':'User' ?></td>
+                                                <td class="center "><?php echo $usuario['ST_EMAIL_USU']?></td>
+                                                <td><?php echo $usuario['VL_VALOR_CREDITO']?></td>
+                                                <td><?php echo $usuario['ST_CONFIRMADO_USU']?></td>
+                                                <td>
+                                                    <a href="#" onclick="javascript: Notify('Im a Blue notification', 'bottom-right', '5000', 'blue', 'fa-home', true); return false;" class="btn btn-info btn-xs edit"><i class="fa fa-edit"></i> Editar</a>
+                                                    <a href="#" class="btn btn-danger btn-xs delete"><i class="fa fa-trash-o"></i> Excluir</a>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach;?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

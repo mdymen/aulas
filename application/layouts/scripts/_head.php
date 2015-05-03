@@ -27,6 +27,7 @@
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/jquery-2.0.3.min.js')) ?>
         
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/toastr/toastr.js')) ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/dashBoard.js')) ?>  
 
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/bootstrap.min.js')) ?>
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/slimscroll/jquery.slimscroll.min.js')) ?>
