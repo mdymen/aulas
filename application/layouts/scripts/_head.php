@@ -362,9 +362,9 @@
                                     $storage = new Zend_Auth_Storage_Session();
                                     $data = get_object_vars($storage->read());
                                 ?>
-                                
-                                <a class="login-area dropdown-toggle" data-toggle="dropdown">
-                                    <div class="avatar" title="View your public profile">
+                               
+                                <a href="<?php echo $this->baseUrl().'/usuario/index' ?>" class="login-area">
+                                    <div class="avatar" title="Minha conta">
                                         <img src="<?php 
                                         
                                             $file = APPLICATION_PATH."/../public/img/perfil/".$data['ST_USUARIO_USU'].'.jpg';
