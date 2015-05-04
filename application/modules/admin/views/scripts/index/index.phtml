@@ -1,21 +1,38 @@
 <?php
     $quantidade = $this->quantidade;
-
+    $creditosPendentes = $this->creditosPendentes;
 ?>
 
 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <div class="databox radius-bordered databox-shadowed databox-graded" style="height:100px !important">
-                                        <div class="databox-left bg-green" style="weight:100px !important; height:100px !important;">
-                                            <div class="databox-icon">
-                                                <i class="fa fa-user"></i>
-                                            </div> 
-                                        </div>
-                                        <div class="databox-right">
-                                            <span class="databox-number green"><?php echo $quantidade['count']; ?></span>
-                                            <div class="databox-text darkgray"><a href="/aulas/public/admin/dashboard">USUARIOS</a></div>
-                                            <div class="databox-stat green radius-bordered">
-                                                <i class="stat-icon icon-lg fa fa-tasks"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+    <div class="databox radius-bordered databox-shadowed databox-graded" style="height:100px !important">
+        <div class="databox-left bg-green" style="weight:100px !important; height:100px !important;">
+            <div class="databox-icon">
+                <i class="fa fa-user"></i>
+            </div> 
+        </div>
+        <div class="databox-right">
+            <span class="databox-number green"><?php echo $quantidade['count']; ?></span>
+            <div class="databox-text darkgray"><a href="/aulas/public/admin/dashboard">USUARIOS</a></div>
+            <div class="databox-stat green radius-bordered">
+                <i class="stat-icon icon-lg fa fa-tasks"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+    <div class="databox radius-bordered databox-shadowed databox-graded" style="height:100px !important">
+        <div class="databox-left bg-purple" style="weight:100px !important; height:100px !important;">
+            <div class="databox-icon">
+                <i class="fa fa-usd"></i>
+            </div> 
+        </div>
+        <div class="databox-right">
+            <span class="databox-number purple"><?php echo $creditosPendentes['count']; ?></span>
+            <div class="databox-text darkgray"><a href="/aulas/public/admin/dashboard/creditopendente">CREDITOS PENDENTES</a></div>
+            <div class="databox-stat purple radius-bordered">
+                <i class="stat-icon icon-lg fa fa-tasks"></i>
+            </div>
+        </div>
+    </div>
+</div>

@@ -57,4 +57,13 @@ class Application_Model_Creditos_Pendentes extends Zend_Db_Table_Abstract
         $db->update($this->_name, array('FL_PENDENTE'=>0),$cond);
         
     }
+    
+    public function countPendentes() {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        return $db->select()->from($this->_name,array('count' => 'Count(*)'))
+                ->where('FL_PENDENTE = ?',1)
+                ->query()
+                ->fetch();
+    }
 }
