@@ -147,3 +147,62 @@ ADD COLUMN `NM_TOTALEXERC_UC` INT NULL AFTER `NM_ACERTOS_UC`;
 ALTER TABLE `usuario_curso` 
 CHANGE COLUMN `NM_ACERTOS_UC` `NM_ACERTOS_UC` INT(11) NULL DEFAULT 0 ,
 CHANGE COLUMN `NM_TOTALEXERC_UC` `NM_TOTALEXERC_UC` INT(11) NULL DEFAULT 0 ;
+
+
+-- Andre junqueira
+-- Script criacao da tabela credito e credito_pendente e a trigger necessaria
+
+
+
+CREATE TABLE IF NOT EXISTS `creditos` (
+`ID_CREDITO` int(11) NOT NULL,
+  `ID_USUARIO` int(10) NOT NULL,
+  `VL_VALOR_CREDITO` decimal(10,2) NOT NULL,
+  `DT_DATA_CREDITO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+ALTER TABLE `creditos`
+ ADD PRIMARY KEY (`ID_CREDITO`);
+
+ALTER TABLE `creditos`
+MODIFY `ID_CREDITO` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+
+
+CREATE TABLE IF NOT EXISTS `credito_pendentes` (
+`ID_CREDITO_PEN` int(11) NOT NULL,
+  `ID_USUARIO` int(10) NOT NULL,
+  `VL_VALOR_CREDITO_PEN` decimal(10,2) NOT NULL,
+  `DT_DATA_CREDITO_PEN` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `FL_PENDENTE` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+
+DELIMITER //
+CREATE TRIGGER `trg_creditar_usuario` AFTER UPDATE ON `credito_pendentes`
+ FOR EACH ROW begin
+  declare
+  existe INT;
+  
+   select count(*) into existe from creditos where id_usuario = NEW.id_usuario ;
+  
+  if existe > 0 THEN 
+			update creditos 
+			set vl_valor_credito = vl_valor_credito + NEW.vl_valor_credito_pen,
+			    dt_data_credito = NOW()
+			where id_usuario = NEW.id_usuario;
+		ELSE
+			insert into creditos (id_usuario,vl_valor_credito) 
+						  values (NEW.id_usuario,NEW.vl_valor_credito_pen);    
+    END IF;                              
+                    
+  end
+//
+DELIMITER ;
+
+
+ALTER TABLE `credito_pendentes`
+ ADD PRIMARY KEY (`ID_CREDITO_PEN`);
+
+ALTER TABLE `credito_pendentes`
+MODIFY `ID_CREDITO_PEN` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+
