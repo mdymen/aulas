@@ -12,11 +12,22 @@
     
        if(opcao == 'pendente'){
            
+           
           $.post(url,
                 {idCredito:idC, idUser:idU},
                 function(){
-                    Notify('Creditos adicionados com sucesso', 'bottom-right', '5000', 'green', 'fa-home', true);
+                    Notify('Credito liberaado com sucesso', 'bottom-right', '5000', 'green', 'fa-check', true);
                 }
          );  
        }
 };
+function confirmDialog(botao,usuario){
+
+    var pendente = botao.dataset.pendente;
+ 
+            bootbox.confirm("Tem certeza que deseja excluir o crédito do usuario "+usuario.toUpperCase()+" ?", function (result) {
+                if (result) {
+                    
+                }
+            });
+    }

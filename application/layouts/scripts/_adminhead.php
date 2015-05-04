@@ -30,6 +30,8 @@ die('.');*/
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/beyond.min.js')) ?>     
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/dashBoard.js')) ?>  
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/dashboard/alteraPendente.js')) ?>  
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/bootbox/bootbox.js')) ?>  
+    
     
         
     <!--Basic Styles-->
