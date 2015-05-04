@@ -20,7 +20,10 @@ class Admin_IndexController extends Zend_Controller_Action {
 
     public function indexAction()
     {
-        // action body
+        $usuarios = new Models_Usuarios();
+        $quantidade = $usuarios->quantidade();
+        
+        $this->view->quantidade = $quantidade;
     }
     
     public function loginAction() {}
