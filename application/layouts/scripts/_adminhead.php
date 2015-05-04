@@ -119,315 +119,6 @@ die('.');*/
                             </li>                            
                         </ul>
                         </div>
-<!--                    <div class="navbar-account">
-                        <ul class="account-area">
-                            <li>
-                                <a class=" dropdown-toggle" data-toggle="dropdown" title="Help" href="#">
-                                    <i class="icon fa fa-warning"></i>
-                                </a>
-                                Notification Dropdown
-                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-notifications">
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <div class="notification-icon">
-                                                    <i class="fa fa-phone bg-themeprimary white"></i>
-                                                </div>
-                                                <div class="notification-body">
-                                                    <span class="title">Skype meeting with Patty</span>
-                                                    <span class="description">01:00 pm</span>
-                                                </div>
-                                                <div class="notification-extra">
-                                                    <i class="fa fa-clock-o themeprimary"></i>
-                                                    <span class="description">office</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <div class="notification-icon">
-                                                    <i class="fa fa-check bg-darkorange white"></i>
-                                                </div>
-                                                <div class="notification-body">
-                                                    <span class="title">Uncharted break</span>
-                                                    <span class="description">03:30 pm - 05:15 pm</span>
-                                                </div>
-                                                <div class="notification-extra">
-                                                    <i class="fa fa-clock-o darkorange"></i>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <div class="notification-icon">
-                                                    <i class="fa fa-gift bg-warning white"></i>
-                                                </div>
-                                                <div class="notification-body">
-                                                    <span class="title">Kate birthday party</span>
-                                                    <span class="description">08:30 pm</span>
-                                                </div>
-                                                <div class="notification-extra">
-                                                    <i class="fa fa-calendar warning"></i>
-                                                    <i class="fa fa-clock-o warning"></i>
-                                                    <span class="description">at home</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <div class="notification-icon">
-                                                    <i class="fa fa-glass bg-success white"></i>
-                                                </div>
-                                                <div class="notification-body">
-                                                    <span class="title">Dinner with friends</span>
-                                                    <span class="description">10:30 pm</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="dropdown-footer ">
-                                        <span>
-                                            Today, March 28
-                                        </span>
-                                        <span class="pull-right">
-                                            10°c
-                                            <i class="wi wi-cloudy"></i>
-                                        </span>
-                                    </li>
-                                </ul>
-                                /Notification Dropdown
-                            </li>
-                            <li>
-                                <a class="dropdown-toggle" data-toggle="dropdown" title="Mails" href="#">
-                                    <i class="icon fa fa-envelope"></i>
-                                    <span class="badge">3</span>
-                                </a>
-                                Messages Dropdown
-                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-messages">
-                                    <li>
-                                        <a href="#">
-                                            <img src="assets/img/avatars/divyia.jpg" class="message-avatar" alt="Divyia Austin">
-                                            <div class="message">
-                                                <span class="message-sender">
-                                                    Divyia Austin
-                                                </span>
-                                                <span class="message-time">
-                                                    2 minutes ago
-                                                </span>
-                                                <span class="message-subject">
-                                                    Here's the recipe for apple pie
-                                                </span>
-                                                <span class="message-body">
-                                                    to identify the sending application when the senders image is shown for the main icon
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="assets/img/avatars/bing.png" class="message-avatar" alt="Microsoft Bing">
-                                            <div class="message">
-                                                <span class="message-sender">
-                                                    Bing.com
-                                                </span>
-                                                <span class="message-time">
-                                                    Yesterday
-                                                </span>
-                                                <span class="message-subject">
-                                                    Bing Newsletter: The January Issue?
-                                                </span>
-                                                <span class="message-body">
-                                                    Discover new music just in time for the Grammy® Awards.
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="assets/img/avatars/adam-jansen.jpg" class="message-avatar" alt="Divyia Austin">
-                                            <div class="message">
-                                                <span class="message-sender">
-                                                    Nicolas
-                                                </span>
-                                                <span class="message-time">
-                                                    Friday, September 22
-                                                </span>
-                                                <span class="message-subject">
-                                                    New 4K Cameras
-                                                </span>
-                                                <span class="message-body">
-                                                    The 4K revolution has come over the horizon and is reaching the general populous
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                /Messages Dropdown
-                            </li>
-
-                            <li>
-                                <a class="dropdown-toggle" data-toggle="dropdown" title="Tasks" href="#">
-                                    <i class="icon fa fa-tasks"></i>
-                                    <span class="badge">4</span>
-                                </a>
-                                Tasks Dropdown
-                                <ul class="pull-right dropdown-menu dropdown-tasks dropdown-arrow ">
-                                    <li class="dropdown-header bordered-darkorange">
-                                        <i class="fa fa-tasks"></i>
-                                        4 Tasks In Progress
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Account Creation</span>
-                                                <span class="pull-right">65%</span>
-                                            </div>
-
-                                            <div class="progress progress-xs">
-                                                <div style="width:65%" class="progress-bar"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Profile Data</span>
-                                                <span class="pull-right">35%</span>
-                                            </div>
-
-                                            <div class="progress progress-xs">
-                                                <div style="width:35%" class="progress-bar progress-bar-success"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Updating Resume</span>
-                                                <span class="pull-right">75%</span>
-                                            </div>
-
-                                            <div class="progress progress-xs">
-                                                <div style="width:75%" class="progress-bar progress-bar-darkorange"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <span class="pull-left">Adding Contacts</span>
-                                                <span class="pull-right">10%</span>
-                                            </div>
-
-                                            <div class="progress progress-xs">
-                                                <div style="width:10%" class="progress-bar progress-bar-warning"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li class="dropdown-footer">
-                                        <a href="#">
-                                            See All Tasks
-                                        </a>
-                                        <button class="btn btn-xs btn-default shiny darkorange icon-only pull-right"><i class="fa fa-check"></i></button>
-                                    </li>
-                                </ul>
-                                /Tasks Dropdown
-                            </li>
-                            <li>
-                                <a class="wave in" id="chat-link" title="Chat" href="#">
-                                    <i class="icon glyphicon glyphicon-comment"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="login-area dropdown-toggle" data-toggle="dropdown">
-                                    <div class="avatar" title="View your public profile">
-                                        <img src="assets/img/avatars/adam-jansen.jpg">
-                                    </div>
-                                    <section>
-                                        <h2><span class="profile"><span>David Stevenson</span></span></h2>
-                                    </section>
-                                </a>
-                                Login Area Dropdown
-                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                    <li class="username"><a>David Stevenson</a></li>
-                                    <li class="email"><a>David.Stevenson@live.com</a></li>
-                                    Avatar Area
-                                    <li>
-                                        <div class="avatar-area">
-                                            <img src="assets/img/avatars/adam-jansen.jpg" class="avatar">
-                                            <span class="caption">Change Photo</span>
-                                        </div>
-                                    </li>
-                                    Avatar Area
-                                    <li class="edit">
-                                        <a href="profile.html" class="pull-left">Profile</a>
-                                        <a href="#" class="pull-right">Setting</a>
-                                    </li>
-                                    Theme Selector Area
-                                    <li class="theme-area">
-                                        <ul class="colorpicker" id="skin-changer">
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#5DB2FF;" rel="assets/css/skins/blue.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#2dc3e8;" rel="assets/css/skins/azure.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#03B3B2;" rel="assets/css/skins/teal.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#53a93f;" rel="assets/css/skins/green.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#FF8F32;" rel="assets/css/skins/orange.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#cc324b;" rel="assets/css/skins/pink.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#AC193D;" rel="assets/css/skins/darkred.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#8C0095;" rel="assets/css/skins/purple.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#0072C6;" rel="assets/css/skins/darkblue.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#585858;" rel="assets/css/skins/gray.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#474544;" rel="assets/css/skins/black.min.css"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#001940;" rel="assets/css/skins/deepblue.min.css"></a></li>
-                                        </ul>
-                                    </li>
-                                    /Theme Selector Area
-                                    <li class="dropdown-footer">
-                                        <a href="login.html">
-                                            Sign out
-                                        </a>
-                                    </li>
-                                </ul>
-                                /Login Area Dropdown
-                            </li>
-                             /Account Area 
-                            Note: notice that setting div must start right after account area list.
-                            no space must be between these elements
-                             Settings 
-                        </ul><div class="setting">
-                            <a id="btn-setting" title="Setting" href="#">
-                                <i class="icon glyphicon glyphicon-cog"></i>
-                            </a>
-                        </div><div class="setting-container">
-                            <label>
-                                <input type="checkbox" id="checkbox_fixednavbar">
-                                <span class="text">Fixed Navbar</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" id="checkbox_fixedsidebar">
-                                <span class="text">Fixed SideBar</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" id="checkbox_fixedbreadcrumbs">
-                                <span class="text">Fixed BreadCrumbs</span>
-                            </label>
-                            <label>
-                                <input type="checkbox" id="checkbox_fixedheader">
-                                <span class="text">Fixed Header</span>
-                            </label>
-                        </div>
-                         Settings 
-                    </div>-->
                 </div>
                 <!-- /Account Area and Settings -->
             </div>
@@ -451,6 +142,12 @@ die('.');*/
                 <ul class="nav sidebar-menu">
                     <!--Databoxes-->
                     <li>
+                        <a href="<?php echo $this->baseUrl() . "/admin/"; ?>">
+                            <i class="menu-icon glyphicon glyphicon-home"></i>
+                            <span class="menu-text">Home </span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="#" class="menu-dropdown">
                             <i class="menu-icon fa fa-lock"></i>
                             <span class="menu-text"> Painel administrativo </span>
@@ -461,283 +158,63 @@ die('.');*/
                         <ul class="submenu">
                             <li>
                                 <a href="<?php echo $this->baseUrl() . "/admin/dashboard"; ?>">
+                                    <i class="menu-icon fa fa-user"></i>
                                     <span class="menu-text">Usuarios</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="<?php echo $this->baseUrl() . "/admin/dashboard/creditopendente"; ?>">
+                                    <i class="menu-icon fa fa-usd"></i>
                                     <span class="menu-text">Creditos pendentes</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="<?php echo $this->baseUrl() . "/admin/curso"; ?>">
-                            <i class="menu-icon glyphicon glyphicon-tasks"></i>
-                            <span class="menu-text">Cursos </span>
+                        <a href="#" class="menu-dropdown">
+                            <i class="menu-icon fa fa-lock"></i>
+                            <span class="menu-text"> Painel cursos </span>
+
+                            <i class="menu-expand"></i>
                         </a>
+                        
+                        <ul class="submenu">
+                            <li>
+                                <a href="<?php echo $this->baseUrl() . "/admin/curso"; ?>">
+                                    <i class="menu-icon glyphicon glyphicon-book"></i>
+                                    <span class="menu-text">Cursos </span>
+                                </a>
+                            </li>
+                            <!--Widgets-->
+                            <li>
+                                <a href="<?php echo $this->baseUrl(). "/admin/curso/adicionar"; ?>">
+                                    <i class="menu-icon glyphicon glyphicon-edit"></i>
+                                    <span class="menu-text">Adicionar curso </span>
+                                </a>
+                            </li>
+                            <!--UI Elements-->
+                            <li>
+                                <a href="<?php echo $this->baseUrl(). "/admin/slide/adicionar"; ?>">
+                                    <i class="menu-icon glyphicon glyphicon-unchecked"></i>
+                                    <span class="menu-text">Adicionar slide </span>
+                                </a>    
+                            </li>
+                             <li>
+                                <a href="<?php echo $this->baseUrl(). "/admin/perguntas/index"; ?>">
+                                    <i class="menu-icon fa fa-question"></i>
+                                    <span class="menu-text">Perguntas </span>
+                                </a>    
+                            </li> 
+                            
+                        </ul>
                     </li>
-                    <!--Widgets-->
-                    <li>
-                        <a href="<?php echo $this->baseUrl(). "/admin/curso/adicionar"; ?>">
-                            <i class="menu-icon fa fa-th"></i>
-                            <span class="menu-text">Adicionar curso </span>
-                        </a>
-                    </li>
-                    <!--UI Elements-->
-                    <li>
-                        <a href="<?php echo $this->baseUrl(). "/admin/slide/adicionar"; ?>">
-                            <i class="menu-icon fa fa-desktop"></i>
-                            <span class="menu-text">Adicionar slide </span>
-                        </a>    
-                    </li>
-                     <li>
-                        <a href="<?php echo $this->baseUrl(). "/admin/perguntas/index"; ?>">
-                            <i class="menu-icon fa fa-question"></i>
-                            <span class="menu-text">Perguntas </span>
-                        </a>    
-                    </li>                 
-                    <!--Right to Left-->
-                   
+                    
                 </ul>
                 <!-- /Sidebar Menu -->
             </div>
             <!-- /Page Sidebar -->
             <!-- Chat Bar -->
-<!--            <div id="chatbar" class="page-chatbar">
-                <div class="chatbar-contacts">
-                    <div class="contacts-search">
-                        <input type="text" class="searchinput" placeholder="Search Contacts">
-                        <i class="searchicon fa fa-search"></i>
-                        <div class="searchhelper">Search Your Contacts and Chat History</div>
-                    </div>
-                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 581px;"><ul class="contacts-list" style="overflow: hidden; width: auto; height: 581px;">
-                        <li class="contact">
-                            <div class="contact-avatar">
-                                <img src="assets/img/avatars/divyia.jpg">
-                            </div>
-                            <div class="contact-info">
-                                <div class="contact-name">Divyia Philips</div>
-                                <div class="contact-status">
-                                    <div class="online"></div>
-                                    <div class="status">online</div>
-                                </div>
-                                <div class="last-chat-time">
-                                    last week
-                                </div>
-                            </div>
-                        </li>
-                        <li class="contact">
-                            <div class="contact-avatar">
-                                <img src="assets/img/avatars/Nicolai-Larson.jpg">
-                            </div>
-                            <div class="contact-info">
-                                <div class="contact-name">Adam Johnson</div>
-                                <div class="contact-status">
-                                    <div class="offline"></div>
-                                    <div class="status">left 4 mins ago</div>
-                                </div>
-                                <div class="last-chat-time">
-                                    today
-                                </div>
-                            </div>
-                        </li>
-                        <li class="contact">
-                            <div class="contact-avatar">
-                                <img src="assets/img/avatars/John-Smith.jpg">
-                            </div>
-                            <div class="contact-info">
-                                <div class="contact-name">John Smith</div>
-                                <div class="contact-status">
-                                    <div class="online"></div>
-                                    <div class="status">online</div>
-                                </div>
-                                <div class="last-chat-time">
-                                    1:57 am
-                                </div>
-                            </div>
-                        </li>
-                        <li class="contact">
-                            <div class="contact-avatar">
-                                <img src="assets/img/avatars/Osvaldus-Valutis.jpg">
-                            </div>
-                            <div class="contact-info">
-                                <div class="contact-name">Osvaldus Valutis</div>
-                                <div class="contact-status">
-                                    <div class="online"></div>
-                                    <div class="status">online</div>
-                                </div>
-                                <div class="last-chat-time">
-                                    today
-                                </div>
-                            </div>
-                        </li>
-                        <li class="contact">
-                            <div class="contact-avatar">
-                                <img src="assets/img/avatars/Javi-Jimenez.jpg">
-                            </div>
-                            <div class="contact-info">
-                                <div class="contact-name">Javi Jimenez</div>
-                                <div class="contact-status">
-                                    <div class="online"></div>
-                                    <div class="status">online</div>
-                                </div>
-                                <div class="last-chat-time">
-                                    today
-                                </div>
-                            </div>
-                        </li>
-                        <li class="contact">
-                            <div class="contact-avatar">
-                                <img src="assets/img/avatars/Stephanie-Walter.jpg">
-                            </div>
-                            <div class="contact-info">
-                                <div class="contact-name">Stephanie Walter</div>
-                                <div class="contact-status">
-                                    <div class="online"></div>
-                                    <div class="status">online</div>
-                                </div>
-                                <div class="last-chat-time">
-                                    yesterday
-                                </div>
-                            </div>
-                        </li>
-                        <li class="contact">
-                            <div class="contact-avatar">
-                                <img src="assets/img/avatars/Sergey-Azovskiy.jpg">
-                            </div>
-                            <div class="contact-info">
-                                <div class="contact-name">Sergey Azovskiy</div>
-                                <div class="contact-status">
-                                    <div class="offline"></div>
-                                    <div class="status">offline since oct 24</div>
-                                </div>
-                                <div class="last-chat-time">
-                                    22 oct
-                                </div>
-                            </div>
-                        </li>
-                        <li class="contact">
-                            <div class="contact-avatar">
-                                <img src="assets/img/avatars/Lee-Munroe.jpg">
-                            </div>
-                            <div class="contact-info">
-                                <div class="contact-name">Lee Munroe</div>
-                                <div class="contact-status">
-                                    <div class="online"></div>
-                                    <div class="status">online</div>
-                                </div>
-                                <div class="last-chat-time">
-                                    today
-                                </div>
-                            </div>
-                        </li>
-                        <li class="contact">
-                            <div class="contact-avatar">
-                                <img src="assets/img/avatars/divyia.jpg">
-                            </div>
-                            <div class="contact-info">
-                                <div class="contact-name">Divyia Philips</div>
-                                <div class="contact-status">
-                                    <div class="online"></div>
-                                    <div class="status">online</div>
-                                </div>
-                                <div class="last-chat-time">
-                                    last week
-                                </div>
-                            </div>
-                        </li>
-                    </ul><div class="slimScrollBar" style="width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; left: 1px; background: rgb(45, 195, 232);"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; left: 1px; background: rgb(51, 51, 51);"></div></div>
-                </div>
-                <div class="chatbar-messages" style="display: none;">
-                    <div class="messages-contact">
-                        <div class="contact-avatar">
-                            <img src="assets/img/avatars/divyia.jpg">
-                        </div>
-                        <div class="contact-info">
-                            <div class="contact-name">Divyia Philips</div>
-                            <div class="contact-status">
-                                <div class="online"></div>
-                                <div class="status">online</div>
-                            </div>
-                            <div class="last-chat-time">
-                                a moment ago
-                            </div>
-                            <div class="back">
-                                <i class="fa fa-arrow-circle-left"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 417px;"><ul class="messages-list" style="overflow: hidden; width: auto; height: 417px;">
-                        <li class="message">
-                            <div class="message-info">
-                                <div class="bullet"></div>
-                                <div class="contact-name">Me</div>
-                                <div class="message-time">10:14 AM, Today</div>
-                            </div>
-                            <div class="message-body">
-                                Hi, Hope all is good. Are we meeting today?
-                            </div>
-                        </li>
-                        <li class="message reply">
-                            <div class="message-info">
-                                <div class="bullet"></div>
-                                <div class="contact-name">Divyia</div>
-                                <div class="message-time">10:15 AM, Today</div>
-                            </div>
-                            <div class="message-body">
-                                Hi, Hope all is good. Are we meeting today?
-                            </div>
-                        </li>
-                        <li class="message">
-                            <div class="message-info">
-                                <div class="bullet"></div>
-                                <div class="contact-name">Me</div>
-                                <div class="message-time">10:14 AM, Today</div>
-                            </div>
-                            <div class="message-body">
-                                Hi, Hope all is good. Are we meeting today?
-                            </div>
-                        </li>
-                        <li class="message reply">
-                            <div class="message-info">
-                                <div class="bullet"></div>
-                                <div class="contact-name">Divyia</div>
-                                <div class="message-time">10:15 AM, Today</div>
-                            </div>
-                            <div class="message-body">
-                                Hi, Hope all is good. Are we meeting today?
-                            </div>
-                        </li>
-                        <li class="message">
-                            <div class="message-info">
-                                <div class="bullet"></div>
-                                <div class="contact-name">Me</div>
-                                <div class="message-time">10:14 AM, Today</div>
-                            </div>
-                            <div class="message-body">
-                                Hi, Hope all is good. Are we meeting today?
-                            </div>
-                        </li>
-                        <li class="message reply">
-                            <div class="message-info">
-                                <div class="bullet"></div>
-                                <div class="contact-name">Divyia</div>
-                                <div class="message-time">10:15 AM, Today</div>
-                            </div>
-                            <div class="message-body">
-                                Hi, Hope all is good. Are we meeting today?
-                            </div>
-                        </li>
-                    </ul><div class="slimScrollBar" style="width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; left: 1px; background: rgb(45, 195, 232);"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; left: 1px; background: rgb(51, 51, 51);"></div></div>
-                    <div class="send-message">
-                        <span class="input-icon icon-right">
-                            <textarea rows="4" class="form-control" placeholder="Type your message"></textarea>
-                            <i class="fa fa-camera themeprimary"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>-->
+
             <!-- /Chat Bar -->
             <!-- Page Content -->
             <div class="page-content">
