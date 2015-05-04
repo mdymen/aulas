@@ -117,5 +117,14 @@ class Models_Perguntas extends Zend_Db_Table_Abstract {
         return $res;    
     }    
     
+    function perguntasNaoLidas() {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        return $select = $db->select()->from($this->_name, array('count' => 'Count(*)'))
+                ->where("ST_RESPOSTA_PER = ''")
+                ->query()
+                ->fetch();
+    }
+    
     
 }

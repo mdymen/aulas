@@ -27,8 +27,14 @@ class Admin_IndexController extends Zend_Controller_Action {
         $creditos = new Application_Model_Creditos_Pendentes();
         $countCreditos = $creditos->countPendentes();
         
+        include_once APPLICATION_PATH.'/models/perguntas.php';
+        $perguntas = new Models_Perguntas();
+        $countPerguntas = $perguntas->perguntasNaoLidas();
+        
+        
         $this->view->quantidade = $quantidade;
         $this->view->creditosPendentes = $countCreditos;
+        $this->view->countPerguntas = $countPerguntas;
     }
     
     public function loginAction() {}
