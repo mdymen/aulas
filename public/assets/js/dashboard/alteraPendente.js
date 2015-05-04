@@ -7,9 +7,13 @@
        var idC = botao.dataset.id;
        var idU = botao.dataset.idUsu;
        var fl_pendente = botao.dataset.pendente;
-       var urlTemp = $(location).attr('href').toString();
-       var url = urlTemp.substring(0,46)+'creditopendente';
-    
+        var url = window.location.pathname;
+        var host = window.location.hostname;
+        var urlMod = url.split('/');
+        var tam = urlMod.length;
+        urlMod[tam-1]="creditopendente";
+        url = urlMod.join("/");  
+
        if(opcao == 'pendente'){
            
            
