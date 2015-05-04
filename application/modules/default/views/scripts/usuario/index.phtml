@@ -18,13 +18,34 @@
     $perguntas = $this->perguntas;
     $cantPerguntas = count($perguntas);
 ?>
-
+<!--
+<form action="<?php echo $this->baseUrl().'/usuario/perfil'; ?>" method="post" enctype="multipart/form-data" style="display: none">
+    <input type="file" name="imgPerfil" id="imgPerfil" />
+    <input type="submit" id="btnPerfil" name="btnPerfil" />
+</form>-->
+<?php
+    include_once APPLICATION_PATH.'/Forms/FotoPerfil.php';
+    $formPerfil = new Forms_FotoPerfil();
+    echo $formPerfil;
+    
+    $file = APPLICATION_PATH."/../public/img/perfil/".$data['ST_USUARIO_USU'].'.jpg';
+    
+?>
 <div class="row">
                         <div class="col-md-12">
                             <div class="profile-container">
                                 <div class="profile-header row">
                                     <div class="col-lg-2 col-md-4 col-sm-12 text-center">
-                                        <img src="<?php echo $this->baseUrl().'/../public/img/perfil.jpg'; ?>" alt="" class="header-avatar">
+                                        <a href="javascript:void(0)" id="lnkPerfil"><img src="<?php 
+
+                                            if (is_file($file)) {
+                                                echo $this->baseUrl().'/img/perfil/'.$data['ST_USUARIO_USU'].'.jpg';
+                                            } else {
+                                                echo $this->baseUrl().'/img/perfil.jpg'; 
+                                                
+                                            }
+                                        
+                                        ?>" alt="" class="header-avatar"></a>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-12 profile-info">
                                         <div class="header-fullname"><?php echo ucwords($data['ST_USUARIO_USU']); ?></div>
@@ -189,6 +210,15 @@ foreach($cursos as $curso) {
        $('#lnkDados').bind('click', function(){
            $('#divCursos').hide();
            $('#divDados').show();
+       });
+       
+       $('#lnkPerfil').bind('click', function() {
+           $('#imgPerfil').trigger('click');
+           
+       });
+       
+       $('#imgPerfil').change(function() {
+          $('#btnPerfil').trigger('click'); 
        });
     });
 

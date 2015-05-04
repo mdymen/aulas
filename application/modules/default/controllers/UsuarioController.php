@@ -59,5 +59,27 @@ class UsuarioController extends Zend_Controller_Action {
     function cursosAction() {
   
     }
+    
+    function perfilAction() {
+        include_once APPLICATION_PATH.'/forms/FotoPerfil.php';
+        $form = new Forms_FotoPerfil();
+        
+        $base = APPLICATION_PATH."/../public/img/perfil/";
+        
+        if ($this->_request->isPost()) {
+            $formData = $this->_request->getPost();
+            
+            if ($form->isValid($formData)) {
+                $name = $form->getValues();
+                $ext = explode('.',$name['imgPerfil']);
+                $data = $this->data;
+                $new_name = $data['ST_USUARIO_USU'].'.'.$ext[1];
+                // success - do something with the uploaded file
+                rename($base.$name['imgPerfil'], $base.$new_name);
+                $this->redirect('usuario/index');
+                    
+            }
+        }
+    }
       
 }

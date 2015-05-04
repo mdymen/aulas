@@ -365,7 +365,18 @@
                                 
                                 <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                     <div class="avatar" title="View your public profile">
-                                        <img src="<?php echo $this->baseUrl().'/../public/img/perfil.jpg'; ?>">
+                                        <img src="<?php 
+                                        
+                                            $file = APPLICATION_PATH."/../public/img/perfil/".$data['ST_USUARIO_USU'].'.jpg';
+                                          if (is_file($file)) {
+                   
+                                                echo $this->baseUrl().'/img/perfil/'.$data['ST_USUARIO_USU'].'.jpg';
+                                            } else {
+                                                echo $this->baseUrl().'/img/perfil.jpg'; 
+                                                
+                                            }
+                                        
+                                        ?>">
                                     </div>
                                     <section>
                                         <h2><span class="profile"><span><?php echo $data['ST_USUARIO_USU']; ?></span></span></h2>
