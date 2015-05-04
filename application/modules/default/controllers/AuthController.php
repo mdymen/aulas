@@ -16,6 +16,42 @@ class AuthController extends Zend_Controller_Action {
     
     function indexAction() {}
     
+    function checkusuarioAction() {
+        $params = $this->_request->getParams();
+        
+        $usuarios = new Models_Usuarios();
+        $usuario = $usuarios->getUserByUser($params['usuario']);
+        $exists = true;
+        if (empty($usuario)) {
+            $exists = false;
+        }
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        $this->_helper->json($exists); 
+    }
+
+   function checkemailAction() {
+        $params = $this->_request->getParams();
+        
+        $usuarios = new Models_Usuarios();
+        $email = $usuarios->getUserByEmail($params['email']);
+        $exists = true;
+        if (empty($email)) {
+            $exists = false;
+        }
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        $this->_helper->json($exists); 
+    }
+    
     function signupAction() {
         $params = $this->_request->getParams();
         
@@ -47,7 +83,7 @@ class AuthController extends Zend_Controller_Action {
         $mail->addTo('<'.$params['ST_EMAIL_USU'].'>');
         $mail->setSubject('Bem vindo Bobby Aulas');
         $root = 'http'. '://' . $_SERVER['HTTP_HOST'] . '/aulas/public/auth/confirmaremail?conf='.$params['ST_CONFIRMADO_USU'];
-        $string = '<a href="'.$root.'" target="_BLANK">confirma email</a>';
+        $string = 'Olá, bem vindo a Bobby Aulas!<br><br>Por favor confirme o recebimento deste e-mail clicando no link abaixo:<br><br> <a href="'.$root.'" target="_BLANK">CONFIRMAR</a><br><br>Obrigado.<br><br>Equipe Bobby Aulas.';
         $mail->setBodyHtml($string);
         $mail->setFrom('bobbyaulas@gmail.com', 'Bobby Aulas');
         return $mail->send();
@@ -106,7 +142,7 @@ class AuthController extends Zend_Controller_Action {
             $mail->addTo('<'.$params['ST_EMAIL_USU'].'>');
             $mail->setSubject('Bem vindo Bobby Aulas');
             $root = 'http'. '://' . $_SERVER['HTTP_HOST'] . '/aulas/public/?esqueceu='.$md5;
-            $string = '<a href="'.$root.'" target="_BLANK">mudar senha</a>';
+            $string = 'Clique no link abaixo para alteração de sua senha.<br><br><a href="'.$root.'" target="_BLANK">MUDAR SENHA</a>';
             $mail->setBodyHtml($string);
             $mail->setFrom('bobbyaulas@gmail.com', 'Bobby Aulas');
             $mail->send();    

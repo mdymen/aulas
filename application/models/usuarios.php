@@ -143,6 +143,14 @@ class  Models_Usuarios extends Zend_Db_Table {
         return $query->query()->fetch();
     }
     
+    function getUserByUser($user) {
+        $db = $this->_db;
+        
+        $query = $db->select()->from($this->_name)->where('ST_USUARIO_USU = ?',$user);
+        
+        return $query->query()->fetch();        
+    }
+    
     function mudarSenhaMd5($md5, $email) {
         $db = $this->_db;
         

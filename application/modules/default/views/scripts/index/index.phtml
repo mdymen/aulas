@@ -29,7 +29,7 @@
 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                             <div class="orders-container">
                                 <div class="orders-header">
-                                    <h6>Cursos de exercìcios</h6>
+                                    <h6>Cursos</h6>
                                 </div>
                                 <ul class="orders-list">
                                     <?php
@@ -44,8 +44,8 @@
                                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 item-left">
                                                 <div class="item-booker"><a href="<?php echo $this->baseUrl().'/curso/ficha?curso='.$curso['ID_ID_CR']; ?>"><?php echo $curso['ST_NOME_CR']; ?></a></div>
                                                 <div class="item-time">
-                                                    <a title="Info" class="" style="margin-right:5px" href="<?php echo $this->baseUrl().'/curso/ficha?curso='.$curso['ID_ID_CR']; ?>">&nbsp;<i class="fa fa-info"></i></a>
-                                                    <a title="Fazer" class="" style="margin-right:5px" href="<?php echo $this->baseUrl().'/curso/vercurso?curso='.$curso['ID_ID_CR']; ?>"><i class="fa fa-pencil"></i></a>
+                                                    
+                                                    <a title="Fazer" class="" style="margin-right:5px" href="<?php echo $this->baseUrl().'/curso/vercurso?curso='.$curso['ID_ID_CR'].'&slide=1'; ?>"><i class="glyphicon glyphicon-pencil circular"></i></a>
 <!--                                                    <i class="fa fa-calendar"></i>-->
                                                     <span><?php echo '&nbsp;&nbsp;  '.$curso['Quantidade']." slides"; ?></span>
                                                 </div>

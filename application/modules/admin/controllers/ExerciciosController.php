@@ -9,9 +9,151 @@ class Admin_ExerciciosController extends Zend_Controller_Action {
     public function init() {}
     
     public function indexAction() {
-        $this->view->perguntas = $this->vertobe10();
+        $this->view->perguntas = $this->questionsWh7();
     }
 
+    public function questionsWh7() { 
+        $p[0]['pergunta'] = "__ is your name? My name is John Chan. (Where, Who, What)";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'What';
+        
+        $p[1]['pergunta'] = "__ do you like better, teddy bears or toy cars. (Whose, Which, What)";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'Which';
+        
+        $p[2]['pergunta'] = "__ are you going? I'm going to the market. (Where, Who, What)";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'Where';      
+        
+        return $p;
+    }         
+    
+    
+    
+    public function questionsWh6() { 
+        $p[0]['pergunta'] = "__ do you like to eat? I like to eat chicken. (Where, Who, What)";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'What';
+        
+        $p[1]['pergunta'] = "__ do you like better, teddy bears or toy cars. (Whose, Which, What)";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'Which';
+        
+        $p[2]['pergunta'] = "__ are you going? I'm going to the market. (Where, Who, What)";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'Where';      
+        
+        return $p;
+    }         
+    
+    public function questionsWh5() { 
+        $p[0]['pergunta'] = "__ time is it now? It`s nine o`clock. (Where, Who, What)";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'What';
+        
+        $p[1]['pergunta'] = "__ is this lady? She is my favourite teacher. (Where, Who, What)";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'Who';
+        
+        $p[2]['pergunta'] = "__ car is this? It is my uncle´s car. (How, Who, Whose)";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'Whose';      
+        
+        return $p;
+    }     
+    
+    public function questionsWh4() { 
+        $p[0]['pergunta'] = "__ is your school? It is near the post office. (Where, Who, What)";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'Where';
+        
+        $p[1]['pergunta'] = "__ is reading in the library? Sue is reading in the library. (Where, Who, What)";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'Who';
+        
+        $p[2]['pergunta'] = "__ does Mary get up in the morning? At six o'clock. (When, Which, What)";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'When';      
+        
+        return $p;
+    }       
+    
+    public function questionsWh3() { 
+        $p[0]['pergunta'] = "__ is the party?";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'When';
+        
+        $p[1]['pergunta'] = "__ do you usually have lunch with?";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'Who';
+        
+        $p[2]['pergunta'] = "__ is the bus station?";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'Where';      
+        
+        return $p;
+    }        
+    
+    public function questionsWh2() { 
+        $p[0]['pergunta'] = "__ are your parents now?";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'Where';
+        
+        $p[1]['pergunta'] = "__ are you studying English?";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'Why';
+        
+        $p[2]['pergunta'] = "__ is your best friend?";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'Who';
+
+        $p[3]['pergunta'] = "__ is your favorite color?";
+        $p[3]['nome'] = 'pergunta4';
+        $p[3]['resposta'] = 'What';        
+        
+        return $p;
+    }        
+    
+    public function questionsWh1() { 
+        $p[0]['pergunta'] = "__ is your favorite subject?";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'What';
+        
+        $p[1]['pergunta'] = "__ book is yours?";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'Which';
+        
+        $p[2]['pergunta'] = "__ do you have English classes?";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'When';
+
+        $p[3]['pergunta'] = "__ is your name?";
+        $p[3]['nome'] = 'pergunta4';
+        $p[3]['resposta'] = 'What';        
+        
+        return $p;
+    }    
+
+    public function questionsWh() { 
+        $p[0]['pergunta'] = "__ times is it?";
+        $p[0]['nome'] = 'pergunta1';
+        $p[0]['resposta'] = 'What';
+        
+        $p[1]['pergunta'] = "__ old are you?";
+        $p[1]['nome'] = 'pergunta2';
+        $p[1]['resposta'] = 'How';
+        
+        $p[2]['pergunta'] = "__ do you live with?";
+        $p[2]['nome'] = 'pergunta3';
+        $p[2]['resposta'] = 'Who';
+
+        $p[3]['pergunta'] = "__ is your birthday?";
+        $p[3]['nome'] = 'pergunta4';
+        $p[3]['resposta'] = 'When';        
+        
+        return $p;
+    }
+    
     public function vertobe10() {
  
         $p[0]['pergunta'] = "__ Mary a good student? Mary não foi uma boa estudante?";
