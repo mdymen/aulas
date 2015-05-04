@@ -11,7 +11,7 @@
  *
  * @author Martin Dymenstein
  */
-include APPLICATION_PATH.'/decorators/textarea.php';
+//include APPLICATION_PATH.'/decorators/textarea.php';
 include_once APPLICATION_PATH.'/decorators/button.php';
 class Forms_Sugestoes extends Zend_Form {
     

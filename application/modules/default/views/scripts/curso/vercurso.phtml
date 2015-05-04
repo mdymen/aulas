@@ -121,6 +121,7 @@ if (count($slide)> 0) {
 <?php
 
     $decform = new Decorators_Form();
+//    include_once APPLICATION_PATH.'/decorators/textarea.php';
     $formAanotacoes = new Forms_Anotacoes(array('titulo' => 'Anotacoes', 'class' => 'col-md-5 col-sm-6 col-xs-18', 'icone' => 'fa fa-pencil-square-o'));
     $formAanotacoes->populate($anotacoes);
     $formAanotacoes->addDecorator($decform);

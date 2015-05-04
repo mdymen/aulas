@@ -2,7 +2,7 @@
 
 include APPLICATION_PATH.'/models/cursos.php';
 include APPLICATION_PATH.'/models/slides.php';
-include APPLICATION_PATH.'/models/anotacoes.php';
+include_once APPLICATION_PATH.'/models/anotacoes.php';
 include APPLICATION_PATH.'/models/perguntas.php';
 
 class CursoController extends Zend_Controller_Action

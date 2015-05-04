@@ -61,7 +61,7 @@
         
     <?php echo $this->headLink()?>     
     <?php echo $this->headScript()?>  
-    
+    <?php include_once APPLICATION_PATH.'/decorators/Textarea.php'; ?>
 </head>
 <!-- /Head -->
 <!-- Body -->

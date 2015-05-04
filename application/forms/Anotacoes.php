@@ -1,7 +1,7 @@
 <?php
 
 include APPLICATION_PATH.'/decorators/decorator1.php';
-include APPLICATION_PATH.'/decorators/Textarea.php';
+include_once APPLICATION_PATH.'/decorators/Textarea.php';
 include APPLICATION_PATH.'/decorators/Combobox.php';
 include APPLICATION_PATH.'/decorators/Button.php';
 class Forms_Anotacoes extends Zend_Form {
