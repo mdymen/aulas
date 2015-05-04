@@ -81,5 +81,23 @@ class UsuarioController extends Zend_Controller_Action {
             }
         }
     }
+    
+    public function addsugestaoAction() {
+        $params = $this->_request->getParams();
+        
+        include_once APPLICATION_PATH.'/Models/Sugestoes.php';
+        
+        $fecha = date('d-m-Y H:i');
+        $nuevafecha = strtotime ( '-4 hour' , strtotime ( $fecha ) ) ;
+        $nuevafecha = date ( 'd-m-Y H:i' , $nuevafecha );
+        
+        $params['ID_USUARIO_SUG'] = $this->data['ID_ID_USU'];
+        $params['DT_DATA_SUG'] = $nuevafecha;
+        
+        $sugestao = new Models_Sugestoes();
+        $sugestao->save($params);
+        
+        $this->redirect();
+    }
       
 }

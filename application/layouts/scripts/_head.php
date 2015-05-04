@@ -109,156 +109,28 @@
                                         </a>
                                     </li>
                             <?php    }
-                                    ?>
-<!--                            <li>                               
-                                <a class=" dropdown-toggle" data-toggle="dropdown" title="Help" href="#">
-                                    <i class="icon fa fa-warning"></i>
-                                </a>
-                                Notification Dropdown
-                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-notifications">
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <div class="notification-icon">
-                                                    <i class="fa fa-phone bg-themeprimary white"></i>
-                                                </div>
-                                                <div class="notification-body">
-                                                    <span class="title">Skype meeting with Patty</span>
-                                                    <span class="description">01:00 pm</span>
-                                                </div>
-                                                <div class="notification-extra">
-                                                    <i class="fa fa-clock-o themeprimary"></i>
-                                                    <span class="description">office</span>
-                                                </div>
-                                            </div>
+                            ?>
+                            <li>
+                                <a class="dropdown-toggle" data-toggle="dropdown" title="Sugestoes" block="0" href="" id="lnkSugestao">
+                                            <i class="icon fa fa-comment-o"></i>
                                         </a>
+                                  <ul class="pull-right dropdown-menu dropdown-tasks dropdown-arrow " id="ulSugestao">
+                                    <li class="dropdown-header bordered-darkorange">
+                                        <i class="fa fa-star"></i>
+                                        Suas sugoestoes sao importantes...
                                     </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <div class="notification-icon">
-                                                    <i class="fa fa-check bg-darkorange white"></i>
-                                                </div>
-                                                <div class="notification-body">
-                                                    <span class="title">Uncharted break</span>
-                                                    <span class="description">03:30 pm - 05:15 pm</span>
-                                                </div>
-                                                <div class="notification-extra">
-                                                    <i class="fa fa-clock-o darkorange"></i>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <div class="notification-icon">
-                                                    <i class="fa fa-gift bg-warning white"></i>
-                                                </div>
-                                                <div class="notification-body">
-                                                    <span class="title">Kate birthday party</span>
-                                                    <span class="description">08:30 pm</span>
-                                                </div>
-                                                <div class="notification-extra">
-                                                    <i class="fa fa-calendar warning"></i>
-                                                    <i class="fa fa-clock-o warning"></i>
-                                                    <span class="description">at home</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="clearfix">
-                                                <div class="notification-icon">
-                                                    <i class="fa fa-glass bg-success white"></i>
-                                                </div>
-                                                <div class="notification-body">
-                                                    <span class="title">Dinner with friends</span>
-                                                    <span class="description">10:30 pm</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="dropdown-footer ">
-                                        <span>
-                                            Today, March 28
-                                        </span>
-                                        <span class="pull-right">
-                                            10°c
-                                            <i class="wi wi-cloudy"></i>
-                                        </span>
-                                    </li>
+                                        <center>
+                                        <?php
+                                            include_once APPLICATION_PATH.'/forms/sugestoes.php';
+                                            $form = new Forms_Sugestoes();
+                                            echo $form;
+
+                                        ?>
+                                        </center>
                                 </ul>
-                                /Notification Dropdown
-                            </li>-->
-<!--                            <li>
-                                <a class="dropdown-toggle" data-toggle="dropdown" title="Mails" href="#">
-                                    <i class="icon fa fa-envelope"></i>
-                                    <span class="badge">3</span>
-                                </a>
-                                Messages Dropdown
-                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-messages">
-                                    <li>
-                                        <a href="#">
-                                            <img src="assets/img/avatars/divyia.jpg" class="message-avatar" alt="Divyia Austin">
-                                            <div class="message">
-                                                <span class="message-sender">
-                                                    Divyia Austin
-                                                </span>
-                                                <span class="message-time">
-                                                    2 minutes ago
-                                                </span>
-                                                <span class="message-subject">
-                                                    Here's the recipe for apple pie
-                                                </span>
-                                                <span class="message-body">
-                                                    to identify the sending application when the senders image is shown for the main icon
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="assets/img/avatars/bing.png" class="message-avatar" alt="Microsoft Bing">
-                                            <div class="message">
-                                                <span class="message-sender">
-                                                    Bing.com
-                                                </span>
-                                                <span class="message-time">
-                                                    Yesterday
-                                                </span>
-                                                <span class="message-subject">
-                                                    Bing Newsletter: The January Issue?
-                                                </span>
-                                                <span class="message-body">
-                                                    Discover new music just in time for the Grammy® Awards.
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="assets/img/avatars/adam-jansen.jpg" class="message-avatar" alt="Divyia Austin">
-                                            <div class="message">
-                                                <span class="message-sender">
-                                                    Nicolas
-                                                </span>
-                                                <span class="message-time">
-                                                    Friday, September 22
-                                                </span>
-                                                <span class="message-subject">
-                                                    New 4K Cameras
-                                                </span>
-                                                <span class="message-body">
-                                                    The 4K revolution has come over the horizon and is reaching the general populous
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                /Messages Dropdown
-                            </li>-->
+                            </li>
+                            
+                            
 
                             <li>
                                 <a class="dropdown-toggle" data-toggle="dropdown" title="Novas respostas" href="#">
@@ -818,3 +690,21 @@
 <!--  /Body -->
 
 </body></html>
+
+<script type="text/javascript">
+    
+    $(function() {
+       $('#lnkSugestao').bind('click', function() {
+           var block = $(this).attr('block');
+           if (block === '0') {
+               $(this).attr('block', 1);
+               $('#ulSugestao').attr('style','display: block');
+           } else {
+               $(this).attr('block', 0);
+               $('#ulSugestao').attr('style','display: none');
+           }
+           
+       });
+    });
+    
+</script>

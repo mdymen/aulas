@@ -2,7 +2,7 @@
 
 class Decorators_Textarea extends Zend_Form_Decorator_Abstract {
     
-    protected $_format = '<Textarea id="%s" name="%s" style="resize: none;" rows="%s"  class="form-control" placeholder="%s" type="%s">%s</Textarea>';
+    protected $_format = '<Textarea id="%s" name="%s" rows="%s"  class="form-control" placeholder="%s" type="%s" cols="%s" style="resize: none; %s">%s</Textarea>';
  
     public function render($content)
     {
@@ -15,14 +15,16 @@ class Decorators_Textarea extends Zend_Form_Decorator_Abstract {
         $icono  = htmlentities($element->getAttrib('icono'));
         $value   = htmlentities($element->getValue());
         $rows = htmlentities($element->getAttrib('rows'));
-        
+        $cols = $element->getAttrib('cols');
+        $style_col = "";
 
         
         if (empty($rows)) { $rows = 15; }
+        if (!empty($cols)) { $style_col = "width:auto;";  }
         
         $placeholder = htmlentities($element->getAttrib("placeholder"));
         
-        $markup  = sprintf($this->_format,$id, $name,$rows, $placeholder, $type, $value);
+        $markup  = sprintf($this->_format,$id, $name,$rows, $placeholder, $type,$cols, $style_col, $value);
 
         if ($icono != '') {
             $markup = '<span class="input-icon icon-right">'.$markup.'<i class="'.$icono.'"></i></span>';
