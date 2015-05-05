@@ -32,6 +32,8 @@ die('.');*/
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/dashboard/alteraPendente.js')) ?>  
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/bootbox/bootbox.js')) ?>  
     
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/dragdropfiles/javascript.js')) ?>  
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/dragdropfiles/jquery.js')) ?>      
     
         
     <!--Basic Styles-->
@@ -43,7 +45,7 @@ die('.');*/
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/font-awesome.css'))?>           
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/weather-icons.min.css'))?> 
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/toggleButton.css'))?> 
-        
+    <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/dragdropfiles/style.css'))?>         
     
     <!--<link href="assets/css/font-awesome.min.css" rel="stylesheet"> -->
 
