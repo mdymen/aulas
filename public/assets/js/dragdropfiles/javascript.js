@@ -65,7 +65,7 @@ $(document).ready(function() {
 					return function(e) { 
 						
 						// Push the data URI into an array
-						dataArray.push({name : file.name, value : this.result});
+						dataArray.push({name : file.name, value : this.result, curso : $('#ID_ID_CR').val()});
 						
 						// Move each image 40 more pixels across
 						z = z+40;
@@ -140,13 +140,14 @@ $(document).ready(function() {
 		
 		$.each(dataArray, function(index, file) {	
 			
-			$.post('filetesting', dataArray[index], function(data) {
-                               // console.log(data);
-                        
+			$.post('uploadfiles', dataArray[index], function(data) {
+
 				var fileName = dataArray[index].name;
 				++x;
-				
-				// Change the bar to represent how much has loaded
+                                if (data) {
+                                    $('#arquivos').append('<div class="tree-item" style="display: block;"><i class="tree-dot"></i><div class="tree-item-name"><i class="fa fa-suitcase"></i> '+fileName+' <div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-refresh"></i></div></div></div>');
+                                }
+                                // Change the bar to represent how much has loaded
 				$('#loading-bar .loading-color').css({'width' : totalPercent*(x)+'%'});
 				
 				if(totalPercent*(x) == 100) {
@@ -164,24 +165,24 @@ $(document).ready(function() {
 				}
 				
 				// Show a message showing the file URL.
-				var dataSplit = data.split(':');
-				if(dataSplit[1] == 'uploaded successfully') {
-					var realData = '<li><a href="images/'+dataSplit[0]+'">'+fileName+'</a> '+dataSplit[1]+'</li>';
-					
-					$('#uploaded-files').append('<li><a href="images/'+dataSplit[0]+'">'+fileName+'</a> '+dataSplit[1]+'</li>');
-				
-					// Add things to local storage 
-					if(window.localStorage.length == 0) {
-						y = 0;
-					} else {
-						y = window.localStorage.length;
-					}
-					
-					window.localStorage.setItem(y, realData);
-				
-				} else {
-					$('#uploaded-files').append('<li><a href="images/'+data+'. File Name: '+dataArray[index].name+'</li>');
-				}
+//				var dataSplit = data.split(':');
+//				if(dataSplit[1] == 'uploaded successfully') {
+//					var realData = '<li><a href="images/'+dataSplit[0]+'">'+fileName+'</a> '+dataSplit[1]+'</li>';
+//					
+//					$('#uploaded-files').append('<li><a href="images/'+dataSplit[0]+'">'+fileName+'</a> '+dataSplit[1]+'</li>');
+//				
+//					// Add things to local storage 
+//					if(window.localStorage.length == 0) {
+//						y = 0;
+//					} else {
+//						y = window.localStorage.length;
+//					}
+//					
+//					window.localStorage.setItem(y, realData);
+//				
+//				} else {
+//					$('#uploaded-files').append('<li><a href="images/'+data+'. File Name: '+dataArray[index].name+'</li>');
+//				}
 				
 			});
 		});

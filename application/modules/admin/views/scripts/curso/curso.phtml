@@ -29,6 +29,8 @@ include APPLICATION_PATH.'/tables/slides.php';
 $table = new Tables_Slides($slides);
 $table->render();
 
+$arquivos = $this->arquivos;
+
 ?>
 <!--
 
@@ -47,3 +49,86 @@ $table->render();
 </div>
         
 </div>-->
+
+<?php
+
+$html = '
+<div class="content">
+	<div id="drop-files" class="upload-drop-zone" ondragover="return false">
+		Drop Images Here
+	</div>
+	
+	<div id="uploaded-holder">
+		<div id="dropped-files">
+			<div id="upload-button">
+				<a href="#" class="upload">Upload!</a>
+				<a href="#" class="delete">delete</a>
+				<span>0 Files</span>
+			</div>
+		</div>
+		<div id="extra-files">
+			<div class="number">
+				0
+			</div>
+			<div id="file-list">
+				<ul></ul>
+			</div>
+		</div>
+	</div>
+	
+	<div id="loading">
+		<div id="loading-bar">
+			<div class="loading-color"> </div>
+		</div>
+		<div id="loading-content">Uploading file.jpg</div>
+	</div>
+	
+	
+</div>
+<div class="col-md-12">
+                            <div class="widget flat radius-bordered">
+                                <div class="widget-header bg-sky">
+                                    <span class="widget-caption">Arquivos do curso</span>
+                                    <div class="widget-buttons">
+                                        <a href="#" data-toggle="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="#" data-toggle="dispose">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="widget-body" style="overflow: hidden; display: block;">
+                                    <div id="MyTree6" class="tree tree-no-line tree-unselectable">
+                                        <div class="tree-folder" style="display: none;">
+                                            <div class="tree-folder-header">
+                                                <i class="fa fa-folder"></i>
+                                                <div class="tree-folder-name"></div>
+                                            </div>
+                                            <div class="tree-folder-content">
+                                            </div>
+                                            <div class="tree-loader" style="display: none;"></div>
+                                        </div>
+                                        <div class="tree-item" style="display: none;">
+                                            <i class="tree-dot"></i>
+                                            <div class="tree-item-name"></div>
+                                        </div><div id="arquivos">';
+                                    
+                                         foreach($arquivos as $arquivo) {   
+
+                                            $html .= '<div class="tree-item" style="display: block;">
+                                                <i class="tree-dot"></i>
+                                                <div class="tree-item-name"><i class="fa fa-suitcase"></i> '.$arquivo.' <div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-refresh"></i></div></div>
+                                                </div>';
+                                         }
+                                        
+                                   $html .= '</div></div>
+                                </div>
+                            </div>
+                        </div>';
+
+include_once APPLICATION_PATH.'/Decorators/Html.php';
+echo Decorators_Html::baseHtml($html, 'col-md-6', 'Subir arquivos');
+
+?>
+

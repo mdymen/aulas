@@ -61,6 +61,9 @@ class Admin_IndexController extends Zend_Controller_Action {
     }
     
     public function filetestingAction() {
+        
+        $curso = $this->_request->getParam('curso');
+        
 $uploaddir = APPLICATION_PATH."/../public/recursos/";
 
 // The posted data, for reference
@@ -84,7 +87,7 @@ $decodedData = base64_decode($encodedData);
 $randomName = substr_replace(sha1(microtime(true)), '', 12).'.'.$mime;
 
 
-if(file_put_contents($uploaddir.$randomName, $decodedData)) {
+if(file_put_contents($uploaddir.$curso.'-'.$randomName, $decodedData)) {
 	$params =  $randomName.":uploaded successfully";
 }
 else {

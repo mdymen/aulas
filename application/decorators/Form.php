@@ -24,8 +24,22 @@ class Decorators_Form extends Zend_Form_Decorator_Abstract {
         $enctype = htmlentities($this->getElement()->getAttrib("enctype"));
         $classes = $this->getElement()->getAttrib("class");
         $icone = $this->getElement()->getAttrib('icone');
+        $widget_btns = $this->getElement()->getAttrib('widget_btns');
         
         $enctyestring= '';
+        
+        $widget_buttons = '';
+        if ($widget_btns != '') {
+            $widget_buttons = '<div class="widget-buttons">
+                                        <a href="#" data-toggle="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="#" data-toggle="dispose">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>';
+        }
+        
         
         if ($enctype != ""){
             $enctyestring = 'enctype = multipart/form-data';
@@ -45,6 +59,7 @@ class Decorators_Form extends Zend_Form_Decorator_Abstract {
             <div class="widget">
                 <div class="widget-header bordered-bottom bordered-blue">
                     <span class="widget-caption" id="tituloForm">'.$icone_class.' '.$titulo.'</span>
+                        '.$widget_buttons.'
                 </div>
                 <div class="widget-body">
                     <div>';
