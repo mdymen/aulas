@@ -4,9 +4,6 @@
      <link rel="shortcut icon" href="<?php echo $this->baseUrl().'/../public/img/icone.png'; ?>" type="image/x-icon">
 <?php
     require_once 'breadcrumb.php';
-    
-/*print_r('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
-die('.');*/
 ?>
 
     <meta name="description" content="data tables">

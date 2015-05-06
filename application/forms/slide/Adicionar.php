@@ -15,7 +15,7 @@ class Forms_Slide_Adicionar extends Zend_Form{
         $this->setAction($root."/slide/addslide")->setMethod("post");
 
         $decorator2 = new Decorators_Decorator1();  
-        $slide = new Zend_Form_Element_Text('NM_SLIDE_SLI', array('placeholder' => '', 'icono' => 'fa fa-sort-numeric-asc', 'col' => 'col-sm-2')); 
+        $slide = new Zend_Form_Element_Text('NM_SLIDE_SLI', array('placeholder' => '', 'icono' => 'fa fa-sort-numeric-asc', 'col' => 'col-sm-3')); 
         $slide->addDecorator($decorator2);
         
         $decorator3 = new Decorators_Combobox(); 

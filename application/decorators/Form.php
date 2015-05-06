@@ -19,6 +19,9 @@ class Decorators_Form extends Zend_Form_Decorator_Abstract {
     {
         $titulo = htmlentities($this->getElement()->getAttrib("titulo"));
         $id = htmlentities($this->getElement()->getAttrib("id"));
+        
+        
+        
         $action = htmlentities($this->getElement()->getAttrib("action"));
         $method = htmlentities($this->getElement()->getAttrib("method"));
         $enctype = htmlentities($this->getElement()->getAttrib("enctype"));
@@ -27,6 +30,11 @@ class Decorators_Form extends Zend_Form_Decorator_Abstract {
         $widget_btns = $this->getElement()->getAttrib('widget_btns');
         
         $enctyestring= '';
+        $id_ = '';
+        
+        if ($id != '') {
+            $id_ = 'id = "'.$id.'"';
+        }
         
         $widget_buttons = '';
         if ($widget_btns != '') {
@@ -64,7 +72,7 @@ class Decorators_Form extends Zend_Form_Decorator_Abstract {
                 <div class="widget-body">
                     <div>';
         
-        $form = $v."<form id=".$id." ".$enctyestring." action=".$action." method=".$method." >";
+        $form = $v."<form $id_ ".$enctyestring." action=".$action." method=".$method." >";
         $elements = $this->getElement()->getElements();
         
         foreach ($elements as $element) {
