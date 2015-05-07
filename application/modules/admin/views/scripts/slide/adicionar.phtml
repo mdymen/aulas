@@ -57,6 +57,13 @@ echo $form;
                                         echo $formPropPerguntas;
                                      ?>
                                     </div>
+                                    <div id="propLinhas" style="display: none;">
+                                     <?php
+                                        include_once APPLICATION_PATH.'/forms/exercicios/PropLinha.php';
+                                        $fromPropLinhas = new Forms_Exercicios_PropLinha();
+                                        echo $fromPropLinhas;
+                                     ?>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
@@ -99,31 +106,54 @@ echo $form;
 
 <script type="text/javascript">
     
+    function fecharTodosOsForms() {
+        $('#propPerguntas').attr('style','display: none');
+        $('#propLinhas').attr('style','display: none');
+    }
+    
     function selecionarItem() {
+        fecharTodosOsForms();
         $('.itemSlide').bind('click', function() {
-            $('.itemSlide').parent().css('background','');
-            var id = $(this).attr('id'); 
-            var padre_de_this = $(this).parent();
-            padre_de_this.css('background','gray');
-            
-            $('#propTitle').html('Propiedades: '+id)
-                    .attr('valor',id);
-            $('#propPerguntas').attr('style','display','inline');
-            $('#txtId').val(id);
-            window.id_pergunta = id;
-            
-            var pergunta = $('#pergunta_'+id).html();
-            $('#txtPergunta').val(pergunta);
-            window.pergunta = pergunta;
-            
-            var resposta = $('#respCorreta_' + id).html();
-            $('#txtResposta').val(resposta);
-            window.resposta = resposta;
+           fecharTodosOsForms();
+            var tipo = $(this).attr('tipo');
+           
+            if (tipo === 'propPerguntas') {
+                $('.itemSlide').parent().css('background','');
+                var id = $(this).attr('id'); 
+                var padre_de_this = $(this).parent();
+                padre_de_this.css('background','gray');
+
+                $('#propTitle').html('Propiedades: '+id)
+                        .attr('valor',id);
+                $('#propPerguntas').attr('style','display','inline');
+                $('#txtId').val(id);
+                window.id_pergunta = id;
+
+                var pergunta = $('#pergunta_'+id).html();
+                $('#txtPergunta').val(pergunta);
+                window.pergunta = pergunta;
+
+                var resposta = $('#respCorreta_' + id).html();
+                $('#txtResposta').val(resposta);
+                window.resposta = resposta;
+            } 
+            if (tipo === 'propLinhas') {
+                 $('.itemSlide').parent().css('background','');
+                var id = $(this).attr('id'); 
+                var padre_de_this = $(this).parent();
+                padre_de_this.css('background','gray');
+
+                $('#propTitle').html('Propiedades: '+id)
+                        .attr('valor',id);
+                
+                $('#propLinhas').attr('style','display: block');
+            }
         });
     }
     
 $(function() {
     window.perguntas = 1;
+    window.tipos = [];
 
     $('#txtId').focusout(function() {
         var atual = $('#txtId').val();
@@ -160,8 +190,38 @@ $(function() {
         $('#preview_visor').html(html);
     });
     
-    $('#opPencil').bind('click', function() {
+    $('#opTexto').bind('click', function() {
+        window.contador = 0;
+       var pergunta = '<div id="horizontal-form">\n\
+                                                <form class="form-horizontal" role="form"><div class="row">\n\
+                                                    <div class="form-group">\n\
+                                                        <label id="pergunta1_izquerda" for="A" class="col-sm-2 control-label no-padding-right">A </label>\n\
+                                                        <div class="col-sm-2 " style="padding-left:2px; padding-right:2px">\n\
+                                                        <span class="input-icon icon-right">\n\
+                                                            <input type="text" class="form-control" id="pergunta'+window.perguntas+'" name="pergunta'+window.perguntas+'" placeholder=""/>\n\
+                                                            <i class="fa fa-times red" id="pergunta'+window.perguntas+'_times" style=""></i>\n\
+                                                            <i class="fa fa-check green" id="pergunta'+window.perguntas+'_check" style="display:none"></i></span>\n\
+                                                        </div>\n\
+<div class="col-sm-2" style="padding-left:0px;padding-right:0px;">\n\
+                                                           <label id="pergunta'+window.perguntas+'_direita" for="A" class="control-label no-padding-right">A - </label>\n\
+                                                        </div>\n\
+                                                    </div></div></form></div>'; 
+       
+        var atualHtml = $('#ST_SLIDE_SLI').html();
+        atualHtml += pergunta;
+        $('#ST_SLIDE_SLI').html(atualHtml);
         
+        $('#MyTree6').html('');
+        $('#Preview').trigger('click');
+        window.tipos.push('propLinhas'); 
+        arvore($('#ST_SLIDE_SLI'));
+        window.perguntas += 1;
+          
+        console.log(window.tipos);
+    });
+    
+    $('#opPencil').bind('click', function() {
+        window.contador = 0;
         var pergunta = '<div class="form-group col-sm-12">\n\
                 <div class="row">\n\
                     <div class="col-sm-9"> \n\
@@ -180,16 +240,16 @@ $(function() {
         var atualHtml = $('#ST_SLIDE_SLI').html();
         atualHtml += pergunta;
         $('#ST_SLIDE_SLI').html(atualHtml);
-                            
-                $('#MyTree6').html('');
-                
-            $('#Preview').trigger('click');
-            arvore($('#ST_SLIDE_SLI'));
-            window.perguntas += 1;
+
+        $('#MyTree6').html('');
+
+        $('#Preview').trigger('click');
+        window.tipos.push('propPerguntas');
+        arvore($('#ST_SLIDE_SLI'));
+        window.perguntas += 1;
+        console.log(window.tipos);
+            
     });
-    
-    
-    
 });
 
 
@@ -253,14 +313,12 @@ function valoresInput(cadena, i) {
         input += cadena[i];
         i++;
     }
-    
-    console.log(input);
 }
     
 function adicionarNaEstrutura(tag, id, arrValores) {    
     var item =  '<div class="tree-item" style="display: block;">\n\
                     <i class="tree-dot"></i>\n\
-                    <div class="tree-item-name itemSlide" id='+id+'>\n\
+                    <div class="tree-item-name itemSlide" tipo="'+window.tipos[window.contador]+'" id='+id+'>\n\
                         <i class="fa fa-suitcase"></i> \n\
                         '+ tag +'[ ' + id + ' ] \n\
                         <div class="tree-actions">\n\
@@ -272,6 +330,7 @@ function adicionarNaEstrutura(tag, id, arrValores) {
                  </div>';
                                 
     $('#MyTree6').append(item);
+    window.contador++;
     selecionarItem();
 }
 </script>
