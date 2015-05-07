@@ -4,40 +4,8 @@
 //        $form = new Forms_Curso_Recursos();
 //        echo $form;
     ?>
-    
-<div class="content">
-	<div id="drop-files" class="upload-drop-zone" ondragover="return false">
-		Drop Images Here
-	</div>
-	
-	<div id="uploaded-holder">
-		<div id="dropped-files">
-			<div id="upload-button">
-				<a href="#" class="upload">Upload!</a>
-				<a href="#" class="delete">delete</a>
-				<span>0 Files</span>
-			</div>
-		</div>
-		<div id="extra-files">
-			<div class="number">
-				0
-			</div>
-			<div id="file-list">
-				<ul></ul>
-			</div>
-		</div>
-	</div>
-	
-	<div id="loading">
-		<div id="loading-bar">
-			<div class="loading-color"> </div>
-		</div>
-		<div id="loading-content">Uploading file.jpg</div>
-	</div>
-	
-	<div id="file-name-holder">
-		<ul id="uploaded-files">
-			<h1>Uploaded Files</h1>
-		</ul>
-	</div>
-</div>
+
+<audio controls>
+  <source src="<?php echo $this->baseUrl()."/../public/recursos/6-01.mp3"; ?>" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>

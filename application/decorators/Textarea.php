@@ -13,7 +13,7 @@ class Decorators_Textarea extends Zend_Form_Decorator_Abstract {
         $col     = htmlentities($element->getAttrib('col'));
         $type    = htmlentities($element->getAttrib('type'));
         $icono  = htmlentities($element->getAttrib('icono'));
-        $value   = htmlentities($element->getValue());
+        $value   = htmlentities($element->getValue(), ENT_COMPAT | ENT_HTML401, "UTF-8");
         $rows = htmlentities($element->getAttrib('rows'));
         $cols = $element->getAttrib('cols');
         $style_col = "";
