@@ -1,3 +1,19 @@
+<!-- MENU -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">
+                    <a href="javascript:void(0)" id="opPencil">
+                        <i class="glyphicon glyphicon-pencil"></i>&nbsp;
+                    </a>
+                </span>
+            </div>
+        </div>   
+    </div>
+</div>
+<!-- FIM MENU -->
+
 <?php
 
 include APPLICATION_PATH.'/forms/slide/adicionar.php';
@@ -10,14 +26,43 @@ $form->addDecorator($decform);
 echo $form;
 
 ?>
-
-
+<div class="col-lg-6 col-sm-6 col-xs-12">
+    <div class="widget">
+        <div class="widget-header bordered-bottom bordered-blue">
+            <span class="widget-caption">Elementos</span>
+        </div>
+        <div class="widget-body" style="display:block; overflow: hidden;">
+                
+            <div class="col-lg-6 col-sm-12 col-xs-6">
+                            <div class="widget flat radius-bordered">
+                                <div class="widget-header bg-sky">
+                                    <span class="widget-caption">Elementos</span>
+                                    <div class="widget-buttons">
+                                        <a href="#" data-toggle="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="#" data-toggle="dispose">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div id="MyTree6" class="tree tree-no-line tree-unselectable">
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+            
+            
+        </div>
+    </div>        
+</div>
 <div class="col-lg-6 col-sm-6 col-xs-12">
     <div class="widget">
         <div class="widget-header bordered-bottom bordered-blue">
             <span class="widget-caption">Preview</span>
         </div>
-        <div class="widget-body" id="preview_visor">
+        <div class="widget-body" id="preview_visor" style="display:block; overflow: hidden;">
 
         </div>
     </div>        
@@ -30,7 +75,99 @@ $(function() {
         var html = $('#ST_SLIDE_SLI').val();
         $('#preview_visor').html(html);
     });
-})
+    
+    $('#opPencil').bind('click', function() {
+        $('#ST_SLIDE_SLI').html('<div class="form-group col-sm-12">\n\
+            <div class="row">\n\
+                <div class="col-sm-9"> \n\
+                    <label for="exampleInputEmail1">[Pergunta]</label> \n\
+                </div>\n\
+                    <div class="col-sm-3"> \n\
+                        <span id="respCorreta_pergunta1" class="text-align-right green">[Resposta]</span>\n\
+                    </div>\n\
+                </div>\n\
+                    <span class="input-icon icon-right"> \n\
+                        <input type="text" class="form-control" name="pergunta1" id="pergunta1" placeholder="Resposta">\n\
+                        <i class="fa fa-times" id="pergunta1_times" style="display:none"></i>\n\
+                        <i class="fa fa-check" id="pergunta1_check" style="display:none"></i>\n\
+                    </span>\n\
+                </div>');
+                            
+            $('#Preview').trigger('click');
+            arvore($('#ST_SLIDE_SLI'));
+    });
+    
+    
+    
+});
 
 
+function arvore(selector) {
+   
+    var cadena = selector.text();
+    
+    for (var i = 0; i < cadena.length; i++) {
+        if (cadena[i] === '<') {
+            buscarTag(cadena, i);
+        }
+    }
+}
+
+function inputId(cadena, i) {
+    var ok = false;
+    var id = '';
+    while(!ok) {
+        if (cadena[i] === 'i' && cadena[i + 1] === 'd') {
+            //cadena i+2 = '='
+            //cadena i+3 = '"'
+            i = i + 4;
+            while (cadena[i] !== '"') {
+                id += cadena[i];
+                i++;
+            }
+            ok = true;
+        }
+        i++;
+    }    
+    return id;
+}
+
+function buscarTag(cadena, i) {
+    i++;
+    var tag = '';
+    var ok = true;
+    while (ok) {
+        tag += cadena[i];
+        i++;
+        if (cadena[i] === ' ' || cadena[i] === '>') {
+            ok = false;
+        }          
+    }
+    
+    if (tag.search('/') !== 0) {
+        //console.log(tag);    
+    }
+    if (tag === 'input') {
+        var id = inputId(cadena, i);
+        adicionarNaEstrutura(tag, id, null);
+    }
+    return tag;
+}
+
+function adicionarNaEstrutura(tag, id, arrValores) {
+    var item =  '<div class="tree-item" style="display: block;">\n\
+                    <i class="tree-dot"></i>\n\
+                    <div class="tree-item-name">\n\
+                        <i class="fa fa-suitcase"></i> \n\
+                        '+ tag +'[ ' + id + ' ] \n\
+                        <div class="tree-actions">\n\
+                            <i class="fa fa-plus"></i>\n\
+                            <i class="fa fa-trash-o"></i>\n\
+                            <i class="fa fa-refresh"></i>\n\
+                        </div>\n\
+                    </div>\n\
+                 </div>';
+                                
+    $('#MyTree6').append(item);
+}
 </script>
