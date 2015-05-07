@@ -7,6 +7,9 @@
                     <a href="javascript:void(0)" id="opPencil" title="Adicionar pergunta">
                         <i class="glyphicon glyphicon-pencil"></i>&nbsp;
                     </a>
+                    <a href="javascript:void(0)" id="opTexto" title="Adicionar completar texto">
+                        <i class="glyphicon glyphicon-file"></i>&nbsp;
+                    </a> 
                 </span>
             </div>
         </div>   
@@ -98,16 +101,59 @@ echo $form;
     
     function selecionarItem() {
         $('.itemSlide').bind('click', function() {
+            $('.itemSlide').parent().css('background','');
             var id = $(this).attr('id'); 
+            var padre_de_this = $(this).parent();
+            padre_de_this.css('background','gray');
+            
             $('#propTitle').html('Propiedades: '+id)
                     .attr('valor',id);
             $('#propPerguntas').attr('style','display','inline');
+            $('#txtId').val(id);
+            window.id_pergunta = id;
+            
+            var pergunta = $('#pergunta_'+id).html();
+            $('#txtPergunta').val(pergunta);
+            window.pergunta = pergunta;
+            
+            var resposta = $('#respCorreta_' + id).html();
+            $('#txtResposta').val(resposta);
+            window.resposta = resposta;
         });
     }
     
 $(function() {
+    window.perguntas = 1;
 
+    $('#txtId').focusout(function() {
+        var atual = $('#txtId').val();
+        if (atual !== window.id_pergunta) {
+            var result = $('#ST_SLIDE_SLI').html().split(window.id_pergunta).join(atual);
+            $('#ST_SLIDE_SLI').html(result);
+            Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
+        }
+    });
 
+    $('#txtPergunta').focusout(function() {
+        var atual = $('#txtPergunta').val();
+        if (atual !== window.pergunta) {
+            var result = $('#ST_SLIDE_SLI').html().split(window.pergunta).join(atual);
+            $('#ST_SLIDE_SLI').html(result);
+            Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
+            $('#Preview').trigger('click');
+        }
+    });
+
+    $('#txtResposta').focusout(function() {
+        var atual = $('#txtResposta').val();
+        if (atual !== window.resposta) {
+            var result = $('#ST_SLIDE_SLI').html().split(window.resposta).join(atual);
+            $('#ST_SLIDE_SLI').html(result);
+            Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
+            $('#Preview').trigger('click');
+        }
+    });
+    
 
     $('#Preview').bind('click', function() {
         var html = $('#ST_SLIDE_SLI').val();
@@ -115,24 +161,31 @@ $(function() {
     });
     
     $('#opPencil').bind('click', function() {
-        $('#ST_SLIDE_SLI').html('<div class="form-group col-sm-12">\n\
-            <div class="row">\n\
-                <div class="col-sm-9"> \n\
-                    <label for="pergunta" id="pergunta_pergunta1">[Pergunta]</label> \n\
-                </div>\n\
-                    <div class="col-sm-3"> \n\
-                        <span id="respCorreta_pergunta1" class="text-align-right green">[Resposta]</span>\n\
+        
+        var pergunta = '<div class="form-group col-sm-12">\n\
+                <div class="row">\n\
+                    <div class="col-sm-9"> \n\
+                        <label for="pergunta" id="pergunta_pergunta'+window.perguntas+'">[Pergunta]</label> \n\
                     </div>\n\
-                </div>\n\
-                    <span class="input-icon icon-right"> \n\
-                        <input type="text" class="form-control" name="pergunta1" id="pergunta1" placeholder="Resposta">\n\
-                        <i class="fa fa-times" id="pergunta1_times" style="display:none"></i>\n\
-                        <i class="fa fa-check" id="pergunta1_check" style="display:none"></i>\n\
-                    </span>\n\
-                </div>');
+                        <div class="col-sm-3"> \n\
+                            <span id="respCorreta_pergunta'+window.perguntas+'" class="text-align-right green">[Resposta]</span>\n\
+                        </div>\n\
+                    </div>\n\
+                        <span class="input-icon icon-right"> \n\
+                            <input type="text" class="form-control" name="pergunta'+window.perguntas+'" id="pergunta'+window.perguntas+'" placeholder="Resposta">\n\
+                            <i class="fa fa-times" id="pergunta'+window.perguntas+'_times" style="display:none"></i>\n\
+                            <i class="fa fa-check" id="pergunta'+window.perguntas+'_check" style="display:none"></i>\n\
+                        </span>\n\
+                    </div>';
+        var atualHtml = $('#ST_SLIDE_SLI').html();
+        atualHtml += pergunta;
+        $('#ST_SLIDE_SLI').html(atualHtml);
                             
+                $('#MyTree6').html('');
+                
             $('#Preview').trigger('click');
             arvore($('#ST_SLIDE_SLI'));
+            window.perguntas += 1;
     });
     
     
@@ -174,7 +227,7 @@ function buscarTag(cadena, i) {
     i++;
     var tag = '';
     var ok = true;
-    while (ok) {
+    while (ok) {      
         tag += cadena[i];
         i++;
         if (cadena[i] === ' ' || cadena[i] === '>') {
@@ -186,13 +239,25 @@ function buscarTag(cadena, i) {
         //console.log(tag);    
     }
     if (tag === 'input') {
+        
         var id = inputId(cadena, i);
         adicionarNaEstrutura(tag, id, null);
     }
     return tag;
 }
 
-function adicionarNaEstrutura(tag, id, arrValores) {
+function valoresInput(cadena, i) {
+    var arrayValores = [];
+    var input = '';
+    while (cadena[i] !== '>') {
+        input += cadena[i];
+        i++;
+    }
+    
+    console.log(input);
+}
+    
+function adicionarNaEstrutura(tag, id, arrValores) {    
     var item =  '<div class="tree-item" style="display: block;">\n\
                     <i class="tree-dot"></i>\n\
                     <div class="tree-item-name itemSlide" id='+id+'>\n\
