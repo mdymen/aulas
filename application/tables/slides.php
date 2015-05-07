@@ -21,7 +21,7 @@ class Tables_Slides extends Tables_Simpletable {
     }
 
     public function headers() {
-        $this->_headers = array('Id','Nº Slide','Descripçao');
+        $this->_headers = array('Id',utf8_encode('Nº Slide'),utf8_encode('Descripçao'));
     }
 
     public function titulo() {
