@@ -4,7 +4,7 @@
         <div class="widget">
             <div class="widget-header">
                 <span class="widget-caption">
-                    <a href="javascript:void(0)" id="opPencil">
+                    <a href="javascript:void(0)" id="opPencil" title="Adicionar pergunta">
                         <i class="glyphicon glyphicon-pencil"></i>&nbsp;
                     </a>
                 </span>
@@ -32,8 +32,34 @@ echo $form;
             <span class="widget-caption">Elementos</span>
         </div>
         <div class="widget-body" style="display:block; overflow: hidden;">
-                
-            <div class="col-lg-6 col-sm-12 col-xs-6">
+              
+            <div class="col-md-12">
+                            <div class="widget flat radius-bordered">
+                                <div class="widget-header bg-sky">
+                                    <span class="widget-caption" id="propTitle">Propiedades</span>
+                                    <div class="widget-buttons">
+                                        <a href="#" data-toggle="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="#" data-toggle="dispose">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div id="propPerguntas" style="display: none;">
+                                     <?php
+                                        include_once APPLICATION_PATH.'/forms/exercicios/PropPerguntas.php';
+                                        $formPropPerguntas = new Forms_Exercicios_PropPerguntas();
+                                        echo $formPropPerguntas;
+                                     ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+            
+            <div class="col-md-12">
                             <div class="widget flat radius-bordered">
                                 <div class="widget-header bg-sky">
                                     <span class="widget-caption">Elementos</span>
@@ -69,7 +95,19 @@ echo $form;
 </div>
 
 <script type="text/javascript">
+    
+    function selecionarItem() {
+        $('.itemSlide').bind('click', function() {
+            var id = $(this).attr('id'); 
+            $('#propTitle').html('Propiedades: '+id)
+                    .attr('valor',id);
+            $('#propPerguntas').attr('style','display','inline');
+        });
+    }
+    
 $(function() {
+
+
 
     $('#Preview').bind('click', function() {
         var html = $('#ST_SLIDE_SLI').val();
@@ -80,7 +118,7 @@ $(function() {
         $('#ST_SLIDE_SLI').html('<div class="form-group col-sm-12">\n\
             <div class="row">\n\
                 <div class="col-sm-9"> \n\
-                    <label for="exampleInputEmail1">[Pergunta]</label> \n\
+                    <label for="pergunta" id="pergunta_pergunta1">[Pergunta]</label> \n\
                 </div>\n\
                     <div class="col-sm-3"> \n\
                         <span id="respCorreta_pergunta1" class="text-align-right green">[Resposta]</span>\n\
@@ -157,7 +195,7 @@ function buscarTag(cadena, i) {
 function adicionarNaEstrutura(tag, id, arrValores) {
     var item =  '<div class="tree-item" style="display: block;">\n\
                     <i class="tree-dot"></i>\n\
-                    <div class="tree-item-name">\n\
+                    <div class="tree-item-name itemSlide" id='+id+'>\n\
                         <i class="fa fa-suitcase"></i> \n\
                         '+ tag +'[ ' + id + ' ] \n\
                         <div class="tree-actions">\n\
@@ -169,5 +207,6 @@ function adicionarNaEstrutura(tag, id, arrValores) {
                  </div>';
                                 
     $('#MyTree6').append(item);
+    selecionarItem();
 }
 </script>
