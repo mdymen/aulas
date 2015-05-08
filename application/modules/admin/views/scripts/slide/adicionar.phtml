@@ -155,6 +155,17 @@ $(function() {
     window.perguntas = 1;
     window.tipos = [];
 
+//    $('#MyTree6').append('<div class="tree-item" style="display: block;">\n\
+//                    <i class="tree-dot"></i>\n\
+//                    <div class="tree-item-name itemSlide" tipo="propPerguntas" id="pergunta2">\n\
+//                        <i class="fa fa-suitcase"></i>input[ pergunta2 ]<div class="tree-actions">\n\
+//                            <i class="fa fa-plus"></i>\n\
+//                            <i class="fa fa-trash-o"></i>\n\
+//                            <i class="fa fa-refresh"></i>\n\
+//                        </div>\n\
+//                    </div>\n\
+//                 </div>');
+
     $('#txtId').focusout(function() {
         var atual = $('#txtId').val();
         if (atual !== window.id_pergunta) {
@@ -315,10 +326,10 @@ function valoresInput(cadena, i) {
     }
 }
     
-function adicionarNaEstrutura(tag, id, arrValores) {    
+function adicionarNaEstrutura(tag, id, campos) { 
     var item =  '<div class="tree-item" style="display: block;">\n\
                     <i class="tree-dot"></i>\n\
-                    <div class="tree-item-name itemSlide" tipo="'+window.tipos[window.contador]+'" id='+id+'>\n\
+                    <div class="tree-item-name itemSlide" '+campos+' tipo="'+window.tipos[window.contador]+'" id='+id+'>\n\
                         <i class="fa fa-suitcase"></i> \n\
                         '+ tag +'[ ' + id + ' ] \n\
                         <div class="tree-actions">\n\
