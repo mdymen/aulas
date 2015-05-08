@@ -138,7 +138,7 @@ echo $form;
                 window.resposta = resposta;
             } 
             if (tipo === 'propLinhas') {
-                 $('.itemSlide').parent().css('background','');
+                $('.itemSlide').parent().css('background','');
                 var id = $(this).attr('id'); 
                 var padre_de_this = $(this).parent();
                 padre_de_this.css('background','gray');
@@ -147,24 +147,30 @@ echo $form;
                         .attr('valor',id);
                 
                 $('#propLinhas').attr('style','display: block');
+                
+                var izq = $(this).attr('izq');
+                var der = $(this).attr('der');
+                var resp = $(this).attr('resp');
+                var id = $(this).attr('id');
+                
+                $('#txtIzqLinhas').val(izq);
+                $('#txtDerLinhas').val(der);
+                $('#txtRespLinhas').val(resp);
+                $('#txtIdLinhas').val(id);
+                
+                window.izq = izq;
+                window.der = der;
+                window.id = id;
+                window.resp = resp;
+                
+                console.log(window.id);
             }
         });
     }
     
 $(function() {
-    window.perguntas = 1;
+    window.perguntas = 0;
     window.tipos = [];
-
-//    $('#MyTree6').append('<div class="tree-item" style="display: block;">\n\
-//                    <i class="tree-dot"></i>\n\
-//                    <div class="tree-item-name itemSlide" tipo="propPerguntas" id="pergunta2">\n\
-//                        <i class="fa fa-suitcase"></i>input[ pergunta2 ]<div class="tree-actions">\n\
-//                            <i class="fa fa-plus"></i>\n\
-//                            <i class="fa fa-trash-o"></i>\n\
-//                            <i class="fa fa-refresh"></i>\n\
-//                        </div>\n\
-//                    </div>\n\
-//                 </div>');
 
     $('#txtId').focusout(function() {
         var atual = $('#txtId').val();
@@ -174,7 +180,6 @@ $(function() {
             Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
         }
     });
-
     $('#txtPergunta').focusout(function() {
         var atual = $('#txtPergunta').val();
         if (atual !== window.pergunta) {
@@ -184,7 +189,6 @@ $(function() {
             $('#Preview').trigger('click');
         }
     });
-
     $('#txtResposta').focusout(function() {
         var atual = $('#txtResposta').val();
         if (atual !== window.resposta) {
@@ -195,6 +199,43 @@ $(function() {
         }
     });
     
+    $('#txtIdLinhas').focusout(function(){        
+        var atual = $('#txtIdLinhas').val();
+        if (atual !== window.id) {
+            var result = $('#ST_SLIDE_SLI').html().split(window.id).join(atual);
+            $('#ST_SLIDE_SLI').html(result);           
+            Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
+            $('#Preview').trigger('click');
+        }
+    });
+    $('#txtRespLinhas').focusout(function(){
+        var atual = $('#txtRespLinhas').val();
+        if (atual !== window.resp) {
+            var result = $('#ST_SLIDE_SLI').html().split(window.resp).join(atual);
+            $('#ST_SLIDE_SLI').html(result);           
+            Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
+            $('#Preview').trigger('click');            
+        }
+    });
+    $('#txtIzqLinhas').focusout(function(){
+        var atual = $('#txtIzqLinhas').val();
+        if (atual !== window.izq) {
+            var result = $('#ST_SLIDE_SLI').html().split(window.izq).join(atual);
+            $('#ST_SLIDE_SLI').html(result);           
+            Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
+            $('#Preview').trigger('click');            
+        }        
+    });
+    $('#txtDerLinhas').focusout(function(){
+        var atual = $('#txtDerLinhas').val();
+        if (atual !== window.der) {
+            var result = $('#ST_SLIDE_SLI').html().split(window.der).join(atual);
+            $('#ST_SLIDE_SLI').html(result);           
+            Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
+            $('#Preview').trigger('click');            
+        }         
+    });
+    
 
     $('#Preview').bind('click', function() {
         var html = $('#ST_SLIDE_SLI').val();
@@ -202,38 +243,12 @@ $(function() {
     });
     
     $('#opTexto').bind('click', function() {
-        
-        //Tengo el codigo
-        //Agrego en el arbol
-            // para esto tengo que tener valores de secuencia ya
-        
-        window.contador = 0;
-       var pergunta = '<div id="horizontal-form">\n\
-                                                <form class="form-horizontal" role="form"><div class="row">\n\
-                                                    <div class="form-group">\n\
-                                                        <label id="pergunta1_izquerda" for="A" class="col-sm-2 control-label no-padding-right">A </label>\n\
-                                                        <div class="col-sm-2 " style="padding-left:2px; padding-right:2px">\n\
-                                                        <span class="input-icon icon-right">\n\
-                                                            <input type="text" class="form-control" id="pergunta'+window.perguntas+'" name="pergunta'+window.perguntas+'" placeholder=""/>\n\
-                                                            <i class="fa fa-times red" id="pergunta'+window.perguntas+'_times" style=""></i>\n\
-                                                            <i class="fa fa-check green" id="pergunta'+window.perguntas+'_check" style="display:none"></i></span>\n\
-                                                        </div>\n\
-<div class="col-sm-2" style="padding-left:0px;padding-right:0px;">\n\
-                                                           <label id="pergunta'+window.perguntas+'_direita" for="A" class="control-label no-padding-right">A - </label>\n\
-                                                        </div>\n\
-                                                    </div></div></form></div>'; 
-       
-        var atualHtml = $('#ST_SLIDE_SLI').html();
-        atualHtml += pergunta;
-        $('#ST_SLIDE_SLI').html(atualHtml);
-        
-        $('#MyTree6').html('');
+       window.perguntas += 1;
+       var n = window.perguntas;
+       agregarHtmlText();
+       agregarElemento('propLinhas', 'id="pergunta'+n+'" izq="izq'+n+'" der="der'+n+'" resp="resp'+n+'" ');
         $('#Preview').trigger('click');
-        window.tipos.push('propLinhas'); 
-        arvore($('#ST_SLIDE_SLI'));
-        window.perguntas += 1;
-          
-        console.log(window.tipos);
+        
     });
     
     $('#opPencil').bind('click', function() {
@@ -245,69 +260,6 @@ $(function() {
         $('#Preview').trigger('click');
     });
 });
-
-
-function arvore(selector) {
-   
-    var cadena = selector.text();
-    
-    for (var i = 0; i < cadena.length; i++) {
-        if (cadena[i] === '<') {
-            buscarTag(cadena, i);
-        }
-    }
-}
-
-function inputId(cadena, i) {
-    var ok = false;
-    var id = '';
-    while(!ok) {
-        if (cadena[i] === 'i' && cadena[i + 1] === 'd') {
-            //cadena i+2 = '='
-            //cadena i+3 = '"'
-            i = i + 4;
-            while (cadena[i] !== '"') {
-                id += cadena[i];
-                i++;
-            }
-            ok = true;
-        }
-        i++;
-    }    
-    return id;
-}
-
-function buscarTag(cadena, i) {
-    i++;
-    var tag = '';
-    var ok = true;
-    while (ok) {      
-        tag += cadena[i];
-        i++;
-        if (cadena[i] === ' ' || cadena[i] === '>') {
-            ok = false;
-        }          
-    }
-    
-    if (tag.search('/') !== 0) {
-        //console.log(tag);    
-    }
-    if (tag === 'input') {
-        
-        var id = inputId(cadena, i);
-        adicionarNaEstrutura(tag, id, null);
-    }
-    return tag;
-}
-
-function valoresInput(cadena, i) {
-    var arrayValores = [];
-    var input = '';
-    while (cadena[i] !== '>') {
-        input += cadena[i];
-        i++;
-    }
-}
     
 function adicionarNaEstrutura(tag, id, campos) { 
     var item =  '<div class="tree-item" style="display: block;">\n\
@@ -329,24 +281,42 @@ function adicionarNaEstrutura(tag, id, campos) {
 }
 
 function agregarElemento(tipo, campos, id) {
-//    var item =  '<div class="tree-item" style="display: block;">\n\
-//                    <i class="tree-dot"></i>\n\
-//                    <div class="tree-item-name itemSlide" '+campos+' tipo="'+tipos+'">\n\
-//                        <i class="fa fa-suitcase"></i> \n\
-//                        '[ ' + id + ' ] \n\
-//                        <div class="tree-actions">\n\
-//                            <i class="fa fa-plus"></i>\n\
-//                            <i class="fa fa-trash-o"></i>\n\
-//                            <i class="fa fa-refresh"></i>\n\
-//                        </div>\n\
-//                    </div>\n\
-//                 </div>';
-//                                
-//    $('#MyTree6').append(item);
-//    window.contador++;
-//    selecionarItem();    
+    var item =  '<div class="tree-item" style="display: block;">\n\
+                    <i class="tree-dot"></i>\n\
+                    <div class="tree-item-name itemSlide" '+campos+' tipo="'+tipo+'">\n\
+                        <i class="fa fa-suitcase"></i> \n\
+                        '+id+' \n\
+                        <div class="tree-actions">\n\
+                            <i class="fa fa-plus"></i>\n\
+                            <i class="fa fa-trash-o"></i>\n\
+                            <i class="fa fa-refresh"></i>\n\
+                        </div>\n\
+                    </div>\n\
+                 </div>';
+                                
+    $('#MyTree6').append(item);
+    selecionarItem();    
 }
-
+function agregarHtmlText() {
+           var pergunta = '<div id="horizontal-form">\n\
+                                                <form class="form-horizontal" role="form"><div class="row">\n\
+                                                    <div class="form-group">\n\
+                                                        <label id="pergunta1_izquerda" for="A" class="col-sm-2 control-label no-padding-right">izq'+window.perguntas+'</label>\n\
+                                                        <div class="col-sm-2 " style="padding-left:2px; padding-right:2px">\n\
+                                                        <span class="input-icon icon-right">\n\
+                                                            <input type="text" class="form-control" id="pergunta'+window.perguntas+'" name="pergunta'+window.perguntas+'" placeholder=""/>\n\
+                                                            <i class="fa fa-times red" id="pergunta'+window.perguntas+'_times" style=""></i>\n\
+                                                            <i class="fa fa-check green" id="pergunta'+window.perguntas+'_check" style="display:none"></i></span>\n\
+                                                        </div>\n\
+<div class="col-sm-2" style="padding-left:0px;padding-right:0px;">\n\
+                                                           <label id="pergunta'+window.perguntas+'_direita" for="A" class="control-label no-padding-right">der'+window.perguntas+'</label>\n\
+                                                        </div>\n\
+                                                    </div></div></form></div>'; 
+                    var atualHtml = $('#ST_SLIDE_SLI').html();
+        atualHtml += pergunta;
+        $('#ST_SLIDE_SLI').html(atualHtml);                                                    
+                                                                
+    }
 function agregarHtmlPerguntas() {
  var pergunta = '<div class="form-group col-sm-12">\n\
                 <div class="row">\n\
