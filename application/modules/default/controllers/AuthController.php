@@ -102,10 +102,74 @@ class AuthController extends Zend_Controller_Action {
         $this->_redirect('index/index');
     }
     
+    function isloggedAction() {        
+        $storage = new Zend_Auth_Storage_Session();
+        $data = get_object_vars($storage->read());
+
+        
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        $this->_helper->json($data); 
+        
+    }
+    
     function logoutAction() {
         $storage = new Zend_Auth_Storage_Session();
         $storage->clear();
         $this->_redirect();
+    }
+    
+    /*
+     * email
+     * id
+     * name
+     */
+    function loginfacebookAction() {
+        $params = $this->_request->getParams();
+        
+        $usuarios = new Models_Usuarios();
+        $usuario = $usuarios->getUserByEmail($params['email']);
+        if (!empty($usuario)) {
+            $logou = $this->_logar($usuario['ST_USUARIO_USU'],$usuario['ST_SENHA_USU']);
+            if ($logou) {
+                
+            }
+        }else {
+            $info = array('ST_USUARIO_USU' => $params['name'], 'ST_SENHA_USU' => $params['id'],'ST_EMAIL_USU' => $params['email']);    
+            $usuarios->save($info);
+            $logou = $this->_logar($params['name'], $params['id']);
+        }
+        
+        
+         $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        $this->_helper->json($info);   
+    }
+    
+    private function _logar($usuario, $senha) {
+        $users = new Models_Usuarios();
+        $auth = Zend_Auth::getInstance();
+        $authAdapter = new Zend_Auth_Adapter_DbTable($users->getAdapter(),'Usuarios');
+        $authAdapter->setIdentityColumn('ST_USUARIO_USU')
+                    ->setCredentialColumn('ST_SENHA_USU');
+        $authAdapter->setIdentity($usuario)
+                    ->setCredential($senha);
+
+        $result = $auth->authenticate($authAdapter);
+
+        if ($result->isValid()) {         
+            $storage = new Zend_Auth_Storage_Session();
+            $storage->write($authAdapter->getResultRowObject());
+            return true;
+        }
+        return false;
     }
     
     function loginAction() {

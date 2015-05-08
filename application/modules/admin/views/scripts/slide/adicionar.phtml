@@ -202,6 +202,11 @@ $(function() {
     });
     
     $('#opTexto').bind('click', function() {
+        
+        //Tengo el codigo
+        //Agrego en el arbol
+            // para esto tengo que tener valores de secuencia ya
+        
         window.contador = 0;
        var pergunta = '<div id="horizontal-form">\n\
                                                 <form class="form-horizontal" role="form"><div class="row">\n\
@@ -232,34 +237,12 @@ $(function() {
     });
     
     $('#opPencil').bind('click', function() {
-        window.contador = 0;
-        var pergunta = '<div class="form-group col-sm-12">\n\
-                <div class="row">\n\
-                    <div class="col-sm-9"> \n\
-                        <label for="pergunta" id="pergunta_pergunta'+window.perguntas+'">[Pergunta]</label> \n\
-                    </div>\n\
-                        <div class="col-sm-3"> \n\
-                            <span id="respCorreta_pergunta'+window.perguntas+'" class="text-align-right green">[Resposta]</span>\n\
-                        </div>\n\
-                    </div>\n\
-                        <span class="input-icon icon-right"> \n\
-                            <input type="text" class="form-control" name="pergunta'+window.perguntas+'" id="pergunta'+window.perguntas+'" placeholder="Resposta">\n\
-                            <i class="fa fa-times" id="pergunta'+window.perguntas+'_times" style="display:none"></i>\n\
-                            <i class="fa fa-check" id="pergunta'+window.perguntas+'_check" style="display:none"></i>\n\
-                        </span>\n\
-                    </div>';
-        var atualHtml = $('#ST_SLIDE_SLI').html();
-        atualHtml += pergunta;
-        $('#ST_SLIDE_SLI').html(atualHtml);
-
-        $('#MyTree6').html('');
-
-        $('#Preview').trigger('click');
-        window.tipos.push('propPerguntas');
-        arvore($('#ST_SLIDE_SLI'));
+        
         window.perguntas += 1;
-        console.log(window.tipos);
-            
+        var n = window.perguntas;
+        agregarHtmlPerguntas();
+        agregarElemento('propPerguntas','id="pergunta'+n+'" pergunta="pergunta'+n+'" resposta="resposta'+n+'"');
+        $('#Preview').trigger('click');
     });
 });
 
@@ -343,5 +326,45 @@ function adicionarNaEstrutura(tag, id, campos) {
     $('#MyTree6').append(item);
     window.contador++;
     selecionarItem();
+}
+
+function agregarElemento(tipo, campos, id) {
+//    var item =  '<div class="tree-item" style="display: block;">\n\
+//                    <i class="tree-dot"></i>\n\
+//                    <div class="tree-item-name itemSlide" '+campos+' tipo="'+tipos+'">\n\
+//                        <i class="fa fa-suitcase"></i> \n\
+//                        '[ ' + id + ' ] \n\
+//                        <div class="tree-actions">\n\
+//                            <i class="fa fa-plus"></i>\n\
+//                            <i class="fa fa-trash-o"></i>\n\
+//                            <i class="fa fa-refresh"></i>\n\
+//                        </div>\n\
+//                    </div>\n\
+//                 </div>';
+//                                
+//    $('#MyTree6').append(item);
+//    window.contador++;
+//    selecionarItem();    
+}
+
+function agregarHtmlPerguntas() {
+ var pergunta = '<div class="form-group col-sm-12">\n\
+                <div class="row">\n\
+                    <div class="col-sm-9"> \n\
+                        <label for="pergunta" id="pergunta_pergunta'+window.perguntas+'">[Pergunta]</label> \n\
+                    </div>\n\
+                        <div class="col-sm-3"> \n\
+                            <span id="respCorreta_pergunta'+window.perguntas+'" class="text-align-right green">[Resposta]</span>\n\
+                        </div>\n\
+                    </div>\n\
+                        <span class="input-icon icon-right"> \n\
+                            <input type="text" class="form-control" name="pergunta'+window.perguntas+'" id="pergunta'+window.perguntas+'" placeholder="Resposta">\n\
+                            <i class="fa fa-times" id="pergunta'+window.perguntas+'_times" style="display:none"></i>\n\
+                            <i class="fa fa-check" id="pergunta'+window.perguntas+'_check" style="display:none"></i>\n\
+                        </span>\n\
+                    </div>';
+        var atualHtml = $('#ST_SLIDE_SLI').html();
+        atualHtml += pergunta;
+        $('#ST_SLIDE_SLI').html(atualHtml);   
 }
 </script>
