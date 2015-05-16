@@ -9,7 +9,10 @@
                     </a>
                     <a href="javascript:void(0)" id="opTexto" title="Adicionar completar texto">
                         <i class="glyphicon glyphicon-file"></i>&nbsp;
-                    </a> 
+                    </a>
+                    <a href="javascript:void(0)" id="opCorregir" title="Adicionar corregir/respostas">
+                        <i class="fa fa-thumbs-up"></i>&nbsp;
+                    </a>  
                 </span>
             </div>
         </div>   
@@ -168,6 +171,13 @@ echo $form;
         });
     }
     
+    function mudarRespostaJson(atual,resp) {
+        var textArea = $('#ST_RESPOSTAS_SLI');
+        var respostas = textArea.val();
+        respostas = respostas.split(resp).join(atual);
+        textArea.val(respostas);
+    }
+    
 $(function() {
     window.perguntas = 0;
     window.tipos = [];
@@ -214,6 +224,7 @@ $(function() {
             var result = $('#ST_SLIDE_SLI').html().split(window.resp).join(atual);
             $('#ST_SLIDE_SLI').html(result);           
             Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
+            mudarRespostaJson(atual,window.resp);
             $('#Preview').trigger('click');            
         }
     });
@@ -246,8 +257,9 @@ $(function() {
        window.perguntas += 1;
        var n = window.perguntas;
        agregarHtmlText();
-       agregarElemento('propLinhas', 'id="pergunta'+n+'" izq="izq'+n+'" der="der'+n+'" resp="resp'+n+'" ');
-        $('#Preview').trigger('click');
+       agregarElemento('propLinhas', 'id="pergunta'+n+'" izq="izq'+n+'" der="der'+n+'" resp="resp'+n+'" ','pergunta'+n,'fa fa-file');
+       agregarResposta('pergunta'+n,'resp'+n); 
+       $('#Preview').trigger('click');
         
     });
     
@@ -256,7 +268,13 @@ $(function() {
         window.perguntas += 1;
         var n = window.perguntas;
         agregarHtmlPerguntas();
-        agregarElemento('propPerguntas','id="pergunta'+n+'" pergunta="pergunta'+n+'" resposta="resposta'+n+'"');
+        agregarElemento('propPerguntas','id="pergunta'+n+'" pergunta="pergunta'+n+'" resposta="resposta'+n+'"','pergunta'+n,'fa fa-pencil');
+
+        $('#Preview').trigger('click');
+    });
+    
+    $('#opCorregir').bind('click', function() {
+        agregarHtmlCorregirRespostas();
         $('#Preview').trigger('click');
     });
 });
@@ -280,11 +298,11 @@ function adicionarNaEstrutura(tag, id, campos) {
     selecionarItem();
 }
 
-function agregarElemento(tipo, campos, id) {
+function agregarElemento(tipo, campos, id, icon) {
     var item =  '<div class="tree-item" style="display: block;">\n\
                     <i class="tree-dot"></i>\n\
                     <div class="tree-item-name itemSlide" '+campos+' tipo="'+tipo+'">\n\
-                        <i class="fa fa-suitcase"></i> \n\
+                        <i class="'+icon+'"></i> \n\
                         '+id+' \n\
                         <div class="tree-actions">\n\
                             <i class="fa fa-plus"></i>\n\
@@ -297,21 +315,36 @@ function agregarElemento(tipo, campos, id) {
     $('#MyTree6').append(item);
     selecionarItem();    
 }
-function agregarHtmlText() {
-           var pergunta = '<div id="horizontal-form">\n\
-                                                <form class="form-horizontal" role="form"><div class="row">\n\
+
+function agregarHtmlCorregirRespostas() {
+    var inicio = '<form id="frmExc" action="method=post">\n\
+            <div class="widget-body col-lg-12 col-sm-6 col-xs-12">';
+    var fin = '<button name="btnCorregir" id="btnCorregir" type="button" class="btn btn-success" style="margin-right: 10px">Corregir</button><button name="btnRespostas" id="btnRespostas" type="button" class="btn" style="margin-right: 10px">Respostas</button></div></form>';
+
+    var atualHtml = $('#ST_SLIDE_SLI').html();
+    atualHtml = inicio + atualHtml;
+    atualHtml += fin;
+    $('#ST_SLIDE_SLI').html(atualHtml);       
+}
+
+function agregarHtmlText() {//<form class="form-horizontal" role="form"><div class="row">\n\
+           var pergunta = '<div class="row"><div id="horizontal-form">\n\
+                                                \n\
                                                     <div class="form-group">\n\
-                                                        <label id="pergunta1_izquerda" for="A" class="col-sm-2 control-label no-padding-right">izq'+window.perguntas+'</label>\n\
+                                                        <label id="pergunta1_izquerda" for="A" class="col-sm-2 control-label no-padding-right" style="padding-top:5px:">izq'+window.perguntas+'</label>\n\
                                                         <div class="col-sm-2 " style="padding-left:2px; padding-right:2px">\n\
                                                         <span class="input-icon icon-right">\n\
                                                             <input type="text" class="form-control" id="pergunta'+window.perguntas+'" name="pergunta'+window.perguntas+'" placeholder=""/>\n\
-                                                            <i class="fa fa-times red" id="pergunta'+window.perguntas+'_times" style=""></i>\n\
+                                                            <i class="fa fa-times red" id="pergunta'+window.perguntas+'_times" style="display:none"></i>\n\
                                                             <i class="fa fa-check green" id="pergunta'+window.perguntas+'_check" style="display:none"></i></span>\n\
                                                         </div>\n\
 <div class="col-sm-2" style="padding-left:0px;padding-right:0px;">\n\
-                                                           <label id="pergunta'+window.perguntas+'_direita" for="A" class="control-label no-padding-right">der'+window.perguntas+'</label>\n\
+                                                           <label id="pergunta'+window.perguntas+'_direita" for="A" class="control-label no-padding-right" style="padding-top:5px;">der'+window.perguntas+'</label>\n\
                                                         </div>\n\
-                                                    </div></div></form></div>'; 
+                                                        <div class="col-sm-3"> \n\
+                        <span id="respCorreta_pergunta'+window.perguntas+'" class="text-align-right green" style="padding-top:5px;"><span>\n\
+                    </span></span></div>\n\
+                                                    </div></div></div>'; 
                     var atualHtml = $('#ST_SLIDE_SLI').html();
         atualHtml += pergunta;
         $('#ST_SLIDE_SLI').html(atualHtml);                                                    
@@ -336,5 +369,18 @@ function agregarHtmlPerguntas() {
         var atualHtml = $('#ST_SLIDE_SLI').html();
         atualHtml += pergunta;
         $('#ST_SLIDE_SLI').html(atualHtml);   
+}
+
+function agregarResposta(pergunta, resposta) {
+    var obj = $('#ST_RESPOSTAS_SLI');
+    var respostas = obj.val();
+    if (respostas === '') 
+    {
+        respostas = '{}';
+    }
+    respostas = JSON.parse(respostas);
+    respostas[pergunta] = resposta;
+    obj.val(JSON.stringify(respostas));
+    
 }
 </script>
