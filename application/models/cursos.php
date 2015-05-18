@@ -88,7 +88,7 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
         
         if (count($res) == 0) {
             $db->insert('usuario_curso', $params);
-            return 1;
+            return array('NM_UTIMAVIU_UC' => 1);
         } else {
             $select = $db->select()->from('usuario_curso')
                     ->where('ID_USU_UC = ?', $params['ID_USU_UC'])

@@ -73,9 +73,9 @@ class CursoController extends Zend_Controller_Action
         
         $storage = new Zend_Auth_Storage_Session();
         $data = get_object_vars($storage->read()); 
-        
+
         $slide = $slides->specificSlide($params['curso'], $params['slide']);
-        
+       
         $slides->updateUtimaLida(array('ID_USU_UC' => $data['ID_ID_USU'],'ID_CUR_UC' => $params['curso'],'NM_UTIMAVIU_UC' => $params['slide']));
        
         $respostas = $this->_obterrespostas(array('curso' => $params['curso'],'slide' => $params['slide']));
