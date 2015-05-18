@@ -155,18 +155,25 @@ echo $form;
                 var der = $(this).attr('der');
                 var resp = $(this).attr('resp');
                 var id = $(this).attr('id');
+                var colizq = $(this).attr('colizq');
+                var colder = $(this).attr('colder');
+                var n = $(this).attr('num');
                 
                 $('#txtIzqLinhas').val(izq);
                 $('#txtDerLinhas').val(der);
                 $('#txtRespLinhas').val(resp);
                 $('#txtIdLinhas').val(id);
+                $('#txtTamanhoIzqLinhas').val(colizq);
+                $('#txtTamanhoDerLinhas').val(colder);
                 
                 window.izq = izq;
                 window.der = der;
                 window.id = id;
                 window.resp = resp;
+                window.tamizq = colizq;
+                window.tamder = colder;
+                window.n = n;
                 
-                console.log(window.id);
             }
         });
     }
@@ -247,7 +254,28 @@ $(function() {
         }         
     });
     
+    $('#txtTamanhoIzqLinhas').focusout(function() {
+        var atual = $('#txtTamanhoIzqLinhas').val();
+        console.log('izqcol'+window.n+' '+window.tamizq+' control-label no-padding-right');
+        if (atual !== window.tamizq) {
+           var result = $('#ST_SLIDE_SLI').html().split('izqcol'+window.n+' col-sm-2 control-label no-padding-right').join('izqcol'+window.n+' '+atual+' control-label no-padding-right'); 
+           $('#ST_SLIDE_SLI').html(result);           
+           Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
+           $('#Preview').trigger('click');  
+        }
+    });
 
+    $('#txtTamanhoDerLinhas').focusout(function() {
+        var atual = $('#txtTamanhoDerLinhas').val();
+        if (atual !== window.tamder) {
+           var result = $('#ST_SLIDE_SLI').html().split('dercol'+window.n+' col-sm-2 control-label no-padding-right').join('dercol'+window.n+' '+atual+' control-label no-padding-right'); 
+           $('#ST_SLIDE_SLI').html(result);           
+           Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
+           $('#Preview').trigger('click');  
+        }
+    });    
+    
+        
     $('#Preview').bind('click', function() {
         var html = $('#ST_SLIDE_SLI').val();
         $('#preview_visor').html(html);
@@ -257,7 +285,7 @@ $(function() {
        window.perguntas += 1;
        var n = window.perguntas;
        agregarHtmlText();
-       agregarElemento('propLinhas', 'id="pergunta'+n+'" izq="izq'+n+'" der="der'+n+'" resp="resp'+n+'" ','pergunta'+n,'fa fa-file');
+       agregarElemento('propLinhas', 'colder="col-sm-2" colizq="col-sm-1" num='+n+' id="pergunta'+n+'" izq="izq'+n+'" der="der'+n+'" resp="resp'+n+'" ','pergunta'+n,'fa fa-file');
        agregarResposta('pergunta'+n,'resp'+n); 
        $('#Preview').trigger('click');
         
@@ -331,15 +359,17 @@ function agregarHtmlText() {//<form class="form-horizontal" role="form"><div cla
            var pergunta = '<div class="row"><div id="horizontal-form">\n\
                                                 \n\
                                                     <div class="form-group">\n\
-                                                        <label id="pergunta1_izquerda" for="A" class="col-sm-2 control-label no-padding-right" style="padding-top:5px:">izq'+window.perguntas+'</label>\n\
+                                                        <div class="izqcol'+window.perguntas+' col-sm-1 control-label no-padding-right" style="padding-top:5px;"> \n\
+                                                            <label id="pergunta'+window.pergunta+'_izquerda" >izq'+window.perguntas+'</label>\n\
+                                                        </div>\n\
                                                         <div class="col-sm-2 " style="padding-left:2px; padding-right:2px">\n\
                                                         <span class="input-icon icon-right">\n\
                                                             <input type="text" class="form-control" id="pergunta'+window.perguntas+'" name="pergunta'+window.perguntas+'" placeholder=""/>\n\
                                                             <i class="fa fa-times red" id="pergunta'+window.perguntas+'_times" style="display:none"></i>\n\
                                                             <i class="fa fa-check green" id="pergunta'+window.perguntas+'_check" style="display:none"></i></span>\n\
                                                         </div>\n\
-<div class="col-sm-2" style="padding-left:0px;padding-right:0px;">\n\
-                                                           <label id="pergunta'+window.perguntas+'_direita" for="A" class="control-label no-padding-right" style="padding-top:5px;">der'+window.perguntas+'</label>\n\
+                                                        <div class="dercol'+window.perguntas+' col-sm-2 control-label no-padding-right" style="padding-left:0px;padding-right:0px;">\n\
+                                                           <label id="pergunta'+window.perguntas+'_direita"  style="padding-top:5px;">der'+window.perguntas+'</label>\n\
                                                         </div>\n\
                                                         <div class="col-sm-3"> \n\
                         <span id="respCorreta_pergunta'+window.perguntas+'" class="text-align-right green" style="padding-top:5px;"><span>\n\

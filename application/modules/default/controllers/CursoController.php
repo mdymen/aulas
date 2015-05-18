@@ -29,6 +29,19 @@ class CursoController extends Zend_Controller_Action
         $this->view->cursos = $cursos->cursos();        
     }
     
+    public function cursosjsonAction() {
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $cursos = new Models_Cursos();
+        
+        $this->_helper->json($cursos->cursos());     
+    }
+    
     public function cursoAction() {
        
         $params = $this->_request->getParams();

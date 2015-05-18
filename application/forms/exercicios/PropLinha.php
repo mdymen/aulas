@@ -22,13 +22,20 @@ class Forms_Exercicios_PropLinha extends Zend_Form {
         $izq = new Zend_Form_Element_Text('txtIzqLinhas', array('placeholder' => 'Texto da izq...'));
         $izq->addDecorator($decorator);
         
+        $tamLinhaIzq = new Zend_Form_Element_Text('txtTamanhoIzqLinhas', array('placeholder' => 'Tamanho da izq...')); 
+        $tamLinhaIzq->addDecorator($decorator);
+        
         $dir = new Zend_Form_Element_Text('txtDerLinhas', array('placeholder' => 'Texto da dir...'));
         $dir->addDecorator($decorator);
+        
+        $tamLinhaDer = new Zend_Form_Element_Text('txtTamanhoDerLinhas', array('placeholder' => 'Tamanho da der...')); 
+        $tamLinhaDer->addDecorator($decorator);
+        
         
         $resp = new Zend_Form_Element_Text('txtRespLinhas', array('placeholder' => 'Resposta...'));
         $resp->addDecorator($decorator);
         
-        $this->addElements(array($id, $izq, $dir, $resp));
+        $this->addElements(array($id, $izq,$tamLinhaIzq, $dir, $tamLinhaDer, $resp));
     }
     
 }

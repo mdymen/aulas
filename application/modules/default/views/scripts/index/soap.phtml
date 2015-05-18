@@ -1,0 +1,21 @@
+
+<?php
+header('Content-Type: application/xml; charset=utf-8');
+        ini_set('soap.wsdl_cache_enabled',0);
+        
+        $class = 'http://localhost/aulas/public/index/soap?wsdl';
+      include_once APPLICATION_PATH.'/Manager.php';  
+    //    $this->getHelper('viewRenderer')->setNoRender(true);
+     
+      if(isset($_GET['wsdl'])) {
+        $server = new Zend_Soap_AutoDiscover();
+        $server->setClass('Manager');
+        $server->handle();           
+      }else {
+          $soap = new Zend_Soap_Server($class);
+          $soap->setClass('Manager');
+          $soap->handle();
+      }
+
+
+?>
