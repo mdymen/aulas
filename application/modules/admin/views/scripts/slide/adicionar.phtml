@@ -55,9 +55,9 @@ echo $form;
                                 <div class="widget-body">
                                     <div id="propPerguntas" style="display: none;">
                                      <?php
-                                        include_once APPLICATION_PATH.'/forms/exercicios/PropPerguntas.php';
-                                        $formPropPerguntas = new Forms_Exercicios_PropPerguntas();
-                                        echo $formPropPerguntas;
+//                                        include_once APPLICATION_PATH.'/forms/exercicios/PropPerguntas.php';
+//                                        $formPropPerguntas = new Forms_Exercicios_PropPerguntas();
+//                                        echo $formPropPerguntas;
                                      ?>
                                     </div>
                                     <div id="propLinhas" style="display: none;">
@@ -256,11 +256,13 @@ $(function() {
     
     $('#txtTamanhoIzqLinhas').focusout(function() {
         var atual = $('#txtTamanhoIzqLinhas').val();
-        console.log('izqcol'+window.n+' '+window.tamizq+' control-label no-padding-right');
+        console.log(atual);
+        var htmlatual = 'izqcol'+window.n+' col-sm-1 control-label no-padding-right';
+        console.log(htmlatual);
         if (atual !== window.tamizq) {
-           var result = $('#ST_SLIDE_SLI').html().split('izqcol'+window.n+' col-sm-2 control-label no-padding-right').join('izqcol'+window.n+' '+atual+' control-label no-padding-right'); 
+           var result = $('#ST_SLIDE_SLI').html().split(htmlatual).join('izqcol'+window.n+' '+atual+' control-label no-padding-right'); 
            $('#ST_SLIDE_SLI').html(result);           
-           Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
+           //Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
            $('#Preview').trigger('click');  
         }
     });
@@ -270,7 +272,7 @@ $(function() {
         if (atual !== window.tamder) {
            var result = $('#ST_SLIDE_SLI').html().split('dercol'+window.n+' col-sm-2 control-label no-padding-right').join('dercol'+window.n+' '+atual+' control-label no-padding-right'); 
            $('#ST_SLIDE_SLI').html(result);           
-           Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
+          // Notify('Alteração correta!', 'top-right', '5000', 'success', 'fa-check', false);
            $('#Preview').trigger('click');  
         }
     });    
@@ -347,7 +349,7 @@ function agregarElemento(tipo, campos, id, icon) {
 function agregarHtmlCorregirRespostas() {
     var inicio = '<form id="frmExc" action="method=post">\n\
             <div class="widget-body col-lg-12 col-sm-6 col-xs-12">';
-    var fin = '<button name="btnCorregir" id="btnCorregir" type="button" class="btn btn-success" style="margin-right: 10px">Corregir</button><button name="btnRespostas" id="btnRespostas" type="button" class="btn" style="margin-right: 10px">Respostas</button></div></form>';
+    var fin = '<br><br><button name="btnCorregir" id="btnCorregir" type="button" class="btn btn-success" style="margin-right: 10px">Corregir</button><button name="btnRespostas" id="btnRespostas" type="button" class="btn" style="margin-right: 10px">Respostas</button></div></form>';
 
     var atualHtml = $('#ST_SLIDE_SLI').html();
     atualHtml = inicio + atualHtml;
@@ -360,7 +362,7 @@ function agregarHtmlText() {//<form class="form-horizontal" role="form"><div cla
                                                 \n\
                                                     <div class="form-group">\n\
                                                         <div class="izqcol'+window.perguntas+' col-sm-1 control-label no-padding-right" style="padding-top:5px;"> \n\
-                                                            <label id="pergunta'+window.pergunta+'_izquerda" >izq'+window.perguntas+'</label>\n\
+                                                            <label id="pergunta'+window.perguntas+'_izquerda" >izq'+window.perguntas+'</label>\n\
                                                         </div>\n\
                                                         <div class="col-sm-2 " style="padding-left:2px; padding-right:2px">\n\
                                                         <span class="input-icon icon-right">\n\
