@@ -69,11 +69,11 @@ class IndexController extends Zend_Controller_Action {
         if (!empty($data)){        
             $data = get_object_vars($data);
             $cursos = new Models_Cursos();
-            $result = $cursos->countSlides();
+           // $result = $cursos->countSlides();
 
             $usuario = new Models_Usuarios();
 
-            $this->view->cursos = $result;
+           // $this->view->cursos = $result;
             $this->view->perguntas = $usuario->dashboard($data);
             $this->view->cantCursos = $cursos->cantCursos();
         }
