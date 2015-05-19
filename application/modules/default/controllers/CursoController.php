@@ -118,11 +118,40 @@ class CursoController extends Zend_Controller_Action
         return !empty($slide['ST_RESPOSTAS_SLI']) ? true : false; 
     }
     
+    public function vercursoslideAction() {
+        $storage = new Zend_Auth_Storage_Session();
+        $data = get_object_vars($storage->read());  
+
+        $params = $this->_request->getParams();
+        
+        $cursos = new Models_Cursos();
+        $usuario_curso = (array('ID_USU_UC' => $data['ID_ID_USU'] ,'ID_CUR_UC' => $params['curso'], 'NM_UTIMAVIU_UC' => 1));
+        $usuario_curso_retorno = $cursos->estaMatriculado($usuario_curso);
+
+        $an = new Models_Anotacoes();
+        $anotacoes = $an->anotacoes($params['curso'],1);
+        
+        $pergunta = new Models_Perguntas();
+        $perguntas = $pergunta->perguntas($params['curso'],1);
+
+        $this->view->anotacoes = $anotacoes;
+        $this->view->perguntas = $perguntas;
+        $this->view->idcurso = $this->_request->getParam('curso');
+        $this->view->idslide = $this->_request->getParam('slide');
+        $this->view->idusuario = $data['ID_ID_USU'];
+        $this->view->usuario_curso = $usuario_curso_retorno;
+        $this->view->curso = $cursos->curso($this->_request->getParam('curso'));
+    }
+    
     public function vercursoAction() {
         $storage = new Zend_Auth_Storage_Session();
         $data = get_object_vars($storage->read());  
 
         $params = $this->_request->getParams();
+        
+        if ($params['tipo'] == 1 ) {
+            $this->redirect('curso/vercursoslide?curso='.$params['curso']);
+        }
         
         $cursos = new Models_Cursos();
         $usuario_curso = (array('ID_USU_UC' => $data['ID_ID_USU'] ,'ID_CUR_UC' => $params['curso'], 'NM_UTIMAVIU_UC' => 1));
@@ -288,5 +317,50 @@ class CursoController extends Zend_Controller_Action
         $this->_helper->json($params);
     }   
     
+    
+    function novoAction() {
+        
+    }
+    
+    function criarAction() {
+        require_once APPLICATION_PATH.'/forms/curso/slides.php';
+        
+        
+        $storage = new Zend_Auth_Storage_Session();
+        $data = get_object_vars($storage->read()); 
+        
+        $params = $this->_request->getParams();
+        
+        $form = new Forms_Curso_Slides();
+
+        if ($this->_request->isPost()) {
+            $formData = $this->_request->getPost();
+            
+            if ($form->isValid($formData)) {
+                
+                // success - do something with the uploaded file
+                $uploadedData = $form->getValues();
+                 
+            }
+        }
+        
+        $course = new Models_Cursos();
+
+        $uploadedData['ST_AUTOR_CR'] = $data['ST_USUARIO_USU'];
+        $uploadedData['FL_TIPO_CR'] = 1;
+        $course->save($uploadedData);
+        
+        
+    }
+    
+    function meuscursosAction() {
+        
+        
+        $storage = new Zend_Auth_Storage_Session();
+        $data = get_object_vars($storage->read()); 
+        
+        $cursos = new Models_Cursos();
+        $this->view->cursos = $cursos->cursosByUser($data['ST_USUARIO_USU']);
+    }
 }
 

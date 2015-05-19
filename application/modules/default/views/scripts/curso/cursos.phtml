@@ -23,7 +23,7 @@ if (is_array($cursos)) {
                       echo '<span style="color: green"><b>GRATIS</b></span>';
                   }
                   ?>
-                  <p><br><span><a class="btn btn-primary" style="margin-right:5px" href="<?php echo $this->baseUrl('curso/ficha?curso='.$curso['ID_ID_CR'])?>"><i class="fa fa-info"></i> Ficha</a><a href="<?php echo $this->baseUrl('curso/vercurso?curso='.$curso['ID_ID_CR'].'&slide=1')?>" class="btn btn-success" role="button"><i class="fa fa-pencil"></i>Conferir</a></span></p>
+                  <p><br><span><a class="btn btn-primary" style="margin-right:5px" href="<?php echo $this->baseUrl('curso/ficha?curso='.$curso['ID_ID_CR'])?>"><i class="fa fa-info"></i> Ficha</a><a href="<?php echo $this->baseUrl('curso/vercurso?curso='.$curso['ID_ID_CR'].'&slide=1&tipo='.$curso['FL_TIPO_CR'])?>" class="btn btn-success" role="button"><i class="fa fa-pencil"></i>Conferir</a></span></p>
                 </div>
               </div>
             </div>

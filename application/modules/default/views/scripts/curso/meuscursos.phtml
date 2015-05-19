@@ -1,0 +1,32 @@
+<?php
+
+$cursos = $this->cursos;
+
+?>
+
+<?php 
+    foreach ($cursos as $curso) {
+        
+?>
+
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+    <div class="databox radius-bordered databox-shadowed databox-graded" style="height:100px !important">
+        <div class="databox-left bg-purple" style="weight:100px !important; height:100px !important;">
+            <div class="databox-icon">
+                <i class="fa fa-book"></i>
+            </div> 
+        </div>
+        <div class="databox-right">
+            <span class="databox-number purple"><a href="/aulas/public/admin/dashboard/creditopendente"><?php echo $curso['ST_NOME_CR']; ?></a></span>
+            <div class="databox-text darkgray"></div>
+            <div class="databox-stat purple radius-bordered">
+                <i class="stat-icon icon-lg fa fa-tasks"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<?php
+    }
+?>

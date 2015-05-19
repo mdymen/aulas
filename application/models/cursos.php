@@ -3,9 +3,18 @@
 class Models_Cursos extends Zend_Db_Table_Abstract {
     protected $_name = 'Cursos';
  
+    function cursosByUser($usuario) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        $select = $db->select()->from($this->_name)->where('ST_AUTOR_CR = ?', $usuario);
+        return $select->query()->fetchAll();
+    }
+    
     function save($params) {
         $db = Zend_Db_Table::getDefaultAdapter();
         
+        if (empty($params['ST_AUTOR_CR'])) { $params['ST_AUTOR_CR'] = ''; }
+        if (empty($params['FL_TIPO_CR'])) { $params['FL_TIPO_CR'] = 0; }
+            
         $info = array
             (
             'ST_IDENT_CR'   =>   $params['ST_IDENT_CR'],
@@ -17,7 +26,10 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
             'ST_CARACT_CR' => $params['ST_CARACT_CR'],
             'ST_IMAGEM_CR' => $params['ST_IMAGEM_CR'],
             'ST_MINIDESCR_CR' => $params['ST_MINIDESCR_CR'],
-            'ST_SUBTITULO_CR' => $params['ST_SUBTITULO_CR']
+            'ST_SUBTITULO_CR' => $params['ST_SUBTITULO_CR'],
+            'ST_AUTOR_CR' => $params['ST_AUTOR_CR'],
+            'FL_TIPO_CR' => $params['FL_TIPO_CR']
+            
             );
         $db->insert($this->_name, $info);       
     }

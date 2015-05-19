@@ -381,7 +381,25 @@
                             <i class="menu-icon glyphicon glyphicon-question-sign"></i>
                             <span class="menu-text"> Perguntas </span>
                         </a>
-                    </li>                      
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class=""></i>
+                            <span class="menu-text"> &nbsp; </span>
+                        </a>
+                    </li>    
+                    <li>
+                        <a href="<?php echo $this->baseUrl().'/curso/novo'; ?>">
+                            <i class="menu-icon glyphicon glyphicon-edit"></i>
+                            <span class="menu-text"> Novo curso </span>
+                        </a>
+                    </li>    
+                    <li>
+                        <a href="<?php echo $this->baseUrl().'/curso/meuscursos'; ?>">
+                            <i class="menu-icon glyphicon glyphicon-book"></i>
+                            <span class="menu-text"> Meus cursos </span>
+                        </a>
+                    </li>    
                 </ul>
                 <!-- /Sidebar Menu -->
             </div>

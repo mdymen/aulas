@@ -1,0 +1,217 @@
+<?php
+
+include APPLICATION_PATH.'/Elementoshtml/Alerts.php';
+include APPLICATION_PATH.'/Forms/Anotacoes.php';
+include APPLICATION_PATH.'/Forms/Pergunta.php';
+include APPLICATION_PATH.'/Decorators/Form.php';
+
+
+$anotacoes = $this->anotacoes;
+$perguntas = $this->perguntas;
+$respostas = $this->respostas;
+$curso = $this->curso;
+
+
+$temPerguntas = false;
+if (!empty($perguntas)) {
+    $temPerguntas = true;
+}
+
+
+$usuario_curso = $this->usuario_curso;
+
+if (!empty($anotacoes)) {
+    $anotacoes = $anotacoes[0];
+}
+
+?>
+
+<input type="hidden" id="curso" value="<?php echo $slide['ID_CURSO_CR']; ?>" />
+<div class="row">
+<div class="col-md-7 col-sm-6 col-xs-18">
+    <iframe src="http://docs.google.com/gview?url=http://www.bobbyaulas.com/aulas/public/../application/cursos/<?php echo $curso['ST_IDENT_CR']; ?>&embedded=true" style="width:600px; height:470px;" frameborder="0"></iframe>
+</div>
+    <?php
+
+    $decform = new Decorators_Form();
+//    include_once APPLICATION_PATH.'/decorators/textarea.php';
+    $formAanotacoes = new Forms_Anotacoes(array('titulo' => 'Anotacoes', 'class' => 'col-md-5 col-sm-6 col-xs-18', 'icone' => 'fa fa-pencil-square-o'));
+    $formAanotacoes->populate($anotacoes);
+    $formAanotacoes->addDecorator($decform);
+
+    echo $formAanotacoes;
+    
+?>
+
+</div>
+
+
+<div class="row">
+                                <div class="col-lg-12">
+                                    <div class="widget">
+                                        <div class="widget-header bordered-bottom bordered-themesecondary">
+                                            <i class="widget-icon fa fa-question-circle themesecondary"></i>
+                                            <span class="widget-caption themesecondary">Preguntas</span>
+                                        </div><!--Widget Header-->
+                                        
+                                    <div class="panel-group accordion" id="accordions" style="margin: 0px 0px 0px 0px !important">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordions" href="#collapseOnes" aria-expanded="false">
+                                                        <i class="fa-fw fa fa-check"></i> Nova pergunta...
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOnes" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                                <div class="panel-body border-red">
+                                                    <?php
+                                                    
+                                                        $parametros = array('ID_CURSO_CR' => $this->idcurso, 'ID_USUARIO_USU' => $this->idusuario);
+                                                        $formPerguntar = new Forms_Pergunta();
+                                                        $formPerguntar->populate($parametros);
+                                                        echo $formPerguntar;
+                                                    
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+
+                                        <div class="widget-body  no-padding">
+                                            <div class="tickets-container">
+                                                <ul class="tickets-list">
+                                                  
+                                                        
+                                                            <?php
+                                                          
+                                                            if ($temPerguntas) {
+                                                            
+                                                                $collapsed = 0;
+                                                                foreach ($perguntas as $pergunta) { 
+                                                                    
+                                                                    if (!$pergunta['FL_EXCLUIDA_PER']) {
+                                                                    $respondida = !(empty($pergunta['ST_RESPOSTA_PER']));
+                                                                    $resultado = "Aguardando resposta";
+                                                                    if ($respondida) {
+                                                                        $resultado = "RESPONDIDA";
+                                                                    }
+                                                                ?>
+                                                    
+                                                      <li class="ticket-item">
+                                                        
+                                                        <div class="row">
+                                                    
+                                                    <div class="ticket-user col-lg-6 col-sm-12">
+                                                          <!--          <img src="assets/img/avatars/adam-jansen.jpg" class="user-avatar">-->
+                                                                    <span class="user-name"><div class="widget-buttons buttons-bordered">
+                                                <a href="javascript:void(0)" id="btnExcluirPergunta" valor="<?php echo $pergunta['ID_PERGUNTA_PER']; ?>" class="btnExcluir"><i class="fa fa-times red"></i></a>
+                                            </div><?php echo $pergunta['ST_PERGUNTA_PER']; ?></span>
+                                                                  <?php if ($respondida) {
+                                                                      
+                                                                  }?>
+                                                                </div>
+                                                                <div class="ticket-time  col-lg-4 col-sm-6 col-xs-12">
+                                                                    <div class="divider hidden-md hidden-sm hidden-xs"></div>
+                                                                   
+                                                                                <i class="fa fa-clock-o"></i>
+                                                                                <span class="time"><?php echo $pergunta['DT_UTIMOMOV_PER']; ?></span>                                                                        
+                                                                     
+
+
+
+                                                                </div>
+                                                                <div class="ticket-type  col-lg-2 col-sm-6 col-xs-12">
+                                                                    <span class="divider hidden-xs"></span>
+                                                                    <span class="type"><?php echo $resultado; ?></span>
+                                                                </div>
+
+                                                                <?php 
+                                                                    if ($respondida) {
+                                                                    ?>
+                                                                        <div class="ticket-state bg-palegreen">
+                                                                            <i class="fa fa-check"></i>
+                                                                        </div> <?php
+                                                                    } else {
+                                                                        ?>
+                                                                            <div class="ticket-state bg-yellow">
+                                                                                <i class="fa fa-info"></i>
+                                                                            </div> <?php                                                                    
+                                                                    }
+                                                                  ?>   <?php
+                    ?></div>
+                                                       
+                                                    </li>
+                                                        
+                                                                                            <div class="panel-group accordion" id="accordions" style="margin: 0px 0px 0px 0px !important">
+
+                                       
+                                    </div> <?php
+                                    
+                                    
+                                    
+                                    if ($respondida) {
+                                        ?>
+                                    
+                                            <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title">
+                                                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="<?php echo '#collapsed'.$collapsed; ?>" aria-expanded="false">
+                                                                    Resposta
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="<?php echo 'collapsed'.$collapsed; ?>" class="panel-collapse collapse" aria-expanded="false">
+                                                            <div class="panel-body border-palegreen">
+                                                                <?php echo $pergunta['ST_RESPOSTA_PER']; ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>  
+                                                   <?php 
+                                                   
+                                    }
+                                    $collapsed++;
+                                                    
+                                                    
+                                                                }         
+                                                            } }else {
+                                                                $elemento = new Elementoshtml_Alerts();
+                                                                echo $elemento->warning("Nao tem perguntas.");
+                                                            }
+                                                            ?>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+<script type="text/javascript">
+    $(function() {
+      
+       $('.btnExcluir').bind('click', function() {
+            var pergunta = $(this).attr('valor'); 
+            var excluir_pergunta = confirm('Deseja excluir a pergunta?');
+            if (excluir_pergunta) {
+                $.post("../perguntas/excluirpergunta", {ID_PERGUNTA_PER: pergunta}, function(dados) {
+                   window.location.reload();
+                });
+            }
+        });
+        
+        $('#Gravar').bind('click',function() {
+            var curso = $('#curso').val();
+            var anotacoes = $('#ST_TEXTO_ANO').val();
+            var usuario = 1;
+            
+            $.post("gravaranotacoes", {ID_CURSO_CR : curso, ID_USUARIO_USU: usuario, ST_TEXTO_ANO: anotacoes}, function(data) {
+                $('#tituloForm').html('Anotacoes <span style="width: 6px">&nbsp;&nbsp;&nbsp; utima modificao: '+ data +' </span>');
+            });
+        });
+        
+});
+    
+</script>    
+
