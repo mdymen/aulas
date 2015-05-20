@@ -390,7 +390,7 @@
                     </li>    
                     <li>
                         <a href="<?php echo $this->baseUrl().'/curso/novo'; ?>">
-                            <i class="menu-icon glyphicon glyphicon-edit"></i>
+                            <i class="menu-icon glyphicon glyphicon-file"></i>
                             <span class="menu-text"> Novo curso </span>
                         </a>
                     </li>    

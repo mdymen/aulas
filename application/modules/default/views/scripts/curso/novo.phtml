@@ -5,6 +5,6 @@ include APPLICATION_PATH.'/decorators/Form.php';
 
 
 $decform = new Decorators_Form();
-$form = new Forms_Curso_Slides(array('titulo' => 'Novo curso'));
+$form = new Forms_Curso_Slides(array('titulo' => 'Novo curso', 'icone' => 'glyphicon glyphicon-edit'));
 $form->addDecorator($decform);
 echo $form;

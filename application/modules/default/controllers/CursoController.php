@@ -362,5 +362,14 @@ class CursoController extends Zend_Controller_Action
         $cursos = new Models_Cursos();
         $this->view->cursos = $cursos->cursosByUser($data['ST_USUARIO_USU']);
     }
+    
+    function cursoslideeditAction() {
+        $param = $this->_request->getParams();
+        
+        $cursos = new Models_Cursos();
+        $curso = $cursos->curso($param['curso']);
+        
+        $this->view->curso = $curso;
+    }
 }
 

@@ -1,0 +1,99 @@
+<div class="col-md-12">
+        <div class="widget">
+            <div class="widget-header" id="opcoes">
+                <span class="widget-caption"> 
+                    <a href="javascript:void(0)" id="preview" title="Preview">
+                        <i class="glyphicon glyphicon-eye-open"></i>&nbsp;
+                    </a>
+                    <a href="<?php echo $this->baseUrl().'/curso/novo' ?>" title="Novo curso">
+                        <i class="fa fa-file"></i>&nbsp;
+                    </a>
+                    <a href="javascript:void(0)" id="editar" title="Editar">
+                        <i class="fa fa-edit"></i>&nbsp;
+                    </a>
+                    <a href="javascript:void(0)" id="mudarVisibilidade" title="Mudar visibilidade">
+                        <i class="fa fa-unlock-alt"></i>&nbsp;
+                    </a> 
+                    <a href="javascript:void(0)" id="excluir" title="Excluir curso">
+                        <i class="fa fa-trash-o"></i>&nbsp;
+                    </a>
+                    <a href="<?php echo $this->baseUrl().'/curso/estatisticas'; ?>" title="Estatisticas">
+                        <i class="glyphicon glyphicon-stats"></i>&nbsp;
+                    </a>
+                                        
+                </span>
+            </div>
+        </div>   
+    </div>
+<div id="divModal"></div>
+<?php
+
+include_once '/decorators/form.php';
+include_once '/forms/curso/editarslides.php';
+
+$curso = $this->curso;
+?>
+<div id="arquivo" style="display:none"><?php echo $curso[0]['ST_IDENT_CR']; ?></div>
+
+<div id="divPrincipal">
+    <?php
+        $decform = new Decorators_Form();
+        $form = new Forms_Curso_EditarSlides(array('titulo' => 'Editar curso: '.$curso[0]['ST_NOME_CR'], 'icone' => 'glyphicon glyphicon-edit'));
+        $form->addDecorator($decform);
+        $form->populate($curso[0]);
+        echo $form;
+    ?>
+</div>
+<div id="divSecundario"></div>
+
+
+<script type="text/javascript">
+    
+    function fecharModal() {
+        $('.btnCancelar').bind('click', function() {
+            $('#divModal').dialog('destroy');
+        });
+    }
+    
+    $(function() {
+       $('#preview').bind('click', function() {
+           $('#divSecundario').html('<div class="col-lg-6 col-sm-6 col-xs-12"><iframe src="http://docs.google.com/gview?url=http://www.bobbyaulas.com/aulas/public/cursos/'+$('#arquivo').html()+'&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe></div>');
+           $('#divSecundario').show();
+           $('#divPrincipal').hide();
+       }), 
+       
+       $('#editar').bind('click', function() {
+           //$('#divSecundario').html('<iframe src="http://docs.google.com/gview?url=http://www.yourwebsite.com/powerpoint.ppt&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>');
+           $('#divSecundario').hide();
+           $('#divPrincipal').show();
+       });
+       
+       $('#excluir').bind('click', function() {
+           var modal = '<div class="modal-preview">\n\
+                                            <div class="modal modal-primary">\n\
+                                                <div class="modal-dialog">\n\
+                                                    <div class="modal-content">\n\
+                                                        <div class="modal-header">\n\
+                                                            <button type="button" class="btnCancelar close" data-dismiss="modal" aria-hidden="true"><?php echo utf8_encode('×'); ?></button>\n\
+                                                            <h4 class="modal-title"><?php echo utf8_encode('Confirmação'); ?></h4>\n\
+                                                        </div>\n\
+                                                        <div class="modal-body">\n\
+                                                            <p>Certeza que deseja excluir o curso?</p>\n\
+                                                        </div>\n\
+                                                        <div class="modal-footer">\n\
+                                                            <button type="button" class="btnCancelar btn btn-warning" data-dismiss="modal">Cancelar</button>\n\
+                                                            <button type="button" id="btnExcluir" class="btn btn-primary">Aceitar</button>\n\
+                                                        </div>\n\
+                                                    </div><!-- /.modal-content -->\n\
+                                                </div><!-- /.modal-dialog -->\n\
+                                            </div><!-- /.modal -->\n\
+                                        </div>';
+                                                                
+            $('#divModal').html(modal);
+            $('#divModal').dialog({position: { my: "center", at: "center", of: $('#opcoes') }});
+            fecharModal();
+       });
+       
+    });
+
+</script>

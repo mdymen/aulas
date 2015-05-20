@@ -17,7 +17,7 @@ $cursos = $this->cursos;
             </div> 
         </div>
         <div class="databox-right">
-            <span class="databox-number purple"><a href="/aulas/public/admin/dashboard/creditopendente"><?php echo $curso['ST_NOME_CR']; ?></a></span>
+            <span class="databox-number purple"><a href="<?php echo $this->baseUrl().'/curso/cursoslideedit?curso='.$curso['ID_ID_CR']; ?>"><?php echo $curso['ST_NOME_CR']; ?></a></span>
             <div class="databox-text darkgray"></div>
             <div class="databox-stat purple radius-bordered">
                 <i class="stat-icon icon-lg fa fa-tasks"></i>
