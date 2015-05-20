@@ -3,9 +3,20 @@
 class Models_Cursos extends Zend_Db_Table_Abstract {
     protected $_name = 'Cursos';
  
+    function setVisibilidade($params) {
+        $db = Zend_Db_Table::getDefaultAdapter();        
+        $db->update($this->_name, array('FL_DISPONIVEL_CR' => $params['visibilidade']), 'ID_ID_CR = '.$params['id']);
+    }
+    
+    function excluir($params) {
+        $db = Zend_Db_Table::getDefaultAdapter();        
+        $db->update($this->_name, array('FL_EXCLUIDO_CR' => 1), 'ID_ID_CR = '.$params['ID_ID_CR']);
+    }
+    
     function cursosByUser($usuario) {
         $db = Zend_Db_Table::getDefaultAdapter();
-        $select = $db->select()->from($this->_name)->where('ST_AUTOR_CR = ?', $usuario);
+        $select = $db->select()->from($this->_name)->where('ST_AUTOR_CR = ?', $usuario)
+                ->where('FL_EXCLUIDO_CR <> 1');
         return $select->query()->fetchAll();
     }
     

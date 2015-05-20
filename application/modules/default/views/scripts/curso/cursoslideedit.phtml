@@ -30,6 +30,7 @@
 
 include_once '/decorators/form.php';
 include_once '/forms/curso/editarslides.php';
+include_once '/forms/curso/deleteslide.php';
 
 $curso = $this->curso;
 ?>
@@ -45,13 +46,26 @@ $curso = $this->curso;
     ?>
 </div>
 <div id="divSecundario"></div>
-
+<div id="divFormExcluir" style="display:none;">
+    <?php
+        $formExcluir = new Forms_Curso_DeleteSlide();
+        $formExcluir->addDecorator($decform);
+        $formExcluir->populate($curso[0]);
+        echo $formExcluir;   
+    ?>
+</div>
 
 <script type="text/javascript">
     
     function fecharModal() {
         $('.btnCancelar').bind('click', function() {
             $('#divModal').dialog('destroy');
+        });
+    }
+    
+    function excluirCurso() {
+        $('#btnExcluir').bind('click', function() {
+           $('#formExcluir').submit(); 
         });
     }
     
@@ -92,6 +106,9 @@ $curso = $this->curso;
             $('#divModal').html(modal);
             $('#divModal').dialog({position: { my: "center", at: "center", of: $('#opcoes') }});
             fecharModal();
+            excluirCurso();
+            
+            $('.ui-icon-closethick').hide();
        });
        
     });

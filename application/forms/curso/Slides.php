@@ -16,7 +16,7 @@ class Forms_Curso_Slides extends Zend_Form {
         $this->setAttrib('enctype', 'multipart/form-data');
                 
         $decorator1 = new Decorators_Decorator1();        
-        $nome = new Zend_Form_Element_Text('ST_NOME_C"', array('placeholder' => 'Nome'));
+        $nome = new Zend_Form_Element_Text('ST_NOME_CR', array('placeholder' => 'Nome'));
         $nome->addDecorator($decorator1);
         
         

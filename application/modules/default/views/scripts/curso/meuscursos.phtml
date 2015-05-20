@@ -6,7 +6,13 @@ $cursos = $this->cursos;
 
 <?php 
     foreach ($cursos as $curso) {
-        
+        if ($curso['FL_DISPONIVEL_CR'] == 1) {
+            $icone = 'fa fa-unlock';
+            $title = "Visivel";
+        } else {
+            $icone = 'fa fa-lock';
+            $title ="Nao visivel";
+        }
 ?>
 
 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -17,16 +23,72 @@ $cursos = $this->cursos;
             </div> 
         </div>
         <div class="databox-right">
-            <span class="databox-number purple"><a href="<?php echo $this->baseUrl().'/curso/cursoslideedit?curso='.$curso['ID_ID_CR']; ?>"><?php echo $curso['ST_NOME_CR']; ?></a></span>
+            <span class="databox-number purple" id="curso" data-curso="<?php echo $curso['ID_ID_CR']; ?>"><a href="<?php echo $this->baseUrl().'/curso/cursoslideedit?curso='.$curso['ID_ID_CR']; ?>"><?php echo $curso['ST_NOME_CR']; ?></a></span>
             <div class="databox-text darkgray"></div>
-            <div class="databox-stat purple radius-bordered">
-                <i class="stat-icon icon-lg fa fa-tasks"></i>
-            </div>
+            <div class="databox-stat purple radius-bordered"><a href="javascript:void(0)" data-visibilidade="<?php echo $curso['FL_DISPONIVEL_CR']; ?>" id="mudarVisibilidade">
+                <i title="<?php echo $title; ?>" id="iconeVis" class="stat-icon icon-lg <?php echo $icone; ?>"></i>
+            </a></div>
         </div>
     </div>
 </div>
-
+<div id="divModal"></div>
 
 <?php
     }
 ?>
+
+<script type="text/javascript">
+    
+    function fecharModal() {
+        $('.btnCancelar').bind('click', function() {
+            $('#divModal').dialog('destroy');
+        });
+    }
+    
+    function mudar(atual) {
+        $('#btnMudar').bind('click', function() {
+            var icone = 'lock';
+            var vis = 0;
+            if (atual === 0) {
+                icone = 'unlock';
+                vis = 1;
+            }
+           $.post('mudarvisibilidade',{id:$('#curso').data('curso'), visibilidade:vis}, function() {
+               $('#mudarVisibilidade').data('visibilidade',vis);
+               $('#iconeVis').attr('class','stat-icon icon-lg fa fa-'+icone+'');
+               $('#divModal').dialog('destroy');
+           }) 
+        });
+    }
+    
+    $(function() {
+       $('#mudarVisibilidade').bind('click', function() {
+           var atual = $(this).data('visibilidade');
+           var modal = '<div class="modal-preview">\n\
+                                            <div class="modal modal-primary">\n\
+                                                <div class="modal-dialog">\n\
+                                                    <div class="modal-content">\n\
+                                                        <div class="modal-header">\n\
+                                                            <button type="button" class="btnCancelar close" data-dismiss="modal" aria-hidden="true"><?php echo utf8_encode('×'); ?></button>\n\
+                                                            <h4 class="modal-title"><?php echo utf8_encode('Confirmação'); ?></h4>\n\
+                                                        </div>\n\
+                                                        <div class="modal-body">\n\
+                                                            <p>Deseja mudar a visibilidade do curso?</p>\n\
+                                                        </div>\n\
+                                                        <div class="modal-footer">\n\
+                                                            <button type="button" class="btnCancelar btn btn-warning" data-dismiss="modal">Cancelar</button>\n\
+                                                            <button type="button" id="btnMudar" class="btn btn-primary">Aceitar</button>\n\
+                                                        </div>\n\
+                                                    </div><!-- /.modal-content -->\n\
+                                                </div><!-- /.modal-dialog -->\n\
+                                            </div><!-- /.modal -->\n\
+                                        </div>';
+                                                                
+            $('#divModal').html(modal);
+            $('#divModal').dialog({position: { my: "left", at: "right", of: $('.stat-icon') }});
+            fecharModal();
+            mudar(atual);
+            $('.ui-icon-closethick').hide();
+       });
+    });
+</script>

@@ -8,3 +8,56 @@ $decform = new Decorators_Form();
 $form = new Forms_Curso_Slides(array('titulo' => 'Novo curso', 'icone' => 'glyphicon glyphicon-edit'));
 $form->addDecorator($decform);
 echo $form;
+
+
+?>
+<div class="col-lg-4 col-sm-6 col-xs-12" id="popMain" style="top:-30px; left:-380px;">
+    <div class="popoverexample">
+        <div class="popover right">
+            <div class="arrow"></div>
+            
+            <h4 class="popover-title bordered-blueberry"><span class="badge badge-info">
+                    <i class="fa fa-question"></i>
+                </span>&nbsp;&nbsp;<span id="popTitulo">Custo</span></h4>
+            <div class="popover-content">
+                <p><span id="popTexto">Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function mudarModal(top,left,titulo,texto) {
+        $('#popMain').css('top',top+'px');
+        $('#popMain').css('left',left+'px');
+        $('#popTitulo').html(titulo);
+        $('#popTexto').html(texto);
+    }
+
+    $(function() {
+        var cursoTexto = '<?php echo utf8_encode('Preço que o usuario deverá pagar pelo curso.'); ?>';
+        mudarModal(-10,-380,'Custo', cursoTexto);
+        
+        $('#ST_NOME_CR').focusin(function() {
+            mudarModal(27,-45,'Nome','O nome do curso.<br>O curso sera visualizado no site pelo nome.');
+        });
+        
+        $('#ST_SUBTITULO_CR').focusin(function() {
+            mudarModal(95,-45,'Categoria','Para ajudar aos usuarios nas pesquisas de cursos.');
+        });
+        $('#ST_MINIDESCR_CR').focusin(function() {
+            mudarModal(150,-45,'<?php echo utf8_encode('Descriçao'); ?>','<?php echo utf8_encode('Ajuda a brindar informaçoes aos usuarios sobre as caracteristicas do curso.'); ?>');
+        });
+        $('#VL_CUSTO_CR').focusin(function() {
+            mudarModal(-10,-380,'Custo',cursoTexto);
+        });
+        $('#ST_IMAGEM_CR').focusin(function() {
+            mudarModal(292,-45,'Imagem','A imagen da portada do curso.');
+        });
+        $('#ST_IDENT_CR').focusin(function() {
+            mudarModal(362,-45,'Slides','Arquivo com as slides do curso. Pode ser arquivo PPT,PPTX.');
+        });
+    });
+
+</script>

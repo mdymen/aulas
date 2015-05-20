@@ -371,5 +371,26 @@ class CursoController extends Zend_Controller_Action
         
         $this->view->curso = $curso;
     }
+    
+    function excluirslideAction() {
+        $params = $this->_request->getParams();
+        $cursos = new Models_Cursos();
+        $cursos->excluir($params);
+        
+        $this->redirect('curso/meuscursos');
+    }
+    
+    function mudarvisibilidadeAction() {
+        $params = $this->_request->getParams();
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $cursos = new Models_Cursos();
+        $cursos->setVisibilidade($params);
+    }
 }
 
