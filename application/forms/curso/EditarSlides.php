@@ -48,7 +48,7 @@ class Forms_Curso_EditarSlides extends Zend_Form {
         $disponibilizar = new Zend_Form_Element_Button('btnDisp', array('type' => 'submit', 'class' => 'btn btn-primary', 'value' => 'Disponibilizar', 'icone' => 'fa fa-unlock'));
         $disponibilizar->addDecorator($decButton);
         
-        $this->addElements(array($custo, $nome, $subtitulo, $minides, $file, $curso, $register, $disponibilizar));
+        $this->addElements(array($custo, $nome, $subtitulo, $minides, $file, $curso, $register));
         
     }  //put your code here
     
