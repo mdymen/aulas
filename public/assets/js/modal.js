@@ -9,14 +9,17 @@
         $('#btnMudar').bind('click', function() {
             var icone = 'lock';
             var vis = 0;
+            var msg = "Seu curso NAO esta disponivel.";
             if (atual === 0) {
                 icone = 'unlock';
                 vis = 1;
+                msg = "Seu curso esta disponivel.";
             }
            $.post('mudarvisibilidade',{id: curso, visibilidade:vis}, function() {
                $('#mudarVisibilidade').data('visibilidade',vis);
                classe.children('#iconeVis').attr('class','stat-icon icon-lg fa fa-'+icone+'');
                modal.dialog('destroy');
+               Notify(msg, 'bottom-right', '3000', 'palegreen', 'fa fa-'+icone, true);
            }) 
         });
     }
