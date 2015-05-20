@@ -23,9 +23,9 @@ $cursos = $this->cursos;
             </div> 
         </div>
         <div class="databox-right">
-            <span class="databox-number purple" id="curso" data-curso="<?php echo $curso['ID_ID_CR']; ?>"><a href="<?php echo $this->baseUrl().'/curso/cursoslideedit?curso='.$curso['ID_ID_CR']; ?>"><?php echo $curso['ST_NOME_CR']; ?></a></span>
+            <span class="databox-number purple"><a href="<?php echo $this->baseUrl().'/curso/cursoslideedit?curso='.$curso['ID_ID_CR']; ?>"><?php echo $curso['ST_NOME_CR']; ?></a></span>
             <div class="databox-text darkgray"></div>
-            <div class="databox-stat purple radius-bordered"><a href="javascript:void(0)" data-visibilidade="<?php echo $curso['FL_DISPONIVEL_CR']; ?>" id="mudarVisibilidade">
+            <div class="databox-stat purple radius-bordered"><a href="javascript:void(0)" data-curso="<?php echo $curso['ID_ID_CR']; ?>" data-visibilidade="<?php echo $curso['FL_DISPONIVEL_CR']; ?>" class="mudarVisibilidade">
                 <i title="<?php echo $title; ?>" id="iconeVis" class="stat-icon icon-lg <?php echo $icone; ?>"></i>
             </a></div>
         </div>

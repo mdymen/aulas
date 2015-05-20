@@ -1,10 +1,11 @@
- function fecharModal() {
+ 
+ function fecharModal(modal) {
         $('.btnCancelar').bind('click', function() {
-            $('#divModal').dialog('destroy');
+            modal.dialog('destroy');
         });
     }
     
-    function mudar(atual) {
+    function mudar(atual,curso,classe, modal) {
         $('#btnMudar').bind('click', function() {
             var icone = 'lock';
             var vis = 0;
@@ -12,16 +13,19 @@
                 icone = 'unlock';
                 vis = 1;
             }
-           $.post('mudarvisibilidade',{id:$('#curso').data('curso'), visibilidade:vis}, function() {
+           $.post('mudarvisibilidade',{id: curso, visibilidade:vis}, function() {
                $('#mudarVisibilidade').data('visibilidade',vis);
-               $('#iconeVis').attr('class','stat-icon icon-lg fa fa-'+icone+'');
-               $('#divModal').dialog('destroy');
+               classe.children('#iconeVis').attr('class','stat-icon icon-lg fa fa-'+icone+'');
+               modal.dialog('destroy');
            }) 
         });
     }
     
     $(function() {
-       $('#mudarVisibilidade').bind('click', function() {
+        var divModal = $('#divModal');
+        
+        
+       $('.mudarVisibilidade').bind('click', function() {
            var atual = $(this).data('visibilidade');
            var modal = '<div class="modal-preview">\n\
                                             <div class="modal modal-primary">\n\
@@ -44,9 +48,9 @@
                                         </div>';
                                                                 
             $('#divModal').html(modal);
-            $('#divModal').dialog({position: { my: "left", at: "right", of: $('.stat-icon') }});
-            fecharModal();
-            mudar(atual);
+            divModal.dialog({position: { my: "left", at: "right", of: $(this) }});
+            fecharModal(divModal);
+            mudar(atual,$(this).data('curso'),$(this),divModal);
             $('.ui-icon-closethick').hide();
        });
     });
