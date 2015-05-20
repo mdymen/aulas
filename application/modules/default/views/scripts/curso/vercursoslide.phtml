@@ -10,7 +10,7 @@ $anotacoes = $this->anotacoes;
 $perguntas = $this->perguntas;
 $respostas = $this->respostas;
 $curso = $this->curso;
-
+$curso = $curso[0];
 
 $temPerguntas = false;
 if (!empty($perguntas)) {
@@ -29,7 +29,7 @@ if (!empty($anotacoes)) {
 <input type="hidden" id="curso" value="<?php echo $slide['ID_CURSO_CR']; ?>" />
 <div class="row">
 <div class="col-md-7 col-sm-6 col-xs-18">
-    <iframe src="http://docs.google.com/gview?url=http://www.bobbyaulas.com/aulas/public/../application/cursos/<?php echo $curso['ST_IDENT_CR']; ?>&embedded=true" style="width:600px; height:470px;" frameborder="0"></iframe>
+    <iframe src="http://docs.google.com/gview?url=http://www.bobbyaulas.com/aulas/application/cursos/<?php echo $curso['ST_IDENT_CR']; ?>&embedded=true" style="width:600px; height:470px;" frameborder="0"></iframe>
 </div>
     <?php
 
