@@ -64,7 +64,7 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
 
         $table = $this->_name;
 
-        $select = $db->select($table)->from($table);
+        $select = $db->select($table)->from($table)->where('FL_DISPONIVEL_CR = 1');
   
         $query = $select->query();
                 
