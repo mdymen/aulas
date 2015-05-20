@@ -350,6 +350,7 @@ class CursoController extends Zend_Controller_Action
         $uploadedData['FL_TIPO_CR'] = 1;
         $course->save($uploadedData);
         
+        $this->redirect('curso/meuscursos');
         
     }
     
