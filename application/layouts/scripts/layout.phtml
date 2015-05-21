@@ -18,10 +18,13 @@
             echo $this->render('_footer.php');       
 
         } else {
-             $uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
-             $url  =   explode("/", $uri);
+            $uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
+            $url  =   explode("/", $uri);
             if (empty($url[4])) {
                      echo $this->render('login.phtml');
-            }
+            } else {
+                echo $this->render('redirect.php');
+            } 
+            
         }
     }

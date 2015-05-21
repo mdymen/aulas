@@ -29,7 +29,14 @@
 <!--Body-->
 <body >
 
-    
+    <?php
+        $atual = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $dir = explode('returnUrl=',$atual);
+        $returnUrl = '';
+        if (!empty($dir[1])) {
+            $returnUrl = $dir[1];
+        }
+    ?>
     
     <div id="esqueceu" style="display:none">
   <div class="login-container animated fadeInDown">
@@ -103,6 +110,7 @@
                     }
 
                ?>
+               <input type="hidden" name="returnUrl" id="returnUrl" value="<?php echo $returnUrl; ?>" />
             <div class="loginbox-textbox">
                 <input type="text" class="form-control" name="ST_USUARIO_USU" placeholder="Usuario">
             </div>

@@ -202,6 +202,10 @@ class AuthController extends Zend_Controller_Action {
                 $user->CURSOS = $cursos;
             } 
         }
+        
+        if ($params['returnUrl']) {
+            $this->_redirect($params['returnUrl']);
+        }
         $this->_redirect('index/index');
     }
     
