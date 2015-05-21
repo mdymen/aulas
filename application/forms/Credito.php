@@ -16,12 +16,9 @@ include APPLICATION_PATH.'/decorators/Decorator1.php';
 
 class Forms_Credito extends Zend_Form{
 
-    protected $titulo = 'Adicionar créditos';
-
     
     public function init(){
             $this->setAction("Credito/comprar")->setMethod("post");
-            $this->setAttrib('titulo','Adicionar créditos');
             $this->setAttrib('onSubmit', 'submitUsandoAjax();');
             $this->setAttrib('id', 'FormCredito');
             
@@ -31,7 +28,7 @@ class Forms_Credito extends Zend_Form{
             
         $agencia = new Zend_Form_Element_Text('NOSSO_AGENCIA',
                     array(
-                          'nomeCampo'=>'Nossa agência',
+                          'nomeCampo'=>  utf8_encode('Agência'),
                           'disabled'=>'disabled',
                           'icono'=>'',
                           'placeholder'=>'2200-4'
@@ -39,7 +36,7 @@ class Forms_Credito extends Zend_Form{
                     )); 
         $contaCorrente = new Zend_Form_Element_Text('NOSSA_CONTA',
                     array(
-                          'nomeCampo'=>'Nossa conta corrente',
+                          'nomeCampo'=>'Conta Corrente',
                           'disabled'=>'disabled',
                           'placeholder'=>'22643-2'
                          
@@ -50,7 +47,7 @@ class Forms_Credito extends Zend_Form{
         
        $valor = new Zend_Form_Element_Text('VL_VALOR_CREDITO',
                     array(
-                          'nomeCampo'=>'Valor'
+                          'placeholder'=>'Valor'
                     )); 
        $valor->addDecorator($decCpt);
         

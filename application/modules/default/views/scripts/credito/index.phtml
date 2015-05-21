@@ -10,28 +10,72 @@ $id = (int)$data['ID_ID_USU'];
 
 <!-- Adicionar credito-->
 <div class="row">
-    <div class="col-lg-8 col-sm-8 col-xs-12">
-        <div class="widget">
-
                     <?php
-                       $form = new Forms_Credito();
+                    include_once 'Decorators/Form.php';
+                    $dec = new Decorators_Form();
+                       $form = new Forms_Credito(array('titulo' => utf8_encode('Adicionar crédito')));
                        $form->addElement('hidden',
                                'ID',
                                 array('value'=>$id));
+                       $form->addDecorator($dec);
                     echo $form;
                     
                     ?>
-        </div>
-    </div>
-    <!-- Historico de credito-->
+    
+<!--     Historico de credito
         <div class="col-lg-4 col-sm-4 col-xs-12">
         <div class="widget">
             <div class="widget-header bordered-bottom bg-blue">
-                <span class="widget-caption"><span class="databox-title"> Historico de crédito </span>  </span>
+                <span class="widget-caption"><span class="databox-title"> <?php echo utf8_encode('Historico de crédito'); ?> </span>  </span>
             </div>
                 <div class="widget-body bg-blue">
                     
                 </div>
+        </div>
+    </div>-->
+</div>
+
+<div class="col-lg-4 col-sm-6 col-xs-12" id="popMain" style="top:-400px; left:480px;">
+    <div class="popoverexample">
+        <div class="popover right">
+            <div class="arrow"></div>
+            
+            <h4 class="popover-title bordered-green"><span class="badge badge-green">
+                    <i class="fa fa-dollar"></i>
+                </span>&nbsp;&nbsp;<span id="popTitulo"><?php echo utf8_encode('Forma de inserir crédito'); ?></span></h4>
+            <div class="popover-content">
+                <p><span id="popTexto"><?php echo utf8_encode('Para inserir crédito precisa fazer uma transferencia bancaria em nossa conta de <b>Banco do Brasil</b>.'); ?>.</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-4 col-sm-6 col-xs-12" id="popMain2" style="top:-256px; left:119px;">
+    <div class="popoverexample">
+        <div class="popover right">
+            <div class="arrow"></div>
+            
+            <h4 class="popover-title bordered-yellow"><span class="badge badge-yellow">
+                    <i class="fa fa-tasks"></i>
+                </span>&nbsp;&nbsp;<span id="popTitulo">Procedimento</span></h4>
+            <div class="popover-content">
+                <p><span id="popTexto"><?php echo utf8_encode('Quando chega a notificação do crédito transferido, apos verificação, acreditaremos a quantidade transferida para sua conta Bobby.'); ?></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-4 col-sm-6 col-xs-12" id="popMain3" style="top:-94px; left:-241px;">
+    <div class="popoverexample">
+        <div class="popover bottom">
+            <div class="arrow"></div>
+            
+            <h4 class="popover-title bordered-blueberry"><span class="badge badge-info">
+                    <i class="fa fa-info"></i>
+                </span>&nbsp;&nbsp;<span id="popTitulo">Futuro</span></h4>
+            <div class="popover-content">
+                <p><span id="popTexto"><?php echo utf8_encode('Proximamente, como forma de pagamento, adicionaremos boleto bancario e cartão de crédito.') ?></span></p>
+            </div>
         </div>
     </div>
 </div>
