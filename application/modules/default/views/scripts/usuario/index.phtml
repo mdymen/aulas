@@ -5,14 +5,14 @@
     if (empty($data['NM_CREDITO_USU'])) {
         $data['NM_CREDITO_USU'] = '0.00';
     }
-    
+    $credito_ = number_format($data['NM_CREDITO_USU'],2,',','.');
     $cursos = $this->cursos;
     $credito = $this->creditos;
-    if(count($credito)>0){
-         $credito[0]['VL_VALOR_CREDITO'] = number_format($credito[0]['VL_VALOR_CREDITO'],2,',','.');
-    }else{
-         $credito[0]['VL_VALOR_CREDITO']='0,00';
-    }
+//    if(count($data['NM_CREDITO_USU'])>0){
+//         $credito[0]['VL_VALOR_CREDITO'] = number_format($credito[0]['VL_VALOR_CREDITO'],2,',','.');
+//    }else{
+//         $credito[0]['VL_VALOR_CREDITO']='0,00';
+//    }
     $cantidad = count($cursos);
     
     $perguntas = $this->perguntas;
@@ -60,7 +60,7 @@
                                     <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 profile-stats">
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 stats-col">
-                                                <div class="stats-value blue"><?php echo 'R$ '.$credito[0]['VL_VALOR_CREDITO'];  ?></div>
+                                                <div class="stats-value blue"><?php echo 'R$ '.$credito_;  ?></div>
                                                 <div class="stats-title">CREDITOS</div>
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 stats-col">

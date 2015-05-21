@@ -73,6 +73,8 @@ class AuthController extends Zend_Controller_Action {
                 $storage = new Zend_Auth_Storage_Session();
                 $storage->write($authAdapter->getResultRowObject());
             } 
+            
+            
         
         $this->_mail($params);       
         $this->redirect();
@@ -167,6 +169,7 @@ class AuthController extends Zend_Controller_Action {
         if ($result->isValid()) {         
             $storage = new Zend_Auth_Storage_Session();
             $storage->write($authAdapter->getResultRowObject());
+
             return true;
         }
         return false;
@@ -189,6 +192,14 @@ class AuthController extends Zend_Controller_Action {
             if ($result->isValid()) {         
                 $storage = new Zend_Auth_Storage_Session();
                 $storage->write($authAdapter->getResultRowObject());
+                $data = get_object_vars($storage->read());         
+                
+                $cursos = new Models_Usuarios();
+                $cursos = $cursos->getIdCursosDoUsuario($data['ID_ID_USU']);
+
+                //lista de cursos que o usuario tem
+                $user = Zend_Auth::getInstance()->getIdentity();
+                $user->CURSOS = $cursos;
             } 
         }
         $this->_redirect('index/index');

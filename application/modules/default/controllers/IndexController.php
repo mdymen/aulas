@@ -65,7 +65,7 @@ class IndexController extends Zend_Controller_Action {
         
         $storage = new Zend_Auth_Storage_Session();
         $data = $storage->read();
-        
+
         if (!empty($data)){        
             $data = get_object_vars($data);
             $cursos = new Models_Cursos();

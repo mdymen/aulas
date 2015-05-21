@@ -1,3 +1,5 @@
+<div id="base" style="display:none"><?php echo $this->baseUrl(); ?></div>
+
 <?php
 
 $cursos = $this->cursos;
@@ -8,7 +10,19 @@ if (is_array($cursos)) {
     <div class="row"> 
     <?php    
     
-    foreach ($cursos as $curso) {       
+    foreach ($cursos as $curso) {
+        $temCurso = Bobby_Sessao::temCurso($curso['ID_ID_CR']);
+
+        $icone = 'fa fa-pencil';
+        $acao = 'Conferir';
+        $lnk = $this->baseUrl().'/curso/vercurso?curso='.$curso['ID_ID_CR'].'&slide=1&tipo='.$curso['FL_TIPO_CR'];
+        $btnComprar = '';
+        if ($curso['VL_CUSTO_CR'] > 0 && !$temCurso) {
+            $icone = 'fa fa-dollar';
+            $acao = 'Comprar';
+            $lnk = 'javascript:void(0)';
+            $btnComprar = 'btnComprar';
+        }
         ?>
             <div class="col-sm-5 col-md-3">
               <div class="thumbnail">
@@ -23,7 +37,7 @@ if (is_array($cursos)) {
                       echo '<span style="color: green"><b>GRATIS</b></span>';
                   }
                   ?>
-                  <p><br><span><a class="btn btn-primary" style="margin-right:5px" href="<?php echo $this->baseUrl('curso/ficha?curso='.$curso['ID_ID_CR'])?>"><i class="fa fa-info"></i> Ficha</a><a href="<?php echo $this->baseUrl('curso/vercurso?curso='.$curso['ID_ID_CR'].'&slide=1&tipo='.$curso['FL_TIPO_CR'])?>" class="btn btn-success" role="button"><i class="fa fa-pencil"></i>Conferir</a></span></p>
+                  <p><br><span><a class="btn btn-primary" style="margin-right:5px" href="<?php echo $this->baseUrl('curso/ficha?curso='.$curso['ID_ID_CR'])?>"><i class="fa fa-info"></i> Ficha</a><span id="btn<?php echo $curso['ID_ID_CR']; ?>"><a data-tipo="<?php echo $curso['FL_TIPO_CR']; ?>" data-valor="<?php echo $curso['VL_CUSTO_CR']; ?>" data-curso="<?php echo $curso['ID_ID_CR']; ?>" href="<?php echo $lnk; ?>" class="btn btn-success <?php echo $btnComprar ?>" role="button"><i class="<?php echo $icone; ?>"></i><?php echo $acao; ?></a></span></span></p>
                 </div>
               </div>
             </div>
@@ -36,3 +50,96 @@ if (is_array($cursos)) {
 }
 
 ?>
+<div id="divModal"></div>
+<script type='text/javascript'>
+
+ function fecharModal(modal) {
+        $('.btnCancelar').bind('click', function() {
+            modal.dialog('destroy');
+        });
+    }
+    
+    function comprar(curso, valor, classe, modal, thisclasse, tipo) {
+      
+        $('#btnComprar').bind('click', function() {
+           $.post('comprar',{curso: curso, valor:valor}, function(response) {
+               console.log(response);
+               modal.dialog('destroy');
+                if (!response) {      
+                    semCredito(classe);
+                } else {
+                    Notify('Parabens!!! Voce ja pode fazer o curso.', 'bottom-right', '3000', 'palegreen', 'fa fa-check', true);
+                    mudarBotao(curso, tipo);
+                }
+                
+           }) 
+        });
+    }
+    
+    function mudarBotao(curso, tipo){
+        var link = $('#base').html()+'/curso/vercurso?curso='+curso+'&slide=1&tipo='+tipo;
+        var btn = $('#btn'+curso);
+        btn.html('<a data-curso="'+curso+'" href="'+link+'" class="btn btn-success" role="button"><i class="fa fa-pencil"></i>Conferir</a>');
+    }
+    
+    function semCredito(classe) {
+        var modal = '<div class="modal-preview">\n\
+                                            <div class="modal modal-primary">\n\
+                                                <div class="modal-dialog">\n\
+                                                    <div class="modal-content">\n\
+                                                        <div class="modal-header">\n\
+                                                            <button type="button" class="btnCancelar close" data-dismiss="modal" aria-hidden="true"><?php echo utf8_encode("×"); ?></button>\n\
+                                                            <h4 class="modal-title"><i class="fa fa-warning"></i>&nbsp;&nbsp;<?php echo utf8_encode("Atençao!"); ?></h4>\n\
+                                                        </div>\n\
+                                                        <div class="modal-body">\n\
+                                                            <p>Voce nao tem credito suficente.</p><a href="<?php echo $this->baseUrl().'/credito'; ?>"><?php echo utf8_encode('Inserir crédito') ?>.</a>\n\
+                                                        </div>\n\
+                                                        <div class="modal-footer">\n\
+                                                            <button type="button" class="btnCancelar btn btn-primary" data-dismiss="modal">Aceptar</button>\n\
+                                                        </div>\n\
+                                                    </div><!-- /.modal-content -->\n\
+                                                </div><!-- /.modal-dialog -->\n\
+                                            </div><!-- /.modal -->\n\
+                                        </div>';
+                var divModal = $('#divModal');
+                $('#divModal').html(modal);
+                divModal.dialog({position: { my: "left", at: "right", of: classe }});
+                fecharModal(divModal);
+                $('.ui-icon-closethick').hide();
+    }
+    
+    $(function() {
+        var divModal = $('#divModal');
+        var thisclasse = this;
+        
+       $('.btnComprar').bind('click', function() {
+           var modal = '<div class="modal-preview">\n\
+                                            <div class="modal modal-primary">\n\
+                                                <div class="modal-dialog">\n\
+                                                    <div class="modal-content">\n\
+                                                        <div class="modal-header">\n\
+                                                            <button type="button" class="btnCancelar close" data-dismiss="modal" aria-hidden="true"><?php echo utf8_encode("×"); ?></button>\n\
+                                                            <h4 class="modal-title"><?php echo utf8_encode("Confirmação"); ?></h4>\n\
+                                                        </div>\n\
+                                                        <div class="modal-body">\n\
+                                                            <p>Deseja comprar o curso?</p>\n\
+                                                        </div>\n\
+                                                        <div class="modal-footer">\n\
+                                                            <button type="button" class="btnCancelar btn btn-warning" data-dismiss="modal">Cancelar</button>\n\
+                                                            <button type="button" id="btnComprar" class="btn btn-primary">Comprar</button>\n\
+                                                        </div>\n\
+                                                    </div><!-- /.modal-content -->\n\
+                                                </div><!-- /.modal-dialog -->\n\
+                                            </div><!-- /.modal -->\n\
+                                        </div>';
+                                                                
+            $('#divModal').html(modal);
+            divModal.dialog({position: { my: "left", at: "right", of: $(this) }});
+            fecharModal(divModal);
+            comprar($(this).data('curso'),$(this).data('valor'), $(this), divModal, thisclasse, $(this).data('tipo'));
+            $('.ui-icon-closethick').hide();
+       });
+    });
+
+
+</script>

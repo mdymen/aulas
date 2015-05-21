@@ -13,7 +13,7 @@ class CursoController extends Zend_Controller_Action
     }
 
     public function indexAction()
-    {
+    {        
         $cursos = new Models_Cursos();
         $this->view->cursos = $cursos->cursos();
     }
@@ -54,13 +54,6 @@ class CursoController extends Zend_Controller_Action
 
         $slides =  new Models_Slides();
         $this->view->slides = $slides->slidesByCurso($params['curso']);
-        
-    }
-    
-
-    
-    public function comprarAction() {
-       
         
     }
     
@@ -355,8 +348,6 @@ class CursoController extends Zend_Controller_Action
     }
     
     function meuscursosAction() {
-        
-        
         $storage = new Zend_Auth_Storage_Session();
         $data = get_object_vars($storage->read()); 
         
@@ -392,6 +383,32 @@ class CursoController extends Zend_Controller_Action
         
         $cursos = new Models_Cursos();
         $cursos->setVisibilidade($params);
+    }
+    
+    function comprarAction() {
+        $params = $this->_request->getParams();
+
+        $storage = new Zend_Auth_Storage_Session();
+        $data = get_object_vars($storage->read());         
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        if ($data['NM_CREDITO_USU'] >= $params['valor']) {
+            $cursos = new Models_Cursos();
+            $result = $cursos->comprar($data,$params['curso'],$params['valor']);
+            if ($result) {
+                $user = Zend_Auth::getInstance()->getIdentity();
+                $user->NM_CREDITO_USU = $data['NM_CREDITO_USU'] - $params['valor'];
+                Bobby_Sessao::addCurso(array('ID_USU_UC' => $data['ID_ID_USU'],'ID_CUR_UC' => $params['curso']));
+            }
+            $this->_helper->json($result);
+        } else {
+            $this->_helper->json(false);    
+        }      
     }
 }
 

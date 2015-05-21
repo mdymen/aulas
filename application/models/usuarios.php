@@ -61,6 +61,19 @@ class  Models_Usuarios extends Zend_Db_Table {
         return $result->fetchAll();
     }
     
+    function getIdCursosDoUsuario($usuario) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $select = $db->select()->from('usuario_curso')
+                ->where('ID_USU_UC = ?',$usuario);
+        
+        $result =  $select->query()->fetchAll();
+      
+        $db->closeConnection();
+        
+        return $result;
+    }
+    
     function getCursos($params) {
                
         $db = Zend_Db_Table::getDefaultAdapter();

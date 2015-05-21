@@ -3,6 +3,33 @@
 class Models_Cursos extends Zend_Db_Table_Abstract {
     protected $_name = 'Cursos';
  
+    function comprar($usuario,$curso,$valor) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $credito = $usuario['NM_CREDITO_USU'] - $valor;
+        
+        $db->beginTransaction();
+        try {
+            $db->update('usuarios',array('NM_CREDITO_USU' => $credito ),'ID_ID_USU = '.$usuario['ID_ID_USU'] );
+            $db->insert('usuario_curso', array(
+                'ID_USU_UC' => $usuario['ID_ID_USU'],
+                'ID_CUR_UC' => $curso,
+                'NM_UTIMAVIU_UC' => 0,
+                'NM_ACERTOS_UC' => 0,
+                'NM_TOTALEXERC_UC' => 0
+            ));
+            
+            $db->commit();
+            
+        } catch (Exception $ex) {
+            $db->rollBack();   
+            return false;
+        }
+
+        $db->closeConnection();
+        return true;
+    }
+    
     function setVisibilidade($params) {
         $db = Zend_Db_Table::getDefaultAdapter();        
         $db->update($this->_name, array('FL_DISPONIVEL_CR' => $params['visibilidade']), 'ID_ID_CR = '.$params['id']);
