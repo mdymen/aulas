@@ -1,11 +1,12 @@
 <?php
 
 $cursos = $this->cursos;
-
+$c = 0;
 ?>
 
 <?php 
     foreach ($cursos as $curso) {
+        $c = 1;
         if ($curso['FL_DISPONIVEL_CR'] == 1) {
             $icone = 'fa fa-unlock';
             $title = "Visivel";
@@ -37,3 +38,25 @@ $cursos = $this->cursos;
     }
 ?>
 <script type="text/javascript" src="<?php echo $this->baseUrl('assets/js/modal.js'); ?>" ></script>
+
+<?php 
+
+    if ($c == 0) {
+
+?>
+<div class="login-container">
+    <img src="<?php echo $this->baseUrl('recursos/Assistente.png'); ?>" width="270px" height="270px"/>
+</div>
+
+<div class="col-lg-4 col-sm-6 col-xs-12" style="top:-370px; left:140px">
+                                                <div class="popoverexample">
+                                                    <div class="popover left">
+                                                        <div class="arrow"></div>
+                                                        <h4 class="popover-title bordered-blue">Ola!!</h4>
+                                                        <div class="popover-content">
+                                                            <p>Sem nada!!!. <a href="<?php echo $this->baseUrl('curso/novo'); ?>" >Postar um novo curso.</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+<?php }

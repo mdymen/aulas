@@ -94,6 +94,23 @@
 
 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                     <div class="databox radius-bordered databox-shadowed databox-graded" style="height:100px !important">
+                                        <div class="databox-left bg-green" style="weight:100px !important; height:100px !important;">
+                                            <div class="databox-icon">
+                                                <i class="fa fa-file"></i>
+                                            </div>
+                                        </div>
+                                        <div class="databox-right">
+                                            <span class="databox-number green">&nbsp;</span>
+                                            <div class="databox-text darkgray"><a href="<?php echo $this->baseUrl().'/curso/novo'; ?>">ADICIONE SEU CURSO</a></div>
+                                            <div class="databox-stat green radius-bordered">
+                                                <i class="stat-icon icon-lg fa fa-tasks"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="databox radius-bordered databox-shadowed databox-graded" style="height:100px !important">
                                         <div class="databox-left bg-orange" style="weight:100px !important; height:100px !important;">
                                             <div class="databox-icon">
                                                 <i class="fa fa-book"></i>
@@ -101,7 +118,7 @@
                                         </div>
                                         <div class="databox-right">
                                             <span class="databox-number orange">&nbsp;<?php echo $cantCursos['cursos']; ?></span>
-                                            <div class="databox-text darkgray"><a href="<?php echo $this->baseUrl().'/curso/cursos'; ?>">CURSOS</a></div>
+                                            <div class="databox-text darkgray"><a href="<?php echo $this->baseUrl().'/curso/cursos'; ?>"><?php echo utf8_encode('CURSOS DISPONÍVEIS'); ?></a></div>
                                             <div class="databox-stat orange radius-bordered">
                                                 <i class="stat-icon icon-lg fa fa-tasks"></i>
                                             </div>

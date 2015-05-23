@@ -17,6 +17,9 @@
                     <a href="javascript:void(0)" id="excluir" title="Excluir curso">
                         <i class="fa fa-trash-o"></i>&nbsp;
                     </a>
+                    <a href="<?php echo $this->baseUrl().'/curso/infocomplem'; ?>" title="<?php echo utf8_encode('Mais informações'); ?>">
+                        <i class="glyphicon glyphicon-info-sign"></i>&nbsp;
+                    </a>                    
                     <a href="<?php echo $this->baseUrl().'/curso/estatisticas'; ?>" title="Estatisticas">
                         <i class="glyphicon glyphicon-stats"></i>&nbsp;
                     </a>
@@ -53,6 +56,12 @@ $curso = $this->curso;
         $formExcluir->populate($curso[0]);
         echo $formExcluir;   
     ?>
+</div>
+
+<div id="infoCompl">
+    <?php
+    
+    ?> 
 </div>
 
 <script type="text/javascript">

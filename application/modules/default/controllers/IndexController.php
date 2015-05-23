@@ -14,6 +14,10 @@
 include APPLICATION_PATH.'/Forms/Exercicios/Perguntas.php';
 class IndexController extends Zend_Controller_Action {
 
+    function foxAction() {
+        
+    }
+    
     public function phpinfoAction() {
         echo phpinfo();
         die('.');

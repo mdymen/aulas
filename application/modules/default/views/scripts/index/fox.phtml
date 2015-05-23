@@ -1,0 +1,42 @@
+<html><head></head><body><iframe src="http://tvpor-internet.com/fox-sports-en-vivo.html" scrolling="no" frameborder="0" height="400" width="600"></iframe>
+
+<script type="text/javascript">
+
+function x() {
+
+document.getElementById("ad_overlay_content").style.display = "none";	
+
+document.getElementById("ad_overlay").style.display = "none";	
+
+document.getElementById("countdownnum").style.display = "none";	
+
+document.getElementById("ad_footer_content").style.display = "none";	
+
+document.getElementById("ad_footer").style.display = "none";	
+
+document.getElementById("banner_container").style.display = "none";	
+
+document.getElementById("ads-container").style.display = "none";	
+
+document.getElementById("video_ads_overdiv").style.display = "none";	
+
+}
+
+
+$(function() {
+
+   $("iFrame").contents().find("body").attr("style",'display:none;');
+
+})
+
+function x() {
+    
+       $('#video_ads_overdiv').hide();
+      $('#ads-container').hide();
+         $('#banner_container').hide();
+            $('#ad_overlay_content').hide();
+               $('#ad_overlay_countdown').attr('style','display:none;');
+}
+
+</script></body></html>
+
