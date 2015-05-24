@@ -200,7 +200,9 @@ class AuthController extends Zend_Controller_Action {
                 //lista de cursos que o usuario tem
                 $user = Zend_Auth::getInstance()->getIdentity();
                 $user->CURSOS = $cursos;
-            } 
+            } else {
+                $this->_redirect('?error=1');
+            }
         }
         
         if ($params['returnUrl']) {

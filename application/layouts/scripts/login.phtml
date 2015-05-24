@@ -36,6 +36,14 @@
         if (!empty($dir[1])) {
             $returnUrl = $dir[1];
         }
+        
+        $dir = explode('error=', $atual);
+        $error = 0;
+        if (!empty($dir[1])) {
+            if ($dir[1] == 1) {
+                $error = 1;
+            }
+        }
     ?>
     
     <div id="esqueceu" style="display:none">
@@ -100,6 +108,15 @@
                 <div class="or-line"></div>
 <!--                <div class="or">OR</div>-->
             </div>
+                           <?php
+                if ($error == 1) {
+                    echo '<div class="alert alert-danger fade in">
+                                                <i class="fa-fw fa fa-times"></i>
+                                                <strong>Error!</strong> Nome do usuario ou senha.
+                                            </div>';
+                }
+            ?>
+               
                <?php 
 
                     $request = new Zend_Controller_Request_Http();
