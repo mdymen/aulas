@@ -19,6 +19,8 @@ set_include_path(implode(PATH_SEPARATOR, array(
 require_once 'Zend/Application.php';
 require_once 'Bobby/Mail.php';
 require_once 'Bobby/Sessao.php';
+require_once 'Bobby/Data.php';
+
 
 
 // Create application, bootstrap, and run

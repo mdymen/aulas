@@ -31,6 +31,12 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
                 'NM_ACERTOS_UC' => 0,
                 'NM_TOTALEXERC_UC' => 0
             ));
+            $db->insert('comprar',array(
+                'ID_USUARIO_COM' => $usuario['ID_ID_USU'],
+                'ID_CURSO_COM' => $curso,
+                'DT_DATA_COM' => Bobby_Data::Agora(),
+                'VL_PRECO_COM' => $valor,
+            ));
             
             $db->commit();
             
