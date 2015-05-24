@@ -3,6 +3,19 @@
 class Models_Cursos extends Zend_Db_Table_Abstract {
     protected $_name = 'Cursos';
  
+    function atualizarslidecomp($params) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $info = array(
+            'ST_OBJETIVO_CR' => $params['ST_OBJETIVO_CR'],
+            'ST_DESCR_CR' => $params['ST_DESCR_CR'],
+            'ST_CONTEUDO_CR' => $params['ST_CONTEUDO_CR'],
+            'ST_CARACT_CR' => $params['ST_CARACT_CR']
+        );
+        
+        return $db->update($this->_name, $info, 'ID_ID_CR ='.$params['curso']);
+    }
+    
     function comprar($usuario,$curso,$valor) {
         $db = Zend_Db_Table::getDefaultAdapter();
         

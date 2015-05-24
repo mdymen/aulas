@@ -410,5 +410,19 @@ class CursoController extends Zend_Controller_Action
             $this->_helper->json(false);    
         }      
     }
+    
+    function atualizarslidecompAction() {
+        $params = $this->_request->getParams();
+        $cursos = new Models_Cursos();
+        $result = $cursos->atualizarslidecomp($params);
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json($params); 
+    }
 }
 
