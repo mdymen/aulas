@@ -27,6 +27,9 @@
                     <a href="javascript:void(0)" title="Estatisticas">
                         <i class="glyphicon glyphicon-stats" style="font-size:25px !important"></i>&nbsp;
                     </a>
+                    <a href="javascript:void(0)" title="Usuarios">
+                        <i class="glyphicon glyphicon-user" style="font-size:25px !important"></i>&nbsp;
+                    </a>                    
                                         
                 </span>
             </div>

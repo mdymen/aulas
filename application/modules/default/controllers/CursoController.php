@@ -405,7 +405,7 @@ class CursoController extends Zend_Controller_Action
                 $user->NM_CREDITO_USU = $data['NM_CREDITO_USU'] - $params['valor'];
                 Bobby_Sessao::addCurso(array('ID_USU_UC' => $data['ID_ID_USU'],'ID_CUR_UC' => $params['curso']));
             }
-            $this->_helper->json($result);
+            $this->_helper->json(true);
         } else {
             $this->_helper->json(false);    
         }      
@@ -423,6 +423,21 @@ class CursoController extends Zend_Controller_Action
         $this->_helper->viewRenderer->setNoRender(TRUE);
         
         $this->_helper->json($params); 
+    }
+    
+    function ventasAction() {
+        $params = $this->_request->getParams();
+        $curso = $params['curso'];
+        
+        $compras = new Models_Cursos();
+        $result = $compras->ventas($curso);
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');     
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json($result);       
     }
 }
 

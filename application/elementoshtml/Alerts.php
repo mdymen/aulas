@@ -6,7 +6,7 @@ class Elementoshtml_Alerts {
         return '<div class="col-lg-12  col-xs-12 col-md-6">
                     <div class="alert alert-warning fade in">
                         <button class="close" data-dismiss="alert">
-                            ×
+                           '.utf8_encode('×').'
                         </button>
                         <i class="fa-fw fa fa-warning"></i>
                         <strong>'.$warning.'</strong> '.$msg.'
@@ -18,7 +18,7 @@ class Elementoshtml_Alerts {
         echo '<div class="col-lg-12  col-xs-12 col-md-6">
         <div class="alert alert-info fade in">
                                                 <button class="close" data-dismiss="alert">
-                                                    ×
+                                                    '.utf8_encode('×').'
                                                 </button>
                                                 <i class="fa-fw fa fa-info"></i>
                                                 <strong>'.$info.'!</strong> '.$msg.'

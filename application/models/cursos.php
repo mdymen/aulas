@@ -16,6 +16,16 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
         return $db->update($this->_name, $info, 'ID_ID_CR ='.$params['curso']);
     }
     
+    function ventas($curso) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        return $db->select()->from('compras')
+                ->joinInner('usuarios', 'compras.ID_USUARIO_COM = usuarios.ID_ID_USU', array('ST_USUARIO_USU'))
+                ->where('ID_CURSO_COM = ?',$curso)
+                ->query()
+                ->fetchAll();
+    }
+    
     function comprar($usuario,$curso,$valor) {
         $db = Zend_Db_Table::getDefaultAdapter();
         
@@ -23,6 +33,7 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
         
         $db->beginTransaction();
         try {
+            
             $db->update('usuarios',array('NM_CREDITO_USU' => $credito ),'ID_ID_USU = '.$usuario['ID_ID_USU'] );
             $db->insert('usuario_curso', array(
                 'ID_USU_UC' => $usuario['ID_ID_USU'],
@@ -31,12 +42,14 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
                 'NM_ACERTOS_UC' => 0,
                 'NM_TOTALEXERC_UC' => 0
             ));
-            $db->insert('comprar',array(
+            $info = array(
                 'ID_USUARIO_COM' => $usuario['ID_ID_USU'],
                 'ID_CURSO_COM' => $curso,
                 'DT_DATA_COM' => Bobby_Data::Agora(),
                 'VL_PRECO_COM' => $valor,
-            ));
+            );
+            
+            $db->insert('compras',$info);
             
             $db->commit();
             

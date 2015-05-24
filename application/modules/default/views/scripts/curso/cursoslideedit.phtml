@@ -65,6 +65,40 @@ $curso = $this->curso;
     
     $(function() {
         
+        $('#usd').bind('click', function() {
+           $('#infoVentas').html('');
+           $.post('ventas', {curso: $('#curso').html()}, function(response){
+                $('#infoVentas').show();
+                $('#divPrincipal').hide();
+                $('#divSecundario').hide();
+                $('#infoCompl').hide();  
+                var html;
+                var usr;
+                for (var i = 0; i < response.length; i++) {
+                    html = $('#infoVentas').html();
+                    
+                    usr = '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">\n\
+    <div class="databox radius-bordered databox-shadowed databox-graded" style="height:100px !important">\n\
+        <div class="databox-left bg-green" style="weight:100px !important; height:100px !important;">\n\
+            <div class="databox-icon">\n\
+                <i class="fa fa-user"></i>\n\
+            </div> \n\
+        </div>\n\
+        <div class="databox-right">\n\
+            <span class="databox-number green">'+response[i].ST_USUARIO_USU+'</span>\n\
+            <div class="databox-text darkgray">'+response[0].DT_DATA_COM+'</div>\n\
+            <div class="databox-stat green radius-bordered">\n\
+                <i class="stat-icon icon-lg fa fa-tasks"></i>\n\
+            </div>\n\
+        </div>\n\
+    </div>\n\
+</div> ';
+                    html += usr;
+                    $('#infoVentas').html(html);
+                }
+           });
+        });
+        
         $('#btnAtualizarComp').bind('click', function() {
             var des = $('#ST_DESCR_CR').val();
             var obj = $('#ST_OBJETIVO_CR').val();
@@ -82,6 +116,7 @@ $curso = $this->curso;
         $('#comp').bind('click', function() {
            $('#divPrincipal').hide();
            $('#divSecundario').hide();
+           $('#infoVentas').hide();
            $('#infoCompl').show();
         }),
         
@@ -90,6 +125,7 @@ $curso = $this->curso;
            $('#divSecundario').show();
            $('#divPrincipal').hide();
            $('#infoCompl').hide();
+           $('#infoVentas').hide();
        }), 
        
        $('#editar').bind('click', function() {
@@ -97,6 +133,7 @@ $curso = $this->curso;
            $('#divSecundario').hide();
            $('#divPrincipal').show();
            $('#infoCompl').hide();
+           $('#infoVentas').hide();
        });
        
        $('#excluir').bind('click', function() {
