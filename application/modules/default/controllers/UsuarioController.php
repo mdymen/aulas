@@ -44,6 +44,7 @@ class UsuarioController extends Zend_Controller_Action {
         $this->view->creditos = $creditos;
         
         $this->view->usuario = $this->data;
+        $this->view->usuario_conta = $usuario->getUsuarioConta($this->data);
         
     }
     
@@ -104,6 +105,25 @@ class UsuarioController extends Zend_Controller_Action {
         $sugestao->save($params);
         
         $this->redirect();
+    }
+    
+    function gravarcontaAction() {
+        $params = $this->_request->getParams();
+        
+        $data = $this->data;
+        
+        $params['ID_ID_USU'] = $data['ID_ID_USU'];
+        
+        $usuarios = new Models_Usuarios();
+        $result = $usuarios->gravarconta($params);
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');     
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json($result);    
+
     }
       
 }

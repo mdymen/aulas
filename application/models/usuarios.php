@@ -21,6 +21,43 @@ class  Models_Usuarios extends Zend_Db_Table {
         
         $db->closeConnection();
         return $result;
+    
+    }
+
+    function gravarconta($params) {
+        $db = $this->_db;
+        
+        $info = array(
+            'ID_ID_USU' => $params['ID_ID_USU'],
+            'ST_NOME_USU' => $params['ST_NOME_USU'],
+            'ST_CPF_USU' => $params['ST_CPF_USU'],
+            'ST_BANCO_USU' => $params['ST_BANCO_USU'],
+            'ST_AGENCIA_USU' => $params['ST_AGENCIA_USU'],
+            'ST_CONTA_USU' => $params['ST_CONTA_USU']
+            );
+        
+        $result = $db->update('usuario_dados',$info,'ID_ID_USU = '.$params['ID_ID_USU']);
+        
+        if (!$result) {
+            $result = $db->insert('usuario_dados', $info);
+        }
+                
+        $db->closeConnection();
+        
+        return $result;
+    }
+    
+    function getUsuarioConta($usuario) {
+        $db = $this->_db;
+        
+        $result = $db->select()->from('usuario_dados')
+                ->where('ID_ID_USU = ?',$usuario['ID_ID_USU'])
+                ->query()
+                ->fetch();
+        
+        $db->closeConnection();
+        
+        return $result;
     }
     
     function getCompras($usuario, $data_inicio, $data_fim) {
