@@ -1,8 +1,4 @@
-<?php
 
-    include_once 'menueditcurso.php';
-?>
-    
 <div id="divModal"></div>
 <?php
 
@@ -16,6 +12,45 @@ $curso = $this->curso;
 
 <div id="arquivo" style="display:none"><?php echo $curso[0]['ST_IDENT_CR']; ?></div>
 <div id="curso" style="display:none"><?php echo $curso[0]['ID_ID_CR']; ?></div>
+
+<div class="col-md-12">
+        <div class="widget">
+            <div class="widget-header" id="opcoes" style="height: 40px !important">
+                <span class="widget-caption" style="margin-top:5px"> 
+                    <a href="<?php echo $this->baseUrl().'/curso/novo' ?>" title="Novo curso">
+                        <i class="fa fa-file" style="font-size:25px !important"></i>&nbsp;
+                    </a>
+                    <a href="javascript:void(0)" id="editar" title="Editar">
+                        <i class="fa fa-edit" style="font-size:25px !important"></i>&nbsp;
+                    </a>
+                    <a href="javascript:void(0)" id="comp" title="<?php echo utf8_encode('Mais informações'); ?>">
+                        <i class="glyphicon glyphicon-info-sign" style="font-size:25px !important"></i>
+                    </a>&nbsp;
+                    <a href="<?php echo $this->baseUrl('curso/ficha?curso='.$curso[0]['ID_ID_CR']); ?>" id="preview" title="Ficha">
+                        <i class="fa fa-files-o" style="font-size:25px !important"></i>&nbsp;
+                    </a>  
+                    <a href="javascript:void(0)" id="preview" title="Preview do curso" style="padding-left:20px">
+                        <i class="glyphicon glyphicon-eye-open" style="font-size:25px !important"></i>&nbsp;
+                    </a>                    
+                    <a href="javascript:void(0)" id="mudarVisibilidade" title="Mudar visibilidade">
+                        <i class="fa fa-unlock-alt" style="font-size:25px !important"></i>&nbsp;
+                    </a> 
+                    <a href="javascript:void(0)" id="excluir" title="Excluir curso">
+                        <i class="fa fa-trash-o" style="font-size:25px !important"></i>&nbsp;
+                    </a>
+                    <a href="javascript:void(0)" id="usd" title="Ventas">
+                        <i class="fa fa-usd" style="font-size:25px !important"></i>&nbsp;
+                    </a>
+                    <a href="javascript:void(0)" title="Estatisticas">
+                        <i class="glyphicon glyphicon-stats" style="font-size:25px !important"></i>&nbsp;
+                    </a>
+                    <a href="javascript:void(0)" title="Usuarios" id="usr">
+                        <i class="glyphicon glyphicon-user" style="font-size:25px !important"></i>&nbsp;
+                    </a>                                                           
+                </span>
+            </div>
+        </div>   
+    </div>
 
 <div id="divPrincipal">
     <?php
@@ -49,6 +84,25 @@ $curso = $this->curso;
     
 </div>
 
+<div id="infoUsers" style="display:none">
+    <div class="col-lg-2 col-sm-4 col-xs-6">
+                                    <div class="databox databox-lg databox-vertical databox-inverted bg-white databox-shadowed">
+                                        <div class="databox-top">
+                                            <div class="databox-piechart">
+                                                <div data-toggle="easypiechart" class="easyPieChart block-center" data-barcolor="#e75b8d" data-linecap="butt" data-percent="40" data-animate="500" data-linewidth="8" data-size="100" data-trackcolor="#eee" style="width: 100px; height: 100px; line-height: 100px;">
+                                                    <span class="white font-200"><i class="fa fa-user green" style="font-size:100px"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="databox-bottom no-padding text-align-center">
+                                            <span class="databox-number lightcarbon no-margin">&nbsp;</span>
+                                            <span class="databox-text lightcarbon no-margin">ADICIONAR USUARIO</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+</div>
+
 <script type="text/javascript">
     
     function fecharModal() {
@@ -64,6 +118,37 @@ $curso = $this->curso;
     }
     
     $(function() {
+        $('#usr').bind('click', function() {
+            var curso = $('#curso').html();
+            $.post('usuariosdelcurso', {curso: curso}, function(response) {
+                var obj = $('#infoUsers');
+                var html = obj.html();
+                for(var i = 0; i < response.length; i++) {
+                    html += ' <div class="col-lg-2 col-sm-4 col-xs-6">\n\
+                                    <div class="databox databox-lg databox-vertical databox-inverted bg-white databox-shadowed">\n\
+                                        <div class="databox-top">\n\
+                                            <div class="databox-piechart">\n\
+                                                <div data-toggle="easypiechart" class="easyPieChart block-center" data-barcolor="#e75b8d" data-linecap="butt" data-percent="40" data-animate="500" data-linewidth="8" data-size="100" data-trackcolor="#eee" style="width: 100px; height: 100px; line-height: 100px;">\n\
+                                                    <span class="white font-200"><i class="fa fa-user blue" style="font-size:100px"></i></span>\n\
+                                                </div>\n\
+                                            </div>\n\
+                                        </div>\n\
+                                        <div class="databox-bottom no-padding text-align-center">\n\
+                                            <span class="databox-number lightcarbon no-margin">&nbsp;</span>\n\
+                                            <span class="databox-text lightcarbon no-margin">'+response[i].ST_USUARIO_USU+'</span>\n\
+                                        </div>\n\
+                                    </div>\n\
+                                </div>';
+                                obj.html(html);               
+                }
+            });
+            $('#infoUsers').show(); 
+            $('#infoVentas').hide();
+            $('#divPrincipal').hide();
+            $('#divSecundario').hide();
+            $('#infoCompl').hide();           
+        });
+        
         
         $('#usd').bind('click', function() {
            $('#infoVentas').html('');

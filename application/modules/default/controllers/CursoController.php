@@ -439,5 +439,20 @@ class CursoController extends Zend_Controller_Action
         
         $this->_helper->json($result);       
     }
+    
+    function usuariosdelcursoAction() {
+        $params = $this->_request->getParams();
+        $curso = $params['curso'];
+        
+        $compras = new Models_Usuarios();
+        $result = $compras->usuarios_curso($curso);
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');     
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json($result);         
+    }
 }
 

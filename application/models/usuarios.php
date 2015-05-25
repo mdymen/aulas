@@ -11,6 +11,19 @@ class  Models_Usuarios extends Zend_Db_Table {
         $this->_db = Zend_Db_Table::getDefaultAdapter();
     }
     
+    function usuarios_curso($curso) {
+        $db = $this->_db;
+        
+        $result = $db->select()->from('usuario_curso')
+                ->joinInner('usuarios','usuario_curso.ID_USU_UC = usuarios.ID_ID_USU', array('ST_USUARIO_USU'))
+                ->where('ID_CUR_UC = ?', $curso)
+                ->query()
+                ->fetchAll();
+        
+        $db->closeConnection();
+        return $result;
+    }
+    
     function quantidade() {
         $db = $this->_db;
         
