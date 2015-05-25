@@ -19,4 +19,12 @@ class Bobby_Data {
 //        $nuevafecha = date ( 'Y-m-d' , $nuevafecha );
         return date ( 'Y-m-d' );
     }
+    
+    public static function MySqlFormatToLatin($date) {
+        $date1_ = explode(" ",$date);
+        $date_t = $date1_[0];
+        
+        $date_fim = explode("-", $date_t);
+        return $date_fim[2].'-'.$date_fim[1].'-'.$date_fim[0];   
+    }
 }

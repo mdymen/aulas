@@ -11,6 +11,18 @@ class  Models_Usuarios extends Zend_Db_Table {
         $this->_db = Zend_Db_Table::getDefaultAdapter();
     }
     
+    function getComprasCredito($usuario, $data_inicio, $data_fim) {
+        $db = $this->_db;
+        
+        $result = $db->select()->from('credito_pendentes')
+                ->where('ID_USUARIO = ?', $usuario['ID_ID_USU'])
+                ->query()
+                ->fetchAll();
+        
+        $db->closeConnection();
+        return $result;
+    }
+    
     function getCompras($usuario, $data_inicio, $data_fim) {
         $db = $this->_db;
         

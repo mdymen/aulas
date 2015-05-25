@@ -36,9 +36,19 @@
    <?php $this->headScript()->appendFile($this->baseUrl('jquery/jquery-ui-1.9.2.custom.js')) ?>
    <?php $this->headScript()->appendFile($this->baseUrl('jquery/jquery-ui-1.9.2.custom.min.js')) ?>      
  
+<?php //$this->headScript()->appendFile($this->baseUrl('assets/js/datetime/moment.js'))      
+// $this->headScript()->appendFile($this->baseUrl('assets/js/datetime/daterangepicker.js'))      
+
+// $this->headScript()->appendFile($this->baseUrl('assets/js/datetime/bootstrap-timepicker.js'))  
+// $this->headScript()->appendFile($this->baseUrl('assets/js/datetime/bootstrap-timepicker.min.js'))  
+
+// $this->headScript()->appendFile($this->baseUrl('assets/js/datetime/bootstrap-datepicker.js'))   
+// $this->headScript()->appendFile($this->baseUrl('assets/js/datetime/moment.min.js')) ?>  
+
     <?php $this->headScript()->appendFile($this->baseUrl('assets/js/beyond.min.js')) ?>     
         
-   
+
+        
     <?php $this->headLink()->appendStylesheet($this->baseUrl('assets/css/bootstrap.min.css'))?>
     
    <link id="bootstrap-rtl-link" href="" rel="stylesheet">
