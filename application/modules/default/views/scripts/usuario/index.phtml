@@ -9,6 +9,8 @@
     $cursos = $this->cursos;
     $cursosslides = $this->cursosslides;
     $credito = $this->creditos;
+    $compras = $this->compras;
+  
 //    if(count($data['NM_CREDITO_USU'])>0){
 //         $credito[0]['VL_VALOR_CREDITO'] = number_format($credito[0]['VL_VALOR_CREDITO'],2,',','.');
 //    }else{
@@ -114,7 +116,14 @@
                                                     <a data-toggle="tab" href="#overview" aria-expanded="true" id="lnkCursos">
                                                         Cursos
                                                     </a>
+                                                </li>                                                
+                                                <li class="tab-red">
+                                                    <a data-toggle="tab" href="#timeline" aria-expanded="false" id="lnkTrans">
+                                                        Transacoes
+                                                    </a>
                                                 </li>
+
+                                                
                                                 
                                                 
                                             </ul>
@@ -235,8 +244,9 @@ foreach($cursosslides as $curso) {
 ?>                                                          </div>
 
 
-</div>
+<!--</div>-->
 <div id="divDados" style="display:none">
+    <div class="row">
     <?php 
         include_once 'Decorators/Form.php';
         include_once 'Forms/Users.php';
@@ -248,18 +258,96 @@ foreach($cursosslides as $curso) {
         echo $form;
 //        echo '</div>';
     ?>
-    
+    </div>
 </div>
+
+<div id="divTrans" style="display:none">
+ <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-xs-12">
+                            <div class="well invoice-container">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h3 class="">
+                                            <i class="fa fa-check"></i>
+                                            Customer Invoice
+                                        </h3>
+
+                                    </div>
+                                    
+                                </div>
+                                 <!-- / end client details section -->
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th><h5 class="no-margin-bottom"><?php echo utf8_encode('Serviço'); ?></h5></th>
+                                            <th><h5 class="no-margin-bottom"><?php echo utf8_encode('Descrição'); ?></h5></th>
+                                            <th><h5 class="no-margin-bottom text-center">Quantidade</h5></th>
+                                            <th><h5 class="no-margin-bottom text-center"><?php echo utf8_encode('Preço'); ?></h5></th>
+                                            <th><h5 class="no-margin-bottom text-center">Sub Total</h5></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <?php
+                                        $total = 0;
+                                        foreach ($compras as $compra) {
+                                            $total += $compra['VL_PRECO_COM'];
+                                            echo '<tr>
+                                                <td>Curso</td>
+                                                <td><a href="#">'.$compra['ST_NOME_CR'].'</a></td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">R$ '.$compra['VL_PRECO_COM'].'</td>
+                                                <td class="text-center">R$ '.$compra['VL_PRECO_COM'].'</td>
+                                            </tr>';
+                                        }
+                                                ?>
+                                        
+                                        <tr>
+                                            <td colspan="3" class="invisible bg-snow"></td>
+                                            <td class="text-center">Sub Total</td>
+                                            <td class="text-center">R$ <?php echo $total; ?></td>
+                                        </tr>
+<!--                                        <tr>
+                                            <td colspan="3" class="invisible bg-snow"></td>
+                                            <td class="text-center">TAX</td>
+                                            <td class="text-center">N/A</td>
+                                        </tr>-->
+                                        <tr>
+                                            <td colspan="3" class="invisible bg-snow"></td>
+                                            <td class="text-center"><strong>Total</strong></td>
+                                            <td class="text-center "><strong>R$ <?php echo $total; ?></strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                
+                                
+                                
+
+                            </div>
+                        </div>
+                    </div>
+</div>
+
 <script type="text/javascript">
     $(function(){
        $('#lnkCursos').bind('click', function(){
            $('#divCursos').show();
-           $('#divDados').hide();          
+           $('#divDados').hide();    
+           $('#divTrans').hide();    
        });
        $('#lnkDados').bind('click', function(){
            $('#divCursos').hide();
            $('#divDados').show();
+           $('#divTrans').hide();
        });
+       
+       $('#lnkTrans').bind('click', function(){
+           $('#divCursos').hide();
+           $('#divDados').hide();
+           $('#divTrans').show();
+       });
+       
        
        $('#lnkPerfil').bind('click', function() {
            $('#imgPerfil').trigger('click');
