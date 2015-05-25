@@ -32,8 +32,11 @@ class UsuarioController extends Zend_Controller_Action {
         $this->view->perguntas = $perguntas;
         
         $cursos = $usuario->getCursosSlidesDoUsuario($this->data);
+        $cursosslides = $usuario->getCursosSlides($this->data);
         
         $this->view->cursos = $cursos;
+        $this->view->cursosslides = $cursosslides;
+        
         
         $this->view->creditos = $creditos;
         

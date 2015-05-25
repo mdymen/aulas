@@ -24,6 +24,21 @@ class  Models_Usuarios extends Zend_Db_Table {
         return $result;
     }
     
+    function getCursosSlides($usuario) { 
+        $db = $this->_db;
+        
+        $result = $db->select()->from('cursos')
+                ->joinInner('usuario_curso', 'usuario_curso.ID_CUR_UC = cursos.ID_ID_CR')
+                ->where('usuario_curso.ID_USU_UC = ?',$usuario['ID_ID_USU'])
+                ->query()
+                ->fetchAll();
+        
+        $db->closeConnection();
+        
+        return $result;
+    }
+    
+    
     function quantidade() {
         $db = $this->_db;
         
