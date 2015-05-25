@@ -10,6 +10,8 @@ include_once '/forms/curso/comp.php';
 $curso = $this->curso;
 ?>
 
+<?php $this->headScript()->appendFile($this->baseUrl('assets/js/informacoes_editar_curso.js')) ?>     
+
 <div id="arquivo" style="display:none"><?php echo $curso[0]['ST_IDENT_CR']; ?></div>
 <div id="curso" style="display:none"><?php echo $curso[0]['ID_ID_CR']; ?></div>
 
@@ -72,6 +74,7 @@ $curso = $this->curso;
 </div>
 
 <div id="infoCompl" style="display:none;">
+    
     <?php
         $formComp = new Forms_Curso_Comp(array('titulo' => utf8_encode('Mais informações'), 'icone' => 'glyphicon glyphicon-info-sign'));
         $formComp->addDecorator($decform);
@@ -80,12 +83,23 @@ $curso = $this->curso;
     ?> 
 </div>
 
+<div id="divAdicionar_usuario" style="display:none">  
+    
+    <?php
+        include_once APPLICATION_PATH.'/forms/curso/AdUsuario.php';
+        $form_adicionarUsuario = new Forms_Curso_AdUsuario(array('titulo' => 'Adicionar usuario ao curso','width' => '400px'));
+        $form_adicionarUsuario->addDecorator($decform);
+        echo $form_adicionarUsuario;
+    ?>
+</div>
+
 <div id="infoVentas" style="display:none;">
     
 </div>
-
+<!--<a href="javascript:void(0);" id="adicionar_usuario">-->
 <div id="infoUsers" style="display:none">
-    <div class="col-lg-2 col-sm-4 col-xs-6">
+    
+<!--    <div class="col-lg-2 col-sm-4 col-xs-6">
                                     <div class="databox databox-lg databox-vertical databox-inverted bg-white databox-shadowed">
                                         <div class="databox-top">
                                             <div class="databox-piechart">
@@ -100,8 +114,9 @@ $curso = $this->curso;
 
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
 </div>
+<!--        </a>-->
 
 <script type="text/javascript">
     
@@ -118,6 +133,10 @@ $curso = $this->curso;
     }
     
     $(function() {
+        $('#adicionar_usuario').bind('click', function() {
+            $('#divAdicionar_usuario').dialog({position: { my: "center", at: "center", of: $('#opcoes') }});
+        });
+        
         $('#usr').bind('click', function() {
             var curso = $('#curso').html();
             $.post('usuariosdelcurso', {curso: curso}, function(response) {
@@ -203,6 +222,7 @@ $curso = $this->curso;
            $('#divSecundario').hide();
            $('#infoVentas').hide();
            $('#infoCompl').show();
+           start_informacoes_editar_curso();
         }),
         
        $('#preview').bind('click', function() {

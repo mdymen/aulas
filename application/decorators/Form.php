@@ -28,9 +28,15 @@ class Decorators_Form extends Zend_Form_Decorator_Abstract {
         $classes = $this->getElement()->getAttrib("class");
         $icone = $this->getElement()->getAttrib('icone');
         $widget_btns = $this->getElement()->getAttrib('widget_btns');
+        $width = $this->getElement()->getAttrib('width');
         
         $enctyestring= '';
         $id_ = '';
+        $width_ = '';
+        
+        if ($width != '') {
+            $width_ = 'style="width:'.$width.'"';
+        }
         
         if ($id != '') {
             $id_ = 'id = "'.$id.'"';
@@ -63,7 +69,7 @@ class Decorators_Form extends Zend_Form_Decorator_Abstract {
         }
         
         
-        $v = '<div class="'.$classes.'">
+        $v = '<div class="'.$classes.'" '.$width_.'>
             <div class="widget">
                 <div class="widget-header bordered-bottom bordered-blue">
                     <span class="widget-caption" id="tituloForm">'.$icone_class.' '.$titulo.'</span>
