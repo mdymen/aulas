@@ -43,7 +43,7 @@ $curso = $this->curso;
                     <a href="javascript:void(0)" id="usd" title="Ventas">
                         <i class="fa fa-usd" style="font-size:25px !important"></i>&nbsp;
                     </a>
-                    <a href="javascript:void(0)" title="Estatisticas">
+                    <a href="javascript:void(0)" title="Estatisticas" id="estatisticas">
                         <i class="glyphicon glyphicon-stats" style="font-size:25px !important"></i>&nbsp;
                     </a>
                     <a href="javascript:void(0)" title="Usuarios" id="usr">
@@ -118,6 +118,115 @@ $curso = $this->curso;
 </div>
 <!--        </a>-->
 
+<div id="divGraficas" style="display:none">
+    <div class="col-lg-12 col-sm-6 col-xs-12">
+                                    <div class="tabbable">
+                                        <ul class="nav nav-tabs" id="myTab">
+                                            <li class="active">
+                                                <a data-toggle="tab" href="#home">
+                                                    Ventas
+                                                </a>
+                                            </li>
+
+                                            <li class="tab-red">
+                                                <a data-toggle="tab" href="#profile">
+                                                    Profile
+                                                </a>
+                                            </li>
+
+                                        </ul>
+
+                                        <div class="tab-content">
+                                            <div id="home" class="tab-pane in active">
+                                                <p>
+                                                
+                                                <div class="row">
+                        <div class="col-xs-12 col-md-12 col-lg-12">
+                            <div class="widget">
+                                <div class="widget-header">
+                                    <span class="widget-caption">Gráfico de ventas do curso</span>
+                             
+                                </div>
+                                <div class="widget-body">
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="selectable-chart" class="chart chart-lg" style="padding: 0px; position: relative;">
+                                                <canvas class="flot-base" width="1051" height="250" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 1051px; height: 250px;"></canvas>
+                                                <div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);">
+                                                    <div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;">
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 5px; text-align: center;">1990</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 77px; text-align: center;">1991</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 150px; text-align: center;">1992</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 223px; text-align: center;">1993</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 296px; text-align: center;">1994</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 369px; text-align: center;">1995</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 442px; text-align: center;">1996</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 515px; text-align: center;">1997</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 588px; text-align: center;">1998</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 661px; text-align: center;">1999</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 734px; text-align: center;">2000</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 807px; text-align: center;">2001</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 880px; text-align: center;">2002</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 953px; text-align: center;">2003</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 70px; top: 235px; left: 1026px; text-align: center;">2004</div></div>
+                                                    <div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;">
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 223px; left: 6px; text-align: right;">0</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 178px; left: 6px; text-align: right;">5</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 134px; left: 0px; text-align: right;">10</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 89px; left: 0px; text-align: right;">15</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 45px; left: 0px; text-align: right;">20</div>
+                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 1px; left: 0px; text-align: right;">25</div>
+                                                            
+                                                    </div></div><canvas class="flot-overlay" width="1051" height="250" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 1051px; height: 250px;"></canvas><div class="legend"><div style="position: absolute; width: 249px; height: 19px; top: 13px; right: 18px; opacity: 0.85; background-color: rgb(255, 255, 255);"> </div><table style="position:absolute;top:13px;right:18px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(45, 195, 232);overflow:hidden"></div></div></td><td class="legendLabel">Windows</td><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(255, 206, 85);overflow:hidden"></div></div></td><td class="legendLabel">Linux</td><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(251, 110, 82);overflow:hidden"></div></div></td><td class="legendLabel">Mac OS</td><td class="legendColorBox">
+                                                                        <div style="border:1px solid #ccc;padding:1px">
+                                                                            <div style="width:4px;height:0;border:5px solid rgb(160, 212, 104);overflow:hidden"></div>
+                                                                                
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="legendLabel">DOS</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                            </div>
+
+                                        </div>
+                                        <!--<div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <button class="btn btn-default" id="setSelection">Select year 1994</button>
+                                                    <button class="btn btn-default" id="clearSelection">Clear selection</button>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="pull-right">
+                                                       <label><input id="zoom" type="checkbox" />Zoom to selection</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                                
+                                                
+                                               
+                                            </div>
+
+                                            <div id="profile" class="tab-pane">
+                                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="horizontal-space"></div>
+
+                                </div>
+    
+</div>
+
 <script type="text/javascript">
     
     function fecharModal() {
@@ -133,6 +242,17 @@ $curso = $this->curso;
     }
     
     $(function() {
+        InitiateFlotSelectableChart.init();
+        
+        $('#estatisticas').bind('click', function() {
+           $('#divGraficas').show(); 
+            $('#infoUsers').hide(); 
+            $('#infoVentas').hide();
+            $('#divPrincipal').hide();
+            $('#divSecundario').hide();
+            $('#infoCompl').hide();             
+        });
+        
         $('#adicionar_usuario').bind('click', function() {
             $('#divAdicionar_usuario').dialog({position: { my: "center", at: "center", of: $('#opcoes') }});
         });

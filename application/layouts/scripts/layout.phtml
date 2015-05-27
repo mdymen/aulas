@@ -9,6 +9,12 @@
     if (!empty($params['esqueceu'])) {
         echo $this->render('esqueceusenha.phtml');
     }
+    else if (!empty($params['faceid'])) {
+        echo $this->render('inseriremailface.phtml');
+    }
+    else if (!empty($params['ee'])) {
+        echo 'Error: O email ja existe!';
+    }
     else {
         $storage = new Zend_Auth_Storage_Session();
         $data = $storage->read();

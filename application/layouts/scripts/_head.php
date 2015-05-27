@@ -34,7 +34,12 @@
            
    <?php $this->headScript()->appendFile($this->baseUrl('jquery/jquery-1.8.3.js')) ?>
    <?php $this->headScript()->appendFile($this->baseUrl('jquery/jquery-ui-1.9.2.custom.js')) ?>
-   <?php $this->headScript()->appendFile($this->baseUrl('jquery/jquery-ui-1.9.2.custom.min.js')) ?>      
+   <?php $this->headScript()->appendFile($this->baseUrl('jquery/jquery-ui-1.9.2.custom.min.js')) ?>   
+   
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/charts/flot/flot-init.js')) ?>   
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/charts/flot/jquery.flot.js')) ?> 
+    <?php $this->headScript()->appendFile($this->baseUrl('assets/js/charts/flot/jquery.flot.min.js')) ?>   
+
  
 <?php //$this->headScript()->appendFile($this->baseUrl('assets/js/datetime/moment.js'))      
 // $this->headScript()->appendFile($this->baseUrl('assets/js/datetime/daterangepicker.js'))      

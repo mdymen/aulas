@@ -123,6 +123,25 @@ class AuthController extends Zend_Controller_Action {
         $storage = new Zend_Auth_Storage_Session();
         $storage->clear();
         $this->_redirect();
+    }           
+    
+    function loginfacebyidAction() {
+        $params = $this->_request->getParams();
+        
+        $usuarios = new Models_Usuarios();
+        $usuario = $usuarios->checkIdFacebook($params['id']);
+        
+        if ($usuario) {
+            $result = $this->_logar($usuario['ST_USUARIO_USU'], $usuario['ST_SENHA_USU']);
+        }
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        $this->_helper->json($usuario);   
+        
     }
     
     /*
@@ -152,7 +171,7 @@ class AuthController extends Zend_Controller_Action {
         
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(TRUE);
-        $this->_helper->json($info);   
+        $this->_helper->json($params);   
     }
     
     private function _logar($usuario, $senha) {
@@ -169,9 +188,10 @@ class AuthController extends Zend_Controller_Action {
         if ($result->isValid()) {         
             $storage = new Zend_Auth_Storage_Session();
             $storage->write($authAdapter->getResultRowObject());
-
+            
             return true;
         }
+
         return false;
     }
     
@@ -262,5 +282,59 @@ class AuthController extends Zend_Controller_Action {
         } else {
             die('ERROR');
         }
+    }
+    
+    function cadastroemailAction() {
+        $params = $this->_request->getParams();
+        
+        $n_user = '';
+        $p_user = '';
+
+        $usuario = new Models_Usuarios();
+        $user = $usuario->checkIdFacebook($params['id']);
+        $usr2 = $usuario->checkEmailFacebook($params['email']);
+                
+        if ($usr2) {
+            $this->_redirect('/?ee=text');
+        }
+        if (!empty($user) && empty($usr2)) {
+            $result = $usuario->updateFace($params);
+            $n_user = $user['ST_USUARIO_USU'];
+            $p_user = $user['ST_SENHA_USU'];
+        }
+
+        if ($result) {
+            $this->_logar($n_user, $p_user);
+        }
+        $this->_redirect('index/index');
+    }
+    
+    function checkidfacebookAction() {
+        $params = $this->_request->getParams();
+        
+        $usuario = new Models_Usuarios();
+        $result = $usuario->checkIdFacebook($params['id']);
+        
+        $retorno = 2;
+        if (empty($result)) {
+            $retorno = 1;
+            $res = $usuario->save_face_parcial($params);
+            
+        } else if (empty($result['ST_EMAIL_USU'])) {
+            $retorno = 1;
+        }
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        /*
+         * return: 
+         * 0 - se o usuario nao existe
+         * 1 - se o usuario existe mas nao tem email cadastrado
+         * 2 - se o usuario existe e tambem tem email cadastrado
+         */
+        $this->_helper->json($res);         
     }
 }

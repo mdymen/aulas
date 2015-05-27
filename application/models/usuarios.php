@@ -11,6 +11,85 @@ class  Models_Usuarios extends Zend_Db_Table {
         $this->_db = Zend_Db_Table::getDefaultAdapter();
     }
     
+    function updateFace($params) {
+        $db = $this->_db;
+        
+        $result = $db->update($this->_name, array('ST_EMAIL_USU' => $params['email']), 'ID_FACEBOOK_USU = "'.$params['id'].'"');
+        
+        $db->closeConnection();
+        
+        return $result;       
+    }
+    
+    function checkIdFacebook($id) {
+        $db = $this->_db;
+        
+        $result = $db->select()->from($this->_name)
+                ->where('ID_FACEBOOK_USU = ?', $id)
+                ->query()
+                ->fetch();
+        
+        $db->closeConnection();
+        
+        return $result;
+    }
+
+    function checkEmailFacebook($email) {
+        $db = $this->_db;
+        
+        $result = $db->select()->from($this->_name)
+                ->where('ST_EMAIL_USU = ?', $email)
+                ->query()
+                ->fetch();
+
+        $db->closeConnection();
+        
+        return $result;
+    }    
+    
+    function save_face_parcial($params) {
+        $db = $this->_db;
+        
+        $info = array(
+            'ID_FACEBOOK_USU' => $params['id'],
+            'ST_USUARIO_USU' => $params['name'],
+            'ST_SENHA_USU' => md5($params['id']),
+        );
+                
+        try {        
+            $result = $db->insert($this->_name, $info);
+        }
+        catch (Exception $e) {
+            return '';
+        }
+        
+        $db->closeConnection();
+        
+        return $result;            
+    }
+    
+    function save_email_face($params) {
+        $db = $this->_db;
+        
+        $info = array(
+            'ST_EMAIL_USU' => $params['email'],
+            'ID_FACEBOOK_USU' => $params['id'],
+            'ST_USUARIO_USU' => $params['id'],
+            'ST_SENHA_USU' => md5($params['id'])
+        );
+                
+        try {        
+            $result = $db->insert($this->_name, $info);
+        }
+        catch (Exception $e) {
+            return '';
+        }
+        
+        $db->closeConnection();
+        
+        return $result;    
+    }
+    
     function getComprasCredito($usuario, $data_inicio, $data_fim) {
         $db = $this->_db;
         
