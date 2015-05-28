@@ -177,6 +177,7 @@ class  Models_Usuarios extends Zend_Db_Table {
         $result = $db->select()->from('cursos')
                 ->joinInner('usuario_curso', 'usuario_curso.ID_CUR_UC = cursos.ID_ID_CR')
                 ->where('usuario_curso.ID_USU_UC = ?',$usuario['ID_ID_USU'])
+                ->where('FL_TIPO_CR = 1')
                 ->query()
                 ->fetchAll();
         
