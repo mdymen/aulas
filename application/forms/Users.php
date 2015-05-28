@@ -22,11 +22,11 @@ class Forms_Users extends Zend_Form {
         $senha->addDecorator($decorator1);
         
         $decorator2 = new Decorators_Decorator1();
-        $confsenha = new Zend_Form_Element_Text('ST_CSENHA_USU', array('placeholder' => 'ConfirmaÃ§ao senha', 'type'=>'password'));
+        $confsenha = new Zend_Form_Element_Text('ST_CSENHA_USU', array('placeholder' => 'Confirmar senha', 'type'=>'password'));
         $confsenha->addDecorator($decorator2);
 
         $decorator3 = new Decorators_Decorator1();        
-        $email = new Zend_Form_Element_Text('ST_EMAIL_USU',array('paceholder' => 'Correio eletronico'));
+        $email = new Zend_Form_Element_Text('ST_EMAIL_USU',array('paceholder' => 'Correio eletrónico'));
         $email->addDecorator($decorator3);
         
         $btnDecorator = new Decorators_Button();

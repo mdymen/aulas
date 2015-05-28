@@ -27,6 +27,7 @@ function breadcrumb() {
     $array['curso']['cursoslideedit'] = utf8_encode('Edição do curso');
     $array['curso']['ficha'] = 'Ficha';    
     $array['curso']['vercurso'] = 'Tela principal do curso';
+    $array['curso']['meuscursos'] = 'Meus cursos';
     
     echo '<div class="header-title">
                 <h1>';

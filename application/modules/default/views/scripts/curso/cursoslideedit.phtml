@@ -76,7 +76,7 @@ $curso = $this->curso;
 <div id="infoCompl" style="display:none;">
     
     <?php
-        $formComp = new Forms_Curso_Comp(array('titulo' => utf8_encode('Mais informações'), 'icone' => 'glyphicon glyphicon-info-sign'));
+        $formComp = new Forms_Curso_Comp(array('titulo' => 'Mais informações', 'icone' => 'glyphicon glyphicon-info-sign'));
         $formComp->addDecorator($decform);
         $formComp->populate($curso[0]);
         echo $formComp;      
