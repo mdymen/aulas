@@ -21,7 +21,30 @@ class UsuarioController extends Zend_Controller_Action {
          $this->data = get_object_vars($this->storage->read());  
     }
     
+    private function _getDatas($params) {
+        $datas = array();
+      
+        if (!empty($params['datas'])) {
+            $params['datas'] = str_replace(" ","", $params['datas']);
+            $datas = explode('-',$params['datas']);
+            $datas['Inicio'] = Bobby_Data::LatinToMysql($datas[0]);        
+            $datas['Fim'] = Bobby_Data::LatinToMysql($datas[1]);
+            $datas['trans'] = true;
+        } else {
+            $datas = array('Inicio' => date('Y-m-d'), 'Fim' => date('Y-m-d'));
+            $datas['trans'] = false;
+        }
+       
+        $datas['Inicio'] = $datas['Inicio'].' 00:00:00';
+        $datas['Fim'] = $datas['Fim'].' 59:59:59';
+        return $datas;
+    }
+    
     function indexAction() {
+        $params = $this->_request->getParams();
+        
+        $datas = $this->_getDatas($params);
+        
         $usuario = new Models_Usuarios();
         $credito = new Application_Model_Creditos();
         
@@ -33,8 +56,10 @@ class UsuarioController extends Zend_Controller_Action {
         
         $cursos = $usuario->getCursosSlidesDoUsuario($this->data);
         $cursosslides = $usuario->getCursosSlides($this->data);
-        $compras = $usuario->getCompras($this->data,'','');
-        $acreditados = $usuario->getComprasCredito($this->data,'','');
+        
+        $compras = $usuario->getCompras($this->data, $datas['Inicio'], $datas['Fim']);
+        
+        $acreditados = $usuario->getComprasCredito($this->data,$datas['Inicio'], $datas['Fim']);
         
         $this->view->cursos = $cursos;
         $this->view->cursosslides = $cursosslides;
@@ -46,6 +71,12 @@ class UsuarioController extends Zend_Controller_Action {
         $this->view->usuario = $this->data;
         $this->view->usuario_conta = $usuario->getUsuarioConta($this->data);
         
+        $x = explode(' ',$datas['Inicio']);
+        $datas['Inicio'] = $x[0];
+        
+        $x = explode(' ',$datas['Fim']);
+        $datas['Fim'] = $x[0];
+        $this->view->data = $datas;
     }
     
     function atualizarAction() {

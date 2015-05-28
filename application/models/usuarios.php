@@ -95,6 +95,9 @@ class  Models_Usuarios extends Zend_Db_Table {
         
         $result = $db->select()->from('credito_pendentes')
                 ->where('ID_USUARIO = ?', $usuario['ID_ID_USU'])
+                ->where('DT_DATA_CREDITO_PEN >= ?', $data_inicio)
+                ->where('DT_DATA_CREDITO_PEN <= ?', $data_fim)
+                ->where('FL_PENDENTE = 0')
                 ->query()
                 ->fetchAll();
         
@@ -145,6 +148,8 @@ class  Models_Usuarios extends Zend_Db_Table {
         $result = $db->select()->from('compras')
                 ->joinInner('cursos', 'cursos.ID_ID_CR = compras.ID_CURSO_COM', array('ST_NOME_CR'))
                 ->where('ID_USUARIO_COM = ?', $usuario['ID_ID_USU'])
+                ->where('DT_DATA_COM >="'. $data_inicio.'"')
+                ->where('DT_DATA_COM <="'.$data_fim.'"')
                 ->query()
                 ->fetchAll();
         

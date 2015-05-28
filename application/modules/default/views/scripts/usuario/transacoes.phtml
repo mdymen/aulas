@@ -1,0 +1,123 @@
+<?php
+
+
+function linhas_transacoes($compras, $acreditados) {
+    
+    
+    if (count($compras) > 0 || count($acreditados) > 0) {
+    
+    echo '<table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th><h5 class="no-margin-bottom">'.utf8_encode('Serviço').'</h5></th>
+                                            <th><h5 class="no-margin-bottom">'.utf8_encode('Descrição').'</h5></th>
+                                            <th><h5 class="no-margin-bottom text-center">Data</h5></th>
+                                            <th><h5 class="no-margin-bottom text-center">'.utf8_encode('Preço').'</h5></th>
+                                            <th><h5 class="no-margin-bottom text-center">Sub Total</h5></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>';
+                                        $total = 0;
+                                                                                
+                                        if (count($compras) > 0) {
+                                            foreach ($compras as $compra) {
+                                                $total -= $compra['VL_PRECO_COM'];
+                                                echo '<tr>
+                                                    <td>Curso</td>
+                                                    <td><a href="#">'.$compra['ST_NOME_CR'].'</a></td>
+                                                    <td class="text-right">'.  Bobby_Data::MySqlFormatToLatin($compra['DT_DATA_COM']).'</td>
+                                                    <td class="text-right">R$ -'. Bobby_Moeda::number_format($compra['VL_PRECO_COM']).'</td>
+                                                    <td class="text-right">R$ -'.  Bobby_Moeda::number_format($compra['VL_PRECO_COM']).'</td>
+                                                </tr>';
+                                            }
+                                        }
+                                        
+                                        if(count($acreditados) > 0) {
+                                            foreach ($acreditados as $acreditado) {
+                                                $total += $acreditado['VL_VALOR_CREDITO_PEN'];
+                                                echo '<tr>
+                                                    <td>Credito</td>
+                                                    <td><a href="#"></a></td>
+                                                    <td class="text-right">'.Bobby_Data::MySqlFormatToLatin($acreditado['DT_DATA_CREDITO_PEN']).'</td>
+                                                    <td class="text-right">R$ '.  Bobby_Moeda::number_format($acreditado['VL_VALOR_CREDITO_PEN']).'</td>
+                                                    <td class="text-right">R$ '.  Bobby_Moeda::number_format($acreditado['VL_VALOR_CREDITO_PEN']).'</td>
+                                                </tr>';                                            
+                                            }
+                                        }
+                                        
+                                        echo '<tr>
+                                            <td colspan="3" class="invisible bg-snow"></td>
+                                            <td class="text-right">Sub Total</td>
+                                            <td class="text-right">R$'.  Bobby_Moeda::number_format($total).'</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="invisible bg-snow"></td>
+                                            <td class="text-right"><strong>Total</strong></td>
+                                            <td class="text-right "><strong>R$ '.Bobby_Moeda::number_format($total).'</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>';
+    } 
+    else {
+        include_once APPLICATION_PATH.'/Elementoshtml/Alerts.php';
+        Elementoshtml_Alerts::info(utf8_encode('Nenhuma transação no periodo.'));
+    }
+}
+
+function transacoes($data, $compras, $acreditados) {
+
+echo '<div class="row">
+                        <div class="col-lg-12 col-sm-12 col-xs-12">
+                            <div class="well invoice-container">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <h3 class="">
+                                            <i class="fa fa-check"></i>
+                                            '.utf8_encode('Transações').' ('.Bobby_Data::MySqlToLatin($data['Inicio']).' - '.Bobby_Data::MySqlToLatin($data['Fim']).')                                            
+                                        </h3>
+                                    </div>
+                                    <div class="col-xs-7 text-right">
+                                        <form method="post" class="form-inline" action="/aulas/public/usuario/index">
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span><input type="text" class="form-control active" placeholder="Selecione periodo" name="datas" id="reservation">
+
+                                                    </div>                                                    
+                                                </div>
+                                                <input type="submit" class="btn btn-primary" id="btnBuscar" name="btnBuscar" value="Buscar" style="display:none" />
+                                                <a class="btn btn-primary" href="javascript:void(0);" id="lnkBuscar"><i class="glyphicon glyphicon-search"></i></a>
+                                            </div>    
+                                        </form>
+                                    </div>
+                                 <!-- / end client details section -->';
+                                 
+
+                                 echo linhas_transacoes($compras,$acreditados);
+
+                                
+                            echo '</div>
+                        </div>
+                    </div>
+
+<script type="text/javascript">
+
+    $(function() {
+        $("#reservation").daterangepicker();
+        
+        $(".applyBtn").bind("click", function() {
+            
+        })
+        
+        $("#lnkBuscar").bind("click", function() {
+            $("#btnBuscar").trigger("click");
+        });
+    })
+
+</script>';
+
+}
+
+?>

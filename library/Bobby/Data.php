@@ -25,6 +25,19 @@ class Bobby_Data {
         $date_t = $date1_[0];
         
         $date_fim = explode("-", $date_t);
+             
         return $date_fim[2].'-'.$date_fim[1].'-'.$date_fim[0];   
     }
+    
+    public static function MySqlToLatin($date) {
+        
+        $date1 = explode('-',$date);        
+        return $date1[2].'/'.$date1[1].'/'.$date1[0];
+    }
+    
+    public static function LatinToMysql($date) {
+        $date1_ = explode("/",$date);
+        return $date1_['2'].'-'.$date1_[1].'-'.$date1_[0];
+    }
+
 }

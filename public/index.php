@@ -20,7 +20,7 @@ require_once 'Zend/Application.php';
 require_once 'Bobby/Mail.php';
 require_once 'Bobby/Sessao.php';
 require_once 'Bobby/Data.php';
-
+require_once 'Bobby/Moeda.php';
 
 
 // Create application, bootstrap, and run
