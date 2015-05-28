@@ -14,75 +14,22 @@ function breadcrumb() {
         $nivel2 = "index";
     }
     
-    switch ($nivel1) {
-        case $nivel1 == "curso":
-            $nivel1 = "Cursos";
-            
-            switch ($nivel2) {
-                case $nivel2 == "adicionar":
-                    $nivel2 = "Adicionar novo curso";
-                    break;
-            }
-            
-            
-            break;
-        case $nivel1 == "usuario";
-            $nivel1 = "Usuario";
-            switch ($nivel2) {
-                case $nivel2 == "index":
-                    $nivel2 = "Minha conta";
-                    break;
-                default:
-                    break;
-            }
-            break;
-        case $nivel1 == "slide":
-            $nivel1 = "Slides";
-            switch ($nivel2) {
-                case $nivel2 == "adicionar":
-                    $nivel2 = "Adicionar novo slide ao curso";
-                    break;
-                default:
-                    break;
-            }
-            break;
-        default:
-            break;
-    }
+    $array = array();
+    $array['index']['index'] = 'Tela inicial';
+    $array['usuario']['index'] = 'Minha conta';
+    $array['curso']['cursos'] = 'Cursos';
+    $array['credito']['index'] = utf8_encode('Créditos');
+    $array['credito'][''] = utf8_encode('Créditos');
+    $array['perguntas']['index'] = 'Minhas perguntas';
+    $array['perguntas'][''] = 'Minhas perguntas';
+    $array['curso']['novo'] = 'Criar novo curso';
+    $array['curso']['cursoslideedit'] = utf8_encode('Edição do curso');
+    $array['curso']['ficha'] = 'Ficha';    
+    $array['curso']['vercurso'] = 'Tela principal do curso';
     
-    switch ($nivel2){
-        case $nivel2 == "index":
-            switch ($nivel1) {
-                case $nivel1 == "cursos":
-                    $nivel1 = "Lista do cursos";
-                    break;
-                default:
-                    $nivel1 = "index";
-                    break;
-            }
-            $nivel2 = "Lista do cursos";
-            break;        
-        case $nivel2 == "cursos":
-            $nivel2 = "Cursos disponiveis";
-            break;
-        case $nivel2 == "ficha":
-            $nivel2 = "Ficha do curso";
-            break;
-        case $nivel2 == "vercurso":
-            $nivel2 = "Fazer o curso";  
-            break;
-        default:
-            
-            break;
-    }
-
     echo '<div class="header-title">
-                <h1>
-                    <span>'.$nivel1.'</span>
-                    <small>
-                        <i class="fa fa-angle-right"></i>
-                        <span>'.$nivel2.'</span>
-                    </small>
-                </h1>
+                <h1>';
+                    echo $array[$nivel1][$nivel2];
+                echo '</h1>
             </div>';  
 }
