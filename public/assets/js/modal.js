@@ -10,16 +10,22 @@
             var icone = 'lock';
             var vis = 0;
             var msg = "Seu curso NAO esta disponivel.";
+            var ativo = "Inativo";
             if (atual === 0) {
                 icone = 'unlock';
                 vis = 1;
                 msg = "Seu curso esta disponivel.";
+                ativo = "Ativo";
             }
+            console.log(ativo);
            $.post('mudarvisibilidade',{id: curso, visibilidade:vis}, function() {
-               $('#mudarVisibilidade').data('visibilidade',vis);
+               $('#spanAtivo'+curso).html(ativo);
+               classe.data('visibilidade',vis);
                classe.children('#iconeVis').attr('class','stat-icon icon-lg fa fa-'+icone+'');
+               
                modal.dialog('destroy');
                Notify(msg, 'bottom-right', '3000', 'palegreen', 'fa fa-'+icone, true);
+               
            }) 
         });
     }
