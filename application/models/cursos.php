@@ -16,6 +16,20 @@ class Models_Cursos extends Zend_Db_Table_Abstract {
         return $db->update($this->_name, $info, 'ID_ID_CR ='.$params['curso']);
     }
     
+    function compras($curso) {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $result = $db->select()->from('compras', array('Qant'=>'COUNT(*)', 'MONTH(DT_DATA_COM) as Mes'))
+                ->where('ID_CURSO_COM = ?', $curso)
+                ->group('MONTH(DT_DATA_COM)')
+                ->query()
+                ->fetchAll();
+        
+        $db->closeConnection();
+        
+        return $result;
+    }
+    
     function ventas($curso) {
         $db = Zend_Db_Table::getDefaultAdapter();
         

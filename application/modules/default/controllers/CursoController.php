@@ -454,5 +454,19 @@ class CursoController extends Zend_Controller_Action
         
         $this->_helper->json($result);         
     }
+    
+    function dadosgraficacomprascursosAction() {
+        $params = $this->_request->getParams();
+        
+        $cursos = new Models_Cursos();
+        $curso = $cursos->compras($params['curso']);
+
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');     
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json($curso);        
+    }
 }
 
