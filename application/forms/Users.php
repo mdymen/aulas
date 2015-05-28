@@ -30,7 +30,7 @@ class Forms_Users extends Zend_Form {
         $email->addDecorator($decorator3);
         
         $btnDecorator = new Decorators_Button();
-        $btnAtualizar = new Zend_Form_Element_Button('Registrar', array('type' => 'submit', 'value' => 'Atualizar', 'class'=>'btn btn-success'));
+        $btnAtualizar = new Zend_Form_Element_Button('btnAtualizar', array('type' => 'button', 'value' => 'Atualizar', 'class'=>'btn btn-success'));
         $btnAtualizar->addDecorator($btnDecorator);
         
         $this->addElements(array($hdId, $hdUser, $usuario, $senha, $confsenha, $email, $btnAtualizar));

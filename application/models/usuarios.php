@@ -11,6 +11,16 @@ class  Models_Usuarios extends Zend_Db_Table {
         $this->_db = Zend_Db_Table::getDefaultAdapter();
     }
     
+    function atualizarDados($email, $senha, $usuario) {
+        $db = $this->_db;
+        
+        $result = $db->update($this->_name, array('ST_EMAIL_USU' => $email, 'ST_SENHA_USU' => $senha), 'ID_ID_USU = '.$usuario);
+        
+        $db->closeConnection();
+        
+        return $result;
+    }
+    
     function updateFace($params) {
         $db = $this->_db;
         

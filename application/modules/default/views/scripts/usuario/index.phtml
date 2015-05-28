@@ -285,9 +285,7 @@ if ($i == 1 || $i == 2 || $i == 3) { echo '</div>';}
         $form = new Forms_Users(array('titulo' => 'Alterar dados'));
         $form->populate($data);
         $form->addDecorator($formDec);
-//        echo '<div class="row">';
         echo $form;
-//        echo '</div>';
     ?>
     </div>
 </div>
@@ -316,6 +314,52 @@ if ($i == 1 || $i == 2 || $i == 3) { echo '</div>';}
 <script type="text/javascript">
     $(function(){
         $('#d').hide();
+        var atualizar = true;
+        
+        $('#ST_CSENHA_USU').focusout(function() {
+            var senha = $('#ST_SENHA_USU').val();
+            var conf_var = $('#ST_CSENHA_USU');
+            var conf = conf_var.val();     
+            
+            if (senha != conf) {
+                conf_var.css('border-color','red');
+                atualizar = false;
+            }else {
+                conf_var.css('border-color','green');
+            }
+        });
+        
+        $('#ST_EMAIL_USU').focusout(function() {
+            var email = $('#ST_EMAIL_USU').val();
+            if (email != '') {
+                $('#ST_EMAIL_USU').css('border-color','green');
+            } else {
+                atualizar = false;
+                $('#ST_EMAIL_USU').css('border-color','red');
+            }
+        });
+        
+        $('#btnAtualizar').bind('click', function() {
+            var senha = $('#ST_SENHA_USU').val();
+            var conf_var = $('#ST_CSENHA_USU');
+            var conf = conf_var.val();
+            var email = $('#ST_EMAIL_USU').val();
+            
+            if (senha != conf) {
+                conf_var.css('border-color','red');
+            } else {
+
+                $.post('atualizardados', {senha: senha, email: email}, function(response) {
+                    console.log(response);
+                   if (response) {
+                       Notify('Dados atualizados com éxito.', 'bottom-right', '3000', 'palegreen', 'fa fa-check', true);
+                   } else {
+                       Notify('Problema ao atualizar dados.', 'bottom-right', '3000', 'danger', 'fa fa-times', true);
+                   }
+
+                });
+           }
+        });
         
         var trans = $('#divTransDatas').html();
         if (trans ==='false') {

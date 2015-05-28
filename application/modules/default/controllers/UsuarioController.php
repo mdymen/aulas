@@ -86,12 +86,22 @@ class UsuarioController extends Zend_Controller_Action {
         
         $usuario = new Models_Usuarios();
         $result = $usuario->update($params);
-
-    //    $result = (object)$result;
-    
-        // $this->storage->write($result);  
         
         $this->redirect('usuario/index');
+    }
+    
+    function atualizardadosAction() {
+        $params = $this->_request->getParams();
+        
+        $usuario = new Models_Usuarios();
+        $result = $usuario->atualizarDados($params['email'], $params['senha'], $this->data['ID_ID_USU']);
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');     
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json($result);  
     }
     
     function cursosAction() {
