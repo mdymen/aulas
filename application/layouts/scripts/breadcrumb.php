@@ -15,6 +15,7 @@ function breadcrumb() {
     }
     
     $array = array();
+    $array[''][''] = 'Tela inicial';
     $array['index']['index'] = 'Tela inicial';
     $array['usuario']['index'] = 'Minha conta';
     $array['curso']['cursos'] = 'Cursos';
