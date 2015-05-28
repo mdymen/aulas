@@ -19,6 +19,11 @@ class Bobby_Sessao {
         array_push($user->CURSOS, $curso);
     }
     
+    static function mudarEmail($email) {
+        $user = Zend_Auth::getInstance()->getIdentity(); 
+        $user->ST_EMAIL_USU = $email;
+    }
+    
     static function temCurso($idCurso) {
         $cursos = self::value('CURSOS');
 

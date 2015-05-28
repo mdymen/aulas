@@ -96,6 +96,10 @@ class UsuarioController extends Zend_Controller_Action {
         $usuario = new Models_Usuarios();
         $result = $usuario->atualizarDados($params['email'], $params['senha'], $this->data['ID_ID_USU']);
         
+        if ($result) {
+            Bobby_Sessao::mudarEmail($params['email']);
+        }
+        
         $this->getResponse()
          ->setHeader('Content-Type', 'application/json');     
         $this->_helper->layout->disableLayout();
