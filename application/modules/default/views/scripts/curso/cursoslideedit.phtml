@@ -220,6 +220,15 @@ $curso = $this->curso;
     
 </div>
 
+
+<!--
+Conteudo palavras
+--->
+<div id="ctDescricao" style="display:none"><?php echo utf8_encode('Descrição') ?></div>
+<div id="ctConteudo" style="display:none"><?php echo utf8_encode('Conteúdo') ?></div>
+<div id="ctE" style="display:none"><?php echo utf8_encode('é') ?></div>
+<div id="ctCaract" style="display:none"><?php echo utf8_encode('Características') ?></div>
+
 <script type="text/javascript">
     
     function fecharModal() {
@@ -236,6 +245,14 @@ $curso = $this->curso;
     
     $(function() {
        var curso = $('#curso').html();
+        
+        $('#comp').bind('click', function() {
+           $('#divPrincipal').hide();
+           $('#divSecundario').hide();
+           $('#infoVentas').hide();
+           $('#infoCompl').show();
+           start_informacoes_editar_curso($('#ctDescricao').html(),$('#ctConteudo').html(),$('#ctE').html(),$('#ctCaract').html());
+        }), 
         
         $('#estatisticas').bind('click', function() {
            $('#divGraficas').show(); 
@@ -340,14 +357,6 @@ $curso = $this->curso;
             });
             
         });
-       
-        $('#comp').bind('click', function() {
-           $('#divPrincipal').hide();
-           $('#divSecundario').hide();
-           $('#infoVentas').hide();
-           $('#infoCompl').show();
-           start_informacoes_editar_curso();
-        }),
         
        $('#preview').bind('click', function() {
            $('#divSecundario').html('<div class="col-lg-6 col-sm-6 col-xs-12"><iframe src="http://docs.google.com/gview?url=http://www.bobbyaulas.com/aulas/application/cursos/'+$('#arquivo').html()+'&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe></div>');

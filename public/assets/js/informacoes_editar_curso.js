@@ -1,5 +1,5 @@
 
-function start_informacoes_editar_curso() {
+function start_informacoes_editar_curso(desc,conteudo, e, caract) {
     
     $('#infoCompl').html($('#infoCompl').html()+'<div class="col-lg-4 col-sm-6 col-xs-12" style="right:55px">\n\
                                                 <div class="popoverexample">\n\
@@ -9,7 +9,7 @@ function start_informacoes_editar_curso() {
 <span class="badge badge-info">\n\
                     <i class="fa fa-info"></i>\n\
                 </span>\n\
-Descripcao</h4>\n\
+'+desc+'</h4>\n\
                                                         <div class="popover-content">\n\
                                                             <p>Explicar em que consiste o curso.</p>\n\
                                                         </div>\n\
@@ -24,9 +24,9 @@ Descripcao</h4>\n\
 <span class="badge badge-info">\n\
                     <i class="fa fa-info"></i>\n\
                 </span>\n\
-Conteudo</h4>\n\
+'+conteudo+'</h4>\n\
                                                         <div class="popover-content">\n\
-                                                            <p>Qual e o conteudo do curso. Que ensina?.</p>\n\
+                                                            <p>Qual e o '+conteudo+' do curso. Que ensina?. (;) para quebra de linha.</p>\n\
                                                         </div>\n\
                                                     </div>\n\
                                                 </div>\n\
@@ -42,7 +42,7 @@ $('#infoCompl').html($('#infoCompl').html()+'<div class="col-lg-4 col-sm-6 col-x
                 </span>\n\
 Objetivo</h4>\n\
                                                         <div class="popover-content">\n\
-                                                            <p>Por que e importante fazer este curso.</p>\n\
+                                                            <p>Por que '+e+' importante fazer este curso.</p>\n\
                                                         </div>\n\
                                                     </div>\n\
                                                 </div>\n\
@@ -56,9 +56,9 @@ Objetivo</h4>\n\
 <span class="badge badge-info">\n\
                     <i class="fa fa-info"></i>\n\
                 </span>\n\
-Caracteristicas</h4>\n\
+'+caract+'</h4>\n\
                                                         <div class="popover-content">\n\
-                                                            <p>O curso tem texto? imagens? video?.</p>\n\
+                                                            <p>O curso tem texto? imagens? video?. (;) quebra de linha.</p>\n\
                                                         </div>\n\
                                                     </div>\n\
                                                 </div>\n\
