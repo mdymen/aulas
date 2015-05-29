@@ -36,10 +36,7 @@ class Forms_Pagamento extends Zend_Form {
         $aceitar = new Zend_Form_Element_Button('btnGravarConta', array('value' => 'Gravar','type' => 'button', 'class' => 'btn btn-success'));
         $aceitar->addDecorator($decBtn);
         
-        $x = new Zend_Form_Element_Text('d', array('placeholder' => utf8_encode('N° da conta')));
-        $x->addDecorator($dec);
-        
-        $this->addElements(array($nome, $cpf, $banco, $agencia, $conta, $x, $aceitar));
+        $this->addElements(array($nome, $cpf, $banco, $agencia, $conta, $aceitar));
         
     }
 }

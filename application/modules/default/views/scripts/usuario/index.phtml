@@ -291,7 +291,57 @@ if ($i == 1 || $i == 2 || $i == 3) { echo '</div>';}
 </div>
 
 <div id="divDadosConta" style="display:none;">
-    <?php 
+    <div class="col-lg-6 col-sm-6 col-xs-12">
+            <div class="widget">
+                <div class="widget-header bordered-bottom bordered-blue">
+                    <span class="widget-caption" id="tituloForm"> Dados do pagamento</span>
+                        
+                </div>
+                <div class="widget-body">
+                    <div><form action="method=post">
+                            <div class="form-group">
+                                <label for="ST_NOME_USU"></label>
+                                <input id="ST_NOME_USU" name="ST_NOME_USU" class="form-control" placeholder="Nome completo" type="" value="Martin Dymenstein">
+                            </div>
+                            <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="ST_CPF_USU"></label>
+                                    <input id="ST_CPF_USU" name="ST_CPF_USU" class="form-control" placeholder="CPF" type="" value="06842930138">
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="ST_BANCO_USU"></label>
+                                        <input id="ST_BANCO_USU" name="ST_BANCO_USU" class="form-control" placeholder="Nome do banco" type="" value="Banco do Brasil"></div>
+                                </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="ST_AGENCIA_USU"></label>
+                                    <input id="ST_AGENCIA_USU" name="ST_AGENCIA_USU" class="form-control" placeholder="N° de Agencia" type="" value="2345-2">
+                                </div>
+                            </div>
+                            
+                                <div class="form-group">
+                                    <div class="col-md-3">
+                                    <label for="ST_CONTA_USU"></label>
+                                    <input id="ST_CONTA_USU" name="ST_CONTA_USU" class="form-control" placeholder="N° da conta" type="" value="328882">
+                                </div>
+                            </div>
+                            </div>
+                        
+                            <button name="btnGravarConta" id="btnGravarConta" type="button" class="btn btn-success" style="margin-right: 10px">Gravar</button>
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+    
+<!--    <?php 
         include_once APPLICATION_PATH.'/forms/pagamento.php';
         $formPagamento = new Forms_Pagamento(array('titulo' => 'Dados do pagamento'));
         if ($usuario_conta) {
@@ -299,7 +349,7 @@ if ($i == 1 || $i == 2 || $i == 3) { echo '</div>';}
         }
         $formPagamento->addDecorator(new Decorators_Form());
         echo $formPagamento;
-    ?>; 
+    ?>; -->
 </div>
 
 
