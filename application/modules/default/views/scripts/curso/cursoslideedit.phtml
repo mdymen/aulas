@@ -195,8 +195,8 @@ $curso = $this->curso;
                                             </li>
 
                                             <li class="tab-red">
-                                                <a data-toggle="tab" href="#profile">
-                                                    Profile
+                                                <a data-toggle="tab" href="#profile" id="secondChart">
+                                                    (R$)/Mes
                                                 </a>
                                             </li>
 
@@ -227,12 +227,31 @@ $curso = $this->curso;
                         </div>
                     </div>
                                                 
-                                                
+                                            
                                                
                                             </div>
 
                                             <div id="profile" class="tab-pane">
-                                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+                                                <p><div class="row">
+                        <div class="col-xs-12 col-md-12 col-lg-12">
+                            <div class="widget">
+                                <div class="widget-header">
+<!--                                    <span class="widget-caption">Ventas Cursos/Mes</span>-->
+                             
+                                </div>
+                                <div class="widget-body">
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="selectable-chart2" class="chart chart-lg" style="padding: 0px; position: relative;">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></p>
                                             </div>
 
                                         </div>
@@ -277,6 +296,25 @@ Conteudo palavras
            start_informacoes_editar_curso($('#ctDescricao').html(),$('#ctConteudo').html(),$('#ctE').html(),$('#ctCaract').html());
         }), 
         
+        $('#secondChart').bind('click', function() {
+            $('#divGraficas').show(); 
+            $('#infoUsers').hide(); 
+            $('#infoVentas').hide();
+            $('#divPrincipal').hide();
+            $('#divSecundario').hide();
+            $('#infoCompl').hide();    
+            $.post('dadosgraficacomprascursosmes', {curso: curso}, function(response) {       
+                dados = [];
+                $.each(response, function(key, val) {
+                    valores = [];
+                    valores.push(key);
+                    valores.push(val);
+                    dados.push(valores);
+                })
+                InitiateFlotSelectableChart.init(dados,"($R)/Mes", '#selectable-chart2');
+            });
+        })
+        
         $('#estatisticas').bind('click', function() {
            $('#divGraficas').show(); 
             $('#infoUsers').hide(); 
@@ -284,17 +322,15 @@ Conteudo palavras
             $('#divPrincipal').hide();
             $('#divSecundario').hide();
             $('#infoCompl').hide();    
-            $.post('dadosgraficacomprascursos', {curso: curso}, function(response) {
-             //   console.log(response);                
+            $.post('dadosgraficacomprascursos', {curso: curso}, function(response) {       
                 dados = [];
                 $.each(response, function(key, val) {
                     valores = [];
-                    valores.push(val['Mes']);
-                    valores.push(val['Qant']);
+                    valores.push(key);
+                    valores.push(val);
                     dados.push(valores);
                 })
-                InitiateFlotSelectableChart.init(dados);
-                console.log(dados);
+                InitiateFlotSelectableChart.init(dados,"Ventas/Mes", '#selectable-chart');
             });
             
         });
@@ -330,43 +366,48 @@ Conteudo palavras
             $('#infoVentas').hide();
             $('#divPrincipal').hide();
             $('#divSecundario').hide();
-            $('#infoCompl').hide();           
+            $('#infoCompl').hide();     
+            $('#divGraficas').hide();
         });
         
         
-        $('#usd').bind('click', function() {
-           $('#infoVentas').html('');
-           $.post('ventas', {curso: $('#curso').html()}, function(response){
-                $('#infoVentas').show();
-                $('#divPrincipal').hide();
-                $('#divSecundario').hide();
-                $('#infoCompl').hide();  
-                var html;
-                var usr;
-                for (var i = 0; i < response.length; i++) {
-                    html = $('#infoVentas').html();
-                    
-                    usr = '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">\n\
-    <div class="databox radius-bordered databox-shadowed databox-graded" style="height:100px !important">\n\
-        <div class="databox-left bg-green" style="weight:100px !important; height:100px !important;">\n\
-            <div class="databox-icon">\n\
-                <i class="fa fa-user"></i>\n\
-            </div> \n\
-        </div>\n\
-        <div class="databox-right">\n\
-            <span class="databox-number green">'+response[i].ST_USUARIO_USU+'</span>\n\
-            <div class="databox-text darkgray">'+response[0].DT_DATA_COM+'</div>\n\
-            <div class="databox-stat green radius-bordered">\n\
-                <i class="stat-icon icon-lg fa fa-tasks"></i>\n\
-            </div>\n\
-        </div>\n\
-    </div>\n\
-</div> ';
-                    html += usr;
-                    $('#infoVentas').html(html);
-                }
-           });
-        });
+//        $('#usd').bind('click', function() {
+//            var puts = $('#infoVentas').html();
+//            if (var != '') {
+//                $('#infoVentas').html('');
+//
+//               $.post('ventas', {curso: $('#curso').html()}, function(response){
+//                    $('#infoVentas').show();
+//                    $('#divPrincipal').hide();
+//                    $('#divSecundario').hide();
+//                    $('#infoCompl').hide();  
+//                    var html;
+//                    var usr;
+//                    for (var i = 0; i < response.length; i++) {
+//                        html = $('#infoVentas').html();
+//
+//                        usr = '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">\n\
+//        <div class="databox radius-bordered databox-shadowed databox-graded" style="height:100px !important">\n\
+//            <div class="databox-left bg-green" style="weight:100px !important; height:100px !important;">\n\
+//                <div class="databox-icon">\n\
+//                    <i class="fa fa-user"></i>\n\
+//                </div> \n\
+//            </div>\n\
+//            <div class="databox-right">\n\
+//                <span class="databox-number green">'+response[i].ST_USUARIO_USU+'</span>\n\
+//                <div class="databox-text darkgray">'+response[0].DT_DATA_COM+'</div>\n\
+//                <div class="databox-stat green radius-bordered">\n\
+//                    <i class="stat-icon icon-lg fa fa-tasks"></i>\n\
+//                </div>\n\
+//            </div>\n\
+//        </div>\n\
+//    </div> ';
+//                        html += usr;
+//                        $('#infoVentas').html(html);
+//                    }
+//               });
+//            }
+//        });
         
         $('#btnAtualizarComp').bind('click', function() {
             var des = $('#ST_DESCR_CR').val();

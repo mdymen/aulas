@@ -477,18 +477,52 @@ class CursoController extends Zend_Controller_Action
         $this->_helper->json($result);         
     }
     
+    function dadosgraficacomprascursosmesAction() {
+         $params = $this->_request->getParams();
+        
+        $cursos = new Models_Cursos();
+        $curso = $cursos->comprasMes($params['curso']);
+        
+        $meses = array();
+        foreach ($curso as $c) {
+            $meses[$c['Mes']] = $c['Suma'];
+        }
+        for ($i = 1; $i <= 12; $i++) {
+            if (empty($meses[$i])) {
+                $meses[$i] = 0;
+            }
+        }
+        
+        $this->getResponse()
+         ->setHeader('Content-Type', 'application/json');     
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(TRUE);
+        
+        $this->_helper->json($meses);         
+    }
+    
     function dadosgraficacomprascursosAction() {
         $params = $this->_request->getParams();
         
         $cursos = new Models_Cursos();
         $curso = $cursos->compras($params['curso']);
 
+        $meses = array();
+        foreach ($curso as $c) {
+            $meses[$c['Mes']] = $c['Qant'];
+        }
+        for ($i = 1; $i <= 12; $i++) {
+            if (empty($meses[$i])) {
+                $meses[$i] = 0;
+            }
+        }
+        
         $this->getResponse()
          ->setHeader('Content-Type', 'application/json');     
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(TRUE);
         
-        $this->_helper->json($curso);        
+        $this->_helper->json($meses);        
     }
 }
 

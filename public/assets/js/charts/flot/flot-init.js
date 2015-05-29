@@ -105,11 +105,11 @@ var InitiateFlotBarChart = function () {
 
 var InitiateFlotSelectableChart = function () {
     return {
-        init: function (valores) {
+        init: function (valores, texto, contenedor) {
 
             var data = [{
                 color: themeprimary,
-                label: "Windows",
+                label: texto,
                 data: valores
             }
 //            , {
@@ -166,7 +166,7 @@ var InitiateFlotSelectableChart = function () {
                 }
             };
 
-            var placeholder = $("#selectable-chart");
+            var placeholder = $(contenedor);
 
             placeholder.bind("plotselected", function (event, ranges) {
 
