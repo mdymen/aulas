@@ -15,7 +15,13 @@ function breadcrumb() {
     }
     
     $array = array();
-    $array[''][''] = 'Tela inicial';
+    
+    if (empty($url[4]) && empty($url[3])) { 
+        $nivel1 = 'in';
+        $nivel2 = 'in';
+        $array[$nivel1][$nivel2] = 'Tela inicial';
+    }
+
     $array['index']['index'] = 'Tela inicial';
     $array['usuario']['index'] = 'Minha conta';
     $array['curso']['cursos'] = 'Cursos';
