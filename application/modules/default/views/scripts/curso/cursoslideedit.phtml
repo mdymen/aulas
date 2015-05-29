@@ -11,9 +11,35 @@ $curso = $this->curso;
 ?>
 
 <?php $this->headScript()->appendFile($this->baseUrl('assets/js/informacoes_editar_curso.js')) ?>     
+<script type="text/javascript" src="<?php echo $this->baseUrl('assets/js/modal.js'); ?>" ></script>
 
 <div id="arquivo" style="display:none"><?php echo $curso[0]['ST_IDENT_CR']; ?></div>
 <div id="curso" style="display:none"><?php echo $curso[0]['ID_ID_CR']; ?></div>
+
+<?php
+
+        if ($curso[0]['FL_DISPONIVEL_CR'] == 1) {
+            $icone = 'fa fa-unlock';
+            $title = "Visivel";
+            $ativo = "Ativo";
+        } else {
+            $icone = 'fa fa-lock';
+            $title ="Nao visivel";
+            $ativo = "Inativo";
+        }
+?>
+
+<div class="col-md-12">
+        <div class="widget" style="margin:0px !important;">
+            <div class="widget-header" id="opcoes" style="height: 40px !important">
+                <span class="widget-caption"> 
+                    <h2 style="margin: 5px !important;">
+                        <a data-curso="<?php echo $curso[0]['ID_ID_CR']; ?>" data-visibilidade="<?php echo $curso[0]['FL_DISPONIVEL_CR']; ?>" class="mudarVisibilidade">
+                            <i title="<?php echo $title; ?>" style="font-size:25px !important" id="iconeVis" class="stat-icon icon-lg <?php echo $icone; ?>"></i>
+                        </a>    
+                        <?php echo $curso[0]['ST_NOME_CR'] ?></h2>
+                        
+                </span></div></div></div>
 
 <div class="col-md-12">
         <div class="widget">
@@ -34,9 +60,6 @@ $curso = $this->curso;
                     <a href="javascript:void(0)" id="preview" title="Preview" style="padding-left:20px">
                         <i class="glyphicon glyphicon-eye-open" style="font-size:25px !important"></i>&nbsp;
                     </a>                    
-                    <a href="javascript:void(0)" id="mudarVisibilidade" title="Mudar visibilidade">
-                        <i class="fa fa-unlock-alt" style="font-size:25px !important"></i>&nbsp;
-                    </a> 
                     <a href="javascript:void(0)" id="excluir" title="Excluir curso">
                         <i class="fa fa-trash-o" style="font-size:25px !important"></i>&nbsp;
                     </a>
