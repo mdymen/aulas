@@ -62,6 +62,47 @@ $curso = $this->curso;
         $form->populate($curso[0]);
         echo $form;
     ?>
+    
+    <div class="col-lg-6 col-sm-6 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                    <span class="widget-caption" id="tituloForm"><i class="fa fa-book"></i>&nbsp;<?php  echo utf8_encode('Vista prévia da tela de Cursos'); ?></span>                        
+           </div>
+            <div class="widget-body">
+                <div class="row">
+                <?php
+                $temCurso = Bobby_Sessao::temCurso($curso[0]['ID_ID_CR']);
+
+        $icone = 'fa fa-pencil';
+        $acao = 'Conferir';        
+        $btnComprar = '';
+        if ($curso[0]['VL_CUSTO_CR'] > 0 && !$temCurso) {
+            $icone = 'fa fa-dollar';
+            $acao = 'Comprar';
+            $btnComprar = 'btnComprar';
+        }
+        ?>
+            <div class="col-sm-5 col-md-7">
+              <div class="thumbnail">
+                  <img data-src="holder.js/100%x200" alt="100%x200" src="<?php echo $this->baseUrl().'/../application/uploads/'.$curso[0]['ST_IMAGEM_CR']; ?>" data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
+                  <div class="caption" style="background-color: #F0F0F0 ">
+                  <h3 style="margin-top: 0px"><?php echo $curso[0]['ST_NOME_CR']; ?></h3>
+                  <p><?php echo $curso[0]['ST_SUBTITULO_CR']; ?></p>
+                  <?php
+                  if ($curso[0]['VL_CUSTO_CR'] > 0) {
+                      echo '<span class="price palegreen" style="font-size:15px"><b>R$ '.$curso[0]['VL_CUSTO_CR'].'</b></span>';
+                  } else {
+                      echo '<span style="color: green"><b>GRATIS</b></span>';
+                  }
+                  ?>
+                  <p><br><span><a class="btn btn-primary" style="margin-right:5px" href="javascript:void(0)"><i class="fa fa-info"></i> Ficha</a><span id="btn<?php echo $curso[0]['ID_ID_CR']; ?>"><a href="javascript:void(0)" class="btn btn-success <?php echo $btnComprar ?>" role="button"><i class="<?php echo $icone; ?>"></i><?php echo $acao; ?></a></span></span></p>
+                </div>
+              </div>
+            </div>
+            </div>
+                </div>
+        </div>
+    </div>    
 </div>
 <div id="divSecundario"></div>
 <div id="divFormExcluir" style="display:none;">

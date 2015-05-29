@@ -19,7 +19,6 @@ class Forms_Curso_Slides extends Zend_Form {
         $nome = new Zend_Form_Element_Text('ST_NOME_CR', array('placeholder' => 'Nome'));
         $nome->addDecorator($decorator1);
         
-        
         $decorator8 = new Decorators_Decorator1();        
         $subtitulo = new Zend_Form_Element_Text('ST_SUBTITULO_CR', array('placeholder' => 'Categoria'));
         $subtitulo->addDecorator($decorator8);
@@ -42,7 +41,7 @@ class Forms_Curso_Slides extends Zend_Form {
         $curso->addDecorator($decFile);
         
         $decButton = new Decorators_ButtonIconeR();
-        $register = new Zend_Form_Element_Button('btnCriar', array('value' => 'Criar curso', 'type' => 'submit', 'class' => 'btn btn-success', 'icone' => 'fa fa-check'));
+        $register = new Zend_Form_Element_Button('btnCriar', array('value' => 'Criar curso', 'type' => 'submit', 'class' => 'btn btn-success'));
         $register->addDecorator($decButton);
         
         $this->addElements(array($custo, $nome, $subtitulo, $minides, $file, $curso, $register));

@@ -57,7 +57,29 @@ class CursoController extends Zend_Controller_Action
         
     }
     
-    public function editarAction() {}
+    public function editarAction() {
+        require_once APPLICATION_PATH.'/forms/curso/editarslides.php';
+
+        $params = $this->_request->getParams();
+
+        $form = new Forms_Curso_EditarSlides();
+
+        if ($this->_request->isPost()) {
+            $formData = $this->_request->getPost();
+            
+            if ($form->isValid($formData)) {
+                
+                // success - do something with the uploaded file
+                $uploadedData = $form->getValues();
+                 
+            }
+        }
+        
+        $course = new Models_Cursos();
+        $course->atualizarSlide($uploadedData);
+        
+        $this->redirect('curso/cursoslideedit?curso='.$params['ID_ID_CR']);
+    }
     
     public function vercursojsonAction() {
         $params = $this->_request->getParams();

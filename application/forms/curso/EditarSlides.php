@@ -19,6 +19,7 @@ class Forms_Curso_EditarSlides extends Zend_Form {
         $nome = new Zend_Form_Element_Text('ST_NOME_CR"', array('placeholder' => 'Nome'));
         $nome->addDecorator($decorator1);
         
+                $id = new Zend_Form_Element_Hidden('ID_ID_CR');
         
         $decorator8 = new Decorators_Decorator1();        
         $subtitulo = new Zend_Form_Element_Text('ST_SUBTITULO_CR"', array('placeholder' => 'Categoria'));
@@ -42,13 +43,13 @@ class Forms_Curso_EditarSlides extends Zend_Form {
         $curso->addDecorator($decFile);
         
         $decButton = new Decorators_ButtonIconeR();
-        $register = new Zend_Form_Element_Button('Gravar', array('type' => 'submit', 'class' => 'btn btn-success', 'value' => 'Gravar', 'icone' => 'fa fa-check'));        
+        $register = new Zend_Form_Element_Button('Gravar', array('type' => 'submit', 'class' => 'btn btn-success', 'value' => 'Atualizar'));        
         $register->addDecorator($decButton);
         
         $disponibilizar = new Zend_Form_Element_Button('btnDisp', array('type' => 'submit', 'class' => 'btn btn-primary', 'value' => 'Disponibilizar', 'icone' => 'fa fa-unlock'));
         $disponibilizar->addDecorator($decButton);
         
-        $this->addElements(array($custo, $nome, $subtitulo, $minides, $file, $curso, $register));
+        $this->addElements(array($custo, $nome, $subtitulo, $minides, $file, $curso, $register, $id));
         
     }  //put your code here
     
