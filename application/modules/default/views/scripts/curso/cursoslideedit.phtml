@@ -346,10 +346,11 @@ Conteudo palavras
         });
         
         $('#usr').bind('click', function() {
-            $.post('usuariosdelcurso', {curso: curso}, function(response) {
                 var obj = $('#infoUsers');
+                if (obj.html() === '') {
+            $.post('usuariosdelcurso', {curso: curso}, function(response) {
                 var html = obj.html();
-                if (html === '') {
+                
                     for(var i = 0; i < response.length; i++) {
                         html += ' <div class="col-lg-2 col-sm-4 col-xs-6">\n\
                                         <div class="databox databox-lg databox-vertical databox-inverted bg-white databox-shadowed">\n\
@@ -368,8 +369,9 @@ Conteudo palavras
                                     </div>';
                                     obj.html(html);               
                     }
-                }
-            });
+                
+                });
+            }
             $('#infoUsers').show(); 
             $('#infoVentas').hide();
             $('#divPrincipal').hide();
