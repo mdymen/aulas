@@ -161,8 +161,6 @@ $curso = $this->curso;
     
 </div>
 <!--<a href="javascript:void(0);" id="adicionar_usuario">-->
-<div id="infoUsers" style="display:none">
-    
 <!--    <div class="col-lg-2 col-sm-4 col-xs-6">
                                     <div class="databox databox-lg databox-vertical databox-inverted bg-white databox-shadowed">
                                         <div class="databox-top">
@@ -179,9 +177,12 @@ $curso = $this->curso;
                                         </div>
                                     </div>
                                 </div>-->
-</div>
+
+<div id="infoUsers" style="display:none"></div>
 <!--        </a>-->
 
+<div id="valGrafica1" style="display:none"></div>
+<div id="valGrafica2" style="display:none"></div>
 <div id="divGraficas" style="display:none">
     
     
@@ -297,42 +298,47 @@ Conteudo palavras
         }), 
         
         $('#secondChart').bind('click', function() {
-            $('#divGraficas').show(); 
-            $('#infoUsers').hide(); 
-            $('#infoVentas').hide();
-            $('#divPrincipal').hide();
-            $('#divSecundario').hide();
-            $('#infoCompl').hide();    
-            $.post('dadosgraficacomprascursosmes', {curso: curso}, function(response) {       
-                dados = [];
-                $.each(response, function(key, val) {
-                    valores = [];
-                    valores.push(key);
-                    valores.push(val);
-                    dados.push(valores);
-                })
-                InitiateFlotSelectableChart.init(dados,"($R)/Mes", '#selectable-chart2');
-            });
+            if ($('#valGrafica2').html() === '') {
+                $('#divGraficas').show(); 
+                $('#infoUsers').hide(); 
+                $('#infoVentas').hide();
+                $('#divPrincipal').hide();
+                $('#divSecundario').hide();
+                $('#infoCompl').hide();    
+                $.post('dadosgraficacomprascursosmes', {curso: curso}, function(response) {       
+                    dados = [];
+                    $.each(response, function(key, val) {
+                        valores = [];
+                        valores.push(key);
+                        valores.push(val);
+                        dados.push(valores);
+                    })
+                    $('#valGrafica2').html('dados');
+                    InitiateFlotSelectableChart.init(dados,"(R$)/Mes", '#selectable-chart2');
+                });
+            }
         })
         
         $('#estatisticas').bind('click', function() {
-           $('#divGraficas').show(); 
-            $('#infoUsers').hide(); 
-            $('#infoVentas').hide();
-            $('#divPrincipal').hide();
-            $('#divSecundario').hide();
-            $('#infoCompl').hide();    
-            $.post('dadosgraficacomprascursos', {curso: curso}, function(response) {       
-                dados = [];
-                $.each(response, function(key, val) {
-                    valores = [];
-                    valores.push(key);
-                    valores.push(val);
-                    dados.push(valores);
-                })
-                InitiateFlotSelectableChart.init(dados,"Ventas/Mes", '#selectable-chart');
-            });
-            
+            if ($('#valGrafica1').html() === '') {
+                 $('#divGraficas').show(); 
+                 $('#infoUsers').hide(); 
+                 $('#infoVentas').hide();
+                 $('#divPrincipal').hide();
+                 $('#divSecundario').hide();
+                 $('#infoCompl').hide();    
+                 $.post('dadosgraficacomprascursos', {curso: curso}, function(response) {       
+                     dados = [];
+                     $.each(response, function(key, val) {
+                         valores = [];
+                         valores.push(key);
+                         valores.push(val);
+                         dados.push(valores);
+                     })
+                     $('#valGrafica1').html('dados');
+                     InitiateFlotSelectableChart.init(dados,"Ventas/Mes", '#selectable-chart');
+               });
+            }            
         });
         
         $('#adicionar_usuario').bind('click', function() {
@@ -343,23 +349,25 @@ Conteudo palavras
             $.post('usuariosdelcurso', {curso: curso}, function(response) {
                 var obj = $('#infoUsers');
                 var html = obj.html();
-                for(var i = 0; i < response.length; i++) {
-                    html += ' <div class="col-lg-2 col-sm-4 col-xs-6">\n\
-                                    <div class="databox databox-lg databox-vertical databox-inverted bg-white databox-shadowed">\n\
-                                        <div class="databox-top">\n\
-                                            <div class="databox-piechart">\n\
-                                                <div data-toggle="easypiechart" class="easyPieChart block-center" data-barcolor="#e75b8d" data-linecap="butt" data-percent="40" data-animate="500" data-linewidth="8" data-size="100" data-trackcolor="#eee" style="width: 100px; height: 100px; line-height: 100px;">\n\
-                                                    <span class="white font-200"><i class="fa fa-user blue" style="font-size:100px"></i></span>\n\
+                if (html === '') {
+                    for(var i = 0; i < response.length; i++) {
+                        html += ' <div class="col-lg-2 col-sm-4 col-xs-6">\n\
+                                        <div class="databox databox-lg databox-vertical databox-inverted bg-white databox-shadowed">\n\
+                                            <div class="databox-top">\n\
+                                                <div class="databox-piechart">\n\
+                                                    <div data-toggle="easypiechart" class="easyPieChart block-center" data-barcolor="#e75b8d" data-linecap="butt" data-percent="40" data-animate="500" data-linewidth="8" data-size="100" data-trackcolor="#eee" style="width: 100px; height: 100px; line-height: 100px;">\n\
+                                                        <span class="white font-200"><i class="fa fa-user blue" style="font-size:100px"></i></span>\n\
+                                                    </div>\n\
                                                 </div>\n\
                                             </div>\n\
+                                            <div class="databox-bottom no-padding text-align-center">\n\
+                                                <span class="databox-number lightcarbon no-margin">&nbsp;</span>\n\
+                                                <span class="databox-text lightcarbon no-margin">'+response[i].ST_USUARIO_USU+'</span>\n\
+                                            </div>\n\
                                         </div>\n\
-                                        <div class="databox-bottom no-padding text-align-center">\n\
-                                            <span class="databox-number lightcarbon no-margin">&nbsp;</span>\n\
-                                            <span class="databox-text lightcarbon no-margin">'+response[i].ST_USUARIO_USU+'</span>\n\
-                                        </div>\n\
-                                    </div>\n\
-                                </div>';
-                                obj.html(html);               
+                                    </div>';
+                                    obj.html(html);               
+                    }
                 }
             });
             $('#infoUsers').show(); 
@@ -368,6 +376,7 @@ Conteudo palavras
             $('#divSecundario').hide();
             $('#infoCompl').hide();     
             $('#divGraficas').hide();
+            
         });
         
         
